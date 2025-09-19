@@ -137,7 +137,7 @@ export default function WaitlistForm() {
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
-                  placeholder="you fit use nickname"
+                  placeholder="can be a nickname"
                 />
               </div>
 
@@ -154,7 +154,7 @@ export default function WaitlistForm() {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
-                  placeholder="your.email@example.com"
+                  placeholder="email@example.com"
                 />
               </div>
 
@@ -177,7 +177,7 @@ export default function WaitlistForm() {
               {/* City */}
               <div>
                 <label htmlFor="city" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Where you dey? 🏠
+                  Your Location? 🏠
                 </label>
                 <input
                   type="text"
@@ -187,7 +187,7 @@ export default function WaitlistForm() {
                   value={formData.city}
                   onChange={handleChange}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
-                  placeholder="e.g., Lagos, Abuja, Port Harcourt..."
+                  placeholder="e.g., Lagos, Abuja, Port Harcourt, Diaspora..."
                 />
               </div>
 

@@ -104,8 +104,8 @@ export default function FeaturesSection() {
   const features = [
     {
       icon: MessageCircle,
-      title: "Naija Conversational Tone",
-      description: "No boring corporate talk here! We speak your language - from pidgin to proper English, however you vibe.",
+      title: "Conversational Tone",
+      description: "No boring corporate talk here! We speak your language from pidgin to proper English, however you vibe.",
       bgColor: "bg-orange-50",
       borderColor: "border-orange-200",
       iconColor: "text-orange-600",
@@ -132,7 +132,7 @@ export default function FeaturesSection() {
     {
       icon: Heart,
       title: "Rant Space",
-      description: "Bad day? Traffic wahala? Boss stress? Drop your rants in a safe space and feel that weight lift off your chest.",
+      description: "Bad day? Traffic problems? Boss stress? Drop your rants in a safe space and feel that weight lift off your chest.",
       bgColor: "bg-green-50",
       borderColor: "border-green-200",
       iconColor: "text-green-600",
@@ -141,7 +141,7 @@ export default function FeaturesSection() {
     {
       icon: Brain,
       title: "Smart Ginja Assistance",
-      description: "Stuck in Lagos traffic? Moving house? Tight schedule? Our Ginja AI suggests realistic tweaks to keep you on track.",
+      description: "Stuck in traffic? Moving house? Tight schedule? Our Ginja AI suggests realistic tweaks to keep you on track.",
       bgColor: "bg-blue-50",
       borderColor: "border-blue-200",
       iconColor: "text-blue-600",
@@ -179,8 +179,7 @@ export default function FeaturesSection() {
             </span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-            Finally, a productivity app that gets the Naija hustle. No generic templates, no 
-            foreign vibes just pure{' '}
+          Finally, a productivity app that understands real life. No generic templates, no stiff routines just simple{' '}
             <span className="font-semibold text-[#E2561B]">home grown efficiency</span> ✨
           </p>
         </motion.div>
@@ -556,7 +555,7 @@ export default function FeaturesSection() {
                           <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
                         </div>
                         <div>
-                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Playful Naija Style</h5>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Real Life Simplicity</h5>
                           <p className="text-gray-600 text-xs sm:text-sm">No boring corporate notifications here! Get motivated with messages that actually make you smile and want to take action.</p>
                         </div>
                       </div>
@@ -615,7 +614,7 @@ export default function FeaturesSection() {
             Ready to level up your productivity game?
           </h3>
           <p className="text-gray-600 text-sm sm:text-base">
-            Join thousands of Naija people already staying ginja'd with purpose!
+            Join thousands of people already staying ginja'd with purpose!
           </p>
         </motion.div>
       </div>

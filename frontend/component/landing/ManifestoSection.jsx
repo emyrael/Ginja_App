@@ -7,7 +7,7 @@ export default function ManifestoSection() {
   const manifestoPoints = [
     {
       icon: Heart,
-      title: "Life Can Be Wahala Sometimes",
+      title: "Life Can Be Stressful Sometimes",
       description: "Between work, school, hustle, family, and just trying to catch your breath, it's easy to feel stressed and overwhelmed. That's why we're building Ginja.",
       bgColor: "bg-red-50",
       borderColor: "border-red-200",
@@ -138,7 +138,7 @@ export default function ManifestoSection() {
             Ready to Get Ginja'd?
           </h3>
           <p className="text-gray-600">
-            Join thousands of Naija people already staying organized with purpose!
+            Join thousands of people already staying organized with purpose!
           </p>
         </motion.div>
       </div>

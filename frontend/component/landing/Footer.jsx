@@ -32,7 +32,7 @@ export default function Footer() {
               </h3>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
-              The productivity app built for Nigerians. 
+              The productivity app built for everyone. 
               Stay Ginja'd, stay Organized, stay Winning! 🚀
             </p>
             <div className="flex items-center gap-2">
@@ -115,7 +115,7 @@ export default function Footer() {
         >
           <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
             © 2025 Ginja App. All rights reserved. 
-            <span className="ml-1 sm:ml-2">Built with 💜 in Nigeria</span>
+            <span className="ml-1 sm:ml-2">Built with 💜 for getting things done</span>
           </p>
           
           <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500">

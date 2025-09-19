@@ -60,8 +60,8 @@ export default function HeroSection({ onJoinWaitlist }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              The Naija productivity app that actually gets your vibe.{' '}
-              <span className="font-semibold text-[#E2561B]">No cap!</span> 🔥
+              The Productivity app that actually gets your vibe.{' '}
+              <span className="font-semibold text-[#E2561B]"></span> 
             </motion.p>
 
             {/* Feature badges - with more features */}
@@ -72,7 +72,7 @@ export default function HeroSection({ onJoinWaitlist }) {
               transition={{ delay: 0.9, duration: 0.6 }}
             >
               <div className="bg-[#E2561B]/10 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">✨ Naija Vibes</span>
+                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">✨Smart Notifications</span>
               </div>
               <div className="bg-[#C4C879]/20 border border-[#4E8C06]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                 <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">📋 Task Manager</span>
@@ -166,7 +166,7 @@ export default function HeroSection({ onJoinWaitlist }) {
                             <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full flex items-center justify-center">
                               <span className="text-white text-xs">✓</span>
                             </div>
-                            <span className="text-xs sm:text-sm text-gray-600 line-through">Visit the gym</span>
+                            <span className="text-xs sm:text-sm text-gray-600 line-through">Go to the gym</span>
                           </div>
                           <div className="flex items-center gap-2 sm:gap-3">
                             <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-gray-300 rounded-full" />
