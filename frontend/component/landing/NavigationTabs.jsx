@@ -9,7 +9,7 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
       id: 'home',
       name: 'Home',
       icon: Home,
-      color: '#E2561B',
+      color: '#4E8C06',
       href: '#home'
     },
     {
@@ -23,7 +23,7 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
       id: 'manifesto',
       name: 'Why Ginja',
       icon: Heart,
-      color: '#E2561B',
+      color: '#4E8C06',
       href: '#manifesto'
     }
   ];
@@ -47,7 +47,7 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white/90 via-green-50/30 to-white/90 backdrop-blur-md border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="flex items-center justify-between py-3 sm:py-4 gap-2 sm:gap-4">
           
@@ -96,6 +96,12 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
             transition={{ duration: 0.5, delay: 0.3 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const waitlistSection = document.getElementById('waitlist');
+              if (waitlistSection) {
+                waitlistSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             Join Waitlist
           </motion.button>

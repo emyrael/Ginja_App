@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Twitter, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import GinjaLogo from './GinjaLogo';
+import GinjaText from './GinjaText';
 
 export default function Footer() {
   const socialLinks = [
@@ -27,14 +28,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 sm:gap-4">
               <GinjaLogo size="sm" />
               <h3 className="text-xl sm:text-2xl font-black">
-                <span className="text-[#E2561B]">Gin</span>
-                <span className="text-[#4E8C06] relative">
-                  <span className="custom-j text-xl sm:text-2xl">
-                    j
-                    <span className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2 text-[#E2561B] text-xl sm:text-2xl">•</span>
-                  </span>
-                  a
-                </span>
+                <GinjaText size="md" />
               </h3>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
@@ -69,15 +63,16 @@ export default function Footer() {
               >
                 Join Waitlist
               </a>
-              <a 
-                href="https://ginjaapp.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-[#E2561B] transition-colors duration-200 text-sm sm:text-base"
+              <button 
+                onClick={() => {
+                  navigator.clipboard.writeText('https://ginjaapp.com');
+                  // You could add a toast notification here if you have one
+                }}
+                className="flex items-center gap-2 text-gray-400 hover:text-[#E2561B] transition-colors duration-200 text-sm sm:text-base cursor-pointer"
               >
-                Share Ginja App
+                Share Ginja
                 <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
-              </a>
+              </button>
             </div>
           </motion.div>
 

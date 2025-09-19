@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, Target, Mic, Heart, Brain, Users, Home, CheckSquare, Flame, Trophy, Zap } from 'lucide-react';
+import GinjaText from './GinjaText';
 
 export default function FeaturesSection() {
   const [activeTab, setActiveTab] = useState(0);
@@ -51,11 +52,11 @@ export default function FeaturesSection() {
     },
     {
       id: 'social',
-      name: 'Friends',
+      name: 'Shared Tasks',
       icon: Users,
       color: '#10b981',
       preview: {
-        title: 'Weekly Leaders',
+        title: 'Ginja Friends and Gist',
         content: [
           { type: 'leaderboard', name: 'Grace N.', tasks: '32', streak: '20' },
           { type: 'leaderboard', name: 'Kemi A.', tasks: '24', streak: '12' },
@@ -64,27 +65,41 @@ export default function FeaturesSection() {
       }
     },
     {
-      id: 'wellness',
-      name: 'Wellness',
+      id: 'ginja',
+      name: 'Ginja',
       icon: Heart,
       color: '#f97316',
       preview: {
-        title: 'Mental Check-in',
+        title: 'Talk to Ginja',
         content: [
           { type: 'mood', label: 'How are you feeling?', options: ['😤', '😰', '😢', '😴', '😕', '😊'] },
           { type: 'relief', label: 'Need immediate relief?', actions: ['Take a break', 'Get suggestions'] }
         ]
       }
+    },
+    {
+      id: 'notifications',
+      name: 'Notifications',
+      icon: Zap,
+      color: '#8b5cf6',
+      preview: {
+        title: 'Smart Notifications',
+        content: [
+          { type: 'notification', name: 'Caulyns', message: 'It\'s time to hit the gym 🏋🏽', time: '2 min ago', color: '#22c55e' },
+          { type: 'notification', name: 'Femi', message: 'Time no dey, start that TikTok content 🎬', time: '5 min ago', color: '#f59e0b' },
+          { type: 'notification', name: 'Nneka', message: 'Your friend Bisola just completed the jogging routine 🏃🏽‍♀️', time: '10 min ago', color: '#8b5cf6' }
+        ]
+      }
     }
   ];
 
-  // Auto-rotate tabs - disabled to prevent refresh loops
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveTab((prev) => (prev + 1) % appTabs.length);
-  //   }, 3000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  // Auto-rotate tabs
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % appTabs.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const features = [
     {
@@ -134,8 +149,8 @@ export default function FeaturesSection() {
     },
     {
       icon: Users,
-      title: "Friend Task Chats",
-      description: "Accountability with your day ones! Chat with friends about goals, celebrate wins, and drag each other when necessary 😂",
+      title: "Ginja Eachother and Gist",
+      description: "Real accountability with your day ones! Create shared tasks, celebrate wins together, drag each other when slacking, and keep the squad motivated. From gym sessions to study groups - tackle goals as a team and stay ginja'd together! 💪",
       bgColor: "bg-yellow-50",
       borderColor: "border-yellow-200",
       iconColor: "text-yellow-600",
@@ -156,7 +171,9 @@ export default function FeaturesSection() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
-            Why Ginja Hits{' '}
+            Why{' '}
+            <GinjaText size="lg" />
+            {' '}Hits{' '}
             <span className="text-[#E2561B]">
               Different
             </span>
@@ -167,6 +184,7 @@ export default function FeaturesSection() {
             <span className="font-semibold text-[#E2561B]">home-grown efficiency</span> ✨
           </p>
         </motion.div>
+
 
         {/* App Preview Animation */}
         <motion.div 
@@ -321,6 +339,23 @@ export default function FeaturesSection() {
                                         </div>
                                       </div>
                                     )}
+                                    
+                                    {item.type === 'notification' && (
+                                      <div className="bg-gradient-to-r rounded-lg p-2 shadow-sm" style={{ background: `linear-gradient(to right, ${item.color}20, ${item.color}40)` }}>
+                                        <div className="flex items-start gap-2">
+                                          <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
+                                            <span className="text-xs" style={{ color: item.color }}>
+                                              {item.name === 'Caulyns' ? '🏋🏽' : item.name === 'Femi' ? '🎬' : '🏃🏽‍♀️'}
+                                            </span>
+                                          </div>
+                                          <div className="flex-1 min-w-0">
+                                            <div className="text-xs font-bold text-gray-900 mb-0.5">{item.name}</div>
+                                            <div className="text-xs text-gray-700 mb-0.5 leading-tight break-words">{item.message}</div>
+                                            <div className="text-xs text-gray-500">{item.time}</div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    )}
                                   </motion.div>
                                 ))}
                               </div>
@@ -370,58 +405,163 @@ export default function FeaturesSection() {
               </div>
             </div>
 
-            {/* Feature Highlights */}
+            {/* Dynamic Feature Highlights */}
             <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
               <motion.div
+                key={activeTab}
                 initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 <h4 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
-                  Built for the Naija Lifestyle
+                  {appTabs[activeTab].preview.title}
                 </h4>
                 
                 <div className="space-y-3 sm:space-y-4">
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
-                      <CheckSquare className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Smart Task Management</h5>
-                      <p className="text-gray-600 text-xs sm:text-sm">Organize your hustle with features that understand your daily grind</p>
-                    </div>
-                  </div>
+                  {activeTab === 0 && (
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                          <CheckSquare className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Daily Progress Tracking</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">See your daily wins at a glance. No more wondering what you accomplished today!</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Weekly Goals</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Set weekly targets and watch your progress grow. Small steps lead to big wins!</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                   
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
-                      <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Achievement System</h5>
-                      <p className="text-gray-600 text-xs sm:text-sm">Earn badges and build streaks that actually motivate you</p>
-                    </div>
-                  </div>
+                  {activeTab === 1 && (
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
+                          <CheckSquare className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Smart Task Management</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Break down your hustle into manageable tasks. From "call mama" to "finish project" - we got you!</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                          <Target className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Priority Focus</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Know what matters most. Ginja helps you focus on tasks that actually move the needle.</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                   
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center mt-1">
-                      <Users className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Social Accountability</h5>
-                      <p className="text-gray-600 text-xs sm:text-sm">Connect with friends and keep each other motivated</p>
-                    </div>
-                  </div>
+                  {activeTab === 2 && (
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-red-100 rounded-full flex items-center justify-center mt-1">
+                          <Flame className="w-3 h-3 sm:w-4 sm:h-4 text-red-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Keep Your Streaks Alive</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Build momentum with streaks that actually matter. From gym sessions to reading habits - consistency is key!</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Achievement Badges</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Earn badges that celebrate your wins. "Task Master", "Fitness Warrior", "Knowledge Seeker" - wear them proud!</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                   
-                  <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-100 rounded-full flex items-center justify-center mt-1">
-                      <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
-                    </div>
-                    <div>
-                      <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Mental Wellness</h5>
-                      <p className="text-gray-600 text-xs sm:text-sm">Check-ins and relief tools for when life gets overwhelming</p>
-                    </div>
-                  </div>
+                  {activeTab === 3 && ( // Shared Tasks Tab
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center mt-1">
+                          <Users className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Start Shared Tasks with Friends</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Create group tasks with your day ones! From gym sessions to study groups - tackle goals together and stay motivated as a squad.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Take Accountability & Celebrate Wins</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Real accountability with your crew! Celebrate each other's wins, drag each other when slacking, and keep the energy high. No cap, just pure motivation!</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  
+                  {activeTab === 4 && ( // Ginja Tab
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-pink-100 rounded-full flex items-center justify-center mt-1">
+                          <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-pink-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Mental Check-ins</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">How are you really feeling? Take a moment to check in with yourself and acknowledge your emotions.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                          <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Relief Tools</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">When life gets overwhelming, get instant relief suggestions. Take a break, breathe, and come back stronger.</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                  
+                  {activeTab === 5 && ( // Notifications Tab
+                    <>
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-purple-100 rounded-full flex items-center justify-center mt-1">
+                          <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Your Buddy with Smart Reminders</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">Ginja serves like your buddy with nice and interesting reminders and notifications so you can have stuff done and be productive!</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center mt-1">
+                          <Heart className="w-3 h-3 sm:w-4 sm:h-4 text-orange-600" />
+                        </div>
+                        <div>
+                          <h5 className="font-semibold text-gray-900 mb-1 text-sm sm:text-base">Playful Naija Style</h5>
+                          <p className="text-gray-600 text-xs sm:text-sm">No boring corporate notifications here! Get motivated with messages that actually make you smile and want to take action.</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
               </motion.div>
             </div>

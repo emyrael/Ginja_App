@@ -10,11 +10,6 @@ const poppins = Poppins({
 export default function App({ Component, pageProps }) {
   return (
     <div className={`${inter.className} ${poppins.className}`}>
-      <style jsx global>{`
-        .ginja-font {
-          font-family: ${poppins.style.fontFamily}, 'Poppins', 'Montserrat', sans-serif;
-        }
-      `}</style>
       <Component {...pageProps} />
     </div>
   );

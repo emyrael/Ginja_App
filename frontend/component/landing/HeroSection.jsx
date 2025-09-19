@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import GinjaLogo from './GinjaLogo';
+import GinjaText from './GinjaText';
 
 export default function HeroSection({ onJoinWaitlist }) {
   return (
@@ -33,14 +34,7 @@ export default function HeroSection({ onJoinWaitlist }) {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
               >
-                <span className="text-[#E2561B]">Gin</span>
-                <span className="text-[#4E8C06] relative">
-                  <span className="custom-j text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                    j
-                    <span className="absolute -top-3 sm:-top-4 md:-top-6 lg:-top-8 left-1/2 transform -translate-x-1/2 text-[#E2561B] text-4xl sm:text-5xl md:text-6xl lg:text-7xl">•</span>
-                  </span>
-                  a
-                </span>
+                <GinjaText size="lg" />
               </motion.h1>
             </div>
 
@@ -54,8 +48,8 @@ export default function HeroSection({ onJoinWaitlist }) {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-2">
                 Stay Ginja'd.
               </h2>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#E2561B] leading-tight">
-                Stay Organized.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                <span className="text-[#E2561B]">Stay</span> <span className="text-[#4E8C06]">Organized.</span>
               </h2>
             </motion.div>
 

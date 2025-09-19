@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Users, Zap, Target, Brain, Coffee } from 'lucide-react';
+import GinjaText from './GinjaText';
 
 export default function ManifestoSection() {
   const manifestoPoints = [
@@ -81,9 +82,8 @@ export default function ManifestoSection() {
         >
           <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
             Why We{' '}
-            <span className="text-[#E2561B]">
-              Built Ginja
-            </span>
+            <span className="text-[#E2561B]">Built </span>
+            <GinjaText size="xl" />
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Our manifesto for creating a productivity app that actually{' '}
