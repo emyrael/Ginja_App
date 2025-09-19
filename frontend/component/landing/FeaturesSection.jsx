@@ -180,8 +180,8 @@ export default function FeaturesSection() {
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
             Finally, a productivity app that gets the Naija hustle. No generic templates, no 
-            foreign vibes - just pure{' '}
-            <span className="font-semibold text-[#E2561B]">home-grown efficiency</span> ✨
+            foreign vibes just pure{' '}
+            <span className="font-semibold text-[#E2561B]">home grown efficiency</span> ✨
           </p>
         </motion.div>
 
