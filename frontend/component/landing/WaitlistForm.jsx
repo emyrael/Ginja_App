@@ -90,7 +90,7 @@ export default function WaitlistForm() {
           </h2>
           <p className="text-lg sm:text-xl text-gray-700 max-w-2xl mx-auto px-4 sm:px-0">
             Be among the first to experience productivity,{' '}
-            <span className="font-semibold text-[#E2561B]">Naija style</span>
+            <span className="font-semibold text-[#E2561B]">Ginja style</span>
           </p>
         </motion.div>
 
