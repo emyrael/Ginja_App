@@ -20,6 +20,7 @@ eggs/
 .eggs/
 lib/
 lib64/
+!frontend/lib/
 parts/
 sdist/
 var/
@@ -119,6 +120,8 @@ dist
 # Gatsby files
 .cache/
 public
+# Allow frontend public folder for Next.js static assets (e.g. logo)
+!frontend/public
 
 # Storybook build outputs
 .out
@@ -182,3 +185,8 @@ config.local.json
 # Build outputs
 build/
 dist/
+
+
+
+
+
