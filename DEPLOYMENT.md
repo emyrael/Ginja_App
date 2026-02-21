@@ -2,13 +2,11 @@
 
 This project is deployed on **Vercel**. The app is a static Next.js export (no server-side rendering or API routes in this repo).
 
-> **Required:** In Vercel → **Project Settings → General**, set **Root Directory** to **`frontend`**. If this is not set, you will get "No Next.js version detected".
-
 ## Quick deploy
 
 1. **Connect the repo**  
    In [Vercel](https://vercel.com), import your Git repository.  
-   **Set the Root Directory to `frontend`** (Project Settings → General → Root Directory).
+   Use the repo root as the project root (Root Directory empty, or `.`).
 
 2. **Environment variables**  
    In the Vercel project → **Settings → Environment Variables**, add:
@@ -29,7 +27,7 @@ This project is deployed on **Vercel**. The app is a static Next.js export (no s
 
 ```
 app/
-├── frontend/           # ← Vercel Root Directory
+├── frontend/           # Next.js app (built by root package.json)
 │   ├── .env.local      # Local only; use Vercel env vars in production
 │   ├── .env.example    # Template for required env vars
 │   ├── vercel.json     # Vercel config (framework: nextjs)
@@ -59,11 +57,8 @@ The app expects the logo at **`/logo/Ginja.png`**. In Next.js that means the fil
 
 ## Troubleshooting
 
-- **"No Next.js version detected"**  
-  Set **Root Directory** to **`frontend`** in Vercel (Project Settings → General). The app lives in `frontend/`; building from the repo root will fail.
-
 - **Build fails on Vercel**  
-  Check the build log; ensure **Root Directory** is `frontend` and that `npm run build` runs there. Fix any missing env vars or dependency errors.
+  Check the build log. The root `package.json` runs `cd frontend && npm install && npm run build`. Fix any missing env vars or dependency errors.
 
 - **Waitlist form not saving**  
   Confirm `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set in Vercel and that the Supabase `waitlist` table and RLS policies are set up (see README or `supabase_waitlist_setup.sql`).
