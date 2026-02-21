@@ -65,8 +65,9 @@ export default function WaitlistForm() {
       
     } catch (error) {
       setStatus('error');
-      setMessage('Something went wrong. Please try again later.');
-      console.error('Error:', error);
+      const errMsg = error?.message || 'Something went wrong. Please try again later.';
+      setMessage(errMsg.includes('duplicate') ? 'This email is already on the list! Try another.' : errMsg);
+      console.error('Waitlist error:', error);
     }
   };
 
