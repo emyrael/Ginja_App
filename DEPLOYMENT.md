@@ -1,191 +1,76 @@
-# Ginja App Deployment Guide
+# Ginja App – Vercel Deployment
 
-This guide covers the production deployment setup for the Ginja App on Ubuntu GCP VM with Nginx and SSL.
+This project is deployed on **Vercel**. The app is a static Next.js export (no server-side rendering or API routes in this repo).
 
-## 🚀 Quick Start
+> **Required:** In Vercel → **Project Settings → General**, set **Root Directory** to **`frontend`**. If this is not set, you will get "No Next.js version detected".
 
-### 1. Deploy Your App
-```bash
-cd /home/emyraeleson/app
-./deploy_ginja.sh
+## Quick deploy
+
+1. **Connect the repo**  
+   In [Vercel](https://vercel.com), import your Git repository.  
+   **Set the Root Directory to `frontend`** (Project Settings → General → Root Directory).
+
+2. **Environment variables**  
+   In the Vercel project → **Settings → Environment Variables**, add:
+   - `NEXT_PUBLIC_SUPABASE_URL` – your Supabase project URL  
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` – your Supabase anon/public key  
+
+3. **Deploy**  
+   Push to the connected branch (e.g. `main`). Vercel will run `npm run build` in `frontend` and deploy the `out` directory.
+
+4. **Custom domain (ginjaapp.com)**  
+   In Vercel → **Settings → Domains**, add `ginjaapp.com` and `www.ginjaapp.com`.  
+   In your domain registrar (e.g. GoDaddy), set:
+   - **A record** for `ginjaapp.com` → Vercel’s target (or use the CNAME Vercel shows).  
+   - **CNAME** for `www` → `cname.vercel-dns.com` (or the value Vercel gives).  
+   Vercel will provision SSL for the domain.
+
+## Project layout (relevant to deploy)
+
+```
+app/
+├── frontend/           # ← Vercel Root Directory
+│   ├── .env.local      # Local only; use Vercel env vars in production
+│   ├── .env.example    # Template for required env vars
+│   ├── vercel.json     # Vercel config (framework: nextjs)
+│   ├── next.config.js # Static export, trailingSlash
+│   ├── out/            # Build output (generated)
+│   ├── pages/
+│   ├── component/
+│   └── public/         # Static assets (e.g. logo at public/logo/Ginja.png)
+├── DEPLOYMENT.md       # This file
+└── ...
 ```
 
-### 2. Set Up SSL (After DNS is configured)
-```bash
-./setup_ssl.sh
-```
+## Build and env
 
-## 📁 File Structure
+- **Build**: `npm run build` (run from `frontend/`). Next.js is configured with `output: 'export'`, so the result is in `frontend/out/`.
+- **Env**: Only `NEXT_PUBLIC_*` variables are needed; set them in the Vercel dashboard for Production/Preview as needed.
 
-```
-/home/emyraeleson/app/
-├── deploy_ginja.sh          # Main deployment script
-├── setup_ssl.sh            # SSL certificate setup
-├── frontend/               # Next.js frontend application
-│   ├── out/               # Static build output
-│   └── ...
-└── DEPLOYMENT.md           # This file
+## Static assets (logo)
 
-/var/www/ginjaapp.com/      # Web server document root
-/etc/nginx/sites-available/ginjaapp.com  # Nginx configuration
-/etc/systemd/system/ginja.service        # Systemd service
-```
+The app expects the logo at **`/logo/Ginja.png`**. In Next.js that means the file must be at **`frontend/public/logo/Ginja.png`**. Ensure that path exists and is committed (or add the logo there if missing).
 
-## 🔧 Services
+## Local development and testing
 
-### Nginx Configuration
-- **Location**: `/etc/nginx/sites-available/ginjaapp.com`
-- **Features**:
-  - SPA routing with `try_files $uri $uri/ /index.html`
-  - www → non-www redirect
-  - HTTP → HTTPS redirect (when SSL is configured)
-  - Gzip compression
-  - Security headers
-  - Static asset caching
+- From repo root: `./test_local.sh dev` (starts dev server from `frontend/`).  
+- Or from `frontend/`: `npm run dev`.  
+- Build locally: `./test_local.sh build` or `cd frontend && npm run build`.
 
-### Systemd Service
-- **Service**: `ginja.service`
-- **Commands**:
-  ```bash
-  sudo systemctl start ginja
-  sudo systemctl stop ginja
-  sudo systemctl restart ginja
-  sudo systemctl status ginja
-  ```
+## Troubleshooting
 
-### SSL Certificates
-- **Provider**: Let's Encrypt (via Certbot)
-- **Auto-renewal**: Enabled via systemd timer
-- **Domains**: `ginjaapp.com`, `www.ginjaapp.com`
+- **"No Next.js version detected"**  
+  Set **Root Directory** to **`frontend`** in Vercel (Project Settings → General). The app lives in `frontend/`; building from the repo root will fail.
 
-## 📋 Deployment Scripts
+- **Build fails on Vercel**  
+  Check the build log; ensure **Root Directory** is `frontend` and that `npm run build` runs there. Fix any missing env vars or dependency errors.
 
-### `deploy_ginja.sh`
-Main deployment script that:
-1. Creates backup of current deployment
-2. Builds the Next.js frontend
-3. Copies files to web directory
-4. Tests Nginx configuration
-5. Reloads services
-6. Renews SSL certificates (if configured)
-7. Verifies deployment
+- **Waitlist form not saving**  
+  Confirm `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set in Vercel and that the Supabase `waitlist` table and RLS policies are set up (see README or `supabase_waitlist_setup.sql`).
 
-**Usage**:
-```bash
-./deploy_ginja.sh              # Full deployment
-./deploy_ginja.sh --no-backup  # Skip backup
-./deploy_ginja.sh --no-ssl     # Skip SSL renewal
-./deploy_ginja.sh --help       # Show help
-```
-
-### `setup_ssl.sh`
-SSL certificate setup script that:
-1. Checks domain DNS configuration
-2. Cleans up Certbot issues
-3. Issues SSL certificates
-4. Updates Nginx for HTTPS
-5. Tests SSL setup
-
-**Usage**:
-```bash
-./setup_ssl.sh                 # Full SSL setup
-./setup_ssl.sh --check-only    # Only check domain
-./setup_ssl.sh --force         # Force certificate renewal
-./setup_ssl.sh --help          # Show help
-```
-
-## 🌐 Domain Configuration
-
-Before setting up SSL, ensure your domain DNS is configured:
-
-1. **A Record**: `ginjaapp.com` → Your server's public IP
-2. **CNAME Record**: `www.ginjaapp.com` → `ginjaapp.com`
-
-You can find your server's public IP with:
-```bash
-curl ifconfig.me
-```
-
-## 🔒 SSL Setup Process
-
-1. **Prerequisites**:
-   - Domain DNS pointing to server IP
-   - Ports 80 and 443 open in firewall
-   - Nginx running and serving the site
-
-2. **Run SSL Setup**:
-   ```bash
-   ./setup_ssl.sh
-   ```
-
-3. **Verify SSL**:
-   - Visit `https://ginjaapp.com`
-   - Check certificate validity
-   - Test www redirect
-
-## 🛠️ Troubleshooting
-
-### Common Issues
-
-1. **SSL Certificate Issues**:
-   ```bash
-   sudo certbot certificates
-   sudo certbot renew --dry-run
-   ```
-
-2. **Nginx Configuration**:
-   ```bash
-   sudo nginx -t
-   sudo systemctl status nginx
-   ```
-
-3. **Domain Not Resolving**:
-   ```bash
-   dig ginjaapp.com
-   nslookup ginjaapp.com
-   ```
-
-4. **Service Issues**:
-   ```bash
-   sudo systemctl status ginja
-   sudo journalctl -u ginja -f
-   ```
-
-### Logs
-- **Nginx**: `/var/log/nginx/error.log`
-- **Certbot**: `/var/log/letsencrypt/letsencrypt.log`
-- **System**: `sudo journalctl -u ginja -f`
-
-## 🔄 Maintenance
-
-### Regular Tasks
-1. **Deploy Updates**:
-   ```bash
-   ./deploy_ginja.sh
-   ```
-
-2. **Check SSL Expiry**:
-   ```bash
-   sudo certbot certificates
-   ```
-
-3. **Monitor Services**:
-   ```bash
-   sudo systemctl status nginx ginja
-   ```
-
-### Backup
-- Web files are automatically backed up to `/var/www/ginjaapp.com.backup` before each deployment
-- SSL certificates are stored in `/etc/letsencrypt/live/ginjaapp.com/`
-
-## 📞 Support
-
-If you encounter issues:
-1. Check the logs mentioned above
-2. Verify domain DNS configuration
-3. Ensure firewall allows ports 80 and 443
-4. Test Nginx configuration with `sudo nginx -t`
+- **Domain not working**  
+  In Vercel → Domains, confirm the domain is added and DNS is pointed as instructed. Propagation can take a few minutes to 48 hours.
 
 ---
 
-**Note**: This setup is configured for `ginjaapp.com` and `www.ginjaapp.com`. Update domain names in the configuration files if using different domains.
+**Note:** This setup is for **Vercel only**. Previous GCP/nginx/SSL scripts have been removed; all production deployment is via Vercel.
