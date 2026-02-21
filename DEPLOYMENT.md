@@ -6,7 +6,8 @@ This project is deployed on **Vercel**. The app is a static Next.js export (no s
 
 1. **Connect the repo**  
    In [Vercel](https://vercel.com), import your Git repository.  
-   Use the repo root as the project root (Root Directory empty, or `.`).
+   **Set Root Directory to `frontend`** (Project Settings → General → Root Directory).  
+   This is required—building from repo root causes `routes-manifest.json` errors with static export.
 
 2. **Environment variables**  
    In the Vercel project → **Settings → Environment Variables**, add:
@@ -27,7 +28,7 @@ This project is deployed on **Vercel**. The app is a static Next.js export (no s
 
 ```
 app/
-├── frontend/           # Next.js app (built by root package.json)
+├── frontend/           # ← Vercel Root Directory
 │   ├── .env.local      # Local only; use Vercel env vars in production
 │   ├── .env.example    # Template for required env vars
 │   ├── vercel.json     # Vercel config (framework: nextjs)
