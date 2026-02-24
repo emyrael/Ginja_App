@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
+import AnimatedPhonePreview from './ui/AnimatedPhonePreview';
 
 export default function HeroSection({ onJoinWaitlist }) {
   return (
@@ -72,22 +73,22 @@ export default function HeroSection({ onJoinWaitlist }) {
               transition={{ delay: 0.9, duration: 0.6 }}
             >
               <div className="bg-[#E2561B]/10 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">✨Smart Notifications</span>
+                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">⚡ Brain Dump</span>
+              </div>
+              <div className="bg-red-50 border border-red-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                <span className="text-red-500 font-medium text-xs sm:text-sm">❤️ Wellness</span>
               </div>
               <div className="bg-[#C4C879]/20 border border-[#4E8C06]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">📋 Task Manager</span>
+                <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">✨ Smart Notifications</span>
               </div>
               <div className="bg-blue-100 border border-blue-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-blue-600 font-medium text-xs sm:text-sm">🎤 Voice Messages</span>
+                <span className="text-blue-600 font-medium text-xs sm:text-sm">📋 Task Manager</span>
               </div>
               <div className="bg-[#E2561B]/10 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">🔥 Streaks</span>
+                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">📈 Progress & Achievements</span>
               </div>
               <div className="bg-purple-100 border border-purple-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-purple-600 font-medium text-xs sm:text-sm">🧠 Ginja Assistance</span>
-              </div>
-              <div className="bg-[#C4C879]/20 border border-[#4E8C06]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">💔 Rant Space</span>
+                <span className="text-purple-600 font-medium text-xs sm:text-sm">👥 Shared & Upcoming Tasks</span>
               </div>
             </motion.div>
 
@@ -116,7 +117,7 @@ export default function HeroSection({ onJoinWaitlist }) {
             </motion.p>
           </motion.div>
 
-          {/* Right side - Phone mockup matching your actual app */}
+          {/* Right side - Animated phone product preview */}
           <motion.div 
             className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
             initial={{ opacity: 0, x: 50 }}
@@ -124,154 +125,24 @@ export default function HeroSection({ onJoinWaitlist }) {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <div className="relative">
-              {/* Phone with gradient border */}
-              <div className="w-72 sm:w-80 h-[580px] sm:h-[640px] bg-gradient-to-br from-[#E2561B] via-[#C4C879] to-green-600 rounded-[2.5rem] sm:rounded-[3rem] p-1 shadow-2xl">
-                <div className="w-full h-full bg-black rounded-[2.3rem] sm:rounded-[2.8rem] relative overflow-hidden">
-                  
-                  {/* White screen inside matching your app */}
-                  <div className="absolute inset-2 sm:inset-3 bg-gradient-to-br from-[#C4C879]/20 to-green-50 rounded-[1.8rem] sm:rounded-[2.3rem] overflow-hidden">
-                    <div className="h-full flex flex-col">
-                      
-                      {/* Top action buttons like in your app */}
-                      <div className="flex gap-2 sm:gap-3 p-3 sm:p-4 pt-4 sm:pt-6">
-                        <div className="flex-1 bg-green-500 text-white rounded-xl sm:rounded-2xl py-2 sm:py-3 px-3 sm:px-4 text-center font-semibold text-xs sm:text-sm">
-                          + Add Task
-                        </div>
-                        <div className="flex-1 bg-[#C4C879] text-gray-800 rounded-xl sm:rounded-2xl py-2 sm:py-3 px-3 sm:px-4 text-center font-semibold text-xs sm:text-sm">
-                          🎤 Voice Note
-                        </div>
-                      </div>
+              <AnimatedPhonePreview />
 
-                      {/* Today's Progress Section */}
-                      <div className="mx-3 sm:mx-4 mb-3 sm:mb-4 bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-sm">
-                        <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                          <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-100 rounded-full flex items-center justify-center">
-                            <span className="text-green-600 text-xs sm:text-sm">🎯</span>
-                          </div>
-                          <h3 className="font-bold text-gray-900 text-sm sm:text-base">Today's Progress</h3>
-                        </div>
-                        
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs sm:text-sm text-gray-600">Tasks completed</span>
-                          <span className="text-xs sm:text-sm font-semibold">1/3</span>
-                        </div>
-                        
-                        <div className="w-full h-1.5 sm:h-2 bg-yellow-200 rounded-full mb-3 sm:mb-4">
-                          <div className="w-1/3 h-1.5 sm:h-2 bg-green-500 rounded-full" />
-                        </div>
+              {/* Floating accent elements */}
+              <motion.div
+                className="absolute -right-3 sm:-right-5 top-16 sm:top-20 w-8 h-8 sm:w-12 sm:h-12 bg-[#E2561B] rounded-full flex items-center justify-center shadow-lg z-20"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="text-white text-sm sm:text-lg">⚡</span>
+              </motion.div>
 
-                        {/* Task list */}
-                        <div className="space-y-1.5 sm:space-y-2">
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-500 rounded-full flex items-center justify-center">
-                              <span className="text-white text-xs">✓</span>
-                            </div>
-                            <span className="text-xs sm:text-sm text-gray-600 line-through">Go to the gym</span>
-                          </div>
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-gray-300 rounded-full" />
-                            <span className="text-xs sm:text-sm text-gray-900">Create content for TikTok</span>
-                          </div>
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-gray-300 rounded-full" />
-                            <span className="text-xs sm:text-sm text-gray-900">Buy data for mama</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Current Streaks Section */}
-                      <div className="mx-3 sm:mx-4 mb-3 sm:mb-4 bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-sm">
-                        <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                          <span className="text-base sm:text-lg">⚡</span>
-                          <h3 className="font-bold text-gray-900 text-sm sm:text-base">Current Streaks</h3>
-                        </div>
-                        
-                        <div className="flex gap-2 sm:gap-3">
-                          <div className="flex-1 bg-orange-400 rounded-xl sm:rounded-2xl p-2 sm:p-3 text-center">
-                            <div className="text-white text-sm sm:text-lg mb-1">💪</div>
-                            <div className="text-white text-xs font-medium">Daily Tasks</div>
-                          </div>
-                          <div className="flex-1 bg-orange-400 rounded-xl sm:rounded-2xl p-2 sm:p-3 text-center">
-                            <div className="text-white text-sm sm:text-lg mb-1">🏃</div>
-                            <div className="text-white text-xs font-medium">Exercise</div>
-                          </div>
-                          <div className="flex-1 bg-orange-400 rounded-xl sm:rounded-2xl p-2 sm:p-3 text-center">
-                            <div className="text-white text-sm sm:text-lg mb-1">📚</div>
-                            <div className="text-white text-xs font-medium">Reading</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Ginja Wisdom Quote */}
-                      <div className="mx-3 sm:mx-4 mb-3 sm:mb-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-2xl sm:rounded-3xl p-3 sm:p-4 text-center">
-                        <p className="text-white text-xs sm:text-sm italic mb-1">
-                          "Small progress na still progress! Keep pushing! 💪"
-                        </p>
-                        <p className="text-white text-xs opacity-80">- Ginja wisdom</p>
-                      </div>
-
-                      {/* Bottom Navigation matching your app */}
-                      <div className="mt-auto bg-white border-t border-gray-100 px-3 sm:px-4 py-1.5 sm:py-2">
-                        <div className="flex items-center justify-around">
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-white text-xs">🏠</span>
-                            </div>
-                            <span className="text-xs font-medium text-green-600">Home</span>
-                          </div>
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-200 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-gray-500 text-xs">📋</span>
-                            </div>
-                            <span className="text-xs text-gray-500">Tasks</span>
-                          </div>
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-200 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-gray-500 text-xs">🔥</span>
-                            </div>
-                            <span className="text-xs text-gray-500">Streaks</span>
-                          </div>
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-200 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-gray-500 text-xs">👥</span>
-                            </div>
-                            <span className="text-xs text-gray-500">Friends</span>
-                          </div>
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-200 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-gray-500 text-xs">💬</span>
-                            </div>
-                            <span className="text-xs text-gray-500">Chat</span>
-                          </div>
-                          <div className="flex flex-col items-center py-1 sm:py-2">
-                            <div className="w-5 h-5 sm:w-6 sm:h-6 bg-gray-200 rounded-lg flex items-center justify-center mb-1">
-                              <span className="text-gray-500 text-xs">💔</span>
-                            </div>
-                            <span className="text-xs text-gray-500">Rant</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating elements */}
-                  <motion.div
-                    className="absolute -right-2 sm:-right-4 top-16 sm:top-20 w-8 h-8 sm:w-12 sm:h-12 bg-[#E2561B] rounded-full flex items-center justify-center shadow-lg"
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <span className="text-white text-sm sm:text-lg">🎯</span>
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute -left-2 sm:-left-4 bottom-24 sm:bottom-32 w-6 h-6 sm:w-10 sm:h-10 bg-[#C4C879] rounded-full flex items-center justify-center shadow-lg"
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  >
-                    <span className="text-white text-xs sm:text-sm">⚡</span>
-                  </motion.div>
-                </div>
-              </div>
+              <motion.div
+                className="absolute -left-3 sm:-left-5 bottom-24 sm:bottom-32 w-6 h-6 sm:w-10 sm:h-10 bg-[#C4C879] rounded-full flex items-center justify-center shadow-lg z-20"
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              >
+                <span className="text-white text-xs sm:text-sm">❤️</span>
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Home, Target, Heart } from 'lucide-react';
+import Link from 'next/link';
 import GinjaLogo from './GinjaLogo';
 
 export default function NavigationTabs({ activeTab, setActiveTab }) {
@@ -30,20 +31,8 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
-    
-    // Only scroll if it's not already the active tab
-    if (activeTab !== tabId) {
-      // Small delay to ensure state update completes
-      setTimeout(() => {
-        const element = document.getElementById(tabId);
-        if (element) {
-          element.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      }, 100);
-    }
+    // Always scroll to top when switching tabs
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -52,7 +41,9 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
         <div className="flex items-center justify-between py-3 sm:py-4 gap-2 sm:gap-4">
           
           {/* Logo */}
-          <GinjaLogo size="md" className="flex-shrink-0" />
+          <Link href="/" className="flex-shrink-0">
+            <GinjaLogo size="md" />
+          </Link>
 
           {/* Navigation Tabs - Always visible but responsive */}
           <div className="flex items-center gap-1 sm:gap-2 flex-1 justify-center">

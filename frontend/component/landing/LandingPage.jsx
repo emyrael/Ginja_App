@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import HeroSection from './HeroSection';
 import FeaturesSection from './FeaturesSection';
-import ManifestoSection from './ManifestoSection';
+import WhyWeBuiltGinja from './WhyWeBuiltGinja';
+import LaunchAnnouncement from './LaunchAnnouncement';
 import WaitlistForm from './WaitlistForm';
 import Footer from './Footer';
 import NavigationTabs from './NavigationTabs';
@@ -27,12 +28,13 @@ export default function LandingPage() {
       <main className="pt-16 sm:pt-20">
         {activeTab === 'home' && <HeroSection onJoinWaitlist={handleJoinWaitlist} />}
         {activeTab === 'features' && <FeaturesSection />}
-        {activeTab === 'manifesto' && <ManifestoSection />}
+        {activeTab === 'manifesto' && <WhyWeBuiltGinja />}
+        <LaunchAnnouncement />
         <WaitlistForm />
       </main>
 
       {/* Footer */}
-      <Footer />
+      <Footer setActiveTab={setActiveTab} />
 
       {/* Scroll to top button */}
       <motion.button

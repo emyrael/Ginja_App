@@ -17,7 +17,7 @@ export default function GinjaLogo({ size = 'md', className = '' }) {
     >
       {/* Try to load the actual logo image first */}
       <img 
-        src="/logo/Ginja.png" 
+        src="/logo/icon.png" 
         alt="Ginja Logo" 
         className="w-full h-full object-contain"
         onError={(e) => {

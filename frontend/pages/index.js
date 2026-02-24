@@ -8,7 +8,7 @@ export default function Home() {
         <title>Ginja - Stay Ginja&apos;d. Stay Organized.</title>
         <meta name="description" content="The Nigerian productivity app that actually gets your vibe. No cap! 🔥" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="keywords" content="productivity, Nigerian app, task management, AI assistant, voice messages, habit tracker" />
+        <meta name="keywords" content="productivity, task management, brain dump, wellness, smart notifications, progress tracking, shared tasks" />
         <meta property="og:title" content="Ginja - Stay Ginja&apos;d. Stay Organized." />
         <meta property="og:description" content="The Nigerian productivity app that actually gets your vibe. No cap! 🔥" />
         <meta property="og:type" content="website" />

@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Twitter, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
 import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
 
-export default function Footer() {
+export default function Footer({ setActiveTab }) {
   const socialLinks = [
     { icon: Instagram, handle: '@ginja_app', url: 'https://instagram.com/ginja_app', color: 'hover:text-[#E2561B]' },
     { icon: Mail, handle: 'info@ginjaapp.com', url: 'mailto:info@ginjaapp.com', color: 'hover:text-[#96B56C]' }
@@ -25,12 +26,12 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-3 sm:gap-4">
+            <Link href="/" className="flex items-center gap-3 sm:gap-4">
               <GinjaLogo size="sm" />
               <h3 className="text-xl sm:text-2xl font-black">
                 <GinjaText size="md" />
               </h3>
-            </div>
+            </Link>
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
               The productivity app built for everyone. 
               Stay Ginja'd, stay Organized, stay Winning! 🚀
@@ -51,12 +52,15 @@ export default function Footer() {
           >
             <h4 className="text-lg sm:text-xl font-bold">Quick Links</h4>
             <div className="space-y-2 sm:space-y-3">
-              <a 
-                href="#features" 
-                className="block text-gray-400 hover:text-[#E2561B] transition-colors duration-200 text-sm sm:text-base"
+              <button 
+                onClick={() => {
+                  if (setActiveTab) setActiveTab('features');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="block text-gray-400 hover:text-[#E2561B] transition-colors duration-200 text-sm sm:text-base cursor-pointer"
               >
                 Features
-              </a>
+              </button>
               <a 
                 href="#waitlist" 
                 className="block text-gray-400 hover:text-[#E2561B] transition-colors duration-200 text-sm sm:text-base"
@@ -118,16 +122,22 @@ export default function Footer() {
             <span className="ml-1 sm:ml-2">Built with 💜 for getting things done</span>
           </p>
           
-          <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500">
-            <a href="#" className="hover:text-[#E2561B] transition-colors duration-200">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-[#E2561B] transition-colors duration-200">
-              Terms of Service
-            </a>
-            <a href="#" className="hover:text-[#E2561B] transition-colors duration-200">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500">
+            <Link href="/privacy-policy" className="hover:text-[#E2561B] transition-colors duration-200">
+              Privacy
+            </Link>
+            <Link href="/terms-of-service" className="hover:text-[#E2561B] transition-colors duration-200">
+              Terms
+            </Link>
+            <Link href="/support" className="hover:text-[#E2561B] transition-colors duration-200">
               Support
-            </a>
+            </Link>
+            <Link href="/about" className="hover:text-[#E2561B] transition-colors duration-200">
+              About
+            </Link>
+            <Link href="/account-deletion" className="hover:text-[#E2561B] transition-colors duration-200">
+              Account Deletion
+            </Link>
           </div>
         </motion.div>
 

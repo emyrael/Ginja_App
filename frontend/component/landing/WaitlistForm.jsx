@@ -188,7 +188,7 @@ export default function WaitlistForm() {
                   value={formData.city}
                   onChange={handleChange}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 placeholder-gray-500 text-sm sm:text-base"
-                  placeholder="e.g., Lagos, Abuja, Port Harcourt, Diaspora..."
+                  placeholder="e.g., London, Berlin,Lagos Abuja, Diaspora..."
                 />
               </div>
 
