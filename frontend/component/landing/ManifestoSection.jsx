@@ -9,8 +9,8 @@ export default function ManifestoSection() {
       icon: Heart,
       title: "Life Can Be Stressful Sometimes",
       description: "Between work, school, hustle, family, and just trying to catch your breath, it's easy to feel stressed and overwhelmed. That's why we're building Ginja.",
-      bgColor: "bg-red-50",
-      borderColor: "border-red-200",
+      bgColor: "bg-red-50 dark:bg-red-950/20",
+      borderColor: "border-red-200 dark:border-red-800/40",
       iconColor: "text-red-600",
       emoji: "💔"
     },
@@ -18,8 +18,8 @@ export default function ManifestoSection() {
       icon: Brain,
       title: "Your Personal Assistant That Never Gets Tired",
       description: "Think of Ginja like your personal assistant that never gets tired. A space where you feel safe, organized, and on top of your plans.",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      bgColor: "bg-purple-50 dark:bg-purple-950/20",
+      borderColor: "border-purple-200 dark:border-purple-800/40",
       iconColor: "text-purple-600",
       emoji: "🧠"
     },
@@ -27,8 +27,8 @@ export default function ManifestoSection() {
       icon: Zap,
       title: "Smart Suggestions That Actually Understand You",
       description: "With our intelligent Ginja assistant, you'll get smart suggestions, reminders, and tips that actually understand you not some generic planner vibe.",
-      bgColor: "bg-yellow-50",
-      borderColor: "border-yellow-200",
+      bgColor: "bg-yellow-50 dark:bg-yellow-950/20",
+      borderColor: "border-yellow-200 dark:border-yellow-800/40",
       iconColor: "text-yellow-600",
       emoji: "⚡"
     },
@@ -36,8 +36,8 @@ export default function ManifestoSection() {
       icon: Users,
       title: "Do Tasks With Friends",
       description: "With Ginja, you can also do tasks with friends, keep streaks, celebrate wins together, and explore plenty more features that make planning feel less boring and more fun.",
-      bgColor: "bg-green-50",
-      borderColor: "border-green-200",
+      bgColor: "bg-green-50 dark:bg-green-950/20",
+      borderColor: "border-green-200 dark:border-green-800/40",
       iconColor: "text-green-600",
       emoji: "👥"
     },
@@ -45,8 +45,8 @@ export default function ManifestoSection() {
       icon: Target,
       title: "Keep Streaks & Celebrate Wins",
       description: "Build momentum with streaks that actually matter. Every small win deserves celebration because progress is progress, no matter how small!",
-      bgColor: "bg-orange-50",
-      borderColor: "border-orange-200",
+      bgColor: "bg-orange-50 dark:bg-orange-950/20",
+      borderColor: "border-orange-200 dark:border-orange-800/40",
       iconColor: "text-orange-600",
       emoji: "🎯"
     },
@@ -54,15 +54,15 @@ export default function ManifestoSection() {
       icon: Coffee,
       title: "Make Planning Less Boring",
       description: "At the end of the day, it's simple: Get Ginja'd, Get Organized. But we make it fun, engaging, and actually enjoyable to stay on top of your life.",
-      bgColor: "bg-blue-50",
-      borderColor: "border-blue-200",
+      bgColor: "bg-blue-50 dark:bg-blue-950/20",
+      borderColor: "border-blue-200 dark:border-blue-800/40",
       iconColor: "text-blue-600",
       emoji: "☕"
     }
   ];
 
   return (
-    <section id="manifesto" className="py-20 bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 relative overflow-hidden">
+    <section id="manifesto" className="py-20 bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-[#E2561B]/20 rounded-full opacity-30 animate-pulse" />
@@ -80,12 +80,12 @@ export default function ManifestoSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+          <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
             Why We{' '}
             <span className="text-[#E2561B]">Built </span>
             <GinjaText size="xl" />
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Our manifesto for creating a productivity app that actually{' '}
             <span className="font-semibold text-[#E2561B]">gets you</span> ✨
           </p>
@@ -113,10 +113,10 @@ export default function ManifestoSection() {
               </div>
               
               {/* Content */}
-              <h3 className="text-xl font-bold text-gray-900 mb-4">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                 {point.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {point.description}
               </p>
             </motion.div>
@@ -125,7 +125,7 @@ export default function ManifestoSection() {
 
         {/* Bottom CTA */}
         <motion.div 
-          className="text-center mt-16 bg-gradient-to-r from-orange-50 to-pink-50 rounded-3xl p-8 relative z-10"
+          className="text-center mt-16 bg-gradient-to-r from-orange-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 rounded-3xl p-8 relative z-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -134,11 +134,10 @@ export default function ManifestoSection() {
           <div className="flex justify-center mb-4">
             <span className="text-4xl">🚀</span>
           </div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
             Ready to Get Ginja'd?
           </h3>
-          <p className="text-gray-600">
-            Join thousands of people already staying organized with purpose!
+          <p className="text-gray-600 dark:text-gray-300">
           </p>
         </motion.div>
       </div>

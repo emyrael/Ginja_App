@@ -20,7 +20,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
       {/* Navigation Tabs */}
       <NavigationTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 

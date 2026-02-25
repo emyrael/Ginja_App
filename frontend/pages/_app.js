@@ -9,7 +9,7 @@ const poppins = Poppins({
 
 export default function App({ Component, pageProps }) {
   return (
-    <div className={`${inter.className} ${poppins.className}`}>
+    <div className={`${inter.className} ${poppins.className} bg-[var(--bg-primary)] text-[var(--text-primary)] min-h-screen`}>
       <Component {...pageProps} />
     </div>
   );

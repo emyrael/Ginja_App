@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function LaunchAnnouncement() {
   return (
-    <section className="bg-gray-950 py-16 sm:py-24 relative overflow-hidden">
+    <section className="bg-gray-100 dark:bg-gray-950 py-16 sm:py-24 relative overflow-hidden">
       {/* Subtle background accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-[#E2561B]/5 rounded-full blur-[100px]" />
@@ -18,14 +18,14 @@ export default function LaunchAnnouncement() {
           transition={{ duration: 0.7 }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-8">
             Ginja Is Launching Soon{' '}
             <span className="inline-block animate-bounce">🚀</span>
           </h2>
 
-          <div className="space-y-5 text-gray-300 text-base sm:text-lg leading-relaxed">
+          <div className="space-y-5 text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
             <motion.p
-              className="text-white text-lg sm:text-xl font-semibold"
+              className="text-gray-900 dark:text-white text-lg sm:text-xl font-semibold"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -61,7 +61,7 @@ export default function LaunchAnnouncement() {
               viewport={{ once: true }}
             >
               This is more than another productivity app.<br />
-              <span className="text-white font-semibold">It&apos;s a new way to think, plan, and move.</span>
+              <span className="text-gray-900 dark:text-white font-semibold">It&apos;s a new way to think, plan, and move.</span>
             </motion.p>
 
             <motion.p
@@ -74,7 +74,7 @@ export default function LaunchAnnouncement() {
             </motion.p>
 
             <motion.p
-              className="text-white text-lg sm:text-xl font-bold pt-2"
+              className="text-gray-900 dark:text-white text-lg sm:text-xl font-bold pt-2"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.65 }}

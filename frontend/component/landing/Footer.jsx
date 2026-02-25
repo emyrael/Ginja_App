@@ -34,7 +34,7 @@ export default function Footer({ setActiveTab }) {
             </Link>
             <p className="text-gray-400 leading-relaxed max-w-md text-sm sm:text-base">
               The productivity app built for everyone. 
-              Stay Ginja'd, stay Organized, stay Winning! 🚀
+              Stay Ginja'd, stay Organized, stay Winning!
             </p>
             <div className="flex items-center gap-2">
               <span className="text-xl sm:text-2xl"></span>
@@ -118,7 +118,7 @@ export default function Footer({ setActiveTab }) {
           viewport={{ once: true }}
         >
           <p className="text-gray-500 text-xs sm:text-sm text-center sm:text-left">
-            © 2025 Ginja App. All rights reserved. 
+            © 2026 Ginja App. All rights reserved. 
             <span className="ml-1 sm:ml-2">Built with 💜 for getting things done</span>
           </p>
           

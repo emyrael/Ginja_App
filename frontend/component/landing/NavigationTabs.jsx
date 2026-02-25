@@ -36,7 +36,7 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white/90 via-green-50/30 to-white/90 backdrop-blur-md border-b border-gray-200">
+    <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white/90 via-green-50/30 to-white/90 dark:from-gray-950/90 dark:via-gray-900/30 dark:to-gray-950/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
         <div className="flex items-center justify-between py-3 sm:py-4 gap-2 sm:gap-4">
           
@@ -54,7 +54,7 @@ export default function NavigationTabs({ activeTab, setActiveTab }) {
                 className={`relative px-2 sm:px-3 md:px-4 lg:px-6 py-1.5 sm:py-2 lg:py-3 rounded-full font-medium transition-all duration-300 ${
                   activeTab === tab.id
                     ? 'text-white'
-                    : 'text-gray-600 hover:text-gray-900'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}

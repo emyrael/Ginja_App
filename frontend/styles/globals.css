@@ -91,6 +91,29 @@ html {
   --ginja-orange: #E2561B;
   --ginja-green: #96B56C;
   --ginja-yellow: #C4C879;
+
+  /* Theme variables – light mode */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-card: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --accent: #E2561B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #030712;
+    --bg-secondary: #111827;
+    --bg-card: #1f2937;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    --accent: #E2561B;
+  }
 }
 
 * {
@@ -107,13 +130,9 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  min-height: 100vh;
 }
 
 a {
@@ -127,7 +146,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -171,6 +190,13 @@ textarea:focus,
 a:focus {
   outline: 2px solid var(--ginja-orange);
   outline-offset: 2px;
+}
+
+/* Dark-mode form input defaults */
+@media (prefers-color-scheme: dark) {
+  input, textarea, select {
+    color-scheme: dark;
+  }
 }
 
 /* Loading animations */

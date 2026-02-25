@@ -8,7 +8,7 @@ import AnimatedPhonePreview from './ui/AnimatedPhonePreview';
 
 export default function HeroSection({ onJoinWaitlist }) {
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 overflow-hidden flex items-center">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden flex items-center">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-32 h-32 bg-[#E2561B]/20 rounded-full opacity-30 animate-pulse" />
@@ -46,7 +46,7 @@ export default function HeroSection({ onJoinWaitlist }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-2">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-2">
                 Stay Ginja'd.
               </h2>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
@@ -56,7 +56,7 @@ export default function HeroSection({ onJoinWaitlist }) {
 
             {/* Description */}
             <motion.p 
-              className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-6 sm:mb-8 max-w-lg"
+              className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.6 }}
@@ -72,23 +72,23 @@ export default function HeroSection({ onJoinWaitlist }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.6 }}
             >
-              <div className="bg-[#E2561B]/10 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <div className="bg-[#E2561B]/10 dark:bg-[#E2561B]/20 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                 <span className="text-[#E2561B] font-medium text-xs sm:text-sm">⚡ Brain Dump</span>
               </div>
-              <div className="bg-red-50 border border-red-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                 <span className="text-red-500 font-medium text-xs sm:text-sm">❤️ Wellness</span>
               </div>
               <div className="bg-[#C4C879]/20 border border-[#4E8C06]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                 <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">✨ Smart Notifications</span>
               </div>
-              <div className="bg-blue-100 border border-blue-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-blue-600 font-medium text-xs sm:text-sm">📋 Task Manager</span>
+              <div className="bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                <span className="text-blue-600 dark:text-blue-400 font-medium text-xs sm:text-sm">📋 ToDo Manager</span>
               </div>
-              <div className="bg-[#E2561B]/10 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <div className="bg-[#E2561B]/10 dark:bg-[#E2561B]/20 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
                 <span className="text-[#E2561B] font-medium text-xs sm:text-sm">📈 Progress & Achievements</span>
               </div>
-              <div className="bg-purple-100 border border-purple-200 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-purple-600 font-medium text-xs sm:text-sm">👥 Shared & Upcoming Tasks</span>
+              <div className="bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+                <span className="text-purple-600 dark:text-purple-400 font-medium text-xs sm:text-sm">👥 Circle & Plan Together</span>
               </div>
             </motion.div>
 
@@ -108,7 +108,7 @@ export default function HeroSection({ onJoinWaitlist }) {
             </motion.div>
 
             <motion.p 
-              className="text-sm text-gray-500 mt-4"
+              className="text-sm text-gray-500 dark:text-gray-400 mt-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.3, duration: 0.6 }}
