@@ -13,13 +13,13 @@ export default function Home() {
         <meta property="og:description" content="Start thinking clearly. Planning simply & Moving intentionally." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ginjaapp.com" />
-        <meta property="og:image" content="/logo/Ginja.png" />
+        <meta property="og:image" content="/logo/flame-icon.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Ginja - Stay Ginja&apos;d. Stay Organized." />
         <meta name="twitter:description" content="Start thinking clearly. Planning simply & Moving intentionally." />
-        <meta name="twitter:image" content="/logo/Ginja.png" />
-        <link rel="icon" href="/logo/Ginja.png" />
-        <link rel="apple-touch-icon" href="/logo/Ginja.png" />
+        <meta name="twitter:image" content="/logo/flame-icon.png" />
+        <link rel="icon" href="/logo/flame-icon.png" />
+        <link rel="apple-touch-icon" href="/logo/flame-icon.png" />
         <meta name="theme-color" content="#E2561B" />
         {/* Include the Poppins font for the Ginja logo */}
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" />

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
 import AnimatedPhonePreview from './ui/AnimatedPhonePreview';
 
@@ -26,9 +25,8 @@ export default function HeroSection({ onJoinWaitlist }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Logo and Brand Name */}
+            {/* Brand Name */}
             <div className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8">
-              <GinjaLogo size="lg" />
               <motion.h1 
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black"
                 initial={{ scale: 0.8 }}
