@@ -1,4 +1,3 @@
-import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../component/landing/GinjaLogo';
@@ -8,118 +7,63 @@ export default function Support() {
   return (
     <>
       <Head>
-        <title>Support — Ginja</title>
-        <meta name="description" content="Get help with Ginja. Contact our support team." />
-        <link rel="icon" href="/logo/icon.png" />
+        <title>Support | Ginja</title>
+        <meta name="description" content="Contact support for Ginja." />
       </Head>
 
-      <main className="min-h-screen bg-gray-950 text-white">
-        {/* Nav Bar */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <main className="min-h-screen bg-[var(--bg-primary)] text-[#1F1C17]">
+        <header className="sticky top-0 z-40 border-b border-[#E5DED3] bg-[#F8F5EE]/95 backdrop-blur-md">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
             <Link href="/" className="flex items-center gap-2">
               <GinjaLogo size="sm" />
-              <GinjaText size="sm" />
+              <span className="text-sm font-semibold">
+                <GinjaText />
+              </span>
             </Link>
-            <Link
-              href="/"
-              className="text-sm text-gray-400 hover:text-white transition-colors"
-            >
-              ← Back to Home
-            </Link>
+            <Link href="/" className="text-sm font-medium text-[#6A645A] hover:text-[#1E1B17]">← Back to Home</Link>
           </div>
-        </nav>
+        </header>
 
-        {/* Content */}
-        <section className="pt-28 pb-16 sm:pt-36 sm:pb-24 relative overflow-hidden">
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-20 right-10 w-64 h-64 bg-[#E2561B]/5 rounded-full blur-3xl" />
-          </div>
-
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-            <h1 className="text-4xl sm:text-5xl font-black mb-6 text-center">Support</h1>
-            <p className="text-gray-400 text-lg text-center mb-12">
-              We&apos;re here to help. Reach out and we&apos;ll get back to you as soon as possible.
+        <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
+          <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#E5DED3] bg-white px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
+            <h1 className="text-3xl font-semibold sm:text-4xl">Support</h1>
+            <p className="mt-3 text-base text-[#5E594F] sm:text-lg">
+              We are here to help with onboarding, waitlist questions, and product feedback.
             </p>
 
-            <div className="space-y-6">
-              {/* Email */}
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-white mb-2">📧 Email Us</h2>
-                <p className="text-gray-400 mb-3">
-                  For general inquiries, feedback, or support requests:
-                </p>
-                <a
-                  href="mailto:support@ginjapp.com"
-                  className="text-[#E2561B] font-semibold hover:underline text-lg"
-                >
-                  support@ginjapp.com
+            <div className="mt-8 grid gap-4">
+              <article className="rounded-3xl border border-[#E5DED3] bg-[#FAF8F3] p-6">
+                <h2 className="text-lg font-semibold">Email</h2>
+                <p className="mt-2 text-sm text-[#5E594F]">For support requests and account help:</p>
+                <a href="mailto:support@ginjaapp.com" className="mt-2 inline-block text-[#E2561B] hover:underline">
+                  support@ginjaapp.com
                 </a>
-              </div>
+              </article>
 
-              {/* FAQ */}
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-white mb-2">❓ Common Questions</h2>
-                <div className="space-y-4 mt-4">
-                  <div>
-                    <h3 className="text-white font-semibold">Is Ginja free?</h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      Ginja is currently in early access. Join the waitlist on our homepage to be notified when it launches.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold">Which platforms is Ginja available on?</h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      Ginja is being developed as a mobile app for iOS and Android.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold">How do I delete my account?</h3>
-                    <p className="text-gray-400 text-sm mt-1">
-                      Visit our{' '}
-                      <Link href="/account-deletion" className="text-[#E2561B] hover:underline">
-                        account deletion page
-                      </Link>{' '}
-                      for instructions.
-                    </p>
-                  </div>
+              <article className="rounded-3xl border border-[#DCE8D5] bg-[#F1F8EC] p-6">
+                <h2 className="text-lg font-semibold text-[#35563A]">Common questions</h2>
+                <div className="mt-3 space-y-3 text-sm text-[#49604A]">
+                  <p><strong>Is Ginja live?</strong> Ginja is in early access rollout. Join the waitlist for launch updates.</p>
+                  <p><strong>Which platforms?</strong> iOS and Android are the primary launch targets.</p>
+                  <p><strong>Need account deletion?</strong> Use the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
                 </div>
-              </div>
+              </article>
 
-              {/* Social */}
-              <div className="bg-gray-900/60 border border-gray-800 rounded-2xl p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-white mb-2">📱 Follow Us</h2>
-                <p className="text-gray-400 mb-3">
-                  Stay updated and connect with us on social media:
-                </p>
+              <article className="rounded-3xl border border-[#E5DED3] bg-[#FAF8F3] p-6">
+                <h2 className="text-lg font-semibold">Social</h2>
+                <p className="mt-2 text-sm text-[#5E594F]">Follow product updates and launch news.</p>
                 <a
-                  href="https://www.instagram.com/gaborone_fitness/"
+                  href="https://instagram.com/ginja_app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#E2561B] font-semibold hover:underline"
+                  className="mt-2 inline-block text-[#E2561B] hover:underline"
                 >
-                  Instagram →
+                  @ginja_app
                 </a>
-              </div>
-            </div>
-
-            {/* Back */}
-            <div className="mt-10 text-center">
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#E2561B] to-[#C4C879] text-white font-bold px-6 py-3 rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" /></svg>
-                Back to Home
-              </Link>
+              </article>
             </div>
           </div>
         </section>
-
-        {/* Simple Footer */}
-        <footer className="border-t border-gray-800/50 py-6 text-center text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Ginja. All rights reserved.</p>
-        </footer>
       </main>
     </>
   );

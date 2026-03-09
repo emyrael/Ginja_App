@@ -1,249 +1,190 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Loader2, CheckCircle } from 'lucide-react';
+import { CheckCircle2, Loader2 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 
-// Initialize Supabase client conditionally
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-// Only create client if we have valid credentials
-const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
+const hasSupabaseConfig = Boolean(supabaseUrl && supabaseKey);
+const supabase = hasSupabaseConfig ? createClient(supabaseUrl, supabaseKey) : null;
 
 export default function WaitlistForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    instagramUsername: '',
     city: '',
-    notes: ''
+    notes: '',
   });
-  
-  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (event) => {
+    setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setStatus('loading');
-    
+    setMessage('');
+
+    const payload = {
+      full_name: formData.fullName.trim(),
+      email: formData.email.trim(),
+      city: formData.city.trim(),
+      notes: formData.notes.trim(),
+      instagram_username: null,
+    };
+
     try {
-      // Demo mode if no Supabase credentials
       if (!supabase) {
-        setTimeout(() => {
-          setStatus('success');
-          setMessage('Demo Mode: Form submitted successfully! 🎉 (Set up Supabase to save real data)');
-          setFormData({ fullName: '', email: '', instagramUsername: '', city: '', notes: '' });
-        }, 1500);
+        setStatus('error');
+        setMessage(
+          'Supabase is not configured. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in frontend/.env.local, then restart the server.'
+        );
         return;
       }
 
-      // Real Supabase submission
-      const { data, error } = await supabase
-        .from('waitlist')
-        .insert([
-          {
-            full_name: formData.fullName,
-            email: formData.email,
-            instagram_username: formData.instagramUsername || null,
-            city: formData.city,
-            notes: formData.notes
-          }
-        ]);
-
-      if (error) throw error;
+      const { error } = await supabase.from('waitlist').insert([payload]);
+      if (error) {
+        throw error;
+      }
 
       setStatus('success');
-      setMessage('Welcome to the Ginja gang! 🎉 We\'ll keep you posted on our launch!');
-      setFormData({ fullName: '', email: '', instagramUsername: '', city: '', notes: '' });
-      
+      setMessage('You are on the list. We will email you before launch.');
+      setFormData({ fullName: '', email: '', city: '', notes: '' });
     } catch (error) {
+      const errorMessage = error?.message || 'Something went wrong. Please try again.';
       setStatus('error');
-      const errMsg = error?.message || 'Something went wrong. Please try again later.';
-      setMessage(errMsg.includes('duplicate') ? 'This email is already on the list! Try another.' : errMsg);
-      console.error('Waitlist error:', error);
+      if (error?.code === '42501') {
+        setMessage('Database policy blocked insert. Check Supabase RLS insert policy for table "waitlist".');
+        return;
+      }
+      setMessage(
+        errorMessage.toLowerCase().includes('duplicate')
+          ? 'This email is already on the waitlist.'
+          : errorMessage
+      );
     }
   };
 
   return (
-    <section id="waitlist" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-orange-50 via-yellow-50 to-pink-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        
-        {/* Section Header */}
-        <motion.div 
-          className="text-center mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6">
-            Join the{' '}
-            <span className="text-[#E2561B]">
-              Waitlist
-            </span>
+    <section id="waitlist" className="px-4 pb-20 sm:px-6 sm:pb-28">
+      <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#E5DBCC] bg-white px-6 py-10 shadow-[0_18px_54px_rgba(30,26,20,0.09)] sm:px-10 sm:py-14">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Early access</p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold text-[#1D1C18] sm:text-4xl">
+            Be first to experience Ginja
           </h2>
-          <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto px-4 sm:px-0">
-            Be among the first to experience productivity,{' '}
-            <span className="font-semibold text-[#E2561B]">Ginja style</span>
+          <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+            Join the waitlist for early access and updates as Ginja gets ready to launch.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Waitlist Form */}
-        <motion.div 
-          className="bg-white dark:bg-gray-900 rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 md:p-8 lg:p-12 border border-gray-100 dark:border-gray-800"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {status === 'success' ? (
-            <motion.div 
-              className="text-center py-8 sm:py-12"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
+        {!hasSupabaseConfig && (
+          <p className="mx-auto mt-6 max-w-2xl rounded-2xl border border-[#F4D6BA] bg-[#FFF6ED] px-4 py-3 text-center text-sm text-[#A85C28]">
+            Waitlist is currently not connected to Supabase in this environment.
+          </p>
+        )}
+
+        {status === 'success' ? (
+          <div className="mx-auto mt-10 max-w-xl rounded-3xl border border-[#D6E9CB] bg-[#F1FAEC] p-8 text-center">
+            <CheckCircle2 className="mx-auto h-10 w-10 text-[#4E8C06]" />
+            <h3 className="mt-4 text-2xl font-semibold text-[#1D1C18]">You are in</h3>
+            <p className="mt-2 text-sm text-[#4F6550] sm:text-base">{message}</p>
+            <button
+              className="mt-5 text-sm font-semibold text-[#E2561B] hover:text-[#C94B16]"
+              onClick={() => setStatus('idle')}
             >
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">You're In! 🎉</h3>
-              <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg mb-4 sm:mb-6">{message}</p>
-              <button
-                onClick={() => setStatus('idle')}
-                className="text-[#E2561B] hover:text-[#E2561B]/80 font-medium text-sm sm:text-base"
-              >
-                Add another person →
-              </button>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              
-              {/* Full Name */}
-              <div>
-                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  What should we call you? 👋
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  required
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 dark:border-gray-700 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 dark:text-white placeholder-gray-500 bg-white dark:bg-gray-800 text-sm sm:text-base"
-                  placeholder="can be a nickname"
-                />
-              </div>
+              Add another email
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-2xl gap-5">
+            <div className="grid gap-2">
+              <label htmlFor="fullName" className="text-sm font-medium text-[#49453E]">
+                Full name
+              </label>
+              <input
+                id="fullName"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                type="text"
+                required
+                placeholder="Your full name"
+                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+              />
+            </div>
 
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Email Address 📧
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 dark:border-gray-700 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 dark:text-white placeholder-gray-500 bg-white dark:bg-gray-800 text-sm sm:text-base"
-                  placeholder="email@example.com"
-                />
-              </div>
+            <div className="grid gap-2">
+              <label htmlFor="email" className="text-sm font-medium text-[#49453E]">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                type="email"
+                required
+                placeholder="you@example.com"
+                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+              />
+            </div>
 
-              {/* Instagram Username */}
-              <div>
-                <label htmlFor="instagramUsername" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Instagram Username
-                </label>
-                <input
-                  type="text"
-                  id="instagramUsername"
-                  name="instagramUsername"
-                  value={formData.instagramUsername}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 dark:border-gray-700 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 dark:text-white placeholder-gray-500 bg-white dark:bg-gray-800 text-sm sm:text-base"
-                  placeholder="@your_instagram (optional)"
-                />
-              </div>
+            <div className="grid gap-2">
+              <label htmlFor="city" className="text-sm font-medium text-[#49453E]">
+                City
+              </label>
+              <input
+                id="city"
+                name="city"
+                value={formData.city}
+                onChange={handleChange}
+                type="text"
+                required
+                placeholder="Your city"
+                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+              />
+            </div>
 
-              {/* City */}
-              <div>
-                <label htmlFor="city" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  Your Location? 🏠
-                </label>
-                <input
-                  type="text"
-                  id="city"
-                  name="city"
-                  required
-                  value={formData.city}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 dark:border-gray-700 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 dark:text-white placeholder-gray-500 bg-white dark:bg-gray-800 text-sm sm:text-base"
-                  placeholder="e.g., London, Berlin,Lagos Abuja, Diaspora..."
-                />
-              </div>
+            <div className="grid gap-2">
+              <label htmlFor="notes" className="text-sm font-medium text-[#49453E]">
+                Notes
+              </label>
+              <textarea
+                id="notes"
+                name="notes"
+                value={formData.notes}
+                onChange={handleChange}
+                rows={3}
+                required
+                placeholder="What are you hoping Ginja helps with?"
+                className="rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 py-3 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+              />
+            </div>
 
-              {/* Notes */}
-              <div>
-                <label htmlFor="notes" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  What excites you most about Ginja? ✨
-                </label>
-                <textarea
-                  id="notes"
-                  name="notes"
-                  required
-                  rows={3}
-                  value={formData.notes}
-                  onChange={handleChange}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl border-2 border-gray-200 dark:border-gray-700 focus:border-[#E2561B] focus:outline-none transition-colors duration-200 text-gray-900 dark:text-white placeholder-gray-500 bg-white dark:bg-gray-800 resize-none text-sm sm:text-base"
-                  placeholder="Tell us what made you want to join! The more you share, the better we can make Ginja for you 🚀"
-                />
-              </div>
+            {status === 'error' && (
+              <p className="rounded-2xl border border-[#F1B6B6] bg-[#FFF1F1] px-4 py-3 text-sm text-[#B93838]">{message}</p>
+            )}
 
-              {/* Error Message */}
-              {status === 'error' && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/40 rounded-xl sm:rounded-2xl p-3 sm:p-4">
-                  <p className="text-red-600 dark:text-red-400 text-center text-sm sm:text-base">{message}</p>
-                </div>
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#E2561B] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(226,86,27,0.22)] transition-colors hover:bg-[#C94B16] disabled:cursor-not-allowed disabled:bg-[#E79A78]"
+            >
+              {status === 'loading' ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Securing your spot...
+                </>
+              ) : (
+                'Get early access'
               )}
+            </button>
 
-              {/* Submit Button */}
-              <motion.button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full bg-gradient-to-r from-[#E2561B] to-[#C4C879] hover:from-[#E2561B]/90 hover:to-[#C4C879]/90 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
-                whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
-                whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
-              >
-                {status === 'loading' ? (
-                  <>
-                    <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
-                    Adding you to the gang...
-                  </>
-                ) : (
-                  <>
-                    Stay Ginja'd 🚀
-                    <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </>
-                )}
-              </motion.button>
-
-              {/* Privacy Note */}
-              <p className="text-xs text-gray-500 dark:text-gray-400 text-center leading-relaxed">
-                We respect your privacy. Thank you for filling this form.
-              </p>
-            </form>
-          )}
-        </motion.div>
+            <p className="text-center text-xs text-[#7A7368]">No spam. Just launch updates and early access invites.</p>
+          </form>
+        )}
       </div>
     </section>
   );

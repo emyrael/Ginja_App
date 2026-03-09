@@ -1,315 +1,229 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Zap, ListChecks, Bell, Heart, TrendingUp, Users } from 'lucide-react';
-import GinjaText from './GinjaText';
+import { Bell, Moon, CalendarCheck2, Users2, TrendingUp, Sparkles, Leaf } from 'lucide-react';
 import PhoneFrame from './ui/PhoneFrame';
 import {
-  HomeScreen,
   BrainDumpScreen,
   WellnessScreen,
   ProgressScreen,
-  TodoCompletedScreen,
   TodoSharedScreen,
-  TodoUpcomingScreen,
+  SettingsScreen,
 } from './ui/ScreenMockups';
 
+const adaptBullets = [
+  'Choose your communication style',
+  'Set quiet hours that respect your rhythm',
+  'Get smarter reminders that match the moment',
+  'Use Weekly Focus to stay aligned with what matters',
+];
+
 export default function FeaturesSection() {
-
-  const features = [
-    {
-      icon: Zap,
-      title: "Brain Dump",
-      description: "Offload everything on your mind. Write or speak a stream of thoughts, and Ginja breaks it into actionable tasks — no filter needed.",
-      bgColor: "bg-orange-50 dark:bg-orange-950/20",
-      borderColor: "border-orange-200 dark:border-orange-800/40",
-      iconColor: "text-orange-600",
-      emoji: "⚡"
-    },
-    {
-      icon: Heart,
-      title: "Wellness",
-      description: "A wellbeing hub with mood check-ins, quick resets (breathe, walk, stretch, hydrate) and a weekly planning tool so you can set intentions and look after yourself.",
-      bgColor: "bg-red-50 dark:bg-red-950/20",
-      borderColor: "border-red-200 dark:border-red-800/40",
-      iconColor: "text-red-500",
-      emoji: "❤️"
-    },
-    {
-      icon: Bell,
-      title: "Smart Notifications",
-      description: "Timely, context-aware reminders that respect your energy and schedule. No spam — just the right nudge at the right moment.",
-      bgColor: "bg-green-50 dark:bg-green-950/20",
-      borderColor: "border-green-200 dark:border-green-800/40",
-      iconColor: "text-green-600",
-      emoji: "✨"
-    },
-    {
-      icon: ListChecks,
-      title: "Task Manager",
-      description: "Organise tasks with categories (Personal, Work, Social), due dates, times, notes and even import events straight from your calendar.",
-      bgColor: "bg-blue-50 dark:bg-blue-950/20",
-      borderColor: "border-blue-200 dark:border-blue-800/40",
-      iconColor: "text-blue-600",
-      emoji: "📋"
-    },
-    {
-      icon: TrendingUp,
-      title: "Progress & Achievements",
-      description: "View your streaks for the week, track active days, and celebrate milestones like \"Early Bird\" and \"First Week.\" Consistency never looked this good.",
-      bgColor: "bg-purple-50 dark:bg-purple-950/20",
-      borderColor: "border-purple-200 dark:border-purple-800/40",
-      iconColor: "text-purple-600",
-      emoji: "📈"
-    },
-    {
-      icon: Users,
-      title: "Circle & Plan Together",
-      description: "Collaborate on shared plans with your squad, plan ahead in the upcoming view and celebrate recent wins in the completed tab. Stay ginja'd together! 💪",
-      bgColor: "bg-yellow-50 dark:bg-yellow-950/20",
-      borderColor: "border-yellow-200 dark:border-yellow-800/40",
-      iconColor: "text-yellow-600",
-      emoji: "👥"
-    }
-  ];
-
   return (
-    <section id="features" className="py-12 sm:py-16 lg:py-20 bg-white dark:bg-gray-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        
-        {/* Section Header */}
-        <motion.div 
-          className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white mb-4 sm:mb-6">
-            <GinjaText size="lg" />
-            {' '}Hits{' '}
-            <span className="text-[#E2561B]">
-              Different
-            </span>
+    <>
+      <section id="why-ginja" className="px-4 py-20 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#E5DED3] bg-white px-6 py-10 shadow-[0_16px_48px_rgba(33,29,23,0.08)] sm:px-10 sm:py-14">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Why Ginja</p>
+          <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+            Most productivity apps help you do more. Ginja helps you stay clear.
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
-          Finally, a productivity app that understands real life. No generic templates, no stiff routines just simple{' '}
-            <span className="font-semibold text-[#E2561B]">home grown efficiency</span> ✨
+          <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-[#5F5A51]">
+            Too many apps feel noisy, rigid, and disconnected from real life. Ginja is a calmer space to unload your thoughts,
+            focus on what matters, and stay aligned with your own rhythm.
           </p>
-        </motion.div>
 
+          <div className="mt-8 grid gap-3 text-sm font-medium text-[#47433C] sm:grid-cols-2">
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Less mental clutter</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Less pressure</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">More clarity</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">More follow-through</div>
+          </div>
+        </div>
+      </section>
 
-        {/* ═══ See Ginja in Action ═══ */}
-        <motion.div
-          className="mb-16 sm:mb-20 bg-gradient-to-br from-orange-50 via-[#C4C879]/15 to-green-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14 relative overflow-hidden"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Background decorative elements */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-10 right-10 w-24 h-24 bg-[#E2561B]/10 rounded-full opacity-40 animate-pulse" />
-            <div className="absolute bottom-10 left-10 w-32 h-32 bg-[#C4C879]/20 rounded-full opacity-40 animate-pulse" style={{animationDelay: '1s'}} />
-            <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-green-400/10 rounded-full opacity-40 animate-pulse" style={{animationDelay: '2s'}} />
+      <section id="features" className="px-4 pb-16 sm:px-6 sm:pb-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Core Product Story</p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+              From overwhelmed thoughts to clear momentum.
+            </h2>
           </div>
 
-          {/* Section heading */}
-          <div className="text-center mb-12 sm:mb-16 relative z-10">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-              See Ginja in Action 📱
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg max-w-2xl mx-auto px-4 sm:px-0">
-              Explore every feature up close from brain dumps to wellness check-ins, here&apos;s exactly what&apos;s inside the app.
-            </p>
-          </div>
-
-          {/* 7 feature sections with phone mockups */}
-          <div className="space-y-20 sm:space-y-28 relative z-10">
-
-          {/* ── 1. Brain Dump ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="flex justify-center lg:justify-start" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="home">
-                <HomeScreen />
-              </PhoneFrame>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-[#E2561B] px-3 py-1 rounded-full text-xs font-semibold mb-4">⚡ Brain Dump</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Get it out of your head.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Write or speak everything on your mind and let Ginja break it into actionable tasks. No more mental clutter just clarity.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> Free-form text or voice input</li>
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> AI-powered task breakdown</li>
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> Instantly creates categorised todos</li>
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* ── 2. Voice to Text ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-[#4E8C06] px-3 py-1 rounded-full text-xs font-semibold mb-4">🎙️ Voice to Text</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Just Speak and let Ginja handle the rest.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Too tired to type? Tap the mic, speak your thoughts, and Ginja converts them into structured tasks instantly.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-[#4E8C06] mt-0.5">✦</span> One-tap voice capture</li>
-                <li className="flex items-start gap-2"><span className="text-[#4E8C06] mt-0.5">✦</span> Works inside Brain Dump &amp; Todo</li>
-                <li className="flex items-start gap-2"><span className="text-[#4E8C06] mt-0.5">✦</span> Hands-free productivity</li>
-              </ul>
-            </motion.div>
-            <motion.div className="flex justify-center lg:justify-end order-1 lg:order-2" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="home">
+          <div className="mt-12 grid items-center gap-10 rounded-[2rem] border border-[#E6DED1] bg-[#FBF9F4] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+            <div className="flex justify-center lg:justify-start">
+              <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="home">
                 <BrainDumpScreen />
               </PhoneFrame>
-            </motion.div>
-          </div>
-
-          {/* ── 3. Calendar Integration ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="flex justify-center lg:justify-start" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="home">
-                <HomeScreen />
-              </PhoneFrame>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-full text-xs font-semibold mb-4">📅 Calendar Integration</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Your calendar, your todos.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Import events straight from your calendar and turn them into actionable items. No more switching between apps to stay on track.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✦</span> One-tap calendar import</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✦</span> Events become smart todos</li>
-                <li className="flex items-start gap-2"><span className="text-blue-600 mt-0.5">✦</span> Suggested priorities based on schedule</li>
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* ── 4. Shared ToDos ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold mb-4">🫂 Circle</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Stay connected. Move together.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Circle is where shared plans live. Chat about tasks in real time, update statuses, and keep everyone aligned. From quick check-ins to detailed notes everything stays in one shared space.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">✦</span> Real-time chat around shared plans</li>
-                <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">✦</span> Mark status &amp; track progress together</li>
-                <li className="flex items-start gap-2"><span className="text-emerald-600 mt-0.5">✦</span> Contextual notes inside each plan</li>
-              </ul>
-            </motion.div>
-            <motion.div className="flex justify-center lg:justify-end order-1 lg:order-2" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="todo">
-                <TodoSharedScreen />
-              </PhoneFrame>
-            </motion.div>
-          </div>
-
-          {/* ── 5. Circle (Accountability) ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="flex justify-center lg:justify-start" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="todo">
-                <TodoCompletedScreen />
-              </PhoneFrame>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1 rounded-full text-xs font-semibold mb-4">✅ Track Todos</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Track everything in one place.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Track your todos and see their status both personal and shared all inside Ginja. Know what&apos;s pending, what&apos;s done, and what needs attention at a glance.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-purple-600 mt-0.5">✦</span> Clear status for every task</li>
-                <li className="flex items-start gap-2"><span className="text-purple-600 mt-0.5">✦</span> Personal &amp; shared plans unified</li>
-                <li className="flex items-start gap-2"><span className="text-purple-600 mt-0.5">✦</span> Notes &amp; timestamps for full context</li>
-              </ul>
-            </motion.div>
-          </div>
-
-          {/* ── 6. Progress Tracking ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="order-2 lg:order-1" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-[#E2561B] px-3 py-1 rounded-full text-xs font-semibold mb-4">📈 Progress</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Consistency over perfection.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Weekly activity dots, active streaks, and achievement badges — everything you need to stay motivated and see how far you&apos;ve come.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> Visual weekly calendar</li>
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> Streak counter &amp; milestones</li>
-                <li className="flex items-start gap-2"><span className="text-[#E2561B] mt-0.5">✦</span> Achievement badges you can earn</li>
-              </ul>
-            </motion.div>
-            <motion.div className="flex justify-center lg:justify-end order-1 lg:order-2" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="progress">
-                <ProgressScreen />
-              </PhoneFrame>
-            </motion.div>
-          </div>
-
-          {/* ── 7. Wellness Tracking ── */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div className="flex justify-center lg:justify-start" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
-              <PhoneFrame activeTab="wellness">
-                <WellnessScreen />
-              </PhoneFrame>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 px-3 py-1 rounded-full text-xs font-semibold mb-4">❤️ Wellness</div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">Check in with yourself.</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm sm:text-base leading-relaxed">Quick mood check-ins, weekly planning, and micro-resets breathe, walk, stretch, hydrate. Small actions that shift your energy when you need it most.</p>
-              <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">✦</span> mood check-ins</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">✦</span> Plan your week in one tap</li>
-                <li className="flex items-start gap-2"><span className="text-red-500 mt-0.5">✦</span> Quick resets suggestions: Breathe, Walk, Stretch, Hydrate</li>
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-        </motion.div>
-
-        {/* Features Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              className={`${feature.bgColor} ${feature.borderColor} border-2 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 hover:shadow-lg transition-all duration-300 hover:scale-105 relative overflow-hidden`}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              {/* Floating emoji */}
-              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 text-lg sm:text-2xl opacity-20">
-                {feature.emoji}
-              </div>
-              
-              {/* Icon */}
-              <div className={`w-12 h-12 sm:w-16 sm:h-16 ${feature.bgColor} border-2 ${feature.borderColor} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-6`}>
-                <feature.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${feature.iconColor}`} />
-              </div>
-              
-              {/* Content */}
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-                {feature.title}
+            </div>
+            <div>
+              <p className="inline-flex rounded-full bg-[#FFF1E8] px-3 py-1 text-xs font-semibold text-[#B4581F]">Brain Dump</p>
+              <h3 className="mt-4 text-2xl font-semibold text-[#1E1B17] sm:text-3xl">
+                Brain Dump your thoughts into clear next steps
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm sm:text-base">
-                {feature.description}
+              <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+                When your mind feels full, Ginja gives you a calm space to unload everything and turn messy thoughts into
+                simple, actionable to-dos.
               </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div 
-          className="text-center mt-12 sm:mt-16 bg-gradient-to-r from-orange-50 to-pink-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex justify-center mb-3 sm:mb-4">
-            <span className="text-3xl sm:text-4xl">🚀</span>
+              <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
+                <li>Type or speak what is on your mind</li>
+                <li>Turn mental clutter into clarity</li>
+                <li>Start with what feels real, not rigid</li>
+              </ul>
+            </div>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-          </p>
-        </motion.div>
-      </div>
-    </section>
+
+          <div className="mt-8 grid gap-5 lg:grid-cols-3">
+            <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
+              <Bell className="h-5 w-5 text-[#E2561B]" />
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Reminders that feel personal, not robotic</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
+                Smart Notifications are shaped by your task context, communication style, and timing so nudges feel relevant,
+                not generic.
+              </p>
+            </article>
+
+            <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
+              <Moon className="h-5 w-5 text-[#4E8C06]" />
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Set quiet hours that respect your rhythm</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
+                Choose when Ginja should go quiet so reminders fit your life instead of interrupting it.
+              </p>
+            </article>
+
+            <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
+              <CalendarCheck2 className="h-5 w-5 text-[#E2561B]" />
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Stay aligned with what matters this week</h3>
+              <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
+                Weekly Focus keeps priorities grounded in your real life so you stay centered without feeling scattered.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="adapts" className="px-4 pb-16 sm:px-6 sm:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[#E7DFD3] bg-white p-6 shadow-[0_14px_40px_rgba(28,24,19,0.07)] sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-semibold text-[#567B34]">
+              <Sparkles className="h-3.5 w-3.5" />
+              Built to adapt to you
+            </p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+              Personal, calm, and context-aware by design.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#5D584F] sm:text-lg">
+              Ginja is designed to work with your personality, routine, and energy from how it reminds you to how it supports
+              your focus.
+            </p>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {adaptBullets.map((bullet) => (
+                <li key={bullet} className="rounded-2xl bg-[#F8F4ED] px-4 py-3 text-sm font-medium text-[#4D483F]">
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="wellness">
+              <SettingsScreen />
+            </PhoneFrame>
+          </div>
+        </div>
+      </section>
+
+      <section id="wellness" className="px-4 pb-16 sm:px-6 sm:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[#E7DFD3] bg-[#FAF8F3] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <div className="flex justify-center lg:justify-start">
+            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="wellness">
+              <WellnessScreen />
+            </PhoneFrame>
+          </div>
+
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-semibold text-[#567B34]">
+              <Leaf className="h-3.5 w-3.5" />
+              Wellness
+            </p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+              Wellness support without pressure.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+              Check in with your mood, align your Weekly Focus, and use quick resets that help your energy shift in real life,
+              not just on a to-do list.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
+              <li>Mood check-ins that influence reminders</li>
+              <li>Weekly Focus tied to your real priorities</li>
+              <li>Micro-resets for calmer momentum</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="circle" className="px-4 pb-16 sm:px-6 sm:pb-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[#E7DFD3] bg-[#FAF8F3] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
+          <div className="flex justify-center lg:justify-start">
+            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="circle">
+              <TodoSharedScreen />
+            </PhoneFrame>
+          </div>
+
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-semibold text-[#567B34]">
+              <Users2 className="h-3.5 w-3.5" />
+              Circle
+            </p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+              Plan together and stay accountable.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+              Create shared plans with friends, assign actions, keep notes, and chat in one place without jumping between tools.
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
+              <li>Shared actions and clear ownership</li>
+              <li>Notes and chat in the same workflow</li>
+              <li>Built for real collaboration, not busywork</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="progress" className="px-4 pb-20 sm:px-6 sm:pb-28">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[#E7DFD3] bg-white p-6 shadow-[0_14px_40px_rgba(28,24,19,0.07)] sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-[#FFF1E8] px-3 py-1 text-xs font-semibold text-[#B4581F]">
+              <TrendingUp className="h-3.5 w-3.5" />
+              Progress
+            </p>
+            <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
+              See your momentum, not just your tasks.
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+              Track active days, achievements, and progress over time so consistency feels visible and motivating.
+            </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Active Days</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Weekly view</p>
+              </div>
+              <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Streaks</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Momentum</p>
+              </div>
+              <div className="rounded-2xl bg-[#EEF5E8] px-4 py-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#6C7C5D]">Achievements</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Progress wins</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="progress">
+              <ProgressScreen />
+            </PhoneFrame>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,148 +1,72 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '../../components/ui/button';
-import GinjaText from './GinjaText';
-import AnimatedPhonePreview from './ui/AnimatedPhonePreview';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import PhoneFrame from './ui/PhoneFrame';
+import { HomeScreen } from './ui/ScreenMockups';
 
-export default function HeroSection({ onJoinWaitlist }) {
+export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 overflow-hidden flex items-center">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-[#E2561B]/20 rounded-full opacity-30 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-[#C4C879]/30 rounded-full opacity-30 animate-pulse" style={{animationDelay: '1s'}} />
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C4C879]/20 rounded-full opacity-30 animate-pulse" style={{animationDelay: '2s'}} />
+    <section id="home" className="relative overflow-hidden px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-0 top-0 h-64 w-64 rounded-full bg-[#E2561B]/8 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-[#87B66A]/10 blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-          
-          {/* Left side - Content */}
-          <motion.div 
-            className="text-left"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {/* Brand Name */}
-            <div className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8">
-              <motion.h1 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black"
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-              >
-                <GinjaText size="lg" />
-              </motion.h1>
-            </div>
+      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <span className="inline-flex items-center rounded-full border border-[#EBDCCF] bg-[#FFF8F2] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#A26335]">
+            Early access opening soon
+          </span>
 
-            {/* Main Tagline - exactly like your image */}
-            <motion.div
-              className="mb-6 sm:mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+          <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[#1D1C18] sm:text-5xl lg:text-6xl">
+            The productivity app that actually gets your vibe.
+          </h1>
+
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#605B53] sm:text-xl">
+            Clear your mind, focus on what matters, and stay consistent with a space that adapts to you.
+          </p>
+
+          <div className="mt-8 grid max-w-lg gap-3 text-sm text-[#4E4A43] sm:grid-cols-2">
+            <p className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
+              Less clutter, more clear next steps
+            </p>
+            <p className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
+              Personal reminders with calm timing
+            </p>
+            <p className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
+              Weekly focus without rigid pressure
+            </p>
+            <p className="flex items-start gap-2">
+              <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
+              Shared accountability in Circle
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <button
+              onClick={onJoinWaitlist}
+              className="inline-flex items-center justify-center rounded-full bg-[#E2561B] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(226,86,27,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-2">
-                Stay Ginja'd.
-              </h2>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                <span className="text-[#E2561B]">Stay</span> <span className="text-[#4E8C06]">Organized.</span>
-              </h2>
-            </motion.div>
-
-            {/* Description */}
-            <motion.p 
-              className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 max-w-lg"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
+              Join the waitlist
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </button>
+            <button
+              onClick={onSeeHowItWorks}
+              className="inline-flex items-center justify-center rounded-full border border-[#DED8CF] bg-white px-6 py-3 text-base font-medium text-[#3F3C35] transition-all duration-200 hover:border-[#CFC6BA] hover:bg-[#FCFAF6]"
             >
-              The Productivity app that actually gets your vibe.{' '}
-              <span className="font-semibold text-[#E2561B]"></span> 
-            </motion.p>
+              See how it works
+            </button>
+          </div>
+        </div>
 
-            {/* Feature badges - with more features */}
-            <motion.div 
-              className="flex flex-wrap gap-2 sm:gap-3 mb-8 sm:mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-            >
-              <div className="bg-[#E2561B]/10 dark:bg-[#E2561B]/20 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">⚡ Brain Dump</span>
-              </div>
-              <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-red-500 font-medium text-xs sm:text-sm">❤️ Wellness</span>
-              </div>
-              <div className="bg-[#C4C879]/20 border border-[#4E8C06]/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#4E8C06] font-medium text-xs sm:text-sm">✨ Smart Notifications</span>
-              </div>
-              <div className="bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-blue-600 dark:text-blue-400 font-medium text-xs sm:text-sm">📋 ToDo Manager</span>
-              </div>
-              <div className="bg-[#E2561B]/10 dark:bg-[#E2561B]/20 border border-[#E2561B]/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-[#E2561B] font-medium text-xs sm:text-sm">📈 Progress & Achievements</span>
-              </div>
-              <div className="bg-purple-100 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800/40 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-                <span className="text-purple-600 dark:text-purple-400 font-medium text-xs sm:text-sm">👥 Circle & Plan Together</span>
-              </div>
-            </motion.div>
-
-            {/* CTA Button - matching your image */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.6 }}
-            >
-              <Button
-                onClick={onJoinWaitlist}
-                className="bg-gradient-to-r from-[#E2561B] to-[#C4C879] hover:from-[#E2561B]/90 hover:to-[#C4C879]/90 text-white font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                Join the Waitlist
-                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-              </Button>
-            </motion.div>
-
-            <motion.p 
-              className="text-sm text-gray-500 dark:text-gray-400 mt-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.3, duration: 0.6 }}
-            >
-              Be the first to experience the future of productivity 🚀
-            </motion.p>
-          </motion.div>
-
-          {/* Right side - Animated phone product preview */}
-          <motion.div 
-            className="relative flex justify-center lg:justify-end mt-8 lg:mt-0"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <div className="relative">
-              <AnimatedPhonePreview />
-
-              {/* Floating accent elements */}
-              <motion.div
-                className="absolute -right-3 sm:-right-5 top-16 sm:top-20 w-8 h-8 sm:w-12 sm:h-12 bg-[#E2561B] rounded-full flex items-center justify-center shadow-lg z-20"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-white text-sm sm:text-lg">⚡</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute -left-3 sm:-left-5 bottom-24 sm:bottom-32 w-6 h-6 sm:w-10 sm:h-10 bg-[#C4C879] rounded-full flex items-center justify-center shadow-lg z-20"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <span className="text-white text-xs sm:text-sm">❤️</span>
-              </motion.div>
-            </div>
-          </motion.div>
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="rounded-[2.25rem] border border-[#E5DED3] bg-white/70 p-3 shadow-[0_24px_64px_rgba(40,36,30,0.12)] backdrop-blur">
+            <PhoneFrame className="w-[300px] sm:w-[340px]" activeTab="home">
+              <HomeScreen />
+            </PhoneFrame>
+          </div>
         </div>
       </div>
     </section>

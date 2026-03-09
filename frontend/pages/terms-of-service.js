@@ -1,49 +1,78 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import GinjaLogo from '../component/landing/GinjaLogo';
+import GinjaText from '../component/landing/GinjaText';
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 p-6 sm:p-12">
+    <>
       <Head>
-        <title>Terms of Service — Ginja</title>
+        <title>Terms of Service | Ginja</title>
+        <meta name="description" content="Terms governing use of the Ginja app and website." />
       </Head>
-      <main className="max-w-3xl mx-auto">
-        <Link href="/" className="inline-flex items-center gap-1 text-sm text-[#E2561B] hover:underline mb-6">
-          ← Back to Home
-        </Link>
-        <h1 className="text-3xl font-bold mb-4">Terms of Service</h1>
-        <p className="mb-4 text-sm text-gray-700 dark:text-gray-400">Last updated: February 24, 2026</p>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Acceptance</h2>
-          <p className="text-gray-700 dark:text-gray-300">By using Ginja you agree to these terms. Please read them carefully. If you do not agree, do not use our services.</p>
-        </section>
+      <main className="min-h-screen bg-[var(--bg-primary)] text-[#1F1C17]">
+        <header className="sticky top-0 z-40 border-b border-[#E5DED3] bg-[#F8F5EE]/95 backdrop-blur-md">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+            <Link href="/" className="flex items-center gap-2">
+              <GinjaLogo size="sm" />
+              <span className="text-sm font-semibold">
+                <GinjaText />
+              </span>
+            </Link>
+            <Link href="/" className="text-sm font-medium text-[#6A645A] hover:text-[#1E1B17]">← Back to Home</Link>
+          </div>
+        </header>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Services</h2>
-          <p className="text-gray-700 dark:text-gray-300">We provide productivity tools including task management, shared tasks, reminders, voice notes, and wellness features.</p>
-        </section>
+        <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
+          <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#E5DED3] bg-white px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
+            <h1 className="text-3xl font-semibold sm:text-4xl">Terms of Service</h1>
+            <p className="mt-2 text-sm text-[#6D665B]">Last updated: March 9, 2026</p>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Accounts</h2>
-          <p className="text-gray-700 dark:text-gray-300">You are responsible for your account security. Account deletion instructions are available on the <Link href="/account-deletion"><a className="text-[#E2561B]">Account Deletion</a></Link> page.</p>
-        </section>
+            <div className="mt-8 space-y-6 text-sm leading-relaxed text-[#4C473F] sm:text-base">
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">1. Acceptance</h2>
+                <p className="mt-2">By using Ginja, you agree to these terms. If you do not agree, please do not use the service.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Content</h2>
-          <p className="text-gray-700 dark:text-gray-300">You retain ownership of your content. By submitting content you grant us a license to operate and improve our services.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">2. Services</h2>
+                <p className="mt-2">Ginja provides planning tools including Brain Dump, reminders, wellness support, progress tracking, and shared planning features.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Limitation of Liability</h2>
-          <p className="text-gray-700 dark:text-gray-300">To the maximum extent permitted by law, Ginja is not liable for indirect or consequential damages.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">3. Accounts and responsibility</h2>
+                <p className="mt-2">You are responsible for your account security and activity. Keep your credentials secure and notify us of suspected misuse.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">Contact</h2>
-          <p className="text-gray-700 dark:text-gray-300">Contact <a href="mailto:legal@ginjaapp.com" className="text-[#E2561B]">legal@ginjaapp.com</a> for questions regarding these terms.</p>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">4. User content</h2>
+                <p className="mt-2">You retain ownership of your content. You grant Ginja the rights needed to operate, improve, and secure the service.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">5. Acceptable use</h2>
+                <p className="mt-2">Do not misuse the service, attempt unauthorized access, or upload harmful content. We may suspend access for serious violations.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">6. Account deletion</h2>
+                <p className="mt-2">You can request deletion using the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">7. Limitation of liability</h2>
+                <p className="mt-2">To the extent allowed by law, Ginja is not liable for indirect, incidental, or consequential damages arising from use of the service.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">8. Contact</h2>
+                <p className="mt-2">For legal questions, contact <a href="mailto:legal@ginjaapp.com" className="text-[#E2561B] hover:underline">legal@ginjaapp.com</a>.</p>
+              </section>
+            </div>
+          </div>
         </section>
       </main>
-    </div>
+    </>
   );
 }

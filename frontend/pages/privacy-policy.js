@@ -1,89 +1,89 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import GinjaLogo from '../component/landing/GinjaLogo';
+import GinjaText from '../component/landing/GinjaText';
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 p-6 sm:p-12">
+    <>
       <Head>
-        <title>Privacy Policy — Ginja</title>
+        <title>Privacy Policy | Ginja</title>
+        <meta name="description" content="How Ginja collects, uses, and protects your information." />
       </Head>
-      <main className="max-w-3xl mx-auto">
-        <Link href="/" className="inline-flex items-center gap-1 text-sm text-[#E2561B] hover:underline mb-6">
-          ← Back to Home
-        </Link>
-        <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
-        <p className="mb-4 text-sm text-gray-700 dark:text-gray-400">Last updated: February 24, 2026</p>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">1. Overview</h2>
-          <p className="text-gray-700 dark:text-gray-300">Ginja respects your privacy. This Privacy Policy explains how we collect, use, store, and protect your information when you use the Ginja mobile application and website.</p>
-        </section>
+      <main className="min-h-screen bg-[var(--bg-primary)] text-[#1F1C17]">
+        <header className="sticky top-0 z-40 border-b border-[#E5DED3] bg-[#F8F5EE]/95 backdrop-blur-md">
+          <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-4 sm:px-6">
+            <Link href="/" className="flex items-center gap-2">
+              <GinjaLogo size="sm" />
+              <span className="text-sm font-semibold">
+                <GinjaText />
+              </span>
+            </Link>
+            <Link href="/" className="text-sm font-medium text-[#6A645A] hover:text-[#1E1B17]">← Back to Home</Link>
+          </div>
+        </header>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">2. Information We Collect</h2>
-          <p className="text-gray-700 mb-2">We may collect the following information:</p>
-          <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
-            <li>Account information (email address, display name)</li>
-            <li>User-generated content (tasks, notes, optional voice recordings)</li>
-            <li>Usage data (feature interactions, timestamps, device type)</li>
-            <li>Technical data (IP address, log data for security purposes)</li>
-          </ul>
-          <p className="text-gray-700 mt-3">Providing voice input is optional. Voice recordings are processed only to convert speech into structured tasks.</p>
-        </section>
+        <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
+          <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#E5DED3] bg-white px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
+            <h1 className="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
+            <p className="mt-2 text-sm text-[#6D665B]">Last updated: March 9, 2026</p>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">3. How We Use Your Information</h2>
-          <p className="text-gray-700 mb-2">We use collected information to:</p>
-          <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
-            <li>Provide core app functionality</li>
-            <li>Convert voice or text input into structured tasks</li>
-            <li>Improve app performance and reliability</li>
-            <li>Communicate service-related updates</li>
-          </ul>
-          <p className="text-gray-700 mt-3 font-medium">We do not sell or rent your personal data.</p>
-        </section>
+            <div className="mt-8 space-y-6 text-sm leading-relaxed text-[#4C473F] sm:text-base">
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">1. Overview</h2>
+                <p className="mt-2">Ginja respects your privacy. This policy explains how we collect, use, and protect your information when you use the Ginja app and website.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">4. AI Processing</h2>
-          <p className="text-gray-700 mb-2">Ginja may use automated systems and artificial intelligence tools to structure and organize user-provided content.</p>
-          <p className="text-gray-700 dark:text-gray-300">Your content is processed only to provide the requested functionality and is not used to train public AI models.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">2. Information we collect</h2>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>Account details such as email and display name.</li>
+                  <li>User content such as tasks, notes, and optional voice input.</li>
+                  <li>Usage data such as feature interactions and device information.</li>
+                  <li>Security and technical data such as IP address and logs.</li>
+                </ul>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">5. Data Storage &amp; Security</h2>
-          <p className="text-gray-700 mb-2">Your data is stored securely using encrypted connections (HTTPS). We implement reasonable safeguards to protect your information.</p>
-          <p className="text-gray-700 dark:text-gray-300">User data is retained only as long as your account remains active or as required for legal purposes.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">3. How we use information</h2>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>Deliver core app features and save your plans.</li>
+                  <li>Transform text or voice input into structured actions.</li>
+                  <li>Improve reliability, performance, and personalization.</li>
+                  <li>Send service-related messages and support updates.</li>
+                </ul>
+                <p className="mt-2 font-medium text-[#2F5C35]">We do not sell your personal data.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">6. Third-Party Services</h2>
-          <p className="text-gray-700 mb-2">We may use trusted third-party providers for:</p>
-          <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
-            <li>Authentication and database services</li>
-            <li>Hosting infrastructure</li>
-            <li>Analytics</li>
-            <li>AI processing</li>
-          </ul>
-          <p className="text-gray-700 mt-3">These providers only access data necessary to perform their services and are contractually obligated to protect your information.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">4. AI and automation processing</h2>
+                <p className="mt-2">Ginja uses automated processing to structure user-provided content for product functionality. This processing is limited to requested features.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">7. Your Rights</h2>
-          <p className="text-gray-700 mb-2">You may request:</p>
-          <ul className="list-disc pl-5 text-gray-700 dark:text-gray-300 space-y-1">
-            <li>Access to your data</li>
-            <li>Correction of inaccurate information</li>
-            <li>Deletion of your account and associated data</li>
-          </ul>
-          <p className="text-gray-700 mt-3">To delete your account, please follow the instructions in the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> section or contact us directly.</p>
-          <p className="text-gray-700 mt-2">EU users have additional rights under GDPR.</p>
-        </section>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">5. Security and retention</h2>
+                <p className="mt-2">We use encrypted connections and practical safeguards to protect data. Information is retained while your account is active or as required by law.</p>
+              </section>
 
-        <section className="mb-6">
-          <h2 className="font-semibold text-lg mb-2">8. Contact</h2>
-          <p className="text-gray-700 dark:text-gray-300">For privacy-related inquiries, contact: <a href="mailto:info@ginjaapp.com" className="text-[#E2561B] hover:underline">info@ginjaapp.com</a></p>
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">6. Third-party services</h2>
+                <p className="mt-2">We may use trusted providers for hosting, authentication, analytics, and AI processing. Access is limited to what is required to provide services.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">7. Your rights</h2>
+                <p className="mt-2">You can request access, correction, or deletion of your data. For deletion requests, use the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[#1F1C17]">8. Contact</h2>
+                <p className="mt-2">For privacy questions, email <a href="mailto:info@ginjaapp.com" className="text-[#E2561B] hover:underline">info@ginjaapp.com</a>.</p>
+              </section>
+            </div>
+          </div>
         </section>
       </main>
-    </div>
+    </>
   );
 }
