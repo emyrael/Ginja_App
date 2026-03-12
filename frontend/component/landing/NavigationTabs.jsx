@@ -37,7 +37,7 @@ export default function NavigationTabs({ onJoinWaitlist }) {
           onClick={onJoinWaitlist}
           className="rounded-full bg-[#E2561B] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(226,86,27,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5"
         >
-          Join waitlist
+          Get priority access
         </button>
       </div>
     </header>

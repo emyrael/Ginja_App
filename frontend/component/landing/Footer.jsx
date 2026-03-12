@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-[#625D54]">
-              A calmer productivity space for clarity, consistency, and shared momentum.
+              Start with Unload your plan. Then build clarity, consistency, and shared momentum.
             </p>
             <div className="mt-4 flex flex-wrap gap-4 text-sm font-medium text-[#5F5A51]">
               <a

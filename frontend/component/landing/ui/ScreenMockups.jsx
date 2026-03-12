@@ -29,7 +29,7 @@ export function HomeScreen() {
     <div className={shell}>
       <TopBar />
 
-      <h2 className="text-[18px] font-bold leading-tight">Good night, User! 🌙</h2>
+      <h2 className="text-[18px] font-bold leading-tight">Good night, Nay! 🌙</h2>
       <p className="mb-3 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Stay Ginja&apos;d. Stay Organized.</p>
 
       <div className={`${card} mb-2.5 relative`}>
@@ -51,7 +51,7 @@ export function HomeScreen() {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FFF3E8] text-[12px]">🔥</div>
           <div className="min-w-0 flex-1">
             <p className="text-[10px] font-bold">Brain Dump</p>
-            <p className={`${tiny}`}>Unload your thoughts. Ginja turns them into clear next actions.</p>
+            <p className={`${tiny}`}>Unload your plans. Ginja turns them into clear next actions.</p>
           </div>
           <button className="rounded-full bg-[#ED8522] px-2.5 py-1 text-[9px] font-semibold text-white">Start</button>
         </div>
@@ -91,7 +91,7 @@ export function HomeScreen() {
         </div>
         <p className="text-[10px] text-[#2A2824] dark:text-[#E7E7E8]">Eating right · Going to the gym · Morning prayers</p>
         <p className="mt-1 rounded-full border border-[#F3C3C3] bg-[#FFF3F3] px-2 py-1 text-[9px] text-[#C14A4A] dark:border-[#633030] dark:bg-[#3A2323] dark:text-[#F3B6B6]">
-          ⚠ What to Avoid: Overthinking
+          ⚠ What to Avoid: skipping workouts , late-night snacking
         </p>
       </div>
     </div>
@@ -170,63 +170,81 @@ export function WellnessScreen() {
 
 export function ProgressScreen() {
   const days = [
-    { d: 'M', n: 2 },
-    { d: 'T', n: 3 },
-    { d: 'W', n: 4 },
-    { d: 'T', n: 5 },
-    { d: 'F', n: 6 },
-    { d: 'S', n: 7 },
-    { d: 'S', n: 8 },
+    { d: 'M', n: 9, state: 'active' },
+    { d: 'T', n: 10, state: 'active' },
+    { d: 'W', n: 11, state: 'active' },
+    { d: 'T', n: 12, state: 'today' },
+    { d: 'F', n: 13, state: 'inactive' },
+    { d: 'S', n: 14, state: 'inactive' },
+    { d: 'S', n: 15, state: 'inactive' },
   ];
+  const stateClass = {
+    active: 'bg-[#41B982]',
+    today: 'bg-[#ED8B2A]',
+    inactive: 'bg-[#E6E4DF] dark:bg-[#31353C]',
+  };
 
   return (
     <div className={shell}>
       <TopBar />
-      <h2 className="text-[18px] font-bold">Progress</h2>
-      <p className="mb-2 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Consistency over perfection</p>
-
-      <div className="mb-2 inline-flex items-center gap-1 text-[10px] font-medium">
-        Week <span className="text-[#847D73] dark:text-[#ABADB1]">▾</span>
+      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[16px] border border-[#DED8CD] bg-[#F5F3EE] p-1 dark:border-white/10 dark:bg-[#1E2228]">
+        <button className="rounded-xl border border-[#F2D9C3] bg-white py-1.5 text-[10px] font-semibold text-[#D47A33] dark:border-[#5E3C24] dark:bg-[#232830]">
+          🗓 Week
+        </button>
+        <button className="py-1.5 text-[10px] font-semibold text-[#7D766D] dark:text-[#AAACB1]">🗓 Month</button>
+        <button className="py-1.5 text-[10px] font-semibold text-[#7D766D] dark:text-[#AAACB1]">📊 Year</button>
       </div>
 
-      <div className={`${card} mb-2.5`}>
-        <p className="mb-1 text-[16px] font-semibold">This Week</p>
+      <div className={`${card} mb-2.5 p-3.5`}>
+        <p className="mb-2 text-[16px] font-semibold">This Week</p>
         <div className="grid grid-cols-7 gap-1 text-center">
           {days.map((day) => (
             <div key={day.n} className="flex flex-col items-center gap-0.5">
               <span className="text-[8px] text-[#7A746B] dark:text-[#A7A8AB]">{day.d}</span>
               <span className="text-[8px] text-[#7A746B] dark:text-[#A7A8AB]">{day.n}</span>
-              <div className="h-5 w-5 rounded-full bg-[#41B982]" />
+              <div className={`h-8 w-8 rounded-full ${stateClass[day.state]}`} />
             </div>
           ))}
         </div>
         <div className="mt-2 flex items-center justify-between rounded-full border border-[#E4DED4] px-2 py-1 text-[8px] text-[#6C675F] dark:border-white/10 dark:text-[#A4A6AB]">
           <span>🟢 Active Days</span>
           <span>🟠 Today</span>
-          <span>🔴 Inactive</span>
+          <span>⚪ Inactive Days</span>
         </div>
       </div>
 
-      <p className="mb-1 text-[16px] font-semibold">Active Streak</p>
-      <div className={`${card} mb-2`}>
-        <p className="text-[18px] font-bold">12-day streak</p>
-        <p className="text-[9px] text-[#6F685F] dark:text-[#A4A6AB]">You&apos;ve been active 12 days in a row.</p>
+      <p className="mb-1 text-[16px] font-semibold">Active Stride</p>
+      <div className={`${card} mb-2.5 p-3.5`}>
+        <p className="text-[18px] font-bold">🔥 Stride: 15 Days</p>
+        <p className="text-[9px] text-[#6F685F] dark:text-[#A4A6AB]">You&apos;re in stride for 15 days straight.</p>
+        <p className="mt-1 text-[9px] text-[#6F685F] dark:text-[#A4A6AB]">🎟 1 streak restore token ready</p>
       </div>
-      <p className="mb-2 text-[9px] text-[#706A60] dark:text-[#A4A6AB]">Active 7 days this week</p>
+      <p className="mb-2 text-[10px] text-[#706A60] dark:text-[#A4A6AB]">Active this week</p>
 
       <p className="mb-1 text-[16px] font-semibold">Achievements</p>
-      <div className="grid grid-cols-2 gap-1.5">
-        <div className={card}>
-          <div className="mx-auto mb-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#EAF8F1] text-[16px]">⭐</div>
-          <p className="text-center text-[10px] font-semibold">First Week</p>
-          <p className="text-center text-[8px] text-[#6F685F] dark:text-[#A4A6AB]">Active 7 consecutive days</p>
-          <p className="mt-1 text-center text-[8px] font-semibold text-[#35A775]">✓ Earned</p>
+      <div className={card}>
+        <div className="flex items-center justify-between">
+          <p className="text-[14px] font-semibold">Progress</p>
+          <span className="text-[10px] font-semibold text-[#E07D2A]">View all ›</span>
         </div>
-        <div className={card}>
-          <div className="mx-auto mb-1 flex h-9 w-9 items-center justify-center rounded-full bg-[#EAF8F1] text-[16px]">⚡</div>
-          <p className="text-center text-[10px] font-semibold">Early Bird</p>
-          <p className="text-center text-[8px] text-[#6F685F] dark:text-[#A4A6AB]">Open before 8:00 AM</p>
-          <p className="mt-1 text-center text-[8px] font-semibold text-[#35A775]">✓ Earned</p>
+        <p className="mt-0.5 text-[9px] text-[#706A60] dark:text-[#A4A6AB]">Your growth stages, reflected as consistency.</p>
+        <div className="mt-2 space-y-1.5">
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="font-medium">🏅 Starter</span>
+            <span className="rounded-full bg-[#EAF8F1] px-2 py-0.5 text-[8px] font-semibold text-[#2D9466]">Unlocked</span>
+          </div>
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="font-medium">🥈 Rhythm</span>
+            <span className="rounded-full bg-[#FFF4E9] px-2 py-0.5 text-[8px] font-semibold text-[#C57A3A]">In motion</span>
+          </div>
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="font-medium">⚪ Circle</span>
+            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#2D3239] dark:text-[#A8ABB1]">Building</span>
+          </div>
+          <div className="flex items-center justify-between text-[10px]">
+            <span className="font-medium">✨ Mastery</span>
+            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#2D3239] dark:text-[#A8ABB1]">Consistency first</span>
+          </div>
         </div>
       </div>
     </div>
@@ -327,40 +345,53 @@ export function TodoCompletedScreen() {
 }
 
 export function TodoSharedScreen() {
-  const pending = ['John', 'Ian'];
-  const circleMembers = ['Jane', 'Rodrigo', 'John', 'Ian'];
+  const messages = [
+    { sender: 'Kaycee', text: 'I just created an action: Chest day today for @Jeffrey 💪', time: '18:23', mine: false },
+    { sender: 'Jeffrey', text: 'Got it. I will handle bench + incline after work.', time: '18:24', mine: false },
+    { sender: 'You', text: 'Perfect. I dropped the warm-up and set plan in Notes.', time: '18:25', mine: true },
+    { sender: 'Kaycee', text: 'Love it. We can check it off tonight and keep our streak.', time: '18:26', mine: false },
+  ];
+
   return (
     <div className={shell}>
-      <TopBar />
-      <h2 className="mb-1 text-[16px] font-bold">Circle</h2>
-      <p className="mb-2 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Stay accountable together</p>
+      <div className="mb-2 flex items-center justify-between text-[10px] font-semibold text-[#1F1D19] dark:text-[#F1F1EF]">
+        <span>19:54</span>
+        <span>5G 80%</span>
+      </div>
 
-      <div className={`${card} mb-2 border-[#ECD4BE] dark:border-[#5A3A23]`}>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[11px] font-semibold">Invite friends</p>
-            <p className={tiny}>Beta invite, share a link with anyone.</p>
-          </div>
-          <span className="text-[11px] text-[#938D84] dark:text-[#A6A8AD]">›</span>
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[15px] text-[#5F5A51] dark:text-[#ADB0B6]">←</span>
+        <div>
+          <h2 className="text-[16px] font-bold">Gym Bros</h2>
+          <p className="text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">You, Kaycee, Jeffrey</p>
         </div>
       </div>
 
-      <div className="mb-2 flex items-center justify-between">
-        <p className="text-[10px] font-semibold">Pending Requests</p>
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3DBB83] text-[8px] font-semibold text-white">2</span>
+      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#1E2228]">
+        <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">⚡ Actions (2)</button>
+        <button className="border-b-2 border-[#E0832A] py-2 text-[#D37B32]">💬 Chat</button>
+        <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">🗒 Notes (1)</button>
       </div>
 
-      <div className="space-y-1.5 mb-2">
-        {pending.map((member) => (
-          <div key={member} className={card}>
-            <div className="flex items-center justify-between gap-2">
-              <div className="min-w-0">
-                <p className="text-[10px] font-semibold">{member}</p>
-                <p className={tiny}>Request sent, waiting for response</p>
-              </div>
-              <span className="rounded-full bg-[#ECEAE4] px-2 py-1 text-[8px] text-[#7B746A] dark:bg-[#2D3138] dark:text-[#B3B6BC]">
-                Withdraw
-              </span>
+      <div className={`${card} mb-2 border-[#F0D6BE] bg-[#FFFAF5] dark:border-[#5A3A23] dark:bg-[#2A221B]`}>
+        <p className="text-[9px] font-semibold text-[#C77738]">Action created in chat</p>
+        <p className="mt-0.5 text-[11px] font-semibold">Chest day today</p>
+        <p className={tiny}>Created by Kaycee · Assigned to Jeffrey · Due today at 7:00 PM</p>
+      </div>
+
+      <div className="mb-2 space-y-1.5">
+        {messages.map((message) => (
+          <div key={`${message.sender}-${message.time}-${message.text}`} className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}>
+            <div
+              className={`max-w-[82%] rounded-2xl border px-2.5 py-1.5 ${
+                message.mine
+                  ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#232830]'
+                  : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'
+              }`}
+            >
+              {!message.mine && <p className="mb-0.5 text-[8px] font-semibold text-[#7A736A] dark:text-[#ADB0B5]">{message.sender}</p>}
+              <p className="text-[10px]">{message.text}</p>
+              <p className="mt-0.5 text-[8px] text-[#7D766D] dark:text-[#A8ABB0]">{message.time}</p>
             </div>
           </div>
         ))}
@@ -368,33 +399,17 @@ export function TodoSharedScreen() {
 
       <div className={`${card} mb-2`}>
         <div className="flex items-center justify-between">
-          <p className="text-[10px] font-semibold">Shared Plans</p>
-          <span className="text-[14px] text-[#E2561B]">+</span>
+          <div>
+            <p className="text-[11px] font-semibold">Shared Notes: Chest Day Plan</p>
+            <p className={tiny}>Warm-up, set targets, and form cues saved for everyone.</p>
+          </div>
+          <span className="text-[10px] font-semibold text-[#4FA45A]">Open ›</span>
         </div>
       </div>
 
-      <p className="mb-1 text-[10px] font-semibold text-[#766F65] dark:text-[#A9AAB0]">Your Circle</p>
-      <div className="mb-2 rounded-xl border border-[#E1DBCF] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#928A80] dark:border-white/10 dark:bg-[#181C22] dark:text-[#8F929A]">
-        Search your circle
-      </div>
-
-      <div className="space-y-1.5">
-        {circleMembers.map((member) => (
-          <div key={member} className={card}>
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FFF3E8] text-[10px] font-semibold text-[#E57F2C]">
-                  {member[0]}
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold">{member}</p>
-                  <p className={tiny}>Offline</p>
-                </div>
-              </div>
-              <span className="text-[9px] font-medium text-[#4FA45A]">View ›</span>
-            </div>
-          </div>
-        ))}
+      <div className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#181C22] dark:text-[#8F929A]">
+        <span>type @ to mention</span>
+        <span className="rounded-full bg-[#F0B97F] px-2 py-1 text-[9px] font-semibold text-white">➤</span>
       </div>
     </div>
   );

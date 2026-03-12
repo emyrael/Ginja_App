@@ -10,10 +10,10 @@ import {
 } from './ui/ScreenMockups';
 
 const adaptBullets = [
-  'Choose your communication style',
-  'Set quiet hours that respect your rhythm',
-  'Get smarter reminders that match the moment',
-  'Use Weekly Focus to stay aligned with what matters',
+  'Learns your style: motivational, calm, or direct',
+  'Protects quiet hours and respects your rhythm',
+  'Uses mood check-ins and Weekly Focus to adjust nudges',
+  'Checks live weather and location before reminding you',
 ];
 
 export default function FeaturesSection() {
@@ -23,18 +23,18 @@ export default function FeaturesSection() {
         <div className="mx-auto max-w-5xl rounded-[2rem] border border-[#E5DED3] bg-white px-6 py-10 shadow-[0_16px_48px_rgba(33,29,23,0.08)] sm:px-10 sm:py-14">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Why Ginja</p>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-            Most productivity apps help you do more. Ginja helps you stay clear.
+            Most productivity apps ask for clarity before you have it.
           </h2>
           <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-[#5F5A51]">
-            Too many apps feel noisy, rigid, and disconnected from real life. Ginja is a calmer space to unload your thoughts,
-            focus on what matters, and stay aligned with your own rhythm.
+            Most tools start with a blank list while your head is still spinning. Ginja starts with Unload your plan. It
+            builds clarity for you and keeps adapting as real life changes around you. Ginja learns about you and personalises your experience.
           </p>
 
           <div className="mt-8 grid gap-3 text-sm font-medium text-[#47433C] sm:grid-cols-2">
-            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Less mental clutter</div>
-            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Less pressure</div>
-            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">More clarity</div>
-            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">More follow-through</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">You bring the chaos, Ginja builds the structure</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Reminders that fit your rhythm, mood, and tone</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Weather-aware nudges, not blind scheduled pings</div>
+            <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">Shared plans that keep ownership and context clear</div>
           </div>
         </div>
       </section>
@@ -44,7 +44,7 @@ export default function FeaturesSection() {
           <div className="max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Core Product Story</p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-              From overwhelmed thoughts to clear momentum.
+              When your mind is overloaded, start with one move.
             </h2>
           </div>
 
@@ -57,16 +57,16 @@ export default function FeaturesSection() {
             <div>
               <p className="inline-flex rounded-full bg-[#FFF1E8] px-3 py-1 text-xs font-semibold text-[#B4581F]">Brain Dump</p>
               <h3 className="mt-4 text-2xl font-semibold text-[#1E1B17] sm:text-3xl">
-                Brain Dump your thoughts into clear next steps
+                Unload your plans.
               </h3>
               <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
-                When your mind feels full, Ginja gives you a calm space to unload everything and turn messy thoughts into
-                simple, actionable to-dos.
+                When everything is competing for your attention, nothing gets done. Speak or type it all, Ginja unloads your
+                plan and organises it into clear, actionable steps. No structure needed. Just start.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
-                <li>Type or speak what is on your mind</li>
-                <li>Turn mental clutter into clarity</li>
-                <li>Start with what feels real, not rigid</li>
+                <li>Work, Health, Personal, Social, Study, and Others categories</li>
+                <li>Low, Medium, High priority with due dates and scheduling</li>
+                <li>One-time or recurring, personal or shared based on who owns it</li>
               </ul>
             </div>
           </div>
@@ -74,26 +74,28 @@ export default function FeaturesSection() {
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
               <Bell className="h-5 w-5 text-[#E2561B]" />
-              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Reminders that feel personal, not robotic</h3>
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Not every reminder should sound the same</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
-                Smart Notifications are shaped by your task context, communication style, and timing so nudges feel relevant,
-                not generic.
+                Ginja learns how you respond best: motivational, calm, or direct and adjusts reminder tone to match your
+                communication style.
               </p>
             </article>
 
             <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
               <Moon className="h-5 w-5 text-[#4E8C06]" />
-              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Set quiet hours that respect your rhythm</h3>
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Weather and location change what is realistic</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
-                Choose when Ginja should go quiet so reminders fit your life instead of interrupting it.
+                If it is raining, your outdoor run reminder does not fire; it shifts. If the morning is clear, your outdoor
+                wellness nudge can arrive right on time.
               </p>
             </article>
 
             <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
               <CalendarCheck2 className="h-5 w-5 text-[#E2561B]" />
-              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Stay aligned with what matters this week</h3>
+              <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">The right moment beats the scheduled moment</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
-                Weekly Focus keeps priorities grounded in your real life so you stay centered without feeling scattered.
+                Your reminders pay attention to mood, quiet hours, current context, and weekly priorities so they help you act
+                instead of dismissing another ping.
               </p>
             </article>
           </div>
@@ -105,14 +107,15 @@ export default function FeaturesSection() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-semibold text-[#567B34]">
               <Sparkles className="h-3.5 w-3.5" />
-              Built to adapt to you
+              Smart Notifications + Personalisation
             </p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-              Personal, calm, and context-aware by design.
+              Other apps track your tasks. Ginja learns about you.
             </h2>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-[#5D584F] sm:text-lg">
-              Ginja is designed to work with your personality, routine, and energy from how it reminds you to how it supports
-              your focus.
+              Ginja learns about you and personalises your experience. It learns your communication style, quiet hours, mood
+              patterns, task categories, and activity rhythm so reminders arrive at the right moment, not just the scheduled
+              one.
             </p>
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {adaptBullets.map((bullet) => (
@@ -145,16 +148,16 @@ export default function FeaturesSection() {
               Wellness
             </p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-              Wellness support without pressure.
+              When your energy shifts, your plan should shift too.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
-              Check in with your mood, align your Weekly Focus, and use quick resets that help your energy shift in real life,
-              not just on a to-do list.
+              Wellness is a calm checkpoint you can do in seconds. Log how you feel today Great, Good, Okay, Tired, Stressed,
+              or Low so Ginja can ask the right amount from you, not too much. Ginja learns about you and personalises your experience.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
-              <li>Mood check-ins that influence reminders</li>
-              <li>Weekly Focus tied to your real priorities</li>
-              <li>Micro-resets for calmer momentum</li>
+              <li>Your mood check-in influences reminder tone and timing</li>
+              <li>Weekly Focus keeps your real priorities visible every day</li>
+              <li>Micro-resets: set a micro-goal, plan 20 minutes, celebrate a win, hydrate</li>
             </ul>
           </div>
         </div>
@@ -174,16 +177,28 @@ export default function FeaturesSection() {
               Circle
             </p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-              Plan together and stay accountable.
+              Shared goals die in group chats without structure.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
-              Create shared plans with friends, assign actions, keep notes, and chat in one place without jumping between tools.
+              Circle turns chat into action: create actions for people inside the conversation, keep shared notes in the same
+              thread, and stay accountable together without losing context.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
-              <li>Shared actions and clear ownership</li>
-              <li>Notes and chat in the same workflow</li>
-              <li>Built for real collaboration, not busywork</li>
+              <li>
+                <strong>Create Actions in Chat:</strong> assign owners, set due dates, and set priority right where decisions happen.
+              </li>
+              <li>
+                <strong>Keep Context:</strong> updates and plan history stay in one place so everyone sees the full picture.
+              </li>
+              <li>
+                <strong>Take Notes Together:</strong> capture workout plans, meetings, or briefs in shared notes that stay linked
+                to actions.
+              </li>
             </ul>
+            <p className="mt-4 text-sm leading-relaxed text-[#4D483F]">
+              Accountability here is not checking up on people, it is giving shared goals the same structure and seriousness as
+              personal ones.
+            </p>
           </div>
         </div>
       </section>
@@ -196,23 +211,24 @@ export default function FeaturesSection() {
               Progress
             </p>
             <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[#1D1C18] sm:text-4xl">
-              See your momentum, not just your tasks.
+              If progress feels invisible, consistency is hard to trust.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
-              Track active days, achievements, and progress over time so consistency feels visible and motivating.
+              Ginja tracks active days, streaks, and achievement tiers as a mirror of your follow-through. Starter, Rhythm,
+              Circle, and Mastery are not random badges; they reflect who you are becoming: someone who shows up consistently.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Active Days</p>
-                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Weekly view</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Starter</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Foundations in place</p>
               </div>
               <div className="rounded-2xl bg-[#F8F4ED] px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Streaks</p>
-                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Momentum</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#8C8478]">Rhythm</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Consistency in motion</p>
               </div>
               <div className="rounded-2xl bg-[#EEF5E8] px-4 py-3">
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#6C7C5D]">Achievements</p>
-                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Progress wins</p>
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#6C7C5D]">Circle + Mastery</p>
+                <p className="mt-1 text-xl font-semibold text-[#1F1B17]">Social and long-term growth</p>
               </div>
             </div>
           </div>

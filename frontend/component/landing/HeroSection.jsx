@@ -18,29 +18,30 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
           </span>
 
           <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[#1D1C18] sm:text-5xl lg:text-6xl">
-            The productivity app that actually gets your vibe.
+            Too many plans in your head, nowhere to start.
           </h1>
 
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#605B53] sm:text-xl">
-            Clear your mind, focus on what matters, and stay consistent with a space that adapts to you.
+            Unload your plans. Ginja learns about you and personalises your experience, then turns mental overload into clear
+            next actions you can actually follow through on.
           </p>
 
           <div className="mt-8 grid max-w-lg gap-3 text-sm text-[#4E4A43] sm:grid-cols-2">
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
-              Less clutter, more clear next steps
+              Start with chaos, leave with clear priorities
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
-              Personal reminders with calm timing
+              Reminders shaped to your tone and timing
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
-              Weekly focus without rigid pressure
+              Weather-aware nudges that match the moment
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#E2561B]" />
-              Shared accountability in Circle
+              Personal goals and Circle plans in one flow
             </p>
           </div>
 
@@ -49,7 +50,7 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
               onClick={onJoinWaitlist}
               className="inline-flex items-center justify-center rounded-full bg-[#E2561B] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(226,86,27,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
             >
-              Join the waitlist
+              Reserve my early access
               <ArrowRight className="ml-2 h-4 w-4" />
             </button>
             <button
