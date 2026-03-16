@@ -32,7 +32,7 @@ export function HomeScreen() {
     <div className={shell}>
       <TopBar />
 
-      <h2 className="text-[18px] font-bold leading-tight">Good night, Nay! 🌙</h2>
+      <h2 className="text-[18px] font-bold leading-tight">Good day, Nay! 🌙</h2>
       <p className="mb-3 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Stay Ginja&apos;d. Stay Organized.</p>
 
       <div className={`${card} mb-2.5 relative`}>
