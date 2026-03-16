@@ -18,7 +18,7 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
           </span>
 
           <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[#1D1C18] sm:text-5xl lg:text-6xl">
-            Too many plans in your head, nowhere to start.
+            Too many thoughts in your head, nowhere to start.
           </h1>
 
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#605B53] sm:text-xl">
