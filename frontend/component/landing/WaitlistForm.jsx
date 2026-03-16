@@ -76,7 +76,7 @@ export default function WaitlistForm() {
             <h3 className="mt-4 text-2xl font-semibold text-[#1D1C18]">You are on the waitlist</h3>
             <p className="mt-2 text-sm text-[#4F6550] sm:text-base">{message}</p>
             <button
-              className="mt-5 text-sm font-semibold text-[#E2561B] hover:text-[#C94B16]"
+              className="mt-5 text-sm font-semibold text-[#ED8522] hover:text-[#C94B16]"
               onClick={() => setStatus('idle')}
             >
               Add another email
@@ -96,7 +96,7 @@ export default function WaitlistForm() {
                 type="text"
                 required
                 placeholder="Your full name"
-                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#ED8522]"
               />
             </div>
 
@@ -112,7 +112,7 @@ export default function WaitlistForm() {
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#E2561B]"
+                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#ED8522]"
               />
             </div>
 
@@ -123,7 +123,7 @@ export default function WaitlistForm() {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#E2561B] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(226,86,27,0.22)] transition-colors hover:bg-[#C94B16] disabled:cursor-not-allowed disabled:bg-[#E79A78]"
+              className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#ED8522] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.22)] transition-colors hover:bg-[#C94B16] disabled:cursor-not-allowed disabled:bg-[#E79A78]"
             >
               {status === 'loading' ? (
                 <>

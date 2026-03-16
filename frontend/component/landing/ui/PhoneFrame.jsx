@@ -74,10 +74,10 @@ export default function PhoneFrame({ children, activeTab = 'home', className = '
               const isActive = tab.id === activeTab;
               return (
                 <div key={tab.id} className="flex w-12 flex-col items-center gap-[2px]">
-                  <span className={`${isActive ? 'text-[#E2561B]' : 'text-[#7B746A] dark:text-[#9699A0]'}`}>
+                  <span className={`${isActive ? 'text-[#ED8522]' : 'text-[#7B746A] dark:text-[#9699A0]'}`}>
                     <NavIcon id={tab.id} active={isActive} />
                   </span>
-                  <span className={`text-[8px] font-semibold ${isActive ? 'text-[#E2561B]' : 'text-[#7B746A] dark:text-[#9699A0]'}`}>
+                  <span className={`text-[8px] font-semibold ${isActive ? 'text-[#ED8522]' : 'text-[#7B746A] dark:text-[#9699A0]'}`}>
                     {tab.label}
                   </span>
                 </div>

@@ -73,12 +73,12 @@ export default function PrivacyPolicy() {
 
               <section>
                 <h2 className="text-lg font-semibold text-[#1F1C17]">7. Your rights</h2>
-                <p className="mt-2">You can request access, correction, or deletion of your data. For deletion requests, use the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
+                <p className="mt-2">You can request access, correction, or deletion of your data. For deletion requests, use the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
               </section>
 
               <section>
                 <h2 className="text-lg font-semibold text-[#1F1C17]">8. Contact</h2>
-                <p className="mt-2">For privacy questions, email <a href="mailto:info@ginjaapp.com" className="text-[#E2561B] hover:underline">info@ginjaapp.com</a>.</p>
+                <p className="mt-2">For privacy questions, email <a href="mailto:info@ginjaapp.com" className="text-[#ED8522] hover:underline">info@ginjaapp.com</a>.</p>
               </section>
             </div>
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeUp, pop } from '../animations';
 
-export default function FeatureCard({ title, description, children, accent = 'bg-[#E2561B]' }) {
+export default function FeatureCard({ title, description, children, accent = 'bg-[#ED8522]' }) {
   return (
     <motion.div
       className="bg-gray-800 text-white rounded-2xl p-4 sm:p-6"

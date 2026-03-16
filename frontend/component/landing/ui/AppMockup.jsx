@@ -5,7 +5,7 @@ import { pop } from '../animations';
 export default function AppMockup({ variant = 'default', children }) {
   return (
     <motion.div
-      className="w-64 sm:w-72 md:w-80 bg-gradient-to-br from-[#E2561B] via-[#C4C879] to-green-600 rounded-2xl p-1 shadow-2xl"
+      className="w-64 sm:w-72 md:w-80 bg-gradient-to-br from-[#ED8522] via-[#C4C879] to-green-600 rounded-2xl p-1 shadow-2xl"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

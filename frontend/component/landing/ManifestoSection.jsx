@@ -65,7 +65,7 @@ export default function ManifestoSection() {
     <section id="manifesto" className="py-20 bg-gradient-to-br from-orange-50 via-[#C4C879]/20 to-green-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-[#E2561B]/20 rounded-full opacity-30 animate-pulse" />
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[#ED8522]/20 rounded-full opacity-30 animate-pulse" />
         <div className="absolute bottom-20 right-10 w-24 h-24 bg-[#C4C879]/30 rounded-full opacity-30 animate-pulse" style={{animationDelay: '1s'}} />
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C4C879]/20 rounded-full opacity-30 animate-pulse" style={{animationDelay: '2s'}} />
       </div>
@@ -82,12 +82,12 @@ export default function ManifestoSection() {
         >
           <h2 className="text-5xl md:text-6xl font-black text-gray-900 dark:text-white mb-6">
             Why We{' '}
-            <span className="text-[#E2561B]">Built </span>
+            <span className="text-[#ED8522]">Built </span>
             <GinjaText size="xl" />
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Our manifesto for creating a productivity app that actually{' '}
-            <span className="font-semibold text-[#E2561B]">gets you</span> ✨
+            <span className="font-semibold text-[#ED8522]">gets you</span> ✨
           </p>
         </motion.div>
 

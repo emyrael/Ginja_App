@@ -6,7 +6,7 @@ export default function LaunchAnnouncement() {
     <section className="bg-gray-100 dark:bg-gray-950 py-16 sm:py-24 relative overflow-hidden">
       {/* Subtle background accents */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-[#E2561B]/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-[#ED8522]/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#4E8C06]/5 rounded-full blur-[80px]" />
       </div>
 
@@ -92,8 +92,8 @@ export default function LaunchAnnouncement() {
             transition={{ duration: 0.6, delay: 0.7 }}
             viewport={{ once: true }}
           >
-            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#E2561B]/40" />
-            <span className="text-[#E2561B] text-xs">✦</span>
+            <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#ED8522]/40" />
+            <span className="text-[#ED8522] text-xs">✦</span>
             <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#4E8C06]/40" />
           </motion.div>
         </motion.div>

@@ -35,7 +35,7 @@ export default function Support() {
               <article className="rounded-3xl border border-[#E5DED3] bg-[#FAF8F3] p-6">
                 <h2 className="text-lg font-semibold">Email</h2>
                 <p className="mt-2 text-sm text-[#5E594F]">For support requests and account help:</p>
-                <a href="mailto:support@ginjaapp.com" className="mt-2 inline-block text-[#E2561B] hover:underline">
+                <a href="mailto:support@ginjaapp.com" className="mt-2 inline-block text-[#ED8522] hover:underline">
                   support@ginjaapp.com
                 </a>
               </article>
@@ -45,7 +45,7 @@ export default function Support() {
                 <div className="mt-3 space-y-3 text-sm text-[#49604A]">
                   <p><strong>Is Ginja live?</strong> Ginja is in early access rollout. Join the waitlist for launch updates.</p>
                   <p><strong>Which platforms?</strong> iOS and Android are the primary launch targets.</p>
-                  <p><strong>Need account deletion?</strong> Use the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
+                  <p><strong>Need account deletion?</strong> Use the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
                 </div>
               </article>
 
@@ -56,7 +56,7 @@ export default function Support() {
                   href="https://instagram.com/ginja_app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-block text-[#E2561B] hover:underline"
+                  className="mt-2 inline-block text-[#ED8522] hover:underline"
                 >
                   @ginja_app
                 </a>

@@ -40,10 +40,10 @@ export default function AnimatedPhonePreview() {
           className="w-[240px] h-[360px] sm:w-[280px] sm:h-[420px] rounded-[3rem] blur-[80px] opacity-30"
           animate={{
             background: [
-              'radial-gradient(circle, rgba(226,86,27,0.35) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(237,133,34,0.35) 0%, transparent 70%)',
               'radial-gradient(circle, rgba(78,140,6,0.3) 0%, transparent 70%)',
               'radial-gradient(circle, rgba(196,200,121,0.3) 0%, transparent 70%)',
-              'radial-gradient(circle, rgba(226,86,27,0.35) 0%, transparent 70%)',
+              'radial-gradient(circle, rgba(237,133,34,0.35) 0%, transparent 70%)',
             ],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
@@ -72,7 +72,7 @@ export default function AnimatedPhonePreview() {
             key={s.key}
             className="w-1.5 h-1.5 rounded-full"
             animate={{
-              backgroundColor: i === index ? '#E2561B' : 'rgba(255,255,255,0.2)',
+              backgroundColor: i === index ? '#ED8522' : 'rgba(255,255,255,0.2)',
               scale: i === index ? 1.3 : 1,
             }}
             transition={{ duration: 0.3 }}

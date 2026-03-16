@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'ginja-orange': '#E2561B',
+        'ginja-orange': '#ED8522',
         'ginja-green': '#96B56C',
         'ginja-yellow': '#C4C879',
       },
@@ -31,7 +31,7 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'ginja-gradient': 'linear-gradient(135deg, #E2561B 0%, #96B56C 50%, #C4C879 100%)',
+        'ginja-gradient': 'linear-gradient(135deg, #ED8522 0%, #96B56C 50%, #C4C879 100%)',
       },
       screens: {
         'xs': '475px',

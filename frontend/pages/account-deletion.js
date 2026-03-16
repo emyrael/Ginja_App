@@ -48,7 +48,7 @@ export default function AccountDeletion() {
                     id="email"
                     type="email"
                     required
-                    className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm outline-none focus:border-[#E2561B]"
+                    className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm outline-none focus:border-[#ED8522]"
                   />
                 </div>
 
@@ -57,13 +57,13 @@ export default function AccountDeletion() {
                   <textarea
                     id="reason"
                     rows={4}
-                    className="rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 py-3 text-sm outline-none focus:border-[#E2561B]"
+                    className="rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 py-3 text-sm outline-none focus:border-[#ED8522]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-[#E2561B] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(226,86,27,0.22)] hover:bg-[#C94B16]"
+                  className="mt-2 inline-flex h-12 items-center justify-center rounded-full bg-[#ED8522] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.22)] hover:bg-[#C94B16]"
                 >
                   Request deletion
                 </button>

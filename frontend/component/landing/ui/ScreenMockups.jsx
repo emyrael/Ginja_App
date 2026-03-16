@@ -16,10 +16,13 @@ function TopBar() {
   );
 }
 
-function Toggle({ on = true }) {
+function Toggle({ on = true, size = 'sm' }) {
+  const sizeClass = size === 'md' ? 'h-7 w-14' : 'h-5 w-10';
+  const knobClass = size === 'md' ? 'h-6 w-6' : 'h-4 w-4';
+
   return (
-    <div className={`relative h-5 w-10 rounded-full ${on ? 'bg-[#F0C9AA]' : 'bg-[#D8D8D8] dark:bg-[#3A3F46]'}`}>
-      <span className={`absolute top-0.5 h-4 w-4 rounded-full ${on ? 'right-0.5 bg-[#EE8423]' : 'left-0.5 bg-white dark:bg-[#D2D3D5]'}`} />
+    <div className={`relative ${sizeClass} rounded-full ${on ? 'bg-[#F0C9AA]' : 'bg-[#D8D8D8] dark:bg-[#3A3F46]'}`}>
+      <span className={`absolute top-0.5 ${knobClass} rounded-full ${on ? 'right-0.5 bg-[#ED8522]' : 'left-0.5 bg-white dark:bg-[#D2D3D5]'}`} />
     </div>
   );
 }
@@ -51,7 +54,7 @@ export function HomeScreen() {
           <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#FFF3E8] text-[12px]">🔥</div>
           <div className="min-w-0 flex-1">
             <p className="text-[10px] font-bold">Brain Dump</p>
-            <p className={`${tiny}`}>Unload your plans. Ginja turns them into clear next actions.</p>
+            <p className={`${tiny}`}>Unload your thoughts. Ginja turns them into clear next actions.</p>
           </div>
           <button className="rounded-full bg-[#ED8522] px-2.5 py-1 text-[9px] font-semibold text-white">Start</button>
         </div>
@@ -99,22 +102,70 @@ export function HomeScreen() {
 }
 
 export function BrainDumpScreen() {
+  const keyboardKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
   return (
-    <div className={shell}>
-      <TopBar />
-      <div className="mb-2 rounded-[20px] bg-white p-3 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:bg-[#1E2228]">
-        <p className="text-[10px] font-semibold">Brain Dump</p>
-        <p className="mt-0.5 text-[9px] text-[#6E685F] dark:text-[#A5A6AA]">Write or speak everything on your mind.</p>
-        <div className="mt-2 min-h-[72px] rounded-xl border border-[#E6DFD3] bg-[#FFFEFD] p-2 text-[9px] text-[#91887D] dark:border-white/10 dark:bg-[#14171C] dark:text-[#8F929A]">
-          e.g. finish report, call dentist, buy groceries...
+    <div className="relative min-h-[500px] overflow-hidden bg-[#A6A6A6] text-[#1F1D19]">
+      <div className="px-3 pb-2 pt-3">
+        <div className="mb-3 flex items-center justify-between">
+          <img src="/logo/flame-icon.png" alt="Ginja" className="h-5 w-5 object-contain" />
+          <div className="flex items-center gap-2 text-[12px] text-[#56524B]">
+            <span>🔔</span>
+            <span>⚙️</span>
+          </div>
         </div>
-        <button className="mt-2 w-full rounded-xl bg-[#E8E8E8] py-2 text-[10px] font-semibold text-[#A9A19A] dark:bg-[#31363E] dark:text-[#C6C8CC]">
-          Break It Down
+        <p className="text-[7px] font-semibold text-[#14120E]">Good afternoon, Kavani!</p>
+        <p className="mt-0.5 text-[6px] text-[#4C4943]">Stay Ginja&apos;d. Stay Organized.</p>
+
+        <div className="mt-3 rounded-[14px] bg-[#C5C5C5] p-2.5">
+          <p className="text-[7px] font-semibold text-[#4F4A44]">Today&apos;s Progress</p>
+          <div className="mt-0.5 flex items-end gap-1">
+            <span className="text-[13px] font-bold leading-none text-[#1E1C19]">0/5</span>
+            <span className="text-[6px] text-[#57524C]">tasks done</span>
+          </div>
+          <div className="mt-1 h-1 w-full rounded-full bg-[#E8E4DE]" />
+        </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-[98px] rounded-t-[22px] bg-[#FBF9F6] px-3 pb-3 pt-2 shadow-[0_-10px_32px_rgba(0,0,0,0.15)]">
+        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-[#E4E0DB]" />
+        <div className="mb-1 flex items-center justify-between text-[7px] text-[#767066]">
+          <span>Clear</span>
+          <span className="text-[10px]">✕</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-[9px] font-semibold">Brain Dump</p>
+            <p className="mt-0.5 max-w-[180px] text-[6.5px] leading-relaxed text-[#70695F]">
+              Tell Ginja what&apos;s on your mind. It will help you figure out the next step.
+            </p>
+          </div>
+          <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#41B982] text-[13px] text-[#41B982]">
+            🎤
+          </div>
+        </div>
+        <div className="mt-2 rounded-[10px] border border-[#E5DED3] bg-white px-2.5 py-2 text-[7px] leading-relaxed text-[#25221E]">
+          I&apos;m trying to set my priorities today, I&apos;ve to finish my project, go to the gym and also see my friends.
+        </div>
+        <button className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-[12px] bg-[#ED8522] py-2 text-[7.5px] font-semibold text-white">
+          <img src="/logo/flame-icon.png" alt="" className="h-3 w-3 object-contain brightness-0 invert" />
+          Figure It Out
         </button>
       </div>
-      <div className="rounded-[20px] border border-[#DDEBD5] bg-[#F4FAEE] p-2.5 dark:border-[#2D4A35] dark:bg-[#1B2920]">
-        <p className="text-[9px] font-semibold text-[#4E8C06]">Tip</p>
-        <p className="text-[9px] text-[#4F5B47] dark:text-[#A0B398]">Start messy. Ginja will organize it with you.</p>
+
+      <div className="absolute inset-x-0 bottom-0 h-[98px] bg-[#555555] px-2 pt-2">
+        <div className="mb-1.5 grid grid-cols-3 gap-2 text-center text-[7px] text-[#D2D2D2]">
+          <span>I</span>
+          <span>I&apos;m</span>
+          <span>I&apos;ll</span>
+        </div>
+        <div className="grid grid-cols-10 gap-1">
+          {keyboardKeys.map((key) => (
+            <div key={key} className="flex h-7 items-center justify-center rounded-md bg-[#8D8D8D] text-[8px] text-white">
+              {key}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -253,69 +304,79 @@ export function ProgressScreen() {
 
 export function SettingsScreen() {
   return (
-    <div className={shell}>
-      <p className="mb-2 text-[14px] font-semibold">How should Ginja talk to you?</p>
-      <div className={`${card} mb-2`}>
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[13px] font-semibold">🔥 Motivational</p>
-            <p className={tiny}>High-energy push when you need momentum</p>
+    <div className={`${shell} overflow-hidden`}>
+      <p className="mb-2 text-[10px] font-semibold tracking-[0.14em] text-[#2E2B26]">✨ PERSONALIZATION</p>
+
+      <div className="rounded-[20px] border border-[#E4DED4] bg-[#F8F8F6] p-3">
+        <p className="text-[14px] font-semibold">How should Ginja talk to you?</p>
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[12px] font-semibold">🔥 Motivational</p>
+              <p className="mt-0.5 text-[8px] text-[#6D675E]">High-energy push when you need momentum</p>
+            </div>
+            <span className="text-[11px] text-[#7F786F]">▾</span>
           </div>
-          <span className="text-[12px] text-[#8D857C] dark:text-[#ACAFB3]">▾</span>
+        </div>
+
+        <p className="mt-3 text-[14px] font-semibold">What are your top Interests?</p>
+        <p className="mt-1 text-[8px] leading-relaxed text-[#6D675E]">
+          These help Ginja personalize reminders, motivation, and suggestions.
+        </p>
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+          <div className="flex flex-wrap gap-1">
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🍽 Food</span>
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🏕 Outdoor/Recreational</span>
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🧘 Wellness</span>
+          </div>
+          <div className="mt-1 flex items-center justify-between">
+            <p className="text-[8px] text-[#706A60]">Food, Outdoor/Recreational, Wellness +1</p>
+            <span className="text-[11px] text-[#7F786F]">▾</span>
+          </div>
+        </div>
+
+        <p className="mt-3 text-[14px] font-semibold">Quiet hours</p>
+        <p className="mt-1 text-[8px] text-[#6D675E]">Reduce non-urgent nudges during your quiet time.</p>
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[13px] font-semibold">Enable Quiet Hours</p>
+              <p className="text-[8px] text-[#6D675E]">Applies to smart wellness nudges.</p>
+            </div>
+            <Toggle on size="md" />
+          </div>
+          <div className="mt-2 grid grid-cols-2 gap-1.5">
+            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px]">
+              <span className="text-[#E08A2D]">🌙</span> From <span className="float-right font-semibold">11:00 PM</span>
+            </div>
+            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px]">
+              <span className="text-[#E08A2D]">☀️</span> Until <span className="float-right font-semibold">7:00 AM</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <p className="mb-1 text-[14px] font-semibold">What matters to you right now?</p>
-      <p className="mb-1 text-[9px] text-[#6D675E] dark:text-[#A3A5A9]">These help Ginja personalize reminders and suggestions.</p>
-      <div className={`${card} mb-2`}>
-        <div className="flex flex-wrap gap-1">
-          <span className="rounded-full border border-[#E8D0B8] px-2 py-1 text-[9px]">💪 Fitness</span>
-          <span className="rounded-full border border-[#E8D0B8] px-2 py-1 text-[9px]">💼 Work</span>
-          <span className="rounded-full border border-[#E8D0B8] px-2 py-1 text-[9px]">📚 Learning</span>
-        </div>
+      <p className="mb-2 mt-2 text-[10px] font-semibold tracking-[0.14em] text-[#7D766D]">NOTIFICATIONS</p>
+      <div className="rounded-[14px] border border-[#DDD6CB] bg-[#F7F5F1] p-2.5 text-[8px] text-[#6B655C]">
+        <p>ⓘ Push notifications are not supported in Expo Go. Use a development build or EAS build to test reminders.</p>
       </div>
 
-      <p className="mb-1 text-[14px] font-semibold">Quiet hours</p>
-      <p className="mb-1 text-[9px] text-[#6D675E] dark:text-[#A3A5A9]">Reduce non-urgent nudges during your quiet time.</p>
-      <div className={`${card} mb-2`}>
-        <div className="mb-2 flex items-center justify-between">
-          <div>
-            <p className="text-[12px] font-semibold">Enable Quiet Hours</p>
-            <p className={tiny}>Applies to smart wellness nudges.</p>
-          </div>
-          <Toggle on />
-        </div>
-        <div className="grid grid-cols-2 gap-1">
-          <div className="rounded-xl bg-[#FFF5EE] px-2 py-1 text-[10px] dark:bg-[#2A211A]">🌙 11:30 PM</div>
-          <div className="rounded-xl bg-[#FFF5EE] px-2 py-1 text-[10px] dark:bg-[#2A211A]">🌤️ 9:00 AM</div>
-        </div>
-      </div>
-
-      <p className="mb-1 text-[10px] font-semibold tracking-[0.16em] text-[#8B857B] dark:text-[#A5A7AC]">PREFERENCES</p>
-      <div className={card}>
-        <div className="space-y-2 text-[10px]">
+      <div className="mt-2 rounded-[16px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold">Daily motivational message</p>
-              <p className={tiny}>Start your day with encouragement</p>
+              <p className="text-[8px] font-semibold">Daily motivational message</p>
+              <p className="text-[8px] text-[#6D675E]">Start your day with encouragement</p>
             </div>
-            <Toggle on />
+            <Toggle on size="md" />
           </div>
-          <div className="h-px bg-[#E7E0D5] dark:bg-white/10" />
+          <div className="h-px bg-[#E2DDD3]" />
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-semibold">Enable Smart Notifications</p>
-              <p className={tiny}>Personalized reminders based on your style and mood</p>
+              <p className="text-[8px] font-semibold">Enable Smart Nudges</p>
+              <p className="text-[8px] text-[#6D675E]">Personalized reminders based on your style.</p>
             </div>
-            <Toggle on />
-          </div>
-          <div className="h-px bg-[#E7E0D5] dark:bg-white/10" />
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-semibold">Calendar Import</p>
-              <p className={tiny}>Import this month&apos;s events as todos</p>
-            </div>
-            <Toggle on />
+            <Toggle on size="md" />
           </div>
         </div>
       </div>

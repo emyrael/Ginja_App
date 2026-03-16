@@ -32,7 +32,7 @@ export default function Home() {
         <meta name="twitter:image" content="/logo/flame-icon.png" />
         <link rel="icon" href="/logo/flame-icon.png" />
         <link rel="apple-touch-icon" href="/logo/flame-icon.png" />
-        <meta name="theme-color" content="#E2561B" />
+        <meta name="theme-color" content="#ED8522" />
       </Head>
       <LandingPage />
     </>

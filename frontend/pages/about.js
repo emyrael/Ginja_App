@@ -102,7 +102,7 @@ export default function About() {
             <ol className="mt-6 space-y-3 text-sm sm:text-base">
               {flow.map((item, index) => (
                 <li key={item} className="flex items-start gap-3 rounded-2xl bg-[#F8F4ED] px-4 py-3">
-                  <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#E2561B] text-xs font-semibold text-white">
+                  <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#ED8522] text-xs font-semibold text-white">
                     {index + 1}
                   </span>
                   <span className="text-[#433F37]">{item}</span>
@@ -162,7 +162,7 @@ export default function About() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/#waitlist"
-                className="rounded-full bg-[#E2561B] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(226,86,27,0.22)]"
+                className="rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(237,133,34,0.22)]"
               >
                 Join waitlist
               </Link>

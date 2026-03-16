@@ -57,7 +57,7 @@ export default function FeaturesSection() {
             <div>
               <p className="inline-flex rounded-full bg-[#FFF1E8] px-3 py-1 text-xs font-semibold text-[#B4581F]">Brain Dump</p>
               <h3 className="mt-4 text-2xl font-semibold text-[#1E1B17] sm:text-3xl">
-                Unload your plans.
+                Unload your thoughts.
               </h3>
               <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
                 When everything is competing for your attention, nothing gets done. Speak or type it all, Ginja unloads your
@@ -73,7 +73,7 @@ export default function FeaturesSection() {
 
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
             <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
-              <Bell className="h-5 w-5 text-[#E2561B]" />
+              <Bell className="h-5 w-5 text-[#ED8522]" />
               <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">Not every reminder should sound the same</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
                 Ginja learns how you respond best: motivational, calm, or direct and adjusts reminder tone to match your
@@ -91,7 +91,7 @@ export default function FeaturesSection() {
             </article>
 
             <article className="rounded-3xl border border-[#E5DED3] bg-white p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)]">
-              <CalendarCheck2 className="h-5 w-5 text-[#E2561B]" />
+              <CalendarCheck2 className="h-5 w-5 text-[#ED8522]" />
               <h3 className="mt-4 text-xl font-semibold text-[#1E1B17]">The right moment beats the scheduled moment</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#5D584F]">
                 Your reminders pay attention to mood, quiet hours, current context, and weekly priorities so they help you act

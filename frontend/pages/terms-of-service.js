@@ -57,7 +57,7 @@ export default function TermsOfService() {
 
               <section>
                 <h2 className="text-lg font-semibold text-[#1F1C17]">6. Account deletion</h2>
-                <p className="mt-2">You can request deletion using the <Link href="/account-deletion" className="text-[#E2561B] hover:underline">Account Deletion</Link> page.</p>
+                <p className="mt-2">You can request deletion using the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
               </section>
 
               <section>
@@ -67,7 +67,7 @@ export default function TermsOfService() {
 
               <section>
                 <h2 className="text-lg font-semibold text-[#1F1C17]">8. Contact</h2>
-                <p className="mt-2">For legal questions, contact <a href="mailto:legal@ginjaapp.com" className="text-[#E2561B] hover:underline">legal@ginjaapp.com</a>.</p>
+                <p className="mt-2">For legal questions, contact <a href="mailto:legal@ginjaapp.com" className="text-[#ED8522] hover:underline">legal@ginjaapp.com</a>.</p>
               </section>
             </div>
           </div>
