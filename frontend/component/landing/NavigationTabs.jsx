@@ -12,7 +12,7 @@ const navItems = [
 
 export default function NavigationTabs({ onJoinWaitlist }) {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#E9E4DC] bg-[#F8F5EE]/92 backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border-color)] bg-[var(--surface-soft)]/92 backdrop-blur-md dark:bg-[var(--surface-strong)]/90">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-2">
           <GinjaLogo size="sm" />
@@ -26,7 +26,7 @@ export default function NavigationTabs({ onJoinWaitlist }) {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-[#5F5B53] transition-colors duration-200 hover:text-[#1F1F1C]"
+              className="text-sm font-medium text-[var(--text-secondary)] transition-colors duration-200 hover:text-[var(--text-primary)]"
             >
               {item.label}
             </a>

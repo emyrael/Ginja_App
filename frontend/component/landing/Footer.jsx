@@ -5,7 +5,7 @@ import GinjaText from './GinjaText';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#E5DED3] bg-[#F3EFE7] px-4 py-10 sm:px-6 sm:py-12">
+    <footer className="border-t border-[var(--border-color)] bg-[var(--surface-strong)] px-4 py-10 sm:px-6 sm:py-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 sm:gap-10">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
           <div>
@@ -15,10 +15,10 @@ export default function Footer() {
                 <GinjaText />
               </span>
             </div>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-[#625D54]">
-              Start with Unload your plan. Then build clarity, consistency, and shared momentum.
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-[var(--text-secondary)]">
+              Start with unloading your thoughts. Then build clarity, consistency, and shared momentum.
             </p>
-            <div className="mt-4 flex flex-wrap gap-4 text-sm font-medium text-[#5F5A51]">
+            <div className="mt-4 flex flex-wrap gap-4 text-sm font-medium text-[var(--text-secondary)]">
               <a
                 href="https://instagram.com/ginja_app"
                 target="_blank"
@@ -46,7 +46,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-4 text-sm font-medium text-[#5F5A51]">
+          <div className="flex flex-wrap gap-4 text-sm font-medium text-[var(--text-secondary)]">
             <a href="#why-ginja" className="hover:text-[#ED8522]">Why Ginja</a>
             <a href="#features" className="hover:text-[#ED8522]">Features</a>
             <a href="#adapts" className="hover:text-[#ED8522]">Adapts To You</a>
@@ -54,7 +54,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-[#E3DACD] pt-6 text-xs text-[#756E62] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-[var(--border-color)] pt-6 text-xs text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Ginja App. All rights reserved.</p>
           <div className="flex flex-wrap gap-4">
             <Link href="/privacy-policy" className="hover:text-[#ED8522]">Privacy</Link>

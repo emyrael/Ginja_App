@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="keywords"
-          content="Ginja app, unload your plan, smart notifications, weather-aware reminders, weekly focus, shared planning, progress tracking"
+          content="Ginja app, unload your thoughts, smart notifications, weather-aware reminders, weekly focus, shared planning, progress tracking"
         />
         <meta property="og:title" content="Ginja | Unload your thoughts and follow through" />
         <meta
@@ -33,7 +33,7 @@ export default function Home() {
         <link rel="icon" href="/logo/flame-icon.png" />
         <link rel="apple-touch-icon" href="/logo/flame-icon.png" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4EE" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18110D" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" />
       </Head>
       <LandingPage />
     </>

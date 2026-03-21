@@ -1,7 +1,7 @@
 import React from 'react';
 
-const shell = 'min-h-[500px] bg-[#EEEDE9] px-3 pb-4 pt-3 text-[#1F1D19] dark:bg-[#14171C] dark:text-[#F1F1EF]';
-const card = 'rounded-[18px] border border-[#E2DDD3] bg-white/95 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-[#1E2228]';
+const shell = 'min-h-[500px] bg-[#EEEDE9] px-3 pb-4 pt-3 text-[#1F1D19] dark:bg-[#2A252F] dark:text-[#F1F1EF]';
+const card = 'rounded-[18px] border border-[#E2DDD3] bg-white/95 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-[#332D36]';
 const tiny = 'text-[8px] leading-tight text-[#716A61] dark:text-[#A9A9AB]';
 
 function TopBar() {
@@ -39,9 +39,9 @@ export function HomeScreen() {
         <p className="text-[9px] text-[#767066] dark:text-[#B0B0B3]">Today&apos;s Progress</p>
         <div className="mb-1.5 flex items-baseline gap-1">
           <span className="text-[22px] font-bold leading-none">1/2</span>
-          <span className="text-[9px] text-[#767066] dark:text-[#B0B0B3]">tasks done</span>
+          <span className="text-[9px] text-[#767066] dark:text-[#B0B0B3]">to-dos done</span>
         </div>
-        <div className="h-1.5 w-full rounded-full bg-[#EAE7E1] dark:bg-[#2D3239]">
+        <div className="h-1.5 w-full rounded-full bg-[#EAE7E1] dark:bg-[#433B45]">
           <div className="h-full w-[50%] rounded-full bg-[#ED8522]" />
         </div>
         <div className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#FFF3E8] text-[12px]">
@@ -105,38 +105,38 @@ export function BrainDumpScreen() {
   const keyboardKeys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
 
   return (
-    <div className="relative min-h-[500px] overflow-hidden bg-[#A6A6A6] text-[#1F1D19]">
+    <div className="relative min-h-[500px] overflow-hidden bg-[#A6A6A6] text-[#1F1D19] dark:bg-[#2A252F] dark:text-[#F1F1EF]">
       <div className="px-3 pb-2 pt-3">
         <div className="mb-3 flex items-center justify-between">
           <img src="/logo/flame-icon.png" alt="Ginja" className="h-5 w-5 object-contain" />
-          <div className="flex items-center gap-2 text-[12px] text-[#56524B]">
+          <div className="flex items-center gap-2 text-[12px] text-[#56524B] dark:text-[#AEB1B8]">
             <span>🔔</span>
             <span>⚙️</span>
           </div>
         </div>
-        <p className="text-[7px] font-semibold text-[#14120E]">Good afternoon, Kavani!</p>
-        <p className="mt-0.5 text-[6px] text-[#4C4943]">Stay Ginja&apos;d. Stay Organized.</p>
+        <p className="text-[7px] font-semibold text-[#14120E] dark:text-[#EEE7DD]">Good afternoon, Kavani!</p>
+        <p className="mt-0.5 text-[6px] text-[#4C4943] dark:text-[#A9A9AE]">Stay Ginja&apos;d. Stay Organized.</p>
 
-        <div className="mt-3 rounded-[14px] bg-[#C5C5C5] p-2.5">
-          <p className="text-[7px] font-semibold text-[#4F4A44]">Today&apos;s Progress</p>
+        <div className="mt-3 rounded-[14px] bg-[#C5C5C5] p-2.5 dark:bg-[#3B343E]">
+          <p className="text-[7px] font-semibold text-[#4F4A44] dark:text-[#B6B0BC]">Today&apos;s Progress</p>
           <div className="mt-0.5 flex items-end gap-1">
-            <span className="text-[13px] font-bold leading-none text-[#1E1C19]">0/5</span>
-            <span className="text-[6px] text-[#57524C]">tasks done</span>
+            <span className="text-[13px] font-bold leading-none text-[#1E1C19] dark:text-[#F1ECE4]">0/5</span>
+            <span className="text-[6px] text-[#57524C] dark:text-[#A9A7AD]">to-dos done</span>
           </div>
-          <div className="mt-1 h-1 w-full rounded-full bg-[#E8E4DE]" />
+          <div className="mt-1 h-1 w-full rounded-full bg-[#E8E4DE] dark:bg-[#514758]" />
         </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-[98px] rounded-t-[22px] bg-[#FBF9F6] px-3 pb-3 pt-2 shadow-[0_-10px_32px_rgba(0,0,0,0.15)]">
-        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-[#E4E0DB]" />
-        <div className="mb-1 flex items-center justify-between text-[7px] text-[#767066]">
+      <div className="absolute inset-x-0 bottom-[98px] rounded-t-[22px] bg-[#FBF9F6] px-3 pb-3 pt-2 shadow-[0_-10px_32px_rgba(0,0,0,0.15)] dark:bg-[#332D36]">
+        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-[#E4E0DB] dark:bg-[#5A5061]" />
+        <div className="mb-1 flex items-center justify-between text-[7px] text-[#767066] dark:text-[#A8A6AE]">
           <span>Clear</span>
           <span className="text-[10px]">✕</span>
         </div>
         <div className="flex items-center justify-between">
           <div>
             <p className="text-[9px] font-semibold">Brain Dump</p>
-            <p className="mt-0.5 max-w-[180px] text-[6.5px] leading-relaxed text-[#70695F]">
+            <p className="mt-0.5 max-w-[180px] text-[6.5px] leading-relaxed text-[#70695F] dark:text-[#A7A4AE]">
               Tell Ginja what&apos;s on your mind. It will help you figure out the next step.
             </p>
           </div>
@@ -144,7 +144,7 @@ export function BrainDumpScreen() {
             🎤
           </div>
         </div>
-        <div className="mt-2 rounded-[10px] border border-[#E5DED3] bg-white px-2.5 py-2 text-[7px] leading-relaxed text-[#25221E]">
+        <div className="mt-2 rounded-[10px] border border-[#E5DED3] bg-white px-2.5 py-2 text-[7px] leading-relaxed text-[#25221E] dark:border-white/10 dark:bg-[#3A333C] dark:text-[#EFE8DE]">
           I&apos;m trying to set my priorities today, I&apos;ve to finish my project, go to the gym and also see my friends.
         </div>
         <button className="mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-[12px] bg-[#ED8522] py-2 text-[7.5px] font-semibold text-white">
@@ -153,15 +153,15 @@ export function BrainDumpScreen() {
         </button>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[98px] bg-[#555555] px-2 pt-2">
-        <div className="mb-1.5 grid grid-cols-3 gap-2 text-center text-[7px] text-[#D2D2D2]">
+      <div className="absolute inset-x-0 bottom-0 h-[98px] bg-[#555555] px-2 pt-2 dark:bg-[#2D2832]">
+        <div className="mb-1.5 grid grid-cols-3 gap-2 text-center text-[7px] text-[#D2D2D2] dark:text-[#AFAFBA]">
           <span>I</span>
           <span>I&apos;m</span>
           <span>I&apos;ll</span>
         </div>
         <div className="grid grid-cols-10 gap-1">
           {keyboardKeys.map((key) => (
-            <div key={key} className="flex h-7 items-center justify-center rounded-md bg-[#8D8D8D] text-[8px] text-white">
+            <div key={key} className="flex h-7 items-center justify-center rounded-md bg-[#8D8D8D] text-[8px] text-white dark:bg-[#4B4453]">
               {key}
             </div>
           ))}
@@ -200,14 +200,14 @@ export function TodoViewScreen() {
     <div className={shell}>
       <TopBar />
 
-      <div className="mb-2 grid grid-cols-2 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#1E2228]">
+      <div className="mb-2 grid grid-cols-2 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#332D36]">
         <button className="border-b-2 border-[#E0832A] py-2 text-[#D37B32]">🗓 Calendar</button>
         <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">📋 List</button>
       </div>
 
       <div className={`${card} mb-2.5 p-3`}>
-        <div className="mb-2 flex items-center justify-between rounded-full border border-[#E4DED4] bg-[#F7F4EE] px-2 py-1 text-[8px] text-[#6C675F] dark:border-white/10 dark:bg-[#1A1E24] dark:text-[#A4A6AB]">
-          <span className="rounded-full bg-white px-2 py-1 text-[#D37B32] dark:bg-[#232830]">Week</span>
+        <div className="mb-2 flex items-center justify-between rounded-full border border-[#E4DED4] bg-[#F7F4EE] px-2 py-1 text-[8px] text-[#6C675F] dark:border-white/10 dark:bg-[#302A33] dark:text-[#A4A6AB]">
+          <span className="rounded-full bg-white px-2 py-1 text-[#D37B32] dark:bg-[#3A333C]">Week</span>
           <span>Month</span>
           <span className="ml-auto text-[9px] text-[#8C857C]">March 2026</span>
         </div>
@@ -245,13 +245,13 @@ export function TodoViewScreen() {
           </div>
           <div className="flex items-center gap-1 text-[8px] text-[#8C857C]">
             <span className="rounded-full border border-[#E6DED3] bg-[#FFF8F1] px-2 py-1 text-[#C26B2E]">Plan</span>
-            <span className="rounded-full border border-[#E6DED3] bg-white px-2 py-1">+</span>
+            <span className="rounded-full border border-[#E6DED3] bg-white px-2 py-1 dark:border-white/10 dark:bg-[#3A333C]">+</span>
           </div>
         </div>
 
         <div className="space-y-1.5">
           {todos.map((todo) => (
-            <div key={todo.title} className="rounded-[12px] border border-[#EFE7DC] bg-[#FFFEFD] px-2.5 py-2 dark:border-white/10 dark:bg-[#20242B]">
+            <div key={todo.title} className="rounded-[12px] border border-[#EFE7DC] bg-[#FFFEFD] px-2.5 py-2 dark:border-white/10 dark:bg-[#373039]">
               <div className="flex items-center justify-between">
                 <p className="text-[10px] font-semibold">{todo.title}</p>
                 <span className={`rounded-full px-2 py-0.5 text-[7px] font-semibold ${todo.tone}`}>{todo.status}</span>
@@ -287,7 +287,7 @@ export function WellnessScreen() {
         <p className="mb-2 text-[9px] text-[#706A60] dark:text-[#A4A6AB]">This helps us adjust reminders and suggestions for you.</p>
         <div className="grid grid-cols-3 gap-1.5">
           {moods.map((mood) => (
-            <div key={mood} className="rounded-xl border border-[#E7E1D8] bg-[#FBFAF8] px-1 py-2 text-center text-[8px] dark:border-white/10 dark:bg-[#181C22]">
+            <div key={mood} className="rounded-xl border border-[#E7E1D8] bg-[#FBFAF8] px-1 py-2 text-center text-[8px] dark:border-white/10 dark:bg-[#302A34]">
               {mood}
             </div>
           ))}
@@ -340,8 +340,8 @@ export function ProgressScreen() {
   return (
     <div className={shell}>
       <TopBar />
-      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[16px] border border-[#DED8CD] bg-[#F5F3EE] p-1 dark:border-white/10 dark:bg-[#1E2228]">
-        <button className="rounded-xl border border-[#F2D9C3] bg-white py-1.5 text-[10px] font-semibold text-[#D47A33] dark:border-[#5E3C24] dark:bg-[#232830]">
+      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[16px] border border-[#DED8CD] bg-[#F5F3EE] p-1 dark:border-white/10 dark:bg-[#332D36]">
+        <button className="rounded-xl border border-[#F2D9C3] bg-white py-1.5 text-[10px] font-semibold text-[#D47A33] dark:border-[#5E3C24] dark:bg-[#3A333C]">
           🗓 Week
         </button>
         <button className="py-1.5 text-[10px] font-semibold text-[#7D766D] dark:text-[#AAACB1]">🗓 Month</button>
@@ -392,11 +392,11 @@ export function ProgressScreen() {
           </div>
           <div className="flex items-center justify-between text-[10px]">
             <span className="font-medium">⚪ Circle</span>
-            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#2D3239] dark:text-[#A8ABB1]">Building</span>
+            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#433B45] dark:text-[#A8ABB1]">Building</span>
           </div>
           <div className="flex items-center justify-between text-[10px]">
             <span className="font-medium">✨ Mastery</span>
-            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#2D3239] dark:text-[#A8ABB1]">Consistency first</span>
+            <span className="rounded-full bg-[#F0EFEC] px-2 py-0.5 text-[8px] font-semibold text-[#817A70] dark:bg-[#433B45] dark:text-[#A8ABB1]">Consistency first</span>
           </div>
         </div>
       </div>
@@ -407,76 +407,76 @@ export function ProgressScreen() {
 export function SettingsScreen() {
   return (
     <div className={`${shell} overflow-hidden`}>
-      <p className="mb-2 text-[10px] font-semibold tracking-[0.14em] text-[#2E2B26]">✨ PERSONALIZATION</p>
+      <p className="mb-2 text-[10px] font-semibold tracking-[0.14em] text-[#2E2B26] dark:text-[#CBCBD1]">✨ PERSONALIZATION</p>
 
-      <div className="rounded-[20px] border border-[#E4DED4] bg-[#F8F8F6] p-3">
+      <div className="rounded-[20px] border border-[#E4DED4] bg-[#F8F8F6] p-3 dark:border-white/10 dark:bg-[#332D36]">
         <p className="text-[14px] font-semibold">How should Ginja talk to you?</p>
-        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5 dark:border-white/10 dark:bg-[#3A333C]">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[12px] font-semibold">🔥 Motivational</p>
-              <p className="mt-0.5 text-[8px] text-[#6D675E]">High-energy push when you need momentum</p>
+              <p className="mt-0.5 text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">High-energy push when you need momentum</p>
             </div>
-            <span className="text-[11px] text-[#7F786F]">▾</span>
+            <span className="text-[11px] text-[#7F786F] dark:text-[#A9ACB2]">▾</span>
           </div>
         </div>
 
         <p className="mt-3 text-[14px] font-semibold">What are your top Interests?</p>
-        <p className="mt-1 text-[8px] leading-relaxed text-[#6D675E]">
+        <p className="mt-1 text-[8px] leading-relaxed text-[#6D675E] dark:text-[#A9ACB2]">
           These help Ginja personalize reminders, motivation, and suggestions.
         </p>
-        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5 dark:border-white/10 dark:bg-[#3A333C]">
           <div className="flex flex-wrap gap-1">
-            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🍽 Food</span>
-            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🏕 Outdoor/Recreational</span>
-            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold">🧘 Wellness</span>
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold dark:border-[#6D4D36]">🍽 Food</span>
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold dark:border-[#6D4D36]">🏕 Outdoor/Recreational</span>
+            <span className="rounded-full border border-[#E9C8A9] px-2 py-1 text-[8px] font-semibold dark:border-[#6D4D36]">🧘 Wellness</span>
           </div>
           <div className="mt-1 flex items-center justify-between">
-            <p className="text-[8px] text-[#706A60]">Food, Outdoor/Recreational, Wellness +1</p>
-            <span className="text-[11px] text-[#7F786F]">▾</span>
+            <p className="text-[8px] text-[#706A60] dark:text-[#A9ACB2]">Food, Outdoor/Recreational, Wellness +1</p>
+            <span className="text-[11px] text-[#7F786F] dark:text-[#A9ACB2]">▾</span>
           </div>
         </div>
 
         <p className="mt-3 text-[14px] font-semibold">Quiet hours</p>
-        <p className="mt-1 text-[8px] text-[#6D675E]">Reduce non-urgent nudges during your quiet time.</p>
-        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+        <p className="mt-1 text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Reduce non-urgent nudges during your quiet time.</p>
+        <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5 dark:border-white/10 dark:bg-[#3A333C]">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[13px] font-semibold">Enable Quiet Hours</p>
-              <p className="text-[8px] text-[#6D675E]">Applies to smart wellness nudges.</p>
+              <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Applies to smart wellness nudges.</p>
             </div>
             <Toggle on size="md" />
           </div>
           <div className="mt-2 grid grid-cols-2 gap-1.5">
-            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px]">
+            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px] dark:border-white/10 dark:bg-[#443C46]">
               <span className="text-[#E08A2D]">🌙</span> From <span className="float-right font-semibold">11:00 PM</span>
             </div>
-            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px]">
+            <div className="rounded-[10px] border border-[#E3D8CD] bg-[#F2ECE5] px-2 py-1 text-[8px] dark:border-white/10 dark:bg-[#443C46]">
               <span className="text-[#E08A2D]">☀️</span> Until <span className="float-right font-semibold">7:00 AM</span>
             </div>
           </div>
         </div>
       </div>
 
-      <p className="mb-2 mt-2 text-[10px] font-semibold tracking-[0.14em] text-[#7D766D]">NOTIFICATIONS</p>
-      <div className="rounded-[14px] border border-[#DDD6CB] bg-[#F7F5F1] p-2.5 text-[8px] text-[#6B655C]">
+      <p className="mb-2 mt-2 text-[10px] font-semibold tracking-[0.14em] text-[#7D766D] dark:text-[#A9ACB2]">NOTIFICATIONS</p>
+      <div className="rounded-[14px] border border-[#DDD6CB] bg-[#F7F5F1] p-2.5 text-[8px] text-[#6B655C] dark:border-white/10 dark:bg-[#332D36] dark:text-[#A9ACB2]">
         <p>ⓘ Push notifications are not supported in Expo Go. Use a development build or EAS build to test reminders.</p>
       </div>
 
-      <div className="mt-2 rounded-[16px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5">
+      <div className="mt-2 rounded-[16px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5 dark:border-white/10 dark:bg-[#332D36]">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[8px] font-semibold">Daily motivational message</p>
-              <p className="text-[8px] text-[#6D675E]">Start your day with encouragement</p>
+              <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Start your day with encouragement</p>
             </div>
             <Toggle on size="md" />
           </div>
-          <div className="h-px bg-[#E2DDD3]" />
+          <div className="h-px bg-[#E2DDD3] dark:bg-white/10" />
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[8px] font-semibold">Enable Smart Nudges</p>
-              <p className="text-[8px] text-[#6D675E]">Personalized reminders based on your style.</p>
+              <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Personalized reminders based on your style.</p>
             </div>
             <Toggle on size="md" />
           </div>
@@ -487,18 +487,18 @@ export function SettingsScreen() {
 }
 
 export function TodoCompletedScreen() {
-  const tasks = ['Read a book', 'Project review', 'Plan next week'];
+  const toDos = ['Read a book', 'Project review', 'Plan next week'];
   return (
     <div className={shell}>
       <TopBar />
       <h2 className="mb-1 text-[16px] font-bold">Todo</h2>
       <p className="mb-2 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Completed this week</p>
       <div className="space-y-1.5">
-        {tasks.map((task) => (
-          <div key={task} className={card}>
+        {toDos.map((toDo) => (
+          <div key={toDo} className={card}>
             <div className="flex items-center gap-2">
               <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#41B982] text-[8px] text-white">✓</span>
-              <p className="text-[10px] text-[#7B746B] line-through dark:text-[#A3A6AD]">{task}</p>
+              <p className="text-[10px] text-[#7B746B] line-through dark:text-[#A3A6AD]">{toDo}</p>
             </div>
           </div>
         ))}
@@ -530,7 +530,7 @@ export function TodoSharedScreen() {
         </div>
       </div>
 
-      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#1E2228]">
+      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#332D36]">
         <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">⚡ Actions (2)</button>
         <button className="border-b-2 border-[#E0832A] py-2 text-[#D37B32]">💬 Chat</button>
         <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">🗒 Notes (1)</button>
@@ -548,7 +548,7 @@ export function TodoSharedScreen() {
             <div
               className={`max-w-[82%] rounded-2xl border px-2.5 py-1.5 ${
                 message.mine
-                  ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#232830]'
+                  ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#3A333C]'
                   : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'
               }`}
             >
@@ -570,7 +570,7 @@ export function TodoSharedScreen() {
         </div>
       </div>
 
-      <div className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#181C22] dark:text-[#8F929A]">
+      <div className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#302A34] dark:text-[#8F929A]">
         <span>type @ to mention</span>
         <span className="rounded-full bg-[#F0B97F] px-2 py-1 text-[9px] font-semibold text-white">➤</span>
       </div>
@@ -579,16 +579,16 @@ export function TodoSharedScreen() {
 }
 
 export function TodoUpcomingScreen() {
-  const tasks = ['Interview prep', 'Gym session', 'Call family'];
+  const toDos = ['Interview prep', 'Gym session', 'Call family'];
   return (
     <div className={shell}>
       <TopBar />
       <h2 className="mb-1 text-[16px] font-bold">Todo</h2>
       <p className="mb-2 text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">Upcoming</p>
       <div className="space-y-1.5">
-        {tasks.map((task) => (
-          <div key={task} className={card}>
-            <p className="text-[10px] font-semibold">{task}</p>
+        {toDos.map((toDo) => (
+          <div key={toDo} className={card}>
+            <p className="text-[10px] font-semibold">{toDo}</p>
             <p className={tiny}>Planned for this week</p>
           </div>
         ))}

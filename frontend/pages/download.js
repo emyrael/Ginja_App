@@ -62,7 +62,7 @@ export default function DownloadPage() {
           content="Download Ginja for iPhone and Android. Stay organized, take action, and build momentum with Ginja."
         />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4EE" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#18110D" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" />
       </Head>
 
       <div className="download-page">
@@ -177,15 +177,15 @@ export default function DownloadPage() {
 
         @media (prefers-color-scheme: dark) {
           .download-page {
-            --download-bg: #18110d;
-            --download-surface: #1d1510;
-            --download-card-bg: #231913;
-            --download-text: #f3ede4;
-            --download-muted: #cfbca8;
-            --download-border: #3a2c22;
-            --download-card-border: #3f3025;
-            --download-icon-bg: #2a1e16;
-            --download-tag-bg: #241a13;
+            --download-bg: #281d17;
+            --download-surface: #31251e;
+            --download-card-bg: #352820;
+            --download-text: #f4e9dd;
+            --download-muted: #d0bcaa;
+            --download-border: #5b473b;
+            --download-card-border: #614d40;
+            --download-icon-bg: #403129;
+            --download-tag-bg: #3a2c24;
           }
         }
       `}</style>

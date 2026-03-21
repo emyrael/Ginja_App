@@ -52,8 +52,8 @@ export default function PhoneFrame({ children, activeTab = 'home', className = '
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      <div className="rounded-[2.8rem] border border-[#D6CCBE] bg-[#F3EEE5] p-[4px] shadow-[0_24px_60px_rgba(35,30,24,0.22)] dark:border-[#2D2F35] dark:bg-[#101217] dark:shadow-[0_22px_54px_rgba(0,0,0,0.55)]">
-        <div className="overflow-hidden rounded-[2.6rem] border border-[#E4DBCF] bg-[#F1EEE8] dark:border-[#24262B] dark:bg-[#0E1014]">
+      <div className="rounded-[2.8rem] border border-[#D6CCBE] bg-[#F3EEE5] p-[4px] shadow-[0_24px_60px_rgba(35,30,24,0.22)] dark:border-[#3C353E] dark:bg-[#231E19] dark:shadow-[0_22px_54px_rgba(0,0,0,0.55)]">
+        <div className="overflow-hidden rounded-[2.6rem] border border-[#E4DBCF] bg-[#F1EEE8] dark:border-[#342E35] dark:bg-[#201B17]">
           <div className="relative flex items-center justify-between px-6 pb-1 pt-3">
             <span className="text-[10px] font-semibold tabular-nums text-[#201E1A] dark:text-white/90">00:38</span>
             <div className="absolute left-1/2 top-0 h-[22px] w-[88px] -translate-x-1/2 rounded-b-[14px] bg-black" />
@@ -69,7 +69,7 @@ export default function PhoneFrame({ children, activeTab = 'home', className = '
 
           <div className="min-h-[500px] max-h-[540px] overflow-hidden">{children}</div>
 
-          <div className="flex items-center justify-around border-t border-[#E1DACC] bg-[#F8F5EF] px-1 py-2 dark:border-white/[0.06] dark:bg-[#0F1115]">
+          <div className="flex items-center justify-around border-t border-[#E1DACC] bg-[#F8F5EF] px-1 py-2 dark:border-white/[0.06] dark:bg-[#221D18]">
             {NAV_ITEMS.map((tab) => {
               const isActive = tab.id === activeTab;
               return (

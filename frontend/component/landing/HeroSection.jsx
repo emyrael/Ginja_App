@@ -13,20 +13,20 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
-          <span className="inline-flex items-center rounded-full border border-[#EBDCCF] bg-[#FFF8F2] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#A26335]">
+          <span className="inline-flex items-center rounded-full border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">
             Early access opening soon
           </span>
 
-          <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[#1D1C18] sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[var(--text-strong)] sm:text-5xl lg:text-6xl">
             Too many thoughts in your head, nowhere to start.
           </h1>
 
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[#605B53] sm:text-xl">
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
             Unload your thoughts. Ginja learns about you and personalises your experience, then turns mental overload into clear
             next actions you can actually follow through on.
           </p>
 
-          <div className="mt-8 grid max-w-lg gap-3 text-sm text-[#4E4A43] sm:grid-cols-2">
+          <div className="mt-8 grid max-w-lg gap-3 text-sm text-[var(--text-secondary)] sm:grid-cols-2">
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#ED8522]" />
               Start with chaos, leave with clear priorities
@@ -55,7 +55,7 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
             </button>
             <button
               onClick={onSeeHowItWorks}
-              className="inline-flex items-center justify-center rounded-full border border-[#DED8CF] bg-white px-6 py-3 text-base font-medium text-[#3F3C35] transition-all duration-200 hover:border-[#CFC6BA] hover:bg-[#FCFAF6]"
+              className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-3 text-base font-medium text-[var(--text-secondary)] transition-all duration-200 hover:brightness-105"
             >
               See how it works
             </button>
@@ -63,7 +63,7 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
         </div>
 
         <div className="relative flex justify-center lg:justify-end">
-          <div className="rounded-[2.25rem] border border-[#E5DED3] bg-white/70 p-3 shadow-[0_24px_64px_rgba(40,36,30,0.12)] backdrop-blur">
+          <div className="rounded-[2.25rem] border border-[var(--border-color)] bg-[var(--surface-primary)]/75 p-3 shadow-[0_24px_64px_rgba(40,36,30,0.12)] backdrop-blur dark:bg-[var(--surface-strong)]/78 dark:shadow-[0_20px_52px_rgba(8,6,4,0.35)]">
             <PhoneFrame className="w-[300px] sm:w-[340px]" activeTab="home">
               <HomeScreen />
             </PhoneFrame>

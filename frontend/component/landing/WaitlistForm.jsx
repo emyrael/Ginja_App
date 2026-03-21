@@ -62,19 +62,19 @@ export default function WaitlistForm() {
 
   return (
     <section id="waitlist" className="px-4 pb-20 sm:px-6 sm:pb-28">
-      <div className="mx-auto max-w-4xl rounded-[2rem] border border-[#E5DBCC] bg-white px-6 py-10 shadow-[0_18px_54px_rgba(30,26,20,0.09)] sm:px-10 sm:py-14">
+      <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 shadow-[0_18px_54px_rgba(30,26,20,0.09)] dark:shadow-[0_20px_56px_rgba(10,8,6,0.35)] sm:px-10 sm:py-14">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Early access</p>
-          <h2 className="mt-4 text-balance text-3xl font-semibold text-[#1D1C18] sm:text-4xl">
+          <h2 className="mt-4 text-balance text-3xl font-semibold text-[var(--text-strong)] sm:text-4xl">
             Join the waitlist to get early access.
           </h2>
         </div>
 
         {status === 'success' ? (
-          <div className="mx-auto mt-10 max-w-xl rounded-3xl border border-[#D6E9CB] bg-[#F1FAEC] p-8 text-center">
+          <div className="mx-auto mt-10 max-w-xl rounded-3xl border border-[#D6E9CB] bg-[#F1FAEC] p-8 text-center dark:border-[#4D6A3A] dark:bg-[#2F4126]">
             <CheckCircle2 className="mx-auto h-10 w-10 text-[#4E8C06]" />
-            <h3 className="mt-4 text-2xl font-semibold text-[#1D1C18]">You are on the waitlist</h3>
-            <p className="mt-2 text-sm text-[#4F6550] sm:text-base">{message}</p>
+            <h3 className="mt-4 text-2xl font-semibold text-[var(--text-strong)]">You are on the waitlist</h3>
+            <p className="mt-2 text-sm text-[var(--text-secondary)] sm:text-base">{message}</p>
             <button
               className="mt-5 text-sm font-semibold text-[#ED8522] hover:text-[#C94B16]"
               onClick={() => setStatus('idle')}
@@ -85,7 +85,7 @@ export default function WaitlistForm() {
         ) : (
           <form onSubmit={handleSubmit} className="mx-auto mt-10 grid max-w-2xl gap-5">
             <div className="grid gap-2">
-              <label htmlFor="fullName" className="text-sm font-medium text-[#49453E]">
+              <label htmlFor="fullName" className="text-sm font-medium text-[var(--text-secondary)]">
                 Full name
               </label>
               <input
@@ -96,12 +96,12 @@ export default function WaitlistForm() {
                 type="text"
                 required
                 placeholder="Your full name"
-                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#ED8522]"
+                className="h-12 rounded-2xl border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 text-sm text-[var(--text-primary)] outline-none transition-colors placeholder:text-[var(--text-muted)] focus:border-[#ED8522]"
               />
             </div>
 
             <div className="grid gap-2">
-              <label htmlFor="email" className="text-sm font-medium text-[#49453E]">
+              <label htmlFor="email" className="text-sm font-medium text-[var(--text-secondary)]">
                 Email
               </label>
               <input
@@ -112,7 +112,7 @@ export default function WaitlistForm() {
                 type="email"
                 required
                 placeholder="you@example.com"
-                className="h-12 rounded-2xl border border-[#DCD2C5] bg-[#FFFEFC] px-4 text-sm text-[#201D18] outline-none transition-colors focus:border-[#ED8522]"
+                className="h-12 rounded-2xl border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 text-sm text-[var(--text-primary)] outline-none transition-colors placeholder:text-[var(--text-muted)] focus:border-[#ED8522]"
               />
             </div>
 
@@ -135,7 +135,7 @@ export default function WaitlistForm() {
               )}
             </button>
 
-            <p className="text-center text-xs text-[#7A7368]">No spam. Just launch updates and early access invites.</p>
+            <p className="text-center text-xs text-[var(--text-muted)]">No spam. Just launch updates and early access invites.</p>
           </form>
         )}
       </div>

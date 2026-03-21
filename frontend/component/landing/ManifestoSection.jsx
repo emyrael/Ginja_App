@@ -34,8 +34,8 @@ export default function ManifestoSection() {
     },
     {
       icon: Users,
-      title: "Do Tasks With Friends",
-      description: "With Ginja, you can also do tasks with friends, keep streaks, celebrate wins together, and explore plenty more features that make planning feel less boring and more fun.",
+      title: "Do To-Dos With Friends",
+      description: "With Ginja, you can also do to-dos with friends, keep streaks, celebrate wins together, and explore plenty more features that make planning feel less boring and more fun.",
       bgColor: "bg-green-50 dark:bg-green-950/20",
       borderColor: "border-green-200 dark:border-green-800/40",
       iconColor: "text-green-600",

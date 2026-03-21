@@ -7,18 +7,30 @@
   --ginja-green: #87B66A;
   --bg-primary: #F7F4EE;
   --bg-card: #FFFFFF;
+  --surface-primary: #FFFFFF;
+  --surface-soft: #FAF8F3;
+  --surface-muted: #F8F4ED;
+  --surface-strong: #F3EEE5;
   --text-primary: #1E1C18;
+  --text-strong: #1D1C18;
   --text-secondary: #605B53;
+  --text-muted: #7A7368;
   --border-color: #E5DED3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-primary: #18110D;
-    --bg-card: #241A14;
-    --text-primary: #F3EDE4;
-    --text-secondary: #CFBCA8;
-    --border-color: #3A2C22;
+    --bg-primary: #281D17;
+    --bg-card: #352820;
+    --surface-primary: #352820;
+    --surface-soft: #3D2F26;
+    --surface-muted: #47372D;
+    --surface-strong: #31251E;
+    --text-primary: #F4E9DD;
+    --text-strong: #F7EEE3;
+    --text-secondary: #D6C4B1;
+    --text-muted: #BCA691;
+    --border-color: #5B473B;
   }
 }
 
@@ -33,6 +45,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  color-scheme: light dark;
 }
 
 body {
@@ -83,4 +96,18 @@ a {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #BCA690;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track {
+    background: #372A22;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #705847;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #896A56;
+  }
 }
