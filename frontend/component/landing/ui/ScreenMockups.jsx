@@ -171,6 +171,108 @@ export function BrainDumpScreen() {
   );
 }
 
+export function TodoViewScreen() {
+  const days = [
+    { d: 'M', n: 10, state: 'done' },
+    { d: 'T', n: 11, state: 'done' },
+    { d: 'W', n: 12, state: 'overdue' },
+    { d: 'T', n: 13, state: 'upcoming' },
+    { d: 'F', n: 14, state: 'upcoming' },
+    { d: 'S', n: 15, state: 'selected' },
+    { d: 'S', n: 16, state: 'idle' },
+  ];
+
+  const stateDot = {
+    done: 'bg-[#41B982]',
+    overdue: 'bg-[#E05A5A]',
+    upcoming: 'bg-[#ED8522]',
+    selected: 'border-2 border-[#ED8522] text-[#ED8522]',
+    idle: 'text-[#8E877E] dark:text-[#A9ACB2]',
+  };
+
+  const todos = [
+    { title: 'Plan launch content', time: '09:30', status: 'Done', tone: 'bg-[#EAF8F1] text-[#2D9466]' },
+    { title: 'Review product roadmap', time: '12:00', status: 'Overdue', tone: 'bg-[#FFECEC] text-[#C44B4B]' },
+    { title: 'Gym session', time: '18:30', status: 'Upcoming', tone: 'bg-[#FFF1E8] text-[#C26B2E]' },
+  ];
+
+  return (
+    <div className={shell}>
+      <TopBar />
+
+      <div className="mb-2 grid grid-cols-2 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#1E2228]">
+        <button className="border-b-2 border-[#E0832A] py-2 text-[#D37B32]">🗓 Calendar</button>
+        <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">📋 List</button>
+      </div>
+
+      <div className={`${card} mb-2.5 p-3`}>
+        <div className="mb-2 flex items-center justify-between rounded-full border border-[#E4DED4] bg-[#F7F4EE] px-2 py-1 text-[8px] text-[#6C675F] dark:border-white/10 dark:bg-[#1A1E24] dark:text-[#A4A6AB]">
+          <span className="rounded-full bg-white px-2 py-1 text-[#D37B32] dark:bg-[#232830]">Week</span>
+          <span>Month</span>
+          <span className="ml-auto text-[9px] text-[#8C857C]">March 2026</span>
+        </div>
+
+        <div className="grid grid-cols-7 gap-1 text-center">
+          {days.map((day) => (
+            <div key={`${day.d}-${day.n}`} className="flex flex-col items-center gap-0.5">
+              <span className="text-[7px] text-[#7A746B] dark:text-[#A7A8AB]">{day.d}</span>
+              {day.state === 'selected' ? (
+                <div className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#ED8522] text-[9px] font-semibold text-[#ED8522]">
+                  {day.n}
+                </div>
+              ) : (
+                <span className={`text-[9px] ${stateDot[day.state] || 'text-[#8E877E]'}`}>{day.n}</span>
+              )}
+              {day.state !== 'selected' && (
+                <span className={`h-1.5 w-1.5 rounded-full ${stateDot[day.state] || 'bg-[#DDD6CB]'}`} />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-2 flex items-center justify-between rounded-full border border-[#E4DED4] px-2 py-1 text-[7px] text-[#6C675F] dark:border-white/10 dark:text-[#A4A6AB]">
+          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-[#41B982]" />Done</span>
+          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-[#ED8522]" />Upcoming</span>
+          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-[#E05A5A]" />Overdue</span>
+        </div>
+      </div>
+
+      <div className={`${card} mb-2.5`}>
+        <div className="mb-2 flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-semibold">Today</p>
+            <p className={tiny}>3 to-dos</p>
+          </div>
+          <div className="flex items-center gap-1 text-[8px] text-[#8C857C]">
+            <span className="rounded-full border border-[#E6DED3] bg-[#FFF8F1] px-2 py-1 text-[#C26B2E]">Plan</span>
+            <span className="rounded-full border border-[#E6DED3] bg-white px-2 py-1">+</span>
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          {todos.map((todo) => (
+            <div key={todo.title} className="rounded-[12px] border border-[#EFE7DC] bg-[#FFFEFD] px-2.5 py-2 dark:border-white/10 dark:bg-[#20242B]">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold">{todo.title}</p>
+                <span className={`rounded-full px-2 py-0.5 text-[7px] font-semibold ${todo.tone}`}>{todo.status}</span>
+              </div>
+              <p className={tiny}>Scheduled · {todo.time}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={`${card}`}>
+        <div className="flex items-center justify-between">
+          <p className="text-[10px] font-semibold">List view for detail</p>
+          <span className="text-[9px] text-[#D67B30]">Open ›</span>
+        </div>
+        <p className={tiny}>Sort by due date, status, or category.</p>
+      </div>
+    </div>
+  );
+}
+
 export function WellnessScreen() {
   const moods = ['😊 Great', '🙂 Good', '😐 Okay', '🥱 Tired', '😰 Stressed', '😔 Low'];
 

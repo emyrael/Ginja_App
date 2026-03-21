@@ -12,6 +12,16 @@
   --border-color: #E5DED3;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #18110D;
+    --bg-card: #241A14;
+    --text-primary: #F3EDE4;
+    --text-secondary: #CFBCA8;
+    --border-color: #3A2C22;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

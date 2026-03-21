@@ -35,6 +35,14 @@ export default function Footer() {
               >
                 TikTok: @ginja_app
               </a>
+              <a
+                href="https://x.com/ginja_app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#ED8522]"
+              >
+                X: @ginja_app
+              </a>
             </div>
           </div>
 

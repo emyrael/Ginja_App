@@ -3,6 +3,7 @@ import { Bell, Moon, CalendarCheck2, Users2, TrendingUp, Sparkles, Leaf } from '
 import PhoneFrame from './ui/PhoneFrame';
 import {
   BrainDumpScreen,
+  TodoViewScreen,
   WellnessScreen,
   ProgressScreen,
   TodoSharedScreen,
@@ -61,13 +62,37 @@ export default function FeaturesSection() {
               </h3>
               <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
                 When everything is competing for your attention, nothing gets done. Speak or type it all, Ginja unloads your
-                plan and organises it into clear, actionable steps. No structure needed. Just start.
+                intents and organises it into clear, actionable steps. No structure needed. Just start.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
                 <li>Work, Health, Personal, Social, Study, and Others categories</li>
                 <li>Low, Medium, High priority with due dates and scheduling</li>
                 <li>One-time or recurring, personal or shared based on who owns it</li>
               </ul>
+            </div>
+          </div>
+
+          <div className="mt-10 grid items-center gap-10 rounded-[2rem] border border-[#E6DED1] bg-white p-6 shadow-[0_16px_40px_rgba(30,26,20,0.08)] sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <div>
+              <p className="inline-flex rounded-full bg-[#FFF1E8] px-3 py-1 text-xs font-semibold text-[#B4581F]">To-Do View</p>
+              <h3 className="mt-4 text-2xl font-semibold text-[#1E1B17] sm:text-3xl">
+                See your to-dos, not just a list.
+              </h3>
+              <p className="mt-4 text-base leading-relaxed text-[#5D584F] sm:text-lg">
+                Ginja maps your to-dos onto a calendar so you can spot what is overdue, what is next, and what is done in one glance.
+                Switch to list view when you want clean, focused detail.
+              </p>
+              <ul className="mt-6 space-y-2 text-sm text-[#4D483F]">
+                <li>Calendar view to visualise to-dos across days and weeks</li>
+                <li>Status tracking for overdue, upcoming, and done to-dos</li>
+                <li>List view for a tidy breakdown and clearer planning</li>
+                <li>Schedule ahead with calm, realistic timelines</li>
+              </ul>
+            </div>
+            <div className="flex justify-center lg:justify-end">
+              <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="todo">
+                <TodoViewScreen />
+              </PhoneFrame>
             </div>
           </div>
 
