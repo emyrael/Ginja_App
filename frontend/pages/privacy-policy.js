@@ -27,58 +27,109 @@ export default function PrivacyPolicy() {
         <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
             <h1 className="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: March 9, 2026</p>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: March 2026</p>
 
             <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
               <section>
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">1. Overview</h2>
-                <p className="mt-2">Ginja respects your privacy. This policy explains how we collect, use, and protect your information when you use the Ginja app and website.</p>
+                <p className="mt-2">
+                  Ginja helps you turn plans into action. This page explains what data we use, why we use it, and
+                  how we protect it while you use Brain Dump, To-Dos, Circle, reminders, and personalization.
+                </p>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">2. Information we collect</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">2. Data We Use</h2>
+                <p className="mt-2">To run core features, Ginja stores data such as:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
-                  <li>Account details such as email and display name.</li>
-                  <li>User content such as to-dos, notes, and optional voice input.</li>
-                  <li>Usage data such as feature interactions and device information.</li>
-                  <li>Security and technical data such as IP address and logs.</li>
+                  <li>Account and profile data (name, email, username/handle, phone/country if provided, bio, avatar).</li>
+                  <li>Planning data (To-Dos, categories, due date/time, completion status, reminders, recurring settings).</li>
+                  <li>Brain Dump input and generated output (including tasks created from Brain Dump).</li>
+                  <li>Circle collaboration data (shared plans, actions, notes, chat messages, participants).</li>
+                  <li>Personalization and notification settings (communication style, interests, quiet hours, reminder preferences, smart notifications).</li>
+                  <li>Wellness check-in data where used (for example mood and weekly focus).</li>
                 </ul>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">3. How we use information</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">3. Why We Use This Data</h2>
+                <p className="mt-2">We use your data to provide core app functionality, including:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
-                  <li>Deliver core app features and save your plans.</li>
-                  <li>Transform text or voice input into structured actions.</li>
-                  <li>Improve reliability, performance, and personalization.</li>
-                  <li>Send service-related messages and support updates.</li>
+                  <li>Creating and managing your tasks, reminders, and progress views.</li>
+                  <li>Running Brain Dump flows that turn raw input into structured action.</li>
+                  <li>Powering Circle collaboration across shared plans, actions, notes, and chat.</li>
+                  <li>Personalizing reminders and in-app experiences based on your preferences.</li>
+                  <li>Supporting account security, syncing, and app reliability.</li>
                 </ul>
-                <p className="mt-2 font-medium text-[#2F5C35]">We do not sell your personal data.</p>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">4. AI and automation processing</h2>
-                <p className="mt-2">Ginja uses automated processing to structure user-provided content for product functionality. This processing is limited to requested features.</p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">4. AI Processing</h2>
+                <p className="mt-2">
+                  Some features use server-side AI processing. For example, Brain Dump and smart reminder copy may use
+                  your submitted input and selected preferences to generate useful outputs.
+                </p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>AI processing happens on secure backend services, not with client-side API keys.</li>
+                  <li>Only relevant context is sent for the requested feature.</li>
+                  <li>Generated outputs are used to power your app experience (for example task suggestions or reminder wording).</li>
+                </ul>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">5. Security and retention</h2>
-                <p className="mt-2">We use encrypted connections and practical safeguards to protect data. Information is retained while your account is active or as required by law.</p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">5. Data Security</h2>
+                <p className="mt-2">We use standard security protections to keep your data safe:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>Encrypted traffic (HTTPS/TLS) between app and backend.</li>
+                  <li>Row Level Security (RLS) policies for user-scoped data access.</li>
+                  <li>Server-side secret management for third-party integrations.</li>
+                </ul>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Third-party services</h2>
-                <p className="mt-2">We may use trusted providers for hosting, authentication, analytics, and AI processing. Access is limited to what is required to provide services.</p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Permissions &amp; Data Usage</h2>
+                <p className="mt-2">Here is how we use each permission when you choose to allow it:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>Contacts — Used to help you find and connect with people you already know on Ginja. This is optional and only used for friend discovery.</li>
+                  <li>Photos — Allows you to upload or share images within the app, such as in chats or notes.</li>
+                  <li>Microphone — Used for voice input when speaking your thoughts during Brain Dump.</li>
+                  <li>Location — Used to provide context-aware suggestions, such as local recommendations or relevant reminders.</li>
+                  <li>Calendar — Helps you align your to-dos and plans with your schedule.</li>
+                  <li>Notifications — Used to send reminders, updates, and smart nudges to help you stay on track with your to-dos.</li>
+                </ul>
+                <p className="mt-2">
+                  Permissions are requested only when needed for a feature, and you can continue using Ginja without
+                  allowing optional permissions.
+                </p>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">7. Your rights</h2>
-                <p className="mt-2">You can request access, correction, or deletion of your data. For deletion requests, use the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">7. Data Retention</h2>
+                <p className="mt-2">You stay in control of your account data:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>You can edit or delete many data types directly in the app.</li>
+                  <li>You can request full account deletion from Settings.</li>
+                  <li>When account deletion completes, associated account data is removed according to backend rules.</li>
+                </ul>
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">8. Contact</h2>
-                <p className="mt-2">For privacy questions, email <a href="mailto:info@ginjaapp.com" className="text-[#ED8522] hover:underline">info@ginjaapp.com</a>.</p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">8. Your Rights</h2>
+                <p className="mt-2">As a Ginja user, you have the right to:</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  <li>Access — view all data associated with your account.</li>
+                  <li>Update — modify your profile, preferences, and task data at any time.</li>
+                  <li>Delete — remove your account and all stored data.</li>
+                  <li>Contact — reach out to our support team with any privacy-related questions.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">9. Contact Us</h2>
+                <p className="mt-2">
+                  If you have questions about this Privacy Policy or your data, please contact us at{' '}
+                  <a href="mailto:info@ginjaapp.com" className="text-[#ED8522] hover:underline">info@ginjaapp.com</a>
+                </p>
               </section>
             </div>
           </div>
