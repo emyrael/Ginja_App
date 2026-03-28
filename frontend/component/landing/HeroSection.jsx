@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { CheckCircle2 } from 'lucide-react';
 import PhoneFrame from './ui/PhoneFrame';
 import { HomeScreen } from './ui/ScreenMockups';
 
-export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
+export default function HeroSection({ onSeeHowItWorks }) {
   return (
     <section id="home" className="relative overflow-hidden px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14">
       <div className="pointer-events-none absolute inset-0">
@@ -13,9 +14,9 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
-          <span className="inline-flex items-center rounded-full border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">
-            Early access opening soon
-          </span>
+          <Link href="/download" className="inline-flex items-center rounded-full border border-[#ED8522]/40 bg-[#FFF1E8] px-5 py-2.5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_12px_30px_rgba(237,133,34,0.24)] ring-2 ring-[#ED8522]/20 transition-all duration-300 hover:scale-[1.03] hover:bg-[#FFE6D5] animate-[pulse_2.2s_ease-in-out_infinite] dark:border-[#F1BE90]/45 dark:bg-[#4A3325] dark:text-[#F1BE90] dark:ring-[#F1BE90]/20 dark:hover:bg-[#5A3D2C]">
+            Download Now
+          </Link>
 
           <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[var(--text-strong)] sm:text-5xl lg:text-6xl">
             Too many thoughts in your head, nowhere to start.
@@ -46,13 +47,6 @@ export default function HeroSection({ onJoinWaitlist, onSeeHowItWorks }) {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <button
-              onClick={onJoinWaitlist}
-              className="inline-flex items-center justify-center rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
-            >
-              Reserve my early access
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </button>
             <button
               onClick={onSeeHowItWorks}
               className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-3 text-base font-medium text-[var(--text-secondary)] transition-all duration-200 hover:brightness-105"

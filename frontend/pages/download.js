@@ -3,9 +3,9 @@ import Link from 'next/link';
 import GinjaLogo from '../component/landing/GinjaLogo';
 import GinjaText from '../component/landing/GinjaText';
 
-// Replace these URLs when the App Store and Google Play listings are live.
-const APP_STORE_URL = 'https://example.com/app-store-link';
-const PLAY_STORE_URL = 'https://example.com/google-play-link';
+const APP_STORE_URL = 'https://apps.apple.com/us/app/ginja-app/id6752789324';
+const PLAY_STORE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrmm9SzO8qZMTQeBS0lizabwrNLz-1b6yWetVsBSv1faCmOA/viewform?usp=sharing&ouid=100679526363664014529';
+const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
 function AppleIcon() {
   return (
@@ -112,15 +112,15 @@ export default function DownloadPage() {
             />
             <PlatformCard
               title="Android"
-              description="Run Ginja on Android and keep your to-dos, planning, and momentum in one streamlined place built for consistency."
+              description="Android is coming soon, but early access can be given through the link below."
               href={PLAY_STORE_URL}
-              cta="Get it on Google Play"
+              cta="Get Android Early Access"
               icon={<PlayStoreIcon />}
               glow="bg-[#87B66A]/20"
             />
           </div>
           <p className="mx-auto mt-6 max-w-6xl text-center text-sm text-[var(--download-muted)]">
-            iOS and Android download links will go live here once published.
+            iOS is live now. Android is coming soon, with early access available through the link above.
           </p>
         </section>
       </main>
@@ -144,7 +144,7 @@ export default function DownloadPage() {
               <Link href="/#why-ginja" className="transition hover:text-[var(--download-text)]">Why Ginja</Link>
               <Link href="/#features" className="transition hover:text-[var(--download-text)]">Features</Link>
               <Link href="/#adapts" className="transition hover:text-[var(--download-text)]">Adapts To You</Link>
-              <Link href="/#waitlist" className="transition hover:text-[var(--download-text)]">Waitlist</Link>
+              <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" className="transition hover:text-[var(--download-text)]">Feedback</a>
             </div>
           </div>
 

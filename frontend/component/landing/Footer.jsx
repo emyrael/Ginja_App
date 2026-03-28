@@ -3,6 +3,8 @@ import Link from 'next/link';
 import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
 
+const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
+
 export default function Footer() {
   return (
     <footer className="border-t border-[var(--border-color)] bg-[var(--surface-strong)] px-4 py-10 sm:px-6 sm:py-12">
@@ -50,7 +52,8 @@ export default function Footer() {
             <a href="#why-ginja" className="hover:text-[#ED8522]">Why Ginja</a>
             <a href="#features" className="hover:text-[#ED8522]">Features</a>
             <a href="#adapts" className="hover:text-[#ED8522]">Adapts To You</a>
-            <a href="#waitlist" className="hover:text-[#ED8522]">Waitlist</a>
+            <Link href="/download" className="hover:text-[#ED8522]">Download</Link>
+            <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#ED8522]">Feedback</a>
           </div>
         </div>
 
