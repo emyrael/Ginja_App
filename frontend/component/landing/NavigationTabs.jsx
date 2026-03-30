@@ -15,15 +15,15 @@ const navItems = [
 export default function NavigationTabs() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[var(--border-color)] bg-[var(--surface-soft)]/92 backdrop-blur-md dark:bg-[var(--surface-strong)]/90">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
+      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6">
+        <Link href="/" className="flex shrink-0 items-center gap-2">
           <GinjaLogo size="sm" />
           <span className="text-sm font-semibold tracking-tight sm:text-base">
             <GinjaText />
           </span>
         </Link>
 
-        <nav className="order-3 flex w-full items-center gap-5 overflow-x-auto pb-1 text-sm font-medium text-[var(--text-secondary)] lg:order-none lg:w-auto lg:gap-6 lg:overflow-visible lg:pb-0">
+        <nav className="flex min-w-0 flex-1 items-center gap-5 overflow-x-auto text-sm font-medium text-[var(--text-secondary)] lg:w-auto lg:flex-none lg:gap-6 lg:overflow-visible">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -39,7 +39,7 @@ export default function NavigationTabs() {
 
         <Link
           href="/download"
-          className="rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5"
+          className="shrink-0 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5"
         >
           Download Ginja
         </Link>
