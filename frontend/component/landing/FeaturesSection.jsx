@@ -189,13 +189,7 @@ export default function FeaturesSection() {
       </section>
 
       <section id="circle" className="px-4 pb-16 sm:px-6 sm:pb-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-soft)] p-6 sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-          <div className="flex justify-center lg:justify-start">
-            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="circle">
-              <TodoSharedScreen />
-            </PhoneFrame>
-          </div>
-
+        <div className="mx-auto grid max-w-7xl items-center gap-10 rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-soft)] p-6 sm:p-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-semibold text-[#567B34] dark:bg-[#33412B] dark:text-[#BBD89F]">
               <Users2 className="h-3.5 w-3.5" />
@@ -224,6 +218,12 @@ export default function FeaturesSection() {
               Accountability here is not checking up on people, it is giving shared goals the same structure and seriousness as
               personal ones.
             </p>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <PhoneFrame className="w-[290px] sm:w-[320px]" activeTab="circle">
+              <TodoSharedScreen />
+            </PhoneFrame>
           </div>
         </div>
       </section>

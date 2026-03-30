@@ -39,7 +39,7 @@ export default function NavigationTabs() {
 
         <Link
           href="/download"
-          className="shrink-0 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5"
+          className="shrink-0 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5 lg:ml-auto"
         >
           Download Ginja
         </Link>
