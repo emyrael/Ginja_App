@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroSection from './HeroSection';
+import FounderIntroVideoSection from './FounderIntroVideoSection';
 import FeaturesSection from './FeaturesSection';
 import WhyWeBuiltGinja from './WhyWeBuiltGinja';
 import Footer from './Footer';
@@ -21,6 +22,7 @@ export default function LandingPage() {
         <HeroSection
           onSeeHowItWorks={() => scrollToSection('features')}
         />
+        <FounderIntroVideoSection />
         <FeaturesSection />
         <WhyWeBuiltGinja />
       </main>

@@ -10,6 +10,7 @@ const navItems = [
   { href: '#why-ginja', label: 'Why Ginja' },
   { href: '#features', label: 'Features' },
   { href: '#circle', label: 'Circle' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: FEEDBACK_FORM_URL, label: 'Feedback', external: true, trackSource: 'header_nav' },
 ];
 
@@ -38,7 +39,6 @@ export default function NavigationTabs() {
             </a>
           ))}
         </nav>
-
         <Link
           href="/download"
           onClick={() => trackDownloadPageClick('header_cta')}
