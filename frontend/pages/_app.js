@@ -32,6 +32,7 @@ export default function App({ Component, pageProps }) {
           gtag('js', new Date());
           gtag('config', '${GA_MEASUREMENT_ID}', {
             page_path: window.location.pathname + window.location.search,
+            page_location: window.location.href,
           });
         `}
       </Script>

@@ -7,8 +7,13 @@ function canTrack() {
 export function pageview(url) {
   if (!canTrack()) return;
 
+  const pagePath = typeof url === 'string' && url.length > 0
+    ? url
+    : `${window.location.pathname}${window.location.search}`;
+
   window.gtag('config', GA_MEASUREMENT_ID, {
-    page_path: url,
+    page_path: pagePath,
+    page_location: window.location.href,
   });
 }
 
