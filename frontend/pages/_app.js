@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
+import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { GA_MEASUREMENT_ID, pageview } from '../lib/analytics';
 
@@ -39,6 +40,7 @@ export default function App({ Component, pageProps }) {
       <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
         <Component {...pageProps} />
       </div>
+      <Analytics />
     </>
   );
 }
