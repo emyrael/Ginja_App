@@ -1,23 +1,21 @@
 import { useEffect } from 'react';
 import Script from 'next/script';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 import { GA_MEASUREMENT_ID, pageview } from '../lib/analytics';
 
 export default function App({ Component, pageProps }) {
-  const router = useRouter();
-
   useEffect(() => {
     const handleRouteChange = (url) => {
       pageview(url);
     };
 
-    router.events.on('routeChangeComplete', handleRouteChange);
+    Router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange);
+      Router.events.off('routeChangeComplete', handleRouteChange);
     };
-  }, [router.events]);
+  }, []);
 
   return (
     <>

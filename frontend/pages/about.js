@@ -76,11 +76,35 @@ export default function About() {
           <div className="mx-auto max-w-5xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-6 py-10 sm:px-10">
             <h2 className="text-2xl font-semibold sm:text-3xl">Why Ginja exists</h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-              Most productivity apps were built around output volume. Ginja was built around mental clarity. We believe better
-              systems should support how people actually think, feel, and plan day to day.
+              Ginja started from a very familiar pattern: too many open tabs, too many reminders, and still ending the day
+              feeling behind. The problem was never effort. The problem was trying to force clarity before there was any.
             </p>
             <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-              That means fewer noisy patterns, more intentional structure, and reminders that feel human instead of robotic.
+              Instead of adding more pressure, Ginja was designed to meet people where they actually are in the moment:
+              mentally full, juggling priorities, and unsure what to do first.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+              The goal became simple and human. Create a calmer system that helps people start, stay clear, and keep moving
+              without burnout.
+            </p>
+          </div>
+        </section>
+
+        <section className="px-4 pb-10 sm:px-6">
+          <div className="mx-auto max-w-5xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 sm:px-10">
+            <h2 className="text-2xl font-semibold sm:text-3xl">What Ginja became</h2>
+            <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+              Ginja became a system that does not expect clarity from you first. It starts with your thoughts as they are
+              — messy, unfinished, and real — and helps turn them into clear next steps.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+              Instead of adding more pressure, Ginja creates structure gently. Features like Brain Dump, shared plans through
+              Circle, smart nudges, the to-do calendar view, and Strides all work together to help you stay clear, consistent,
+              and supported in everyday life.
+            </p>
+            <p className="mt-5 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+              For anyone who has ever felt mentally overloaded, behind, or unsure where to begin, Ginja was built to make
+              starting feel lighter.
             </p>
           </div>
         </section>
@@ -117,8 +141,12 @@ export default function About() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#4D7A47] dark:text-[#BBD89F]">Founder</p>
             <h2 className="mt-3 text-2xl font-semibold sm:text-3xl">Built by Manuel</h2>
             <p className="mt-4 text-base leading-relaxed text-[#486047] dark:text-[#D0E3C1] sm:text-lg">
-              Manuel created Ginja to solve a personal frustration: productivity tools that looked efficient but felt
-              overwhelming in real life. The goal with Ginja is simple, a calmer system people can actually stay consistent with.
+              Manuel created Ginja to solve a personal frustration: productivity tools that looked efficient on paper but felt
+              overwhelming in real life.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-[#486047] dark:text-[#D0E3C1] sm:text-lg">
+              The mission stayed clear from day one: build a calmer system people can trust, return to daily, and genuinely feel
+              supported by.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -161,18 +189,30 @@ export default function About() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/#waitlist"
-                className="rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(237,133,34,0.22)]"
-              >
-                Join waitlist
-              </Link>
-              <Link
                 href="/support"
                 className="rounded-full border border-[#C8DABA] bg-[var(--surface-primary)] px-5 py-2.5 text-sm font-semibold text-[#3E5B34] dark:border-[#4C6040] dark:bg-[#36492B] dark:text-[#E1F0D6]"
               >
                 Contact support
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section className="px-4 pb-16 sm:px-6 sm:pb-20">
+          <div className="mx-auto max-w-5xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 text-center shadow-[0_14px_36px_rgba(30,26,20,0.08)] sm:px-10">
+            <h2 className="text-2xl font-semibold sm:text-3xl">Ready to try Ginja?</h2>
+            <p className="mt-3 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+              See how Ginja helps turn mental overload into clear, actionable steps.
+            </p>
+            <div className="mt-6">
+              <Link
+                href="/download"
+                className="inline-flex rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-colors duration-200 hover:bg-[#C94B16]"
+              >
+                Download Ginja
+              </Link>
+            </div>
+            <p className="mt-3 text-sm font-medium text-[var(--text-muted)]">Free to start</p>
           </div>
         </section>
       </main>

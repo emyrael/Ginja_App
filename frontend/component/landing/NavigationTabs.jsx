@@ -7,10 +7,9 @@ import { trackDownloadPageClick, trackFeedbackClick } from '../../lib/analytics'
 const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
 const navItems = [
-  { href: '#why-ginja', label: 'Why Ginja' },
   { href: '#features', label: 'Features' },
-  { href: '#circle', label: 'Circle' },
   { href: '#testimonials', label: 'Testimonials' },
+  { href: '/about', label: 'About' },
   { href: FEEDBACK_FORM_URL, label: 'Feedback', external: true, trackSource: 'header_nav' },
 ];
 

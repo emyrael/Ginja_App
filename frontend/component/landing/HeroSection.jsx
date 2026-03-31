@@ -30,6 +30,9 @@ export default function HeroSection({ onSeeHowItWorks }) {
             Unload your thoughts. Ginja learns about you and personalises your experience, then turns mental overload into clear
             next actions you can actually follow through on.
           </p>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg">
+            Built from real moments of overwhelm, Ginja helps you turn scattered thoughts into clear action.
+          </p>
           <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] sm:text-base">
             <span className="h-2 w-2 rounded-full bg-[#87B66A]" />
             Already helping people stay clear and consistent
@@ -62,6 +65,9 @@ export default function HeroSection({ onSeeHowItWorks }) {
               See how it works
             </button>
           </div>
+          <Link href="/about" className="mt-4 inline-flex text-sm font-medium text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--text-primary)]">
+            Why Ginja exists
+          </Link>
         </div>
 
         <div className="relative flex justify-center lg:justify-end">
