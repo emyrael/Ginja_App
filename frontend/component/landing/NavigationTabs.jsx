@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
+import { trackDownloadPageClick, trackFeedbackClick } from '../../lib/analytics';
 
 const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
@@ -9,7 +10,7 @@ const navItems = [
   { href: '#why-ginja', label: 'Why Ginja' },
   { href: '#features', label: 'Features' },
   { href: '#circle', label: 'Circle' },
-  { href: FEEDBACK_FORM_URL, label: 'Feedback', external: true },
+  { href: FEEDBACK_FORM_URL, label: 'Feedback', external: true, trackSource: 'header_nav' },
 ];
 
 export default function NavigationTabs() {
@@ -30,6 +31,7 @@ export default function NavigationTabs() {
               href={item.href}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
+              onClick={item.trackSource ? () => trackFeedbackClick(item.trackSource) : undefined}
               className="whitespace-nowrap transition-colors duration-200 hover:text-[var(--text-primary)]"
             >
               {item.label}
@@ -39,6 +41,7 @@ export default function NavigationTabs() {
 
         <Link
           href="/download"
+          onClick={() => trackDownloadPageClick('header_cta')}
           className="shrink-0 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5 lg:ml-auto"
         >
           Download Ginja

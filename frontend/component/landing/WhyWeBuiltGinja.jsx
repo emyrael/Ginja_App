@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '../../components/ui/button';
+import { trackFeedbackClick } from '../../lib/analytics';
 
 const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
@@ -37,7 +38,10 @@ export default function WhyWeBuiltGinja() {
         <div className="mt-6">
           <Button
             type="button"
-            onClick={() => window.open(FEEDBACK_FORM_URL, '_blank', 'noopener,noreferrer')}
+            onClick={() => {
+              trackFeedbackClick('feedback_section');
+              window.open(FEEDBACK_FORM_URL, '_blank', 'noopener,noreferrer');
+            }}
             className="rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
           >
             Give Feedback

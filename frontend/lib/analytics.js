@@ -1,7 +1,19 @@
+import { track } from '@vercel/analytics';
+
 export const GA_MEASUREMENT_ID = 'G-XWEGPPWLE4';
 
 function canTrack() {
   return typeof window !== 'undefined' && typeof window.gtag === 'function';
+}
+
+function trackVercelEvent(name, properties) {
+  if (typeof window === 'undefined') return;
+
+  try {
+    track(name, properties);
+  } catch (_) {
+    // no-op: analytics should never break UX
+  }
 }
 
 export function pageview(url) {
@@ -21,9 +33,25 @@ export function pageview(url) {
  * @param {'ios' | 'android'} platform
  */
 export function trackDownload(platform) {
-  if (!canTrack()) return;
+  if (canTrack()) {
+    window.gtag('event', 'download_click', {
+      platform,
+    });
+  }
 
-  window.gtag('event', 'download_click', {
+  trackVercelEvent('download_click', {
     platform,
+  });
+}
+
+export function trackDownloadPageClick(source) {
+  trackVercelEvent('download_page_click', {
+    source,
+  });
+}
+
+export function trackFeedbackClick(source) {
+  trackVercelEvent('feedback_click', {
+    source,
   });
 }

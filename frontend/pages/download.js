@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../component/landing/GinjaLogo';
 import GinjaText from '../component/landing/GinjaText';
-import { trackDownload } from '../lib/analytics';
+import { trackDownload, trackFeedbackClick } from '../lib/analytics';
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/ginja-app/id6752789324';
 const PLAY_STORE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrmm9SzO8qZMTQeBS0lizabwrNLz-1b6yWetVsBSv1faCmOA/viewform?usp=sharing&ouid=100679526363664014529';
@@ -148,7 +148,7 @@ export default function DownloadPage() {
               <Link href="/#why-ginja" className="transition hover:text-[var(--download-text)]">Why Ginja</Link>
               <Link href="/#features" className="transition hover:text-[var(--download-text)]">Features</Link>
               <Link href="/#adapts" className="transition hover:text-[var(--download-text)]">Adapts To You</Link>
-              <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" className="transition hover:text-[var(--download-text)]">Feedback</a>
+              <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackFeedbackClick('download_footer')} className="transition hover:text-[var(--download-text)]">Feedback</a>
             </div>
           </div>
 
