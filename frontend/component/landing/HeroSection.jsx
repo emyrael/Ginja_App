@@ -65,9 +65,6 @@ export default function HeroSection({ onSeeHowItWorks }) {
               See how it works
             </button>
           </div>
-          <Link href="/about" className="mt-4 inline-flex text-sm font-medium text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--text-primary)]">
-            Why Ginja exists
-          </Link>
         </div>
 
         <div className="relative flex justify-center lg:justify-end">

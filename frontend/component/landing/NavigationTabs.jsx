@@ -8,8 +8,8 @@ const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_
 
 const navItems = [
   { href: '#features', label: 'Features' },
-  { href: '#testimonials', label: 'Testimonials' },
   { href: '/about', label: 'About' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: FEEDBACK_FORM_URL, label: 'Feedback', external: true, trackSource: 'header_nav' },
 ];
 
