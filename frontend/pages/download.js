@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../component/landing/GinjaLogo';
 import GinjaText from '../component/landing/GinjaText';
+import { trackDownload } from '../lib/analytics';
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/ginja-app/id6752789324';
 const PLAY_STORE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrmm9SzO8qZMTQeBS0lizabwrNLz-1b6yWetVsBSv1faCmOA/viewform?usp=sharing&ouid=100679526363664014529';
@@ -29,7 +30,7 @@ function PlayStoreIcon() {
   );
 }
 
-function PlatformCard({ title, description, href, cta, icon, glow }) {
+function PlatformCard({ title, description, href, cta, icon, glow, onClick }) {
   return (
     <article className="relative overflow-hidden rounded-3xl border border-[var(--download-card-border)] bg-[var(--download-card-bg)] p-6 shadow-[0_20px_46px_rgba(25,20,15,0.16)] sm:p-7">
       <div className={`pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full blur-3xl ${glow}`} />
@@ -43,6 +44,7 @@ function PlatformCard({ title, description, href, cta, icon, glow }) {
           href={href}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={onClick}
           className="mt-6 inline-flex rounded-full border border-[#F08B2C] bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_28px_rgba(237,133,34,0.35)] transition hover:bg-[#CF6C13]"
         >
           {cta}
@@ -109,6 +111,7 @@ export default function DownloadPage() {
               cta="Download on the App Store"
               icon={<AppleIcon />}
               glow="bg-[#ED8522]/20"
+              onClick={() => trackDownload('ios')}
             />
             <PlatformCard
               title="Android"
@@ -117,6 +120,7 @@ export default function DownloadPage() {
               cta="Get Android Early Access"
               icon={<PlayStoreIcon />}
               glow="bg-[#87B66A]/20"
+              onClick={() => trackDownload('android')}
             />
           </div>
           <p className="mx-auto mt-6 max-w-6xl text-center text-sm text-[var(--download-muted)]">
