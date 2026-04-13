@@ -5,7 +5,7 @@ import GinjaText from '../component/landing/GinjaText';
 import { trackDownload, trackFeedbackClick } from '../lib/analytics';
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/ginja-app/id6752789324';
-const PLAY_STORE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScrmm9SzO8qZMTQeBS0lizabwrNLz-1b6yWetVsBSv1faCmOA/viewform?usp=sharing&ouid=100679526363664014529';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ginjaapp.ginja&pcampaignid=web_share';
 const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
 function AppleIcon() {
@@ -115,16 +115,16 @@ export default function DownloadPage() {
             />
             <PlatformCard
               title="Android"
-              description="Android is coming soon, but early access can be given through the link below."
+              description="Get the full Ginja experience on Android with quick capture, smart reminders, and a polished flow for daily follow-through."
               href={PLAY_STORE_URL}
-              cta="Get Android Early Access"
+              cta="Download on Google Play"
               icon={<PlayStoreIcon />}
               glow="bg-[#87B66A]/20"
               onClick={() => trackDownload('android')}
             />
           </div>
           <p className="mx-auto mt-6 max-w-6xl text-center text-sm text-[var(--download-muted)]">
-            iOS is live now. Android is coming soon, with early access available through the link above.
+            iOS and Android are live now. Choose your platform above to download Ginja.
           </p>
         </section>
       </main>
