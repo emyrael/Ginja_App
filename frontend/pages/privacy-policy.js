@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
         <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
             <h1 className="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: March 2026</p>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: April 2026</p>
 
             <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
               <section>
@@ -64,15 +64,28 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">4. AI Processing</h2>
-                <p className="mt-2">
-                  Some features use server-side AI processing. For example, Brain Dump and smart reminder copy may use
-                  your submitted input and selected preferences to generate useful outputs.
-                </p>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">4. AI Processing and Third-Party Services</h2>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
-                  <li>AI processing happens on secure backend services, not with client-side API keys.</li>
-                  <li>Only relevant context is sent for the requested feature.</li>
-                  <li>Generated outputs are used to power your app experience (for example task suggestions or reminder wording).</li>
+                  <li>
+                    Some features of the app use artificial intelligence to provide functionality, such as Brain Dump
+                    processing and generating personalized reminders.
+                  </li>
+                  <li>
+                    To enable these features, user-provided input (such as text entries and selected preferences) may
+                    be securely transmitted to third-party AI service providers, including OpenAI, for processing.
+                  </li>
+                  <li>
+                    These providers process the data solely on our behalf to generate relevant outputs and do not use
+                    this data to train their models or for their own purposes.
+                  </li>
+                  <li>
+                    We only send the minimum necessary data required to perform the requested function. All data is
+                    handled securely and in accordance with applicable data protection laws.
+                  </li>
+                  <li>
+                    We do not sell user data. Data is only shared with trusted service providers as necessary to
+                    operate and improve the application.
+                  </li>
                 </ul>
               </section>
 
