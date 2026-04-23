@@ -16,11 +16,15 @@ const RELATED_POSTS = [
   },
   {
     slug: 'adhd-productivity-brain-dump',
-    title: 'ADHD and Productivity: Why Your Brain Is Not the Problem (And What Actually Helps)',
+    title: 'ADHD and Productivity: A System That Actually Works With Your Brain',
   },
   {
     slug: 'priority-alerts-calm-system',
     title: 'Why Most Productivity Apps Overwhelm You (And What to Use Instead)',
+  },
+  {
+    slug: 'notion-vs-ginja',
+    title: 'Notion vs Ginja: Structure vs Clarity - Which One Do You Actually Need?',
   },
 ];
 
@@ -115,7 +119,7 @@ export default function BlogLayout({
                 href="/download"
                 className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
               >
-                [Download Ginja]
+                Download Ginja
               </Link>
             </div>
           </div>

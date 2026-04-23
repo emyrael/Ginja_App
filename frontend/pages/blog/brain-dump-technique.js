@@ -57,7 +57,7 @@ export default function BrainDumpTechniquePage() {
         Most productivity advice assumes you already know your priorities. Real life is messier. You are often carrying:
       </p>
       <ul className="mt-4 list-disc space-y-2 pl-6 text-base text-[var(--text-secondary)] sm:text-lg">
-        <li>Half-formed tasks</li>
+        <li>Half-formed to-dos</li>
         <li>Emotional pressure you cannot quantify</li>
         <li>Multiple priorities competing for attention</li>
         <li>Decisions you are postponing because your head is full</li>
@@ -78,7 +78,7 @@ export default function BrainDumpTechniquePage() {
       <h2 className="mt-8 text-2xl font-semibold sm:text-3xl">How the brain dump technique works step by step</h2>
       <ol className="mt-4 list-decimal space-y-2 pl-6 text-base text-[var(--text-secondary)] sm:text-lg">
         <li>Set a timer for 2 to 5 minutes.</li>
-        <li>Write every thought, task, worry, and idea in one stream.</li>
+        <li>Write every thought, to-do, worry, and idea in one stream.</li>
         <li>Mark each item quickly: now, later, or let go.</li>
         <li>Choose your top 3 actions for today.</li>
         <li>Start the first action immediately.</li>
@@ -97,7 +97,7 @@ export default function BrainDumpTechniquePage() {
 
       <h2 className="mt-8 text-2xl font-semibold sm:text-3xl">Where Ginja fits naturally</h2>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-        Ginja was built for this exact moment. You unload your thoughts first, then Ginja helps structure them into clear tasks
+        Ginja was built for this exact moment. You unload your thoughts first, then Ginja helps structure them into clear to-dos
         and priorities. No setup spiral. No pressure to be perfectly organized before you start.
       </p>
 
@@ -122,7 +122,7 @@ export default function BrainDumpTechniquePage() {
             href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
-            [Download Ginja]
+            Download Ginja
           </Link>
         </div>
       </div>

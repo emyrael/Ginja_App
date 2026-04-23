@@ -53,7 +53,7 @@ export default function PriorityAlertsCalmSystemPage() {
 
       <h2 className="mt-8 text-2xl font-semibold sm:text-3xl">Why most productivity apps overwhelm you</h2>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-        Most apps treat every task as equally urgent. So every to-do becomes one more notification competing for the same limited
+        Most apps treat every to-do as equally urgent. So every to-do becomes one more notification competing for the same limited
         attention.
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">When everything feels important, nothing stands out.</p>
@@ -97,7 +97,7 @@ export default function PriorityAlertsCalmSystemPage() {
 
       <h2 className="mt-8 text-2xl font-semibold sm:text-3xl">Try this shift today</h2>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-        Pick three tasks that actually matter today. Let everything else wait. Protect your attention and act on those three.
+        Pick three to-dos that actually matter today. Let everything else wait. Protect your attention and act on those three.
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If you feel mentally overloaded before choosing priorities, start with the{' '}
@@ -116,7 +116,7 @@ export default function PriorityAlertsCalmSystemPage() {
             href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
-            [Download Ginja]
+            Download Ginja
           </Link>
         </div>
       </div>

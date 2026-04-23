@@ -5,10 +5,18 @@ import GinjaText from '../../component/landing/GinjaText';
 
 const posts = [
   {
-    slug: 'adhd-productivity-brain-dump',
-    title: 'ADHD and Productivity: Why Your Brain Is Not the Problem (And What Actually Helps)',
+    slug: 'notion-vs-ginja',
+    title: 'Notion vs Ginja: Structure vs Clarity - Which One Do You Actually Need?',
     excerpt:
-      'If ADHD makes productivity feel harder, this guide shows a low-friction brain dump system that reduces overwhelm and helps you start faster.',
+      'A clear Notion vs Ginja comparison: one is built for system building, the other is built to reduce overwhelm and help you follow through.',
+    keyword: 'notion vs ginja',
+    readTime: '7 min read',
+  },
+  {
+    slug: 'adhd-productivity-brain-dump',
+    title: 'ADHD and Productivity: A System That Actually Works With Your Brain',
+    excerpt:
+      'A practical ADHD and productivity guide focused on less overwhelm, clearer to-dos, and steady follow-through without pressure.',
     keyword: 'adhd and productivity',
     readTime: '6 min read',
   },
@@ -61,18 +69,18 @@ export default function BlogIndexPage() {
         <title>Ginja Blog | Mental Clarity and Productivity Systems</title>
         <meta
           name="description"
-          content="Read story-driven productivity guides on ADHD focus, brain dumps, accountability circles, and calm systems that help you stay clear."
+          content="Read practical guides on Notion vs Ginja, ADHD productivity, brain dumps, and calm systems that reduce overwhelm and improve follow-through."
         />
         <meta
           name="keywords"
-          content="ginja blog, adhd and productivity, brain dump technique, accountability circle productivity, priority alerts, calm productivity system, mental clarity"
+          content="ginja blog, notion vs ginja, adhd and productivity, brain dump technique, accountability circle productivity, priority alerts, calm productivity system, mental clarity"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href="https://ginjaapp.com/blog/" />
         <meta property="og:title" content="Ginja Blog | Mental Clarity and Productivity Systems" />
         <meta
           property="og:description"
-          content="Read story-driven productivity guides on ADHD focus, brain dumps, accountability circles, and calm systems that help you stay clear."
+          content="Read practical guides on Notion vs Ginja, ADHD productivity, brain dumps, and calm systems that reduce overwhelm and improve follow-through."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ginjaapp.com/blog/" />

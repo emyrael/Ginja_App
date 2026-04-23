@@ -120,7 +120,7 @@ export default function AccountabilityCircleProductivityPage() {
             href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
-            [Download Ginja]
+            Download Ginja
           </Link>
         </div>
       </div>
