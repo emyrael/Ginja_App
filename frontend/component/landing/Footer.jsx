@@ -53,6 +53,7 @@ export default function Footer() {
             <a href="#why-ginja" className="hover:text-[#ED8522]">Why Ginja</a>
             <a href="#features" className="hover:text-[#ED8522]">Features</a>
             <a href="#adapts" className="hover:text-[#ED8522]">Adapts To You</a>
+            <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>
             <Link href="/download" onClick={() => trackDownloadPageClick('footer_nav')} className="hover:text-[#ED8522]">Download</Link>
             <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackFeedbackClick('footer_nav')} className="hover:text-[#ED8522]">Feedback</a>
           </div>
@@ -65,6 +66,7 @@ export default function Footer() {
             <Link href="/terms-of-service" className="hover:text-[#ED8522]">Terms</Link>
             <Link href="/support" className="hover:text-[#ED8522]">Support</Link>
             <Link href="/about" className="hover:text-[#ED8522]">About</Link>
+            <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>
             <Link href="/account-deletion" className="hover:text-[#ED8522]">Account Deletion</Link>
           </div>
         </div>
