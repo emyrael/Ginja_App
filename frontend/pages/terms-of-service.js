@@ -9,6 +9,8 @@ export default function TermsOfService() {
       <Head>
         <title>Terms of Service | Ginja</title>
         <meta name="description" content="Terms governing use of the Ginja app and website." />
+        <link rel="canonical" href="https://ginja.io/terms-of-service/" />
+        <meta property="og:url" content="https://ginja.io/terms-of-service/" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">

@@ -6,7 +6,7 @@ const BASE_URL = 'https://ginja.io';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 type StaticPageConfig = {
-  path: '/' | '/blog/' | '/download/' | '/privacy-policy/' | '/terms-of-service/';
+  path: '/' | '/about/' | '/blog/' | '/download/' | '/privacy-policy/' | '/terms-of-service/';
   changeFrequency: NonNullable<SitemapEntry['changeFrequency']>;
   priority: number;
 };
@@ -16,6 +16,11 @@ const STATIC_PAGES: StaticPageConfig[] = [
     path: '/',
     changeFrequency: 'weekly',
     priority: 1,
+  },
+  {
+    path: '/about/',
+    changeFrequency: 'monthly',
+    priority: 0.7,
   },
   {
     path: '/blog/',

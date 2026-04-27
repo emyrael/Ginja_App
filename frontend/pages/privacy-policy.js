@@ -9,6 +9,8 @@ export default function PrivacyPolicy() {
       <Head>
         <title>Privacy Policy | Ginja</title>
         <meta name="description" content="How Ginja collects, uses, and protects your information." />
+        <link rel="canonical" href="https://ginja.io/privacy-policy/" />
+        <meta property="og:url" content="https://ginja.io/privacy-policy/" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">

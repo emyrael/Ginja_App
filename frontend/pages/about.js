@@ -36,6 +36,8 @@ export default function About() {
           name="description"
           content="Learn what Ginja is, why it is different, and how it helps people stay clear, consistent, and supported without overwhelm."
         />
+        <link rel="canonical" href="https://ginja.io/about/" />
+        <meta property="og:url" content="https://ginja.io/about/" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">

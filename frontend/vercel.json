@@ -1,0 +1,121 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginja.io"
+        }
+      ],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*[^/])",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginja.io"
+        }
+      ],
+      "destination": "https://ginja.io/:path/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginja.io"
+        }
+      ],
+      "destination": "https://ginja.io/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*[^/])",
+      "has": [
+        {
+          "type": "host",
+          "value": "ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/:path/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*[^/])",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/:path/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.ginjaapp.com"
+        }
+      ],
+      "destination": "https://ginja.io/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.ginja.io"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ]
+}
