@@ -6,29 +6,34 @@ const BASE_URL = 'https://ginja.io';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 type StaticPageConfig = {
-  path: '' | '/download' | '/privacy-policy' | '/terms-of-service';
+  path: '/' | '/blog/' | '/download/' | '/privacy-policy/' | '/terms-of-service/';
   changeFrequency: NonNullable<SitemapEntry['changeFrequency']>;
   priority: number;
 };
 
 const STATIC_PAGES: StaticPageConfig[] = [
   {
-    path: '',
+    path: '/',
     changeFrequency: 'weekly',
     priority: 1,
   },
   {
-    path: '/download',
+    path: '/blog/',
+    changeFrequency: 'daily',
+    priority: 0.8,
+  },
+  {
+    path: '/download/',
     changeFrequency: 'weekly',
     priority: 0.8,
   },
   {
-    path: '/privacy-policy',
+    path: '/privacy-policy/',
     changeFrequency: 'monthly',
     priority: 0.5,
   },
   {
-    path: '/terms-of-service',
+    path: '/terms-of-service/',
     changeFrequency: 'monthly',
     priority: 0.5,
   },
@@ -46,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogPosts = await getBlogPosts();
   const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
+    url: `${BASE_URL}/blog/${post.slug}/`,
     lastModified: post.lastModified,
     changeFrequency: 'daily',
     priority: 0.7,

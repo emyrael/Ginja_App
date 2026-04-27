@@ -15,13 +15,14 @@ export default function Home() {
           name="keywords"
           content="Ginja app, unload your thoughts, smart notifications, weather-aware reminders, weekly focus, shared planning, progress tracking"
         />
+        <link rel="canonical" href="https://ginja.io/" />
         <meta property="og:title" content="Ginja | Unload your thoughts and follow through" />
         <meta
           property="og:description"
           content="Unload your thoughts. Then let Ginja adapt reminders to your mood, rhythm, and real-world context."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ginjaapp.com" />
+        <meta property="og:url" content="https://ginja.io/" />
         <meta property="og:image" content="/logo/flame-icon.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Ginja | Unload your thoughts and follow through" />

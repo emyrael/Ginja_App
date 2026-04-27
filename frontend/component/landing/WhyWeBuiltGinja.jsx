@@ -48,7 +48,7 @@ export default function WhyWeBuiltGinja() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4 text-sm">
           <Link
-            href="/about"
+            href="/about/"
             className="rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-5 py-2.5 font-semibold text-[var(--text-primary)] transition-colors duration-200 hover:brightness-105"
           >
             Read why I built Ginja

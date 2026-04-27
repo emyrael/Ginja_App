@@ -63,6 +63,8 @@ export default function DownloadPage() {
           name="description"
           content="Download Ginja for iPhone and Android. Stay organized, take action, and build momentum with Ginja."
         />
+        <link rel="canonical" href="https://ginja.io/download/" />
+        <meta property="og:url" content="https://ginja.io/download/" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4EE" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" />
       </Head>
@@ -155,11 +157,11 @@ export default function DownloadPage() {
           <div className="flex flex-col gap-4 border-t border-[var(--download-border)] pt-6 text-xs text-[var(--download-muted)] sm:flex-row sm:items-center sm:justify-between">
             <p>© 2026 Ginja App. All rights reserved.</p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/privacy-policy" className="transition hover:text-[var(--download-text)]">Privacy</Link>
-              <Link href="/terms-of-service" className="transition hover:text-[var(--download-text)]">Terms</Link>
-              <Link href="/support" className="transition hover:text-[var(--download-text)]">Support</Link>
-              <Link href="/about" className="transition hover:text-[var(--download-text)]">About</Link>
-              <Link href="/account-deletion" className="transition hover:text-[var(--download-text)]">Account Deletion</Link>
+              <Link href="/privacy-policy/" className="transition hover:text-[var(--download-text)]">Privacy</Link>
+              <Link href="/terms-of-service/" className="transition hover:text-[var(--download-text)]">Terms</Link>
+              <Link href="/support/" className="transition hover:text-[var(--download-text)]">Support</Link>
+              <Link href="/about/" className="transition hover:text-[var(--download-text)]">About</Link>
+              <Link href="/account-deletion/" className="transition hover:text-[var(--download-text)]">Account Deletion</Link>
             </div>
           </div>
         </div>

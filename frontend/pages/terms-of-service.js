@@ -57,7 +57,7 @@ export default function TermsOfService() {
 
               <section>
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Account deletion</h2>
-                <p className="mt-2">You can request deletion using the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
+                <p className="mt-2">You can request deletion using the <Link href="/account-deletion/" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
               </section>
 
               <section>

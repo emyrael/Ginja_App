@@ -16,7 +16,7 @@ export default function HeroSection({ onSeeHowItWorks }) {
       <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <div className="inline-flex flex-col items-start">
-            <Link href="/download" onClick={() => trackDownloadPageClick('hero_badge')} className="inline-flex items-center rounded-full border border-[#ED8522]/40 bg-[#FFF1E8] px-5 py-2.5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_12px_30px_rgba(237,133,34,0.24)] ring-2 ring-[#ED8522]/20 transition-all duration-300 hover:scale-[1.03] hover:bg-[#FFE6D5] animate-[pulse_2.2s_ease-in-out_infinite] dark:border-[#F1BE90]/45 dark:bg-[#4A3325] dark:text-[#F1BE90] dark:ring-[#F1BE90]/20 dark:hover:bg-[#5A3D2C]">
+            <Link href="/download/" onClick={() => trackDownloadPageClick('hero_badge')} className="inline-flex items-center rounded-full border border-[#ED8522]/40 bg-[#FFF1E8] px-5 py-2.5 text-sm font-extrabold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_12px_30px_rgba(237,133,34,0.24)] ring-2 ring-[#ED8522]/20 transition-all duration-300 hover:scale-[1.03] hover:bg-[#FFE6D5] animate-[pulse_2.2s_ease-in-out_infinite] dark:border-[#F1BE90]/45 dark:bg-[#4A3325] dark:text-[#F1BE90] dark:ring-[#F1BE90]/20 dark:hover:bg-[#5A3D2C]">
               Download Ginja
             </Link>
             <p className="mt-2 text-xs font-medium text-[var(--text-muted)] sm:text-sm">Free to start</p>

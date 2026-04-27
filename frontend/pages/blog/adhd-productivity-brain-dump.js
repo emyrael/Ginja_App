@@ -13,7 +13,7 @@ export default function AdhdProductivityBrainDumpPage() {
     '@type': 'Article',
     headline: title,
     description: metaDescription,
-    image: 'https://ginjaapp.com/logo/flame-icon.png',
+    image: 'https://ginja.io/logo/flame-icon.png',
     author: {
       '@type': 'Organization',
       name: 'Ginja',
@@ -23,12 +23,12 @@ export default function AdhdProductivityBrainDumpPage() {
       name: 'Ginja',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ginjaapp.com/logo/flame-icon.png',
+        url: 'https://ginja.io/logo/flame-icon.png',
       },
     },
     datePublished: publishedTime,
     dateModified: publishedTime,
-    mainEntityOfPage: 'https://ginjaapp.com/blog/adhd-productivity-brain-dump/',
+    mainEntityOfPage: 'https://ginja.io/blog/adhd-productivity-brain-dump/',
   };
 
   return (
@@ -100,7 +100,7 @@ export default function AdhdProductivityBrainDumpPage() {
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If you want a direct comparison of structured planning vs calm guidance, read{' '}
-        <Link href="/blog/notion-vs-ginja" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
+        <Link href="/blog/notion-vs-ginja/" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
           Notion vs Ginja
         </Link>
         .
@@ -112,7 +112,7 @@ export default function AdhdProductivityBrainDumpPage() {
         </p>
         <div className="mt-4">
           <Link
-            href="/download"
+            href="/download/"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
             Download Ginja

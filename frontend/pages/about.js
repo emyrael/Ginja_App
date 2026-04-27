@@ -189,7 +189,7 @@ export default function About() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/support"
+                href="/support/"
                 className="rounded-full border border-[#C8DABA] bg-[var(--surface-primary)] px-5 py-2.5 text-sm font-semibold text-[#3E5B34] dark:border-[#4C6040] dark:bg-[#36492B] dark:text-[#E1F0D6]"
               >
                 Contact support
@@ -206,7 +206,7 @@ export default function About() {
             </p>
             <div className="mt-6">
               <Link
-                href="/download"
+                href="/download/"
                 className="inline-flex rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-colors duration-200 hover:bg-[#C94B16]"
               >
                 Download Ginja

@@ -26,7 +26,7 @@ export default function FounderIntroVideoSection() {
 
         <div className="mt-8 flex justify-center">
           <Link
-            href="/download"
+            href="/download/"
             onClick={() => trackDownloadPageClick('intro_video_section')}
             className="inline-flex items-center justify-center rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
           >

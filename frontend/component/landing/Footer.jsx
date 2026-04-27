@@ -53,8 +53,8 @@ export default function Footer() {
             <a href="#why-ginja" className="hover:text-[#ED8522]">Why Ginja</a>
             <a href="#features" className="hover:text-[#ED8522]">Features</a>
             <a href="#adapts" className="hover:text-[#ED8522]">Adapts To You</a>
-            <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>
-            <Link href="/download" onClick={() => trackDownloadPageClick('footer_nav')} className="hover:text-[#ED8522]">Download</Link>
+            <Link href="/blog/" className="hover:text-[#ED8522]">Blog</Link>
+            <Link href="/download/" onClick={() => trackDownloadPageClick('footer_nav')} className="hover:text-[#ED8522]">Download</Link>
             <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackFeedbackClick('footer_nav')} className="hover:text-[#ED8522]">Feedback</a>
           </div>
         </div>
@@ -62,12 +62,12 @@ export default function Footer() {
         <div className="flex flex-col gap-4 border-t border-[var(--border-color)] pt-6 text-xs text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Ginja App. All rights reserved.</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/privacy-policy" className="hover:text-[#ED8522]">Privacy</Link>
-            <Link href="/terms-of-service" className="hover:text-[#ED8522]">Terms</Link>
-            <Link href="/support" className="hover:text-[#ED8522]">Support</Link>
-            <Link href="/about" className="hover:text-[#ED8522]">About</Link>
-            <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>
-            <Link href="/account-deletion" className="hover:text-[#ED8522]">Account Deletion</Link>
+            <Link href="/privacy-policy/" className="hover:text-[#ED8522]">Privacy</Link>
+            <Link href="/terms-of-service/" className="hover:text-[#ED8522]">Terms</Link>
+            <Link href="/support/" className="hover:text-[#ED8522]">Support</Link>
+            <Link href="/about/" className="hover:text-[#ED8522]">About</Link>
+            <Link href="/blog/" className="hover:text-[#ED8522]">Blog</Link>
+            <Link href="/account-deletion/" className="hover:text-[#ED8522]">Account Deletion</Link>
           </div>
         </div>
       </div>

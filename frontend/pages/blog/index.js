@@ -52,13 +52,13 @@ export default function BlogIndexPage() {
     '@type': 'Blog',
     name: 'Ginja Blog',
     description: 'Story-driven productivity insights for mental clarity, consistent action, and shared accountability.',
-    url: 'https://ginjaapp.com/blog/',
+    url: 'https://ginja.io/blog/',
     publisher: {
       '@type': 'Organization',
       name: 'Ginja',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://ginjaapp.com/logo/flame-icon.png',
+        url: 'https://ginja.io/logo/flame-icon.png',
       },
     },
   };
@@ -76,14 +76,14 @@ export default function BlogIndexPage() {
           content="ginja blog, notion vs ginja, adhd and productivity, brain dump technique, accountability circle productivity, priority alerts, calm productivity system, mental clarity"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://ginjaapp.com/blog/" />
+        <link rel="canonical" href="https://ginja.io/blog/" />
         <meta property="og:title" content="Ginja Blog | Mental Clarity and Productivity Systems" />
         <meta
           property="og:description"
           content="Read practical guides on Notion vs Ginja, ADHD productivity, brain dumps, and calm systems that reduce overwhelm and improve follow-through."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ginjaapp.com/blog/" />
+        <meta property="og:url" content="https://ginja.io/blog/" />
         <meta property="og:image" content="/logo/flame-icon.png" />
       </Head>
 
@@ -103,7 +103,7 @@ export default function BlogIndexPage() {
             </Link>
 
             <div className="flex items-center gap-4 text-sm font-medium text-[var(--text-muted)] sm:gap-5">
-              <Link href="/download" className="hover:text-[var(--text-primary)]">
+              <Link href="/download/" className="hover:text-[var(--text-primary)]">
                 Download
               </Link>
             </div>
@@ -141,14 +141,14 @@ export default function BlogIndexPage() {
                   <span>{post.readTime}</span>
                 </div>
                 <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-[1.8rem]">
-                  <Link href={`/blog/${post.slug}`} className="hover:text-[#C94B16]">
+                  <Link href={`/blog/${post.slug}/`} className="hover:text-[#C94B16]">
                     {post.title}
                   </Link>
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-[var(--text-secondary)]">{post.excerpt}</p>
                 <div className="mt-5">
                   <Link
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}/`}
                     className="inline-flex rounded-full border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-semibold transition-colors hover:border-[#ED8522]"
                   >
                     Read article

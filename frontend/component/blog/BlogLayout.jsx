@@ -3,7 +3,7 @@ import Link from 'next/link';
 import GinjaLogo from '../landing/GinjaLogo';
 import GinjaText from '../landing/GinjaText';
 
-const SITE_URL = 'https://ginjaapp.com';
+const SITE_URL = 'https://ginja.io';
 const DEFAULT_IMAGE = '/logo/flame-icon.png';
 const RELATED_POSTS = [
   {
@@ -83,10 +83,10 @@ export default function BlogLayout({
             </Link>
 
             <nav className="flex items-center gap-4 text-sm font-medium text-[var(--text-muted)] sm:gap-5">
-              <Link href="/blog" className="hover:text-[var(--text-primary)]">
+              <Link href="/blog/" className="hover:text-[var(--text-primary)]">
                 Blog
               </Link>
-              <Link href="/download" className="hover:text-[var(--text-primary)]">
+              <Link href="/download/" className="hover:text-[var(--text-primary)]">
                 Download
               </Link>
             </nav>
@@ -106,7 +106,7 @@ export default function BlogLayout({
               {RELATED_POSTS.filter((post) => post.slug !== currentSlug).map((post) => (
                 <Link
                   key={post.slug}
-                  href={`/blog/${post.slug}`}
+                  href={`/blog/${post.slug}/`}
                   className="rounded-2xl border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-3 transition-colors hover:border-[#ED8522]"
                 >
                   {post.title}
@@ -116,7 +116,7 @@ export default function BlogLayout({
 
             <div className="mt-6">
               <Link
-                href="/download"
+                href="/download/"
                 className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
               >
                 Download Ginja
