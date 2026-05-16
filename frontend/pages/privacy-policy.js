@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
         <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
             <h1 className="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: April 2026</p>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: May 2026</p>
 
             <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
               <section>
@@ -108,13 +108,15 @@ export default function PrivacyPolicy() {
                   <li>Contacts — Used to help you find and connect with people you already know on Ginja. This is optional and only used for friend discovery.</li>
                   <li>Photos — Allows you to upload or share images within the app, such as in chats or notes.</li>
                   <li>Microphone — Used for voice input when speaking your thoughts during Brain Dump.</li>
-                  <li>Location — Used to provide context-aware suggestions, such as local recommendations or relevant reminders.</li>
-                  <li>Calendar — Helps you align your to-dos and plans with your schedule.</li>
-                  <li>Notifications — Used to send reminders, updates, and smart nudges to help you stay on track with your to-dos.</li>
+                  <li>Location — Used to provide context-aware suggestions, such as local recommendations, weather-aware planning, and relevant reminders.</li>
+                  <li>Calendar — Used to help you plan around your real schedule. When you connect a calendar, Ginja may read selected calendars to show events for import, check for busy times, and help you avoid scheduling conflicts. Calendar events are not automatically added to Ginja; only events you choose to import appear in the app. If you enable calendar sync, Ginja may create, update, or delete synced calendar events when you create, edit, delete, or unsync timed to-dos or plans in Ginja.</li>
+                  <li>Notifications — Used to send reminders, shared plan updates, chat notifications, and smart nudges to help you stay on track with your to-dos and plans.</li>
                 </ul>
                 <p className="mt-2">
-                  Permissions are requested only when needed for a feature, and you can continue using Ginja without
-                  allowing optional permissions.
+                  Permissions are requested only when needed for a feature. Optional permissions can be declined, and
+                  you can continue using Ginja without allowing them. You can also disconnect connected services, such
+                  as calendar access, from your settings. Ginja does not sell permission data or use calendar data for
+                  advertising.
                 </p>
               </section>
 
@@ -143,7 +145,7 @@ export default function PrivacyPolicy() {
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">9. Contact Us</h2>
                 <p className="mt-2">
                   If you have questions about this Privacy Policy or your data, please contact us at{' '}
-                  <a href="mailto:info@ginjaapp.com" className="text-[#ED8522] hover:underline">info@ginjaapp.com</a>
+                  <a href="mailto:info@ginja.io" className="text-[#ED8522] hover:underline">info@ginja.io</a>
                 </p>
               </section>
             </div>
