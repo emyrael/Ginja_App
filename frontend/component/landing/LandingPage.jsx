@@ -21,6 +21,7 @@ export default function LandingPage() {
       <main className="pt-20 sm:pt-24">
         <HeroSection
           onSeeHowItWorks={() => scrollToSection('features')}
+          onExploreArc={() => scrollToSection('arc')}
         />
         <FounderIntroVideoSection />
         <FeaturesSection />

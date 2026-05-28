@@ -5,7 +5,7 @@ import PhoneFrame from './ui/PhoneFrame';
 import { HomeScreen } from './ui/ScreenMockups';
 import { trackDownloadPageClick } from '../../lib/analytics';
 
-export default function HeroSection({ onSeeHowItWorks }) {
+export default function HeroSection({ onSeeHowItWorks, onExploreArc }) {
   return (
     <section id="home" className="relative overflow-hidden px-4 pb-20 pt-10 sm:px-6 sm:pb-24 sm:pt-14">
       <div className="pointer-events-none absolute inset-0">
@@ -23,15 +23,15 @@ export default function HeroSection({ onSeeHowItWorks }) {
           </div>
 
           <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[var(--text-strong)] sm:text-5xl lg:text-6xl">
-            Too many thoughts in your head, nowhere to start.
+            Productivity that adapts to real life.
           </h1>
 
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
-            Unload your thoughts. Ginja learns about you and personalises your experience, then turns mental overload into clear
-            next actions you can actually follow through on.
+            Ginja helps you organize your life, build momentum, and stay consistent with AI-powered planning that adjusts to how
+            you actually live.
           </p>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg">
-            Built from real moments of overwhelm, Ginja helps you turn scattered thoughts into clear action.
+            Start with mental clutter, daily to-dos, or a long-term Arc. Ginja keeps the structure calm, human, and realistic.
           </p>
           <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] sm:text-base">
             <span className="h-2 w-2 rounded-full bg-[#87B66A]" />
@@ -53,16 +53,29 @@ export default function HeroSection({ onSeeHowItWorks }) {
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle2 className="mt-0.5 h-4 w-4 text-[#ED8522]" />
-              Personal goals and Circle plans in one flow
+              Premium Arc journeys for goals and habits
             </p>
           </div>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Link
+              href="/download"
+              onClick={() => trackDownloadPageClick('hero_start_free')}
+              className="inline-flex items-center justify-center rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_10px_28px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16]"
+            >
+              Start Free
+            </Link>
             <button
               onClick={onSeeHowItWorks}
               className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-3 text-base font-medium text-[var(--text-secondary)] transition-all duration-200 hover:brightness-105"
             >
               See how it works
+            </button>
+            <button
+              onClick={onExploreArc}
+              className="inline-flex items-center justify-center rounded-full border border-[#ED8522]/35 bg-[#ED8522]/10 px-6 py-3 text-base font-medium text-[#A26335] transition-all duration-200 hover:bg-[#ED8522]/15 dark:text-[#F1BE90]"
+            >
+              Explore Arc
             </button>
           </div>
         </div>
@@ -72,6 +85,13 @@ export default function HeroSection({ onSeeHowItWorks }) {
             <PhoneFrame className="w-[300px] sm:w-[340px]" activeTab="home">
               <HomeScreen />
             </PhoneFrame>
+          </div>
+          <div className="absolute -right-2 top-10 hidden rounded-2xl border border-[#ED8522]/30 bg-[var(--surface-primary)]/90 px-4 py-3 shadow-[0_16px_40px_rgba(237,133,34,0.18)] backdrop-blur dark:bg-[#241A14]/90 sm:block">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">Arc</p>
+            <p className="mt-1 text-sm font-semibold text-[var(--text-strong)]">Week 1 · 50%</p>
+            <div className="mt-2 h-1.5 w-28 rounded-full bg-[#E9E3DA] dark:bg-[#3A2D25]">
+              <div className="h-full w-1/2 rounded-full bg-[#ED8522]" />
+            </div>
           </div>
         </div>
       </div>

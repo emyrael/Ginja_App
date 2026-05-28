@@ -5,30 +5,30 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Ginja | Unload your thoughts and follow through</title>
+        <title>Ginja | Adaptive planning for real life</title>
         <meta
           name="description"
-          content="Unload your thoughts. Turn mental overload into clear actions and get reminders that adapt to your life."
+          content="Unload your thoughts, manage your day, and build momentum with adaptive AI planning. Explore Ginja Arc for premium goal and habit journeys."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="keywords"
-          content="Ginja app, unload your thoughts, smart notifications, weather-aware reminders, weekly focus, shared planning, progress tracking"
+          content="Ginja app, adaptive planning, Ginja Arc, brain dump, smart notifications, weather-aware reminders, weekly focus, shared planning, progress tracking"
         />
         <link rel="canonical" href="https://ginja.io/" />
-        <meta property="og:title" content="Ginja | Unload your thoughts and follow through" />
+        <meta property="og:title" content="Ginja | Adaptive planning for real life" />
         <meta
           property="og:description"
-          content="Unload your thoughts. Then let Ginja adapt reminders to your mood, rhythm, and real-world context."
+          content="Unload your thoughts, manage your day, and build momentum with adaptive AI planning. Explore Ginja Arc for premium goal and habit journeys."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ginja.io/" />
         <meta property="og:image" content="/logo/flame-icon.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Ginja | Unload your thoughts and follow through" />
+        <meta name="twitter:title" content="Ginja | Adaptive planning for real life" />
         <meta
           name="twitter:description"
-          content="Unload your thoughts. Then let Ginja adapt reminders to your mood, rhythm, and real-world context."
+          content="Unload your thoughts, manage your day, and build momentum with adaptive AI planning. Explore Ginja Arc for premium goal and habit journeys."
         />
         <meta name="twitter:image" content="/logo/flame-icon.png" />
         <link rel="icon" href="/logo/flame-icon.png" />

@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Home' },
-  { id: 'todo', label: 'Todo' },
+  { id: 'todo', label: 'To-Do' },
   { id: 'circle', label: 'Circle' },
-  { id: 'progress', label: 'Progress' },
-  { id: 'wellness', label: 'Wellness' },
+  { id: 'arc', label: 'Arc' },
+  { id: 'you', label: 'You' },
 ];
 
 function NavIcon({ id, active }) {
@@ -32,11 +32,11 @@ function NavIcon({ id, active }) {
     circle: (
       <svg {...base}><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
     ),
-    progress: (
-      <svg {...base}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    arc: (
+      <svg {...base} fill={active ? 'currentColor' : 'none'}><path d="M12 2l1.7 5.1L19 9l-5.3 1.9L12 16l-1.7-5.1L5 9l5.3-1.9L12 2z"/><path d="M19 15l.8 2.4L22 18l-2.2.6L19 21l-.8-2.4L16 18l2.2-.6L19 15z"/></svg>
     ),
-    wellness: (
-      <svg {...base} fill={active ? 'currentColor' : 'none'}><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    you: (
+      <svg {...base}><path d="M20 21a8 8 0 10-16 0"/><circle cx="12" cy="7" r="4"/></svg>
     ),
   };
 
