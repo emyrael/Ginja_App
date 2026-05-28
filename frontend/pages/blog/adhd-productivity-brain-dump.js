@@ -5,7 +5,7 @@ export default function AdhdProductivityBrainDumpPage() {
   const title = 'ADHD and Productivity: A System That Actually Works With Your Brain';
   const metaDescription =
     'Struggling with ADHD and productivity? Discover a calm system that reduces overwhelm and helps you turn thoughts into clear action.';
-  const canonicalPath = '/blog/adhd-productivity-brain-dump/';
+  const canonicalPath = '/blog/adhd-productivity-brain-dump';
   const publishedTime = '2026-04-24';
 
   const articleJsonLd = {
@@ -28,7 +28,7 @@ export default function AdhdProductivityBrainDumpPage() {
     },
     datePublished: publishedTime,
     dateModified: publishedTime,
-    mainEntityOfPage: 'https://ginja.io/blog/adhd-productivity-brain-dump/',
+    mainEntityOfPage: 'https://ginja.io/blog/adhd-productivity-brain-dump',
   };
 
   return (
@@ -100,7 +100,7 @@ export default function AdhdProductivityBrainDumpPage() {
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If you want a direct comparison of structured planning vs calm guidance, read{' '}
-        <Link href="/blog/notion-vs-ginja/" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
+        <Link href="/blog/notion-vs-ginja" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
           Notion vs Ginja
         </Link>
         .
@@ -112,7 +112,7 @@ export default function AdhdProductivityBrainDumpPage() {
         </p>
         <div className="mt-4">
           <Link
-            href="/download/"
+            href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
             Download Ginja

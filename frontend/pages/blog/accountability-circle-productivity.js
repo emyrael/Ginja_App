@@ -5,7 +5,7 @@ export default function AccountabilityCircleProductivityPage() {
   const title = 'Accountability Circle Productivity: Why You Are More Consistent With the Right People';
   const metaDescription =
     'Struggling to stay consistent? Accountability circle productivity turns shared goals into daily action, momentum, and follow-through.';
-  const canonicalPath = '/blog/accountability-circle-productivity/';
+  const canonicalPath = '/blog/accountability-circle-productivity';
   const publishedTime = '2026-04-23';
 
   const articleJsonLd = {
@@ -28,7 +28,7 @@ export default function AccountabilityCircleProductivityPage() {
     },
     datePublished: publishedTime,
     dateModified: publishedTime,
-    mainEntityOfPage: 'https://ginja.io/blog/accountability-circle-productivity/',
+    mainEntityOfPage: 'https://ginja.io/blog/accountability-circle-productivity',
   };
 
   return (
@@ -105,7 +105,7 @@ export default function AccountabilityCircleProductivityPage() {
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If your group struggles with personal overload first, start with the{' '}
-        <Link href="/blog/brain-dump-technique/" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
+        <Link href="/blog/brain-dump-technique" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
           brain dump technique
         </Link>{' '}
         before planning together.
@@ -117,7 +117,7 @@ export default function AccountabilityCircleProductivityPage() {
         </p>
         <div className="mt-4">
           <Link
-            href="/download/"
+            href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
             Download Ginja

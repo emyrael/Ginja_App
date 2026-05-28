@@ -5,7 +5,7 @@ export default function PriorityAlertsCalmSystemPage() {
   const title = 'Why Most Productivity Apps Overwhelm You (And What to Use Instead)';
   const metaDescription =
     'Tired of constant notifications? Learn how priority alerts and a calm productivity system help you focus on what matters.';
-  const canonicalPath = '/blog/priority-alerts-calm-system/';
+  const canonicalPath = '/blog/priority-alerts-calm-system';
   const publishedTime = '2026-04-23';
 
   const articleJsonLd = {
@@ -28,7 +28,7 @@ export default function PriorityAlertsCalmSystemPage() {
     },
     datePublished: publishedTime,
     dateModified: publishedTime,
-    mainEntityOfPage: 'https://ginja.io/blog/priority-alerts-calm-system/',
+    mainEntityOfPage: 'https://ginja.io/blog/priority-alerts-calm-system',
   };
 
   return (
@@ -101,7 +101,7 @@ export default function PriorityAlertsCalmSystemPage() {
       </p>
       <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If you feel mentally overloaded before choosing priorities, start with the{' '}
-        <Link href="/blog/adhd-productivity-brain-dump/" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
+        <Link href="/blog/adhd-productivity-brain-dump" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
           ADHD brain dump guide
         </Link>
         .
@@ -113,7 +113,7 @@ export default function PriorityAlertsCalmSystemPage() {
         </p>
         <div className="mt-4">
           <Link
-            href="/download/"
+            href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
             Download Ginja

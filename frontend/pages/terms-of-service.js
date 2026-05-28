@@ -9,8 +9,10 @@ export default function TermsOfService() {
       <Head>
         <title>Terms of Service | Ginja</title>
         <meta name="description" content="Terms governing use of the Ginja app and website." />
-        <link rel="canonical" href="https://ginja.io/terms-of-service/" />
-        <meta property="og:url" content="https://ginja.io/terms-of-service/" />
+        <link rel="canonical" href="https://ginja.io/terms-of-service" />
+        <meta property="og:title" content="Terms of Service | Ginja" />
+        <meta property="og:description" content="Terms governing use of the Ginja app and website." />
+        <meta property="og:url" content="https://ginja.io/terms-of-service" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -59,7 +61,7 @@ export default function TermsOfService() {
 
               <section>
                 <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Account deletion</h2>
-                <p className="mt-2">You can request deletion using the <Link href="/account-deletion/" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
+                <p className="mt-2">You can request deletion using the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
               </section>
 
               <section>

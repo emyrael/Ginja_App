@@ -9,6 +9,10 @@ export default function Support() {
       <Head>
         <title>Support | Ginja</title>
         <meta name="description" content="Contact support for Ginja." />
+        <link rel="canonical" href="https://ginja.io/support" />
+        <meta property="og:title" content="Support | Ginja" />
+        <meta property="og:description" content="Contact support for Ginja." />
+        <meta property="og:url" content="https://ginja.io/support" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -45,7 +49,7 @@ export default function Support() {
                 <div className="mt-3 space-y-3 text-sm text-[#49604A] dark:text-[#DFEFD2]">
                   <p><strong>Is Ginja live?</strong> Ginja is in early access rollout. Join the waitlist for launch updates.</p>
                   <p><strong>Which platforms?</strong> iOS and Android are the primary launch targets.</p>
-                  <p><strong>Need account deletion?</strong> Use the <Link href="/account-deletion/" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
+                  <p><strong>Need account deletion?</strong> Use the <Link href="/account-deletion" className="text-[#ED8522] hover:underline">Account Deletion</Link> page.</p>
                 </div>
               </article>
 

@@ -2,9 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../landing/GinjaLogo';
 import GinjaText from '../landing/GinjaText';
+import { canonicalUrl, DEFAULT_OG_IMAGE } from '../../lib/seo';
 
-const SITE_URL = 'https://ginja.io';
-const DEFAULT_IMAGE = '/logo/flame-icon.png';
 const RELATED_POSTS = [
   {
     slug: 'brain-dump-technique',
@@ -39,7 +38,7 @@ export default function BlogLayout({
   articleJsonLd,
   children,
 }) {
-  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+  const pageCanonicalUrl = canonicalUrl(canonicalPath);
 
   return (
     <>
@@ -48,18 +47,18 @@ export default function BlogLayout({
         <meta name="description" content={metaDescription} />
         <meta name="keywords" content={keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href={canonicalUrl} />
+        <link rel="canonical" href={pageCanonicalUrl} />
 
         <meta property="og:title" content={`${title} | Ginja Blog`} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:image" content={DEFAULT_IMAGE} />
+        <meta property="og:url" content={pageCanonicalUrl} />
+        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${title} | Ginja Blog`} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={DEFAULT_IMAGE} />
+        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
 
         <meta property="article:published_time" content={publishedTime} />
         <meta property="article:modified_time" content={modifiedTime || publishedTime} />
@@ -83,10 +82,10 @@ export default function BlogLayout({
             </Link>
 
             <nav className="flex items-center gap-4 text-sm font-medium text-[var(--text-muted)] sm:gap-5">
-              <Link href="/blog/" className="hover:text-[var(--text-primary)]">
+              <Link href="/blog" className="hover:text-[var(--text-primary)]">
                 Blog
               </Link>
-              <Link href="/download/" className="hover:text-[var(--text-primary)]">
+              <Link href="/download" className="hover:text-[var(--text-primary)]">
                 Download
               </Link>
             </nav>
@@ -106,7 +105,7 @@ export default function BlogLayout({
               {RELATED_POSTS.filter((post) => post.slug !== currentSlug).map((post) => (
                 <Link
                   key={post.slug}
-                  href={`/blog/${post.slug}/`}
+                  href={`/blog/${post.slug}`}
                   className="rounded-2xl border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-3 transition-colors hover:border-[#ED8522]"
                 >
                   {post.title}
@@ -116,7 +115,7 @@ export default function BlogLayout({
 
             <div className="mt-6">
               <Link
-                href="/download/"
+                href="/download"
                 className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
               >
                 Download Ginja

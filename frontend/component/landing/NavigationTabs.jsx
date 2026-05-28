@@ -40,7 +40,7 @@ export default function NavigationTabs() {
           ))}
         </nav>
         <Link
-          href="/download/"
+          href="/download"
           onClick={() => trackDownloadPageClick('header_cta')}
           className="shrink-0 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_8px_24px_rgba(237,133,34,0.24)] transition-all duration-200 hover:bg-[#C94B16] sm:px-5 lg:ml-auto"
         >

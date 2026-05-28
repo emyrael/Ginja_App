@@ -5,7 +5,7 @@ export default function NotionVsGinjaPage() {
   const title = 'Notion vs Ginja: Structure vs Clarity - Which One Do You Actually Need?';
   const metaDescription =
     'Notion vs Ginja comparison. Discover which app helps you stay consistent without feeling overwhelmed.';
-  const canonicalPath = '/blog/notion-vs-ginja/';
+  const canonicalPath = '/blog/notion-vs-ginja';
   const publishedTime = '2026-04-24';
 
   const articleJsonLd = {
@@ -28,7 +28,7 @@ export default function NotionVsGinjaPage() {
     },
     datePublished: publishedTime,
     dateModified: publishedTime,
-    mainEntityOfPage: 'https://ginja.io/blog/notion-vs-ginja/',
+    mainEntityOfPage: 'https://ginja.io/blog/notion-vs-ginja',
   };
 
   return (
@@ -100,7 +100,7 @@ export default function NotionVsGinjaPage() {
 
       <p className="mt-6 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
         If ADHD-style overload is part of your daily reality, read{' '}
-        <Link href="/blog/adhd-productivity-brain-dump/" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
+        <Link href="/blog/adhd-productivity-brain-dump" className="font-semibold text-[#C94B16] hover:text-[#A63D13]">
           this ADHD and productivity guide
         </Link>
         .
@@ -112,7 +112,7 @@ export default function NotionVsGinjaPage() {
         </p>
         <div className="mt-4">
           <Link
-            href="/download/"
+            href="/download"
             className="inline-flex rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(237,133,34,0.24)] transition-colors hover:bg-[#C94B16]"
           >
             Download Ginja

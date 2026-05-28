@@ -12,6 +12,10 @@ export default function AccountDeletion() {
       <Head>
         <title>Account Deletion | Ginja</title>
         <meta name="description" content="Request account deletion for Ginja." />
+        <link rel="canonical" href="https://ginja.io/account-deletion" />
+        <meta property="og:title" content="Account Deletion | Ginja" />
+        <meta property="og:description" content="Request account deletion for Ginja." />
+        <meta property="og:url" content="https://ginja.io/account-deletion" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">

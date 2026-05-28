@@ -2,114 +2,117 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginja.io"
-        }
-      ],
-      "destination": "https://ginja.io/",
-      "permanent": true
-    },
-    {
-      "source": "/:path((?!.*\\.).*[^/])",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginja.io"
-        }
-      ],
-      "destination": "https://ginja.io/:path/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginja.io"
-        }
-      ],
-      "destination": "https://ginja.io/:path*",
+      "source": "/:path((?!.*\\.).+)/",
+      "has": [{ "type": "host", "value": "www.ginja.io" }],
+      "destination": "https://ginja.io/:path",
       "permanent": true
     },
     {
       "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "ginjaapp.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "www.ginja.io" }],
       "destination": "https://ginja.io/",
       "permanent": true
     },
     {
-      "source": "/:path((?!.*\\.).*[^/])",
-      "has": [
-        {
-          "type": "host",
-          "value": "ginjaapp.com"
-        }
-      ],
-      "destination": "https://ginja.io/:path/",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.ginja.io" }],
+      "destination": "https://ginja.io/:path*",
       "permanent": true
     },
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "ginjaapp.com"
-        }
-      ],
-      "destination": "https://ginja.io/:path*",
+      "source": "/:path((?!.*\\.).+)/",
+      "has": [{ "type": "host", "value": "ginjaapp.com" }],
+      "destination": "https://ginja.io/:path",
       "permanent": true
     },
     {
       "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginjaapp.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "ginjaapp.com" }],
       "destination": "https://ginja.io/",
       "permanent": true
     },
     {
-      "source": "/:path((?!.*\\.).*[^/])",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginjaapp.com"
-        }
-      ],
-      "destination": "https://ginja.io/:path/",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "ginjaapp.com" }],
+      "destination": "https://ginja.io/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).+)/",
+      "has": [{ "type": "host", "value": "www.ginjaapp.com" }],
+      "destination": "https://ginja.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.ginjaapp.com" }],
+      "destination": "https://ginja.io/",
       "permanent": true
     },
     {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.ginjaapp.com"
-        }
-      ],
+      "has": [{ "type": "host", "value": "www.ginjaapp.com" }],
       "destination": "https://ginja.io/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).+)/",
+      "destination": "https://ginja.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "ref" }],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "has": [{ "type": "query", "key": "ref" }],
+      "destination": "https://ginja.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "utm_source" }],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "has": [{ "type": "query", "key": "utm_source" }],
+      "destination": "https://ginja.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "fbclid" }],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "has": [{ "type": "query", "key": "fbclid" }],
+      "destination": "https://ginja.io/:path",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "query", "key": "gclid" }],
+      "destination": "https://ginja.io/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!.*\\.).*)",
+      "has": [{ "type": "query", "key": "gclid" }],
+      "destination": "https://ginja.io/:path",
       "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "app.ginja.io"
-        }
-      ],
+      "has": [{ "type": "host", "value": "app.ginja.io" }],
       "headers": [
         {
           "key": "X-Robots-Tag",

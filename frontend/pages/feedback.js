@@ -12,6 +12,7 @@ export default function FeedbackRedirectPage() {
     <>
       <Head>
         <title>Redirecting to Feedback</title>
+        <meta name="robots" content="noindex, nofollow" />
         <meta httpEquiv="refresh" content={`0;url=${FEEDBACK_FORM_URL}`} />
       </Head>
       <main style={{ padding: '2rem', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}>

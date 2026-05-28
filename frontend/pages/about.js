@@ -36,8 +36,13 @@ export default function About() {
           name="description"
           content="Learn what Ginja is, why it is different, and how it helps people stay clear, consistent, and supported without overwhelm."
         />
-        <link rel="canonical" href="https://ginja.io/about/" />
-        <meta property="og:url" content="https://ginja.io/about/" />
+        <link rel="canonical" href="https://ginja.io/about" />
+        <meta property="og:title" content="About Ginja" />
+        <meta
+          property="og:description"
+          content="Learn what Ginja is, why it is different, and how it helps people stay clear, consistent, and supported without overwhelm."
+        />
+        <meta property="og:url" content="https://ginja.io/about" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -191,7 +196,7 @@ export default function About() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/support/"
+                href="/support"
                 className="rounded-full border border-[#C8DABA] bg-[var(--surface-primary)] px-5 py-2.5 text-sm font-semibold text-[#3E5B34] dark:border-[#4C6040] dark:bg-[#36492B] dark:text-[#E1F0D6]"
               >
                 Contact support
@@ -208,7 +213,7 @@ export default function About() {
             </p>
             <div className="mt-6">
               <Link
-                href="/download/"
+                href="/download"
                 className="inline-flex rounded-full bg-[#ED8522] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.24)] transition-colors duration-200 hover:bg-[#C94B16]"
               >
                 Download Ginja
