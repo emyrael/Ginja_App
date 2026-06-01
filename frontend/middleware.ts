@@ -28,10 +28,6 @@ function shouldSkipPath(pathname: string): boolean {
 export function middleware(request: NextRequest) {
   const { nextUrl } = request;
 
-  if (shouldSkipPath(nextUrl.pathname)) {
-    return NextResponse.next();
-  }
-
   const cleanUrl = nextUrl.clone();
   const host = request.headers.get('host')?.split(':')[0].toLowerCase();
   let shouldRedirect = false;
@@ -40,6 +36,10 @@ export function middleware(request: NextRequest) {
     cleanUrl.hostname = CANONICAL_HOST;
     cleanUrl.protocol = 'https:';
     shouldRedirect = true;
+  }
+
+  if (!shouldRedirect && shouldSkipPath(nextUrl.pathname)) {
+    return NextResponse.next();
   }
 
   for (const param of TRACKING_PARAMS) {
