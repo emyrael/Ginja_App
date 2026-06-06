@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const shell = 'min-h-[500px] bg-[#EEEDE9] px-3 pb-4 pt-3 text-[#1F1D19] dark:bg-[#10100F] dark:text-[#F6F4F1]';
 const card = 'rounded-[18px] border border-[#E2DDD3] bg-white/95 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-[#1E1E1D]';
@@ -626,6 +627,7 @@ export function TodoCompletedScreen() {
 }
 
 export function TodoSharedScreen() {
+  const reduceMotion = useReducedMotion();
   const messages = [
     { sender: 'Kaycee', text: 'I just created an action: Chest day today for @Jeffrey 💪', time: '18:23', mine: false },
     { sender: 'Jeffrey', text: 'Got it. I will handle bench + incline after work.', time: '18:24', mine: false },
@@ -654,31 +656,60 @@ export function TodoSharedScreen() {
         <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">🗒 Notes (1)</button>
       </div>
 
-      <div className={`${card} mb-2 border-[#F0D6BE] bg-[#FFFAF5] dark:border-[#5A3A23] dark:bg-[#2A221B]`}>
+      <motion.div
+        className={`${card} mb-2 border-[#F0D6BE] bg-[#FFFAF5] dark:border-[#5A3A23] dark:bg-[#2A221B]`}
+        initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.42, delay: 0.1, ease: 'easeOut' }}
+      >
         <p className="text-[9px] font-semibold text-[#C77738]">Action created in chat</p>
         <p className="mt-0.5 text-[11px] font-semibold">Chest day today</p>
         <p className={tiny}>Created by Kaycee · Assigned to Jeffrey · Due today at 7:00 PM</p>
-      </div>
+      </motion.div>
 
       <div className="mb-2 space-y-1.5">
-        {messages.map((message) => (
-          <div key={`${message.sender}-${message.time}-${message.text}`} className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}>
-            <div
+        {messages.map((message, index) => (
+          <motion.div
+            key={`${message.sender}-${message.time}-${message.text}`}
+            className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}
+            initial={reduceMotion ? false : { opacity: 0, x: message.mine ? 18 : -18, y: 8, scale: 0.97 }}
+            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.38, delay: 0.22 + index * 0.16, ease: 'easeOut' }}
+          >
+            <motion.div
               className={`max-w-[82%] rounded-2xl border px-2.5 py-1.5 ${
                 message.mine
                   ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#3A333C]'
                   : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'
               }`}
+              animate={
+                reduceMotion
+                  ? undefined
+                  : {
+                      y: [0, index % 2 ? -1.5 : 1.5, 0],
+                    }
+              }
+              transition={{
+                y: { duration: 3.2 + index * 0.25, repeat: Infinity, ease: 'easeInOut' },
+              }}
             >
               {!message.mine && <p className="mb-0.5 text-[8px] font-semibold text-[#7A736A] dark:text-[#ADB0B5]">{message.sender}</p>}
               <p className="text-[10px]">{message.text}</p>
               <p className="mt-0.5 text-[8px] text-[#7D766D] dark:text-[#A8ABB0]">{message.time}</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
       </div>
 
-      <div className={`${card} mb-2`}>
+      <motion.div
+        className={`${card} mb-2`}
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.38, delay: 0.9, ease: 'easeOut' }}
+      >
         <div className="flex items-center justify-between">
           <div>
             <p className="text-[11px] font-semibold">Shared Notes: Chest Day Plan</p>
@@ -686,12 +717,18 @@ export function TodoSharedScreen() {
           </div>
           <span className="text-[10px] font-semibold text-[#4FA45A]">Open ›</span>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#302A34] dark:text-[#8F929A]">
+      <motion.div
+        className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#302A34] dark:text-[#8F929A]"
+        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.38, delay: 1.02, ease: 'easeOut' }}
+      >
         <span>type @ to mention</span>
         <span className="rounded-full bg-[#F0B97F] px-2 py-1 text-[9px] font-semibold text-white">➤</span>
-      </div>
+      </motion.div>
     </div>
   );
 }

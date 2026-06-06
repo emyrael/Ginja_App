@@ -1,8 +1,5 @@
 import React from 'react';
-import HeroSection from './HeroSection';
-import FounderIntroVideoSection from './FounderIntroVideoSection';
-import FeaturesSection from './FeaturesSection';
-import WhyWeBuiltGinja from './WhyWeBuiltGinja';
+import PremiumHomepage from './PremiumHomepage';
 import Footer from './Footer';
 import NavigationTabs from './NavigationTabs';
 
@@ -19,13 +16,7 @@ export default function LandingPage() {
       <NavigationTabs />
 
       <main className="pt-20 sm:pt-24">
-        <HeroSection
-          onSeeHowItWorks={() => scrollToSection('features')}
-          onExploreArc={() => scrollToSection('arc')}
-        />
-        <FounderIntroVideoSection />
-        <FeaturesSection />
-        <WhyWeBuiltGinja />
+        <PremiumHomepage onSeeHowItWorks={() => scrollToSection('features')} />
       </main>
 
       <Footer />

@@ -2,9 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import GinjaLogo from './GinjaLogo';
 import GinjaText from './GinjaText';
-import { trackDownloadPageClick, trackFeedbackClick } from '../../lib/analytics';
-
-const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
+import { trackDownloadPageClick } from '../../lib/analytics';
 
 export default function Footer() {
   return (
@@ -31,12 +29,12 @@ export default function Footer() {
                 Instagram: @ginja_app
               </a>
               <a
-                href="https://tiktok.com/@ginja_app"
+                href="https://tiktok.com/@ginja.app"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#ED8522]"
               >
-                TikTok: @ginja_app
+                TikTok: @ginja.app
               </a>
               <a
                 href="https://x.com/ginja_app"
@@ -55,7 +53,6 @@ export default function Footer() {
             <a href="#adapts" className="hover:text-[#ED8522]">Adapts To You</a>
             <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>
             <Link href="/download" onClick={() => trackDownloadPageClick('footer_nav')} className="hover:text-[#ED8522]">Download</Link>
-            <a href={FEEDBACK_FORM_URL} target="_blank" rel="noopener noreferrer" onClick={() => trackFeedbackClick('footer_nav')} className="hover:text-[#ED8522]">Feedback</a>
           </div>
         </div>
 
