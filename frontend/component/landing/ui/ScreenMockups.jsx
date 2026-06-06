@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
 
 const shell = 'min-h-[500px] bg-[#EEEDE9] px-3 pb-4 pt-3 text-[#1F1D19] dark:bg-[#10100F] dark:text-[#F6F4F1]';
 const card = 'rounded-[18px] border border-[#E2DDD3] bg-white/95 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-[#1E1E1D]';
@@ -34,6 +34,25 @@ function Toggle({ on = true, size = 'sm' }) {
       <span className={`absolute top-0.5 ${knobClass} rounded-full ${on ? 'right-0.5 bg-[#ED8522]' : 'left-0.5 bg-white dark:bg-[#D2D3D5]'}`} />
     </div>
   );
+}
+
+function useLoopingIndex(length, delay = 1800) {
+  const reduceMotion = useReducedMotion();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { amount: 0.45 });
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion || !isInView) return undefined;
+
+    const interval = window.setInterval(() => {
+      setIndex((current) => (current + 1) % length);
+    }, delay);
+
+    return () => window.clearInterval(interval);
+  }, [delay, isInView, length, reduceMotion]);
+
+  return { ref, index, reduceMotion };
 }
 
 export function HomeScreen() {
@@ -281,63 +300,225 @@ export function TodoViewScreen() {
   );
 }
 
-export function YouScreen() {
-  const moods = ['😊 Great', '🙂 Good', '😐 Okay', '🥱 Tired', '😰 Stressed', '😔 Low'];
+export function CalendarSyncScreen() {
+  const { ref, index: activeState, reduceMotion } = useLoopingIndex(2, 1850);
+  const calendarCards = [
+    {
+      title: 'Two-way sync',
+      body: 'Keep imported Google events and synced Ginja to-dos updated both ways.',
+      toggle: true,
+    },
+    {
+      title: 'Automatically sync timed to-dos to Google',
+      body: 'New timed Ginja to-dos will be added to Google Calendar by default.',
+      toggle: true,
+    },
+    {
+      title: 'Import events',
+      body: 'Choose which Google events to bring into Ginja.',
+    },
+    {
+      title: 'Manage calendars',
+      body: 'Choose which calendars Ginja can read.',
+    },
+    {
+      title: 'Disconnect',
+      body: 'Stop syncing from Google.',
+      danger: true,
+    },
+  ];
+  const importEvents = [
+    { title: 'Design Review', meta: 'Sat Jun 6 · 18:00', status: 'Saved in Ginja' },
+    { title: 'Group Project Meeting', meta: 'Sun Jun 7 · 12:00', status: 'Category: School' },
+    { title: 'Database Study Session', meta: 'Sun Jun 7 · 17:30', status: 'Category: Study' },
+    { title: 'Submit Final Report', meta: 'Sun Jun 7 · 19:00', status: 'Category: Deadline' },
+  ];
 
   return (
-    <div className={shell}>
-      <div className={`${card} mb-3 border-[#E4C29E] p-4 dark:border-[#5A371F]`}>
-        <div className="flex items-center gap-4">
-          <Avatar />
-          <div className="min-w-0">
-            <p className="text-[18px] font-bold">Alex Carter</p>
-            <p className="mt-1 text-[10px] text-[#706A60] dark:text-[#A9A29D]">✉ alex@ginja.app</p>
-            <p className="mt-1 text-[10px] text-[#706A60] dark:text-[#A9A29D]">☎ +1 415 555 0192</p>
-          </div>
-        </div>
-        <p className="mt-3 text-[11px] font-semibold text-[#ED8522]">Edit profile</p>
-      </div>
+    <div ref={ref} className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-3 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+      <TopBar />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeState}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {activeState === 0 ? (
+            <>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#ED8522]">Calendar Sync</p>
+              <h2 className="mt-1 text-[22px] font-bold leading-tight">Google Calendar</h2>
+              <p className="mt-2 text-[11px] leading-relaxed text-[#77675A] dark:text-[#A9A29D]">Only events you import appear in Ginja.</p>
+              <div className="mt-4 space-y-2">
+                {calendarCards.map((item) => (
+                  <div key={item.title} className="rounded-[17px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className={`text-[12px] font-bold leading-snug ${item.danger ? 'text-[#B65C1D] dark:text-[#F2A17D]' : 'text-[#241B15] dark:text-[#F6F4F1]'}`}>{item.title}</p>
+                        <p className="mt-1 text-[9px] leading-snug text-[#77675A] dark:text-[#A9A29D]">{item.body}</p>
+                      </div>
+                      {item.toggle ? <Toggle on /> : <span className="mt-1 text-[13px] text-[#8A7D70] dark:text-[#6F6D68]">›</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#ED8522]">Google Calendar</p>
+              <h2 className="mt-1 text-[22px] font-bold leading-tight">Import from Google</h2>
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-[15px] font-bold">June 2026</p>
+                <span className="rounded-full bg-[#ED8522]/15 px-2.5 py-1 text-[9px] font-bold text-[#B65C1D] dark:text-[#F1BE90]">7 to import</span>
+              </div>
+              <p className="mt-1 text-[10px] text-[#77675A] dark:text-[#A9A29D]">7 to import · 1 already in Ginja</p>
+              <div className="mt-4 space-y-2">
+                {importEvents.map((event) => (
+                  <div key={event.title} className="rounded-[17px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                    <div className="flex items-start gap-2">
+                      <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-[#ED8522] text-[8px] text-[#ED8522]">✓</span>
+                      <div className="min-w-0">
+                        <p className="text-[12px] font-bold leading-snug text-[#241B15] dark:text-[#F6F4F1]">{event.title}</p>
+                        <p className="mt-1 text-[9px] text-[#77675A] dark:text-[#A9A29D]">{event.meta}</p>
+                        <p className="mt-1 text-[9px] font-semibold text-[#B65C1D] dark:text-[#F1BE90]">{event.status}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button className="mt-4 w-full rounded-[16px] bg-[#ED8522] py-3 text-[13px] font-bold text-white">Save 7 Events</button>
+            </>
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
 
-      <div className={`${card} mb-3`}>
-        <div className="grid grid-cols-3 divide-x divide-[#E2DDD3] text-center dark:divide-white/10">
-          <div>
-            <p className="text-[18px] font-bold">3</p>
-            <p className={tiny}>Active Arcs</p>
-          </div>
-          <div>
-            <p className="text-[18px] font-bold">125</p>
-            <p className={tiny}>Stride</p>
-          </div>
-          <div>
-            <p className="text-[18px] font-bold">21</p>
-            <p className={tiny}>Achievements</p>
-          </div>
-        </div>
-      </div>
+export function YouScreen() {
+  const { ref, index: activeState, reduceMotion } = useLoopingIndex(2, 1850);
+  const moods = ['Great', 'Good', 'Okay', 'Tired', 'Stressed', 'Low'];
+  const weeklyFocus = ['Finish group project presentation', 'Study for database exam', 'Apply for summer internship'];
+  const settings = [
+    { title: 'Quiet Hours', detail: '11 PM – 8 AM' },
+    { title: 'Show Progress & Milestones' },
+    { title: 'Daily Motivational Message' },
+    { title: 'Smart Reminders' },
+  ];
+  const reminderChips = [
+    { label: '5 mins' },
+    { label: '10 mins', selected: true },
+    { label: '15 mins' },
+    { label: '30 mins', selected: true },
+    { label: '1 hour', selected: true },
+    { label: '2 hours' },
+  ];
 
-      <div className={`${card} mb-2.5`}>
-        <p className="text-[15px] font-semibold">How are you feeling?</p>
-        <p className="mb-3 text-[10px] text-[#706A60] dark:text-[#A9A29D]">Ginja adjusts your nudges based on this.</p>
-        <div className="grid grid-cols-3 gap-1.5">
-          {moods.map((mood) => (
-            <div key={mood} className="rounded-xl border border-[#E7E1D8] bg-[#FBFAF8] px-1 py-2 text-center text-[9px] dark:border-white/10 dark:bg-[#151514]">
-              {mood}
-            </div>
-          ))}
-        </div>
-      </div>
+  return (
+    <div ref={ref} className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-3 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+      <TopBar />
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeState}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {activeState === 0 ? (
+            <>
+              <div className="rounded-[20px] border border-[#E4C29E] bg-white/82 p-4 shadow-[0_10px_24px_rgba(80,54,30,0.08)] dark:border-[#5A371F] dark:bg-[#1E1E1D] dark:shadow-none">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-[#ED8522] bg-[#33251D] text-[15px] font-bold text-[#F8EFE7]">
+                    S
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[18px] font-bold">Sarah</p>
+                    <p className="mt-1 text-[10px] text-[#77675A] dark:text-[#A9A29D]">sarah@student.edu</p>
+                    <p className="mt-1 text-[10px] text-[#77675A] dark:text-[#A9A29D]">+1 555 014 8921</p>
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-2 text-center">
+                  {[
+                    ['2', 'Active Arcs'],
+                    ['18', 'Completed Tasks'],
+                    ['4', 'Circles'],
+                  ].map(([value, label]) => (
+                    <div key={label} className="rounded-2xl border border-[#E7D8C8] bg-[#FFF9F2] px-2 py-2 dark:border-white/10 dark:bg-[#151514]">
+                      <p className="text-[15px] font-bold text-[#241B15] dark:text-[#F6F4F1]">{value}</p>
+                      <p className="mt-0.5 text-[8px] leading-tight text-[#77675A] dark:text-[#A9A29D]">{label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-      <div className="mb-2 mt-8 flex items-center justify-between">
-        <p className="text-[16px] font-bold">Your Focus This Week</p>
-        <span className="text-[11px] font-semibold text-[#ED8522]">Edit</span>
-      </div>
-      <div className={`${card}`}>
-        <div className="space-y-3 text-[12px]">
-          <p><span className="mr-2 text-[#ED8522]">•</span>Build Better Routines</p>
-          <div className="h-px bg-[#E2DDD3] dark:bg-white/10" />
-          <p><span className="mr-2 text-[#ED8522]">•</span>AI Learning Habit</p>
-        </div>
-      </div>
+              <div className="mt-3 rounded-[20px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                <p className="text-[14px] font-semibold">How are you feeling?</p>
+                <div className="mt-3 grid grid-cols-3 gap-1.5">
+                  {moods.map((mood, index) => (
+                    <div key={mood} className={`rounded-xl border px-1 py-2 text-center text-[9px] font-semibold ${index === 1 ? 'border-[#ED8522] bg-[#FFF1E8] text-[#B65C1D] dark:bg-[#3B2A20] dark:text-[#F1BE90]' : 'border-[#E7D8C8] bg-[#FFF9F2] text-[#77675A] dark:border-white/10 dark:bg-[#151514] dark:text-[#A9A29D]'}`}>
+                      {mood}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-3 rounded-[20px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                <p className="text-[14px] font-semibold">Weekly Focus</p>
+                <div className="mt-3 space-y-2">
+                  {weeklyFocus.map((focus) => (
+                    <p key={focus} className="flex items-start gap-2 text-[10px] leading-snug text-[#241B15] dark:text-[#F6F4F1]">
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#ED8522]" />
+                      {focus}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#ED8522]">You</p>
+              <h2 className="mt-1 text-[22px] font-bold leading-tight">Personalize Ginja</h2>
+              <p className="mt-2 text-[11px] leading-relaxed text-[#77675A] dark:text-[#A9A29D]">Personalize how Ginja speaks to you.</p>
+              <div className="mt-4 rounded-[20px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                <div className="flex items-center justify-between">
+                  <p className="text-[12px] font-bold">Ginja Tone</p>
+                  <span className="rounded-full border border-[#ED8522]/45 bg-[#FFF1E8] px-3 py-1 text-[9px] font-bold text-[#B65C1D] dark:bg-[#3B2A20] dark:text-[#F1BE90]">Direct</span>
+                </div>
+                <p className="mt-3 text-[12px] font-bold">Interests</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {['Study', 'Fitness', 'Music', 'Startups'].map((interest) => (
+                    <span key={interest} className="rounded-full border border-[#E7D8C8] bg-[#FFF9F2] px-2 py-1 text-[8px] font-semibold text-[#241B15] dark:border-white/10 dark:bg-[#151514] dark:text-[#F6F4F1]">{interest}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                {settings.map((setting) => (
+                  <div key={setting.title} className="rounded-[17px] border border-[#E5D4C2] bg-white/82 p-3 shadow-[0_8px_20px_rgba(80,54,30,0.07)] dark:border-white/10 dark:bg-[#1E1E1D] dark:shadow-none">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-[11px] font-bold">{setting.title}</p>
+                        {setting.detail && <p className="mt-1 text-[9px] text-[#77675A] dark:text-[#A9A29D]">{setting.detail}</p>}
+                      </div>
+                      <Toggle on />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {reminderChips.map((chip) => (
+                  <span key={chip.label} className={`rounded-full border px-2 py-1 text-[8px] font-semibold ${chip.selected ? 'border-[#ED8522] bg-[#FFF1E8] text-[#B65C1D] dark:bg-[#3B2A20] dark:text-[#F1BE90]' : 'border-[#E7D8C8] bg-[#FFF9F2] text-[#77675A] dark:border-white/10 dark:bg-[#151514] dark:text-[#A9A29D]'}`}>
+                    {chip.label}
+                  </span>
+                ))}
+              </div>
+            </>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -407,35 +588,108 @@ export function ArcGoalHabitScreen() {
 }
 
 export function ArcOverviewScreen() {
-  const arcs = [
-    { title: 'My Fitness Arc', status: 'IN PROGRESS', meta: 'Started 22. May · Duration: 2 weeks', pct: '50%', tone: 'orange' },
-    { title: 'Build Your AI Learning Habit', status: 'BUILDING', meta: 'Started 26. May · Daily rhythm', pct: '1 DAY', tone: 'green' },
+  const { ref, index: activeIndex, reduceMotion } = useLoopingIndex(2, 1850);
+  const activeTab = activeIndex === 0 ? 'arc' : 'explore';
+  const studyGoals = [
+    'Finish Database Assignment',
+    'Prepare Group Presentation',
+    'Study for Final Exam',
+    'Complete UX Research Summary',
   ];
+  const recommendations = [
+    { title: 'Quiet Study Cafe', meta: 'Dallas · 0.8 mi', tone: 'warm' },
+    { title: 'Student Networking Event', meta: 'Dallas · Tonight', tone: 'green' },
+  ];
+  const thisWeek = [
+    { title: 'Tech Career Fair', meta: 'Thursday · 11:00', tone: 'amber' },
+    { title: 'University Startup Meetup', meta: 'Saturday · 14:30', tone: 'warm' },
+  ];
+  const placeholderClass = {
+    warm: 'bg-[linear-gradient(135deg,#F5C08A,#7A4B2B)]',
+    green: 'bg-[linear-gradient(135deg,#B8D7A2,#325F42)]',
+    amber: 'bg-[linear-gradient(135deg,#F2D58E,#9B6128)]',
+  };
 
   return (
-    <div className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-3 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+    <div ref={ref} className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-3 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
       <TopBar />
       <div className="mb-5 grid grid-cols-2 rounded-2xl border border-[#D9C9B9] bg-white/70 p-1 text-center text-[13px] font-bold dark:border-white/10 dark:bg-[#292827]">
-        <span className="rounded-xl border border-[#ED8522] py-2 text-[#ED8522]">Arc</span>
-        <span className="py-2 text-[#77675A] dark:text-[#A9A29D]">Explore</span>
-      </div>
-      <h2 className="text-[22px] font-bold">Your Arcs</h2>
-      <p className="mt-4 text-[11px] font-bold tracking-[0.22em] text-[#77675A] dark:text-[#A9A29D]">ACTIVE ARCS</p>
-      <div className="mt-4 space-y-5">
-        {arcs.map((arc) => (
-          <div key={arc.title} className={`overflow-hidden rounded-[22px] border ${arc.tone === 'orange' ? 'border-[#D9A36F] dark:border-[#8A511F]' : 'border-[#9FC893] dark:border-[#31674B]'} bg-white/82 shadow-[0_14px_30px_rgba(80,54,30,0.11)] dark:bg-[#1E1E1D] dark:shadow-none`}>
-            <div className={`relative h-32 p-4 ${arc.tone === 'orange' ? 'bg-[linear-gradient(135deg,#D6B075,#2A1E16)]' : 'bg-[linear-gradient(135deg,#7B6B52,#11241B)]'}`}>
-              <span className="rounded-full bg-black/45 px-3 py-1 text-[9px] font-bold tracking-[0.18em]">• {arc.status}</span>
-              <span className="absolute right-4 top-5 flex h-14 w-14 items-center justify-center rounded-full border-[6px] border-[#ED8522] bg-black/35 text-[13px] font-bold">{arc.pct}</span>
-              <p className="absolute bottom-5 left-4 right-4 text-[20px] font-bold">{arc.title}</p>
+        {['arc', 'explore'].map((tab) => {
+          const isActive = activeTab === tab;
+          return (
+            <div key={tab} className={`relative rounded-xl py-2 transition-colors duration-300 ${isActive ? 'text-[#ED8522]' : 'text-[#77675A] dark:text-[#A9A29D]'}`}>
+              {isActive && (
+                <motion.span
+                  layoutId="arc-explore-segment"
+                  className="absolute inset-0 rounded-xl border border-[#ED8522] bg-white dark:border-[#5E3C24] dark:bg-[#3A333C]"
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
+              <span className="relative z-10 capitalize">{tab}</span>
             </div>
-            <div className="p-4">
-              <p className="text-[11px] leading-relaxed text-[#77675A] dark:text-[#D8D0C8]">{arc.meta}</p>
-              <p className="mt-3 text-[14px] font-bold">{arc.tone === 'orange' ? '🔥 Momentum Building' : '🍃 Consistency Building'} <span className="float-right text-[#77675A] dark:text-[#A9A29D]">›</span></p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {activeTab === 'arc' && (
+            <>
+              <h2 className="text-[22px] font-bold">Study Goals</h2>
+              <div className="mt-4 space-y-3">
+                {studyGoals.map((goal, index) => (
+                  <div key={goal} className="rounded-[18px] border border-[#E8D4C1] bg-white/82 p-3 shadow-[0_10px_24px_rgba(80,54,30,0.08)] dark:border-white/10 dark:bg-[#1E1E1D]">
+                    <div className="flex items-center justify-between gap-3">
+                      <div>
+                        <p className="text-[12px] font-bold leading-snug">{goal}</p>
+                        <p className="mt-1 text-[9px] text-[#77675A] dark:text-[#A9A29D]">Step {index + 1} · This week</p>
+                      </div>
+                      <span className="h-8 w-8 shrink-0 rounded-full border-[5px] border-[#ED8522]/70 bg-[#FFF4E8] dark:bg-[#33241C]" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {activeTab === 'explore' && (
+            <>
+              <h2 className="text-[22px] font-bold">Recommendations for Dallas</h2>
+              <p className="mt-4 text-[11px] font-bold tracking-[0.22em] text-[#77675A] dark:text-[#A9A29D]">CURATED FOR YOU</p>
+              <div className="mt-3 space-y-2">
+                {recommendations.map((item) => (
+                  <div key={item.title} className="flex items-center gap-3 rounded-[18px] border border-[#E8D4C1] bg-white/82 p-2.5 shadow-[0_10px_24px_rgba(80,54,30,0.08)] dark:border-white/10 dark:bg-[#1E1E1D]">
+                    <span className={`h-12 w-12 shrink-0 rounded-2xl ${placeholderClass[item.tone]}`} />
+                    <span>
+                      <span className="block text-[12px] font-bold">{item.title}</span>
+                      <span className="mt-1 block text-[9px] text-[#77675A] dark:text-[#A9A29D]">{item.meta}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-4 text-[11px] font-bold tracking-[0.22em] text-[#77675A] dark:text-[#A9A29D]">THIS WEEK</p>
+              <div className="mt-3 space-y-2">
+                {thisWeek.map((item) => (
+                  <div key={item.title} className="flex items-center gap-3 rounded-[18px] border border-[#E8D4C1] bg-white/82 p-2.5 shadow-[0_10px_24px_rgba(80,54,30,0.08)] dark:border-white/10 dark:bg-[#1E1E1D]">
+                    <span className={`h-12 w-12 shrink-0 rounded-2xl ${placeholderClass[item.tone]}`} />
+                    <span>
+                      <span className="block text-[12px] font-bold">{item.title}</span>
+                      <span className="mt-1 block text-[9px] text-[#77675A] dark:text-[#A9A29D]">{item.meta}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
@@ -557,12 +811,12 @@ export function SettingsScreen() {
         </div>
 
         <p className="mt-3 text-[14px] font-semibold">Quiet hours</p>
-        <p className="mt-1 text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Reduce non-urgent nudges during your quiet time.</p>
+        <p className="mt-1 text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Reduce non-urgent reminders during your quiet time.</p>
         <div className="mt-2 rounded-[14px] border border-[#DED8CF] bg-[#F8F8F6] p-2.5 dark:border-white/10 dark:bg-[#3A333C]">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-[13px] font-semibold">Enable Quiet Hours</p>
-              <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Applies to smart wellness nudges.</p>
+              <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Applies to smart wellness reminders.</p>
             </div>
             <Toggle on size="md" />
           </div>
@@ -594,7 +848,7 @@ export function SettingsScreen() {
           <div className="h-px bg-[#E2DDD3] dark:bg-white/10" />
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[8px] font-semibold">Enable Smart Nudges</p>
+              <p className="text-[8px] font-semibold">Enable Smart Reminders</p>
               <p className="text-[8px] text-[#6D675E] dark:text-[#A9ACB2]">Personalized reminders based on your style.</p>
             </div>
             <Toggle on size="md" />
@@ -627,16 +881,35 @@ export function TodoCompletedScreen() {
 }
 
 export function TodoSharedScreen() {
-  const reduceMotion = useReducedMotion();
+  const { ref, index: activeState, reduceMotion } = useLoopingIndex(3, 1850);
+  const tabs = [
+    { id: 'actions', label: 'Actions', count: 3 },
+    { id: 'chat', label: 'Chat', count: 5 },
+    { id: 'notes', label: 'Notes', count: 2 },
+  ];
+  const activeTab = tabs[activeState];
+  const actions = [
+    { title: 'Research User Interviews', owner: 'Alex', due: 'Due Wednesday', done: false },
+    { title: 'Prepare Presentation Slides', owner: 'Sarah', due: 'Due Friday', done: false },
+    { title: 'Review Final Prototype', owner: 'Smith', due: 'Completed', done: true },
+  ];
   const messages = [
-    { sender: 'Kaycee', text: 'I just created an action: Chest day today for @Jeffrey 💪', time: '18:23', mine: false },
-    { sender: 'Jeffrey', text: 'Got it. I will handle bench + incline after work.', time: '18:24', mine: false },
-    { sender: 'You', text: 'Perfect. I dropped the warm-up and set plan in Notes.', time: '18:25', mine: true },
-    { sender: 'Kaycee', text: 'Love it. We can check it off tonight and keep our streak.', time: '18:26', mine: false },
+    { sender: 'Sarah', text: 'Has everyone reviewed the wireframes?', mine: false },
+    { sender: 'Alex', text: 'I finished the user research section.', mine: false },
+    { sender: 'You', text: "Looks good. I'll update the slides tonight.", mine: true },
+    { sender: 'Smith', text: "I'll prepare the final presentation deck.", mine: false },
+    { sender: 'Sarah', text: "Perfect. Let's submit everything tomorrow.", mine: false },
+  ];
+  const notes = [
+    'Finalize presentation by Thursday',
+    'Complete usability testing',
+    'Review supervisor feedback',
+    'Prepare demo script',
+    'Submit final report before deadline',
   ];
 
   return (
-    <div className={shell}>
+    <div ref={ref} className={shell}>
       <div className="mb-2 flex items-center justify-between text-[10px] font-semibold text-[#1F1D19] dark:text-[#F1F1EF]">
         <span>19:54</span>
         <span>5G 80%</span>
@@ -645,90 +918,91 @@ export function TodoSharedScreen() {
       <div className="mb-2 flex items-center gap-2">
         <span className="text-[15px] text-[#5F5A51] dark:text-[#ADB0B6]">←</span>
         <div>
-          <h2 className="text-[16px] font-bold">Gym Bros</h2>
-          <p className="text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">You, Kaycee, Jeffrey</p>
+          <h2 className="text-[15px] font-bold leading-tight">Computer Science Group Project</h2>
+          <p className="text-[9px] text-[#6C675F] dark:text-[#A2A3A6]">You, Alex, Sarah, Smith +2</p>
         </div>
       </div>
 
-      <div className="mb-2 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] text-[10px] font-semibold dark:border-white/10 dark:bg-[#332D36]">
-        <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">⚡ Actions (2)</button>
-        <button className="border-b-2 border-[#E0832A] py-2 text-[#D37B32]">💬 Chat</button>
-        <button className="py-2 text-[#7E776E] dark:text-[#A9ACB2]">🗒 Notes (1)</button>
+      <div className="mb-3 grid grid-cols-3 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] p-1 text-[10px] font-semibold dark:border-white/10 dark:bg-[#332D36]">
+        {tabs.map((tab, tabIndex) => {
+          const isActive = tabIndex === activeState;
+          return (
+            <div key={tab.id} className={`relative rounded-[11px] py-2 text-center transition-colors duration-300 ${isActive ? 'text-[#D37B32]' : 'text-[#7E776E] dark:text-[#A9ACB2]'}`}>
+              {isActive && (
+                <motion.span
+                  layoutId="circle-active-tab"
+                  className="absolute inset-0 rounded-[11px] bg-white shadow-[0_6px_16px_rgba(80,54,30,0.08)] dark:bg-[#3A333C]"
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
+              <span className="relative z-10">{tab.label}{tab.count ? ` (${tab.count})` : ''}</span>
+              {isActive && <motion.span layoutId="circle-underline" className="absolute bottom-0 left-3 right-3 z-10 h-0.5 rounded-full bg-[#ED8522]" transition={{ duration: 0.3 }} />}
+            </div>
+          );
+        })}
       </div>
 
-      <motion.div
-        className={`${card} mb-2 border-[#F0D6BE] bg-[#FFFAF5] dark:border-[#5A3A23] dark:bg-[#2A221B]`}
-        initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.42, delay: 0.1, ease: 'easeOut' }}
-      >
-        <p className="text-[9px] font-semibold text-[#C77738]">Action created in chat</p>
-        <p className="mt-0.5 text-[11px] font-semibold">Chest day today</p>
-        <p className={tiny}>Created by Kaycee · Assigned to Jeffrey · Due today at 7:00 PM</p>
-      </motion.div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeTab.id}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {activeTab.id === 'actions' && (
+            <div className="space-y-2">
+              {actions.map((action) => (
+                <div key={action.title} className={`${card} ${action.done ? 'opacity-75' : ''}`}>
+                  <div className="flex items-start gap-2">
+                    <span className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${action.done ? 'border-[#41B982] bg-[#41B982] text-white' : 'border-[#ED8522]'}`}>
+                      {action.done ? '✓' : ''}
+                    </span>
+                    <div>
+                      <p className={`text-[11px] font-semibold ${action.done ? 'line-through decoration-[#41B982]/70' : ''}`}>{action.title}</p>
+                      <p className="mt-1 text-[9px] text-[#706A60] dark:text-[#A9A29D]">Assigned to {action.owner}</p>
+                      <p className={`mt-1 text-[9px] font-semibold ${action.done ? 'text-[#41B982]' : 'text-[#C77738]'}`}>{action.due}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-      <div className="mb-2 space-y-1.5">
-        {messages.map((message, index) => (
-          <motion.div
-            key={`${message.sender}-${message.time}-${message.text}`}
-            className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}
-            initial={reduceMotion ? false : { opacity: 0, x: message.mine ? 18 : -18, y: 8, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.38, delay: 0.22 + index * 0.16, ease: 'easeOut' }}
-          >
-            <motion.div
-              className={`max-w-[82%] rounded-2xl border px-2.5 py-1.5 ${
-                message.mine
-                  ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#3A333C]'
-                  : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'
-              }`}
-              animate={
-                reduceMotion
-                  ? undefined
-                  : {
-                      y: [0, index % 2 ? -1.5 : 1.5, 0],
-                    }
-              }
-              transition={{
-                y: { duration: 3.2 + index * 0.25, repeat: Infinity, ease: 'easeInOut' },
-              }}
-            >
-              {!message.mine && <p className="mb-0.5 text-[8px] font-semibold text-[#7A736A] dark:text-[#ADB0B5]">{message.sender}</p>}
-              <p className="text-[10px]">{message.text}</p>
-              <p className="mt-0.5 text-[8px] text-[#7D766D] dark:text-[#A8ABB0]">{message.time}</p>
-            </motion.div>
-          </motion.div>
-        ))}
-      </div>
+          {activeTab.id === 'chat' && (
+            <div className="space-y-1.5">
+              {messages.map((message) => (
+                <div key={`${message.sender}-${message.text}`} className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[84%] rounded-2xl border px-2.5 py-1.5 ${message.mine ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#3A333C]' : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'}`}>
+                    {!message.mine && <p className="mb-0.5 text-[8px] font-semibold text-[#7A736A] dark:text-[#ADB0B5]">{message.sender}</p>}
+                    <p className="text-[10px] leading-snug">{message.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-      <motion.div
-        className={`${card} mb-2`}
-        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.38, delay: 0.9, ease: 'easeOut' }}
-      >
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[11px] font-semibold">Shared Notes: Chest Day Plan</p>
-            <p className={tiny}>Warm-up, set targets, and form cues saved for everyone.</p>
-          </div>
-          <span className="text-[10px] font-semibold text-[#4FA45A]">Open ›</span>
-        </div>
-      </motion.div>
+          {activeTab.id === 'notes' && (
+            <div className={`${card} border-[#F0D6BE] bg-[#FFFAF5] dark:border-[#5A3A23] dark:bg-[#2A221B]`}>
+              <p className="text-[13px] font-bold">Project Planning Notes</p>
+              <div className="mt-3 space-y-2">
+                {notes.map((note) => (
+                  <p key={note} className="flex items-start gap-2 text-[10px] leading-snug">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-[#ED8522]" />
+                    {note}
+                  </p>
+                ))}
+              </div>
+              <p className="mt-4 border-t border-[#E8D6C5] pt-2 text-[9px] font-semibold text-[#8B7765] dark:border-white/10 dark:text-[#CBB8A6]">Edited by Alex · Today</p>
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
 
-      <motion.div
-        className="mt-2 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#302A34] dark:text-[#8F929A]"
-        initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.38, delay: 1.02, ease: 'easeOut' }}
-      >
-        <span>type @ to mention</span>
+      <div className="mt-3 flex items-center justify-between rounded-full border border-[#DDD6C9] bg-[#FFFEFC] px-3 py-2 text-[10px] text-[#9A9286] dark:border-white/10 dark:bg-[#302A34] dark:text-[#8F929A]">
+        <span>{activeTab.id === 'chat' ? 'message the group' : activeTab.id === 'actions' ? 'add shared action' : 'add note'}</span>
         <span className="rounded-full bg-[#F0B97F] px-2 py-1 text-[9px] font-semibold text-white">➤</span>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -92,6 +92,17 @@ export default function BlogLayout({
           </div>
         </header>
 
+        <div className="px-4 pt-6 sm:px-6">
+          <div className="mx-auto max-w-3xl">
+            <Link
+              href="/"
+              className="inline-flex items-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[0_8px_20px_rgba(36,31,24,0.05)] transition-colors hover:border-[#ED8522] hover:text-[#C94B16]"
+            >
+              ← Back to home
+            </Link>
+          </div>
+        </div>
+
         <article className="px-4 pb-12 pt-10 sm:px-6 sm:pb-16 sm:pt-14">
           <div className="mx-auto max-w-3xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-8 shadow-[0_14px_38px_rgba(34,30,24,0.08)] sm:px-10 sm:py-10">
             {children}
