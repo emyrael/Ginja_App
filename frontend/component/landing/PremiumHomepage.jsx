@@ -60,6 +60,16 @@ const storySteps = [
     icon: Brain,
   },
   {
+    eyebrow: 'Arc',
+    title: 'Build an adaptive journey, not another list.',
+    body: 'Arc turns goals and habits into weekly plans that adjust as life changes, so consistency has room to breathe.',
+    bullets: ['Goal Arc or Habit Arc', 'Week-by-week structure', 'Reflect and adapt as you go'],
+    screen: 'arc',
+    tab: 'arc',
+    navLabel: 'Arc',
+    icon: ArcIcon,
+  },
+  {
     eyebrow: 'Calendar Sync',
     title: 'Calendar Sync',
     body: 'Keep your plans, events, and to-dos connected in one place.',
@@ -88,16 +98,6 @@ const storySteps = [
     tab: 'circle',
     navLabel: 'Circle',
     icon: Users2,
-  },
-  {
-    eyebrow: 'Arc',
-    title: 'Build an adaptive journey, not another list.',
-    body: 'Arc turns goals and habits into weekly plans that adjust as life changes, so consistency has room to breathe.',
-    bullets: ['Goal Arc or Habit Arc', 'Week-by-week structure', 'Reflect and adapt as you go'],
-    screen: 'arc',
-    tab: 'arc',
-    navLabel: 'Arc',
-    icon: ArcIcon,
   },
   {
     eyebrow: 'You',
