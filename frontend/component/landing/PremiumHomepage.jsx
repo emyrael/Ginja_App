@@ -1014,42 +1014,95 @@ function ConnectedLifeSection() {
         </div>
 
         <div className="relative mt-10 lg:hidden">
-          <div className="absolute bottom-12 left-6 top-6 w-px overflow-hidden rounded-full bg-[#E7D2BD] dark:bg-white/12">
-            <motion.div
-              className="h-full w-full origin-top bg-[linear-gradient(180deg,#ED8522,#87B66A)]"
-              initial={reduceMotion ? false : { scaleY: 0 }}
-              animate={isInView || reduceMotion ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 1.6, ease: [0.22, 1, 0.36, 1] }}
-            />
-            {!reduceMotion && isInView ? (
-              <motion.span
-                className="absolute left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#ED8522] shadow-[0_0_14px_rgba(237,133,34,0.55)]"
-                animate={{ top: ['2%', '95%'] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+          <div className="pointer-events-none absolute bottom-10 left-0 top-4 w-12 overflow-visible" aria-hidden="true">
+            <svg className="h-full w-full overflow-visible" viewBox="0 0 48 1000" preserveAspectRatio="none">
+              <path
+                d="M24 28 C24 120 18 170 24 232 S30 345 24 410 S18 535 24 600 S30 720 24 785 S18 900 24 968"
+                fill="none"
+                stroke="rgba(226,200,175,0.82)"
+                strokeLinecap="round"
+                strokeWidth="3"
               />
-            ) : null}
+              <motion.path
+                d="M24 28 C24 120 18 170 24 232 S30 345 24 410 S18 535 24 600 S30 720 24 785 S18 900 24 968"
+                fill="none"
+                stroke="url(#connected-mobile-gradient)"
+                strokeLinecap="round"
+                strokeWidth="4"
+                initial={reduceMotion ? false : { pathLength: 0 }}
+                animate={isInView || reduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 8.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <defs>
+                <linearGradient id="connected-mobile-gradient" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor="#ED8522" />
+                  <stop offset="100%" stopColor="#87B66A" />
+                </linearGradient>
+              </defs>
+              {!reduceMotion && isInView ? (
+                <>
+                  <motion.circle
+                    r="7"
+                    fill="#ED8522"
+                    filter="drop-shadow(0 0 12px rgba(237,133,34,0.58))"
+                    animate={{ cx: [24, 24, 24, 24, 24, 24], cy: [28, 232, 410, 600, 785, 968] }}
+                    transition={{ duration: 10.8, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  <motion.circle
+                    r="3.5"
+                    fill="#FFF8EF"
+                    animate={{ cx: [24, 24, 24, 24, 24, 24], cy: [28, 232, 410, 600, 785, 968] }}
+                    transition={{ duration: 10.8, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                </>
+              ) : null}
+            </svg>
           </div>
-          <div className="space-y-4">
+          <div className="relative z-10 space-y-4">
             {connectedLifeSteps.map((step, index) => {
               const Icon = step.icon;
+              const isActive = !reduceMotion && index === activeIndex;
 
               return (
                 <motion.article
                   key={step.feature}
-                  className="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-4 rounded-[1.5rem] border border-[var(--border-color)] bg-[var(--surface-primary)] p-4 shadow-[0_14px_34px_rgba(44,36,28,0.07)] dark:bg-white/[0.05]"
+                  className={`relative grid grid-cols-[3rem_minmax(0,1fr)] gap-4 rounded-[1.5rem] border p-4 transition-colors duration-300 ${
+                    isActive
+                      ? 'border-[#ED8522]/45 bg-[#FFF8EF] shadow-[0_18px_42px_rgba(80,54,30,0.14)] dark:bg-[#3B2A20]'
+                      : 'border-[var(--border-color)] bg-[var(--surface-primary)] shadow-[0_14px_34px_rgba(44,36,28,0.07)] dark:bg-white/[0.05]'
+                  }`}
                   initial={reduceMotion ? false : { opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  animate={isInView || reduceMotion ? { scale: isActive ? 1.015 : 1 } : undefined}
                   viewport={{ once: true, amount: 0.45 }}
-                  transition={{ duration: 0.45, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.42, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ED8522]/24 bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]">
-                    <Icon className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                  <div className="min-w-0">
+                  <motion.span
+                    className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ED8522]/24 bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]"
+                    animate={
+                      isActive
+                        ? {
+                            scale: 1.08,
+                            boxShadow: '0 12px 28px rgba(237, 133, 34, 0.24)',
+                          }
+                        : {
+                            scale: 1,
+                            boxShadow: '0 0 0 rgba(237, 133, 34, 0)',
+                          }
+                    }
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <Icon className={`h-5 w-5 transition-transform duration-300 ${isActive ? 'scale-110' : 'scale-100'}`} aria-hidden="true" />
+                  </motion.span>
+                  <motion.div
+                    className="min-w-0"
+                    animate={{ opacity: reduceMotion || isActive ? 1 : 0.7 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                  >
                     <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">{step.outcome}</p>
                     <h3 className="mt-1 text-xl font-semibold leading-tight text-[var(--text-strong)]">{step.feature}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">{step.body}</p>
-                  </div>
+                  </motion.div>
                 </motion.article>
               );
             })}
@@ -1072,11 +1125,11 @@ function ConnectedLifeSection() {
             </div>
             <div className="grid gap-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:grid-cols-2">
               {[
-                'Find an event in Explore? Send it to your Circle.',
-                'Planning a trip with friends? Create actions so everyone knows what they are responsible for.',
-                'Working toward a goal? Let Arc build the path.',
-                'Need time for it? Ginja syncs it to your calendar.',
                 'Feeling overwhelmed? Start with Brain Dump.',
+                'Working toward a goal? Let Arc build the path.',
+                'Planning a trip with friends? Create actions so everyone knows what they are responsible for.',
+                'Find an event in Explore? Send it to your Circle.',
+                'Need time for it? Ginja syncs it to your calendar.',
                 'Everything works together.',
               ].map((item) => (
                 <p key={item} className="rounded-[1.25rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-3 font-medium">
