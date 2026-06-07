@@ -5,7 +5,9 @@ import {
   Brain,
   CalendarCheck2,
   CheckCircle2,
+  CircleUserRound,
   CloudRain,
+  Compass,
   Crown,
   Leaf,
   ListChecks,
@@ -15,8 +17,8 @@ import {
   Repeat2,
   Sparkles,
   Target,
-  UserRound,
   Users2,
+  Waypoints,
 } from 'lucide-react';
 import PhoneFrame from './ui/PhoneFrame';
 import {
@@ -54,7 +56,7 @@ const storySteps = [
     bullets: ['Start with messy thoughts', 'Generate actionable to-dos', 'Add due dates, priority, and categories'],
     screen: 'brainDump',
     tab: 'home',
-    navLabel: 'Brain',
+    navLabel: 'Brain Dump',
     icon: Brain,
   },
   {
@@ -105,7 +107,7 @@ const storySteps = [
     screen: 'you',
     tab: 'you',
     navLabel: 'You',
-    icon: UserRound,
+    icon: CircleUserRound,
   },
 ];
 
@@ -153,6 +155,45 @@ const intelligenceCards = [
     title: 'Quiet hours',
     body: 'Reminders respect when you do not want to be disturbed.',
     icon: Moon,
+  },
+];
+
+const connectedLifeSteps = [
+  {
+    label: 'Brain Dump',
+    signal: 'Thought',
+    body: 'Capture everything on your mind and turn thoughts into action.',
+    icon: Brain,
+  },
+  {
+    label: 'Arc',
+    signal: 'Build Habits and Set Goals',
+    body: 'Transform goals and habits into personalized plans that adapt to your life.',
+    icon: ArcIcon,
+  },
+  {
+    label: 'Circle',
+    signal: 'Accountability',
+    body: 'Bring friends, classmates, family, or teammates together around shared plans, accountability, notes, and actions.',
+    icon: Users2,
+  },
+  {
+    label: 'Explore',
+    signal: 'Experience',
+    body: 'Discover experiences, events, activities, and opportunities that match your interests.',
+    icon: Compass,
+  },
+  {
+    label: 'Calendar Sync',
+    signal: 'Schedule',
+    body: 'Keep your plans connected to your real schedule through two-way calendar integration.',
+    icon: CalendarCheck2,
+  },
+  {
+    label: 'Personalization',
+    signal: 'Adaptation',
+    body: 'The more you use Ginja, the more it adapts to how you actually live.',
+    icon: CircleUserRound,
   },
 ];
 
@@ -584,59 +625,147 @@ function StickyProductStory() {
           </h2>
         </div>
 
-        <div className="mt-12 hidden space-y-16 lg:block">
-          {storySteps.map((step, index) => {
-            const Icon = step.icon;
+        <div className="mt-12 hidden overflow-hidden rounded-[2rem] border border-[#E4CDB8] bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.14),transparent_30%),linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] shadow-[0_28px_80px_rgba(70,48,30,0.13)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.2),transparent_30%),linear-gradient(135deg,#3A2A21,#211812)] dark:shadow-[0_30px_90px_rgba(10,8,6,0.38)] lg:block">
+          <div className="grid grid-cols-6 border-b border-[#E4CDB8]/80 bg-white/28 p-2 dark:border-white/10 dark:bg-black/10">
+            {storySteps.map((step, index) => {
+              const Icon = step.icon;
+              const isActive = index === mobileStepIndex;
 
-            return (
-              <motion.div
-                key={step.eyebrow}
-                className="grid min-h-[650px] items-center gap-14 rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-soft)]/65 p-8 xl:grid-cols-[0.92fr_1.08fr]"
-                initial={reduceMotion ? false : { opacity: 0, x: index % 2 === 0 ? -42 : 42, y: 24 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: false, amount: 0.34 }}
-                transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
+              return (
+                <button
+                  key={step.eyebrow}
+                  type="button"
+                  onClick={() => setMobileStep(index, 'manual')}
+                  aria-label={`Show ${step.eyebrow}`}
+                  aria-pressed={isActive}
+                  className={`group relative mx-1 flex min-h-[5.25rem] min-w-0 flex-col items-center justify-center gap-2 overflow-hidden rounded-[1.25rem] px-3 py-3 text-center transition-colors duration-300 ${
+                    isActive
+                      ? 'text-white'
+                      : 'text-[#8A6B52] hover:bg-white/48 hover:text-[#A26335] dark:text-[#D7BDA4] dark:hover:bg-white/[0.06]'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="product-story-desktop-active"
+                      className="absolute inset-0 rounded-[1.25rem] bg-[#ED8522] shadow-[0_16px_34px_rgba(237,133,34,0.24)]"
+                      transition={{ type: 'spring', stiffness: 430, damping: 36 }}
+                    />
+                  )}
+                  <span className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-2xl border transition-all duration-300 ${
+                    isActive
+                      ? 'border-white/28 bg-white/18'
+                      : 'border-[#E6CBB3] bg-white/55 group-hover:border-[#ED8522]/35 dark:border-white/10 dark:bg-white/[0.05]'
+                  }`}>
+                    <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+                  </span>
+                  <span className="relative z-10 w-full truncate text-xs font-bold uppercase tracking-[0.12em]">{step.navLabel}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="relative grid min-h-[610px] grid-cols-[0.86fr_1.14fr] items-center gap-12 p-8 xl:p-10">
+            <div className="pointer-events-none absolute inset-x-10 top-1/2 h-px bg-[linear-gradient(90deg,transparent,rgba(237,133,34,0.34),rgba(135,182,106,0.24),transparent)]" />
+            <AnimatePresence mode="wait" custom={mobileDirection}>
+              <motion.article
+                key={mobileStep.eyebrow}
+                custom={mobileDirection}
+                initial={reduceMotion ? false : { opacity: 0, x: mobileDirection * 34, filter: 'blur(8px)' }}
+                animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                exit={reduceMotion ? undefined : { opacity: 0, x: mobileDirection * -26, filter: 'blur(8px)' }}
+                transition={{ duration: reduceMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+                className="relative z-10"
               >
-                <motion.article
-                  className="rounded-[1.5rem] border border-[#ED8522]/32 bg-[#FFF8EF] p-7 shadow-[0_18px_46px_rgba(80,54,30,0.1)] dark:bg-[#3B2A20]"
-                  initial={reduceMotion ? false : { opacity: 0, x: index % 2 === 0 ? -24 : 24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.48 }}
-                  transition={{ duration: 0.58, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]">
-                      <Icon className="h-4 w-4" aria-hidden="true" />
-                    </span>
-                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">{step.eyebrow}</p>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ED8522]/25 bg-[#FFF1E8] text-[#ED8522] shadow-[0_14px_30px_rgba(237,133,34,0.14)] dark:bg-[#4A3325]">
+                    <MobileIcon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#A26335] dark:text-[#F1BE90]">{mobileStep.eyebrow}</p>
                   </div>
-                  <h3 className="mt-5 text-2xl font-semibold leading-tight text-[var(--text-strong)]">{step.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-[var(--text-secondary)]">{step.body}</p>
-                  <ul className="mt-5 space-y-2 text-sm text-[var(--text-secondary)]">
-                    {step.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-2">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#ED8522]" />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.article>
+                </div>
+                <h3 className="mt-6 max-w-xl text-balance text-4xl font-semibold leading-tight text-[var(--text-strong)]">
+                  {mobileStep.title}
+                </h3>
+                <p className="mt-5 max-w-xl text-lg leading-relaxed text-[var(--text-secondary)]">
+                  {mobileStep.body}
+                </p>
+                <div className="mt-7 grid gap-3">
+                  {mobileStep.bullets.map((bullet, index) => (
+                    <motion.p
+                      key={bullet}
+                      className="flex items-start gap-3 rounded-2xl border border-[#E7D2BD] bg-white/52 px-4 py-3 text-sm font-medium leading-relaxed text-[#5F5146] shadow-[0_10px_24px_rgba(70,48,30,0.06)] dark:border-white/10 dark:bg-white/[0.05] dark:text-[#D9C3AE]"
+                      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.34, delay: index * 0.06, ease: 'easeOut' }}
+                    >
+                      <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#ED8522]/12 text-[#ED8522]">
+                        <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
+                      </span>
+                      {bullet}
+                    </motion.p>
+                  ))}
+                </div>
+              </motion.article>
+            </AnimatePresence>
 
+            <div className="relative flex items-center justify-center">
+              <div className="absolute inset-y-8 right-12 w-72 rounded-full bg-[#ED8522]/18 blur-3xl" />
+              <div className="absolute bottom-16 left-10 h-36 w-36 rounded-full bg-[#87B66A]/14 blur-3xl" />
+              <AnimatePresence mode="wait" custom={mobileDirection}>
                 <motion.div
-                  className="relative flex justify-center"
-                  initial={reduceMotion ? false : { opacity: 0, x: index % 2 === 0 ? 34 : -34, y: 26, scale: 0.97 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.46 }}
-                  transition={{ duration: 0.66, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+                  key={mobileStep.screen}
+                  custom={mobileDirection}
+                  initial={reduceMotion ? false : { opacity: 0, x: mobileDirection * 54, rotateY: mobileDirection * -10, scale: 0.96 }}
+                  animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+                  exit={reduceMotion ? undefined : { opacity: 0, x: mobileDirection * -42, rotateY: mobileDirection * 8, scale: 0.96 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.48, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative rounded-[2rem] border border-white/48 bg-white/35 p-3 shadow-[0_30px_86px_rgba(58,42,28,0.18)] backdrop-blur dark:border-white/10 dark:bg-white/[0.05]"
                 >
-                  <div className="absolute inset-8 rounded-full bg-[#ED8522]/12 blur-3xl" />
-                  <div className="relative rounded-[2rem] border border-white/40 bg-white/30 p-3 shadow-[0_26px_80px_rgba(58,42,28,0.16)] backdrop-blur dark:border-white/10 dark:bg-white/[0.04]">
-                    <PhoneMockup screen={step.screen} activeTab={step.tab} className="w-[318px]" />
-                  </div>
+                  <PhoneMockup screen={mobileStep.screen} activeTab={mobileStep.tab} className="w-[318px]" />
                 </motion.div>
-              </motion.div>
-            );
-          })}
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <div className="border-t border-[#E4CDB8]/80 bg-white/24 px-8 py-5 dark:border-white/10 dark:bg-black/10 xl:px-10">
+            <div className="relative">
+              <div className="absolute left-0 right-0 top-3 h-px bg-[#E2C8AF] dark:bg-white/12" />
+              <motion.div
+                className="absolute left-0 top-3 h-px bg-[linear-gradient(90deg,#ED8522,#87B66A)]"
+                initial={false}
+                animate={{ width: `${(mobileStepIndex / (storySteps.length - 1)) * 100}%` }}
+                transition={{ duration: reduceMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <div className="relative grid grid-cols-6">
+                {storySteps.map((step, index) => {
+                  const isActive = index === mobileStepIndex;
+                  const isPast = index < mobileStepIndex;
+
+                  return (
+                    <button
+                      key={step.eyebrow}
+                      type="button"
+                      onClick={() => setMobileStep(index, 'manual')}
+                      className="flex flex-col items-center gap-3 text-center"
+                      aria-label={`Jump to ${step.eyebrow}`}
+                    >
+                      <span className={`h-6 w-6 rounded-full border-4 transition-colors duration-300 ${
+                        isActive || isPast
+                          ? 'border-[#ED8522] bg-[#ED8522]'
+                          : 'border-[#E2C8AF] bg-[var(--surface-primary)] dark:border-white/18'
+                      }`}>
+                        <span className={`${isActive ? 'block' : 'hidden'} m-1 h-2 w-2 rounded-full bg-white`} />
+                      </span>
+                      <span className={`text-xs font-semibold transition-colors duration-300 ${isActive ? 'text-[#A26335] dark:text-[#F1BE90]' : 'text-[var(--text-muted)]'}`}>
+                        {step.eyebrow}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="mt-10 lg:hidden">
@@ -645,7 +774,7 @@ function StickyProductStory() {
             onTouchStart={handleStoryTouchStart}
             onTouchEnd={handleStoryTouchEnd}
           >
-            <div className="grid grid-cols-6 gap-2 pb-3">
+            <div className="grid grid-cols-3 gap-2 pb-3">
               {storySteps.map((step, index) => {
                 const Icon = step.icon;
                 const isActive = index === mobileStepIndex;
@@ -657,7 +786,7 @@ function StickyProductStory() {
                     onClick={() => setMobileStep(index, 'manual')}
                     aria-label={`Show ${step.eyebrow}`}
                     aria-pressed={isActive}
-                    className={`relative mx-auto flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border transition-colors duration-200 ${
+                    className={`relative flex min-h-[58px] min-w-0 flex-col items-center justify-center gap-1.5 overflow-hidden rounded-2xl border px-2 py-2 text-center transition-colors duration-200 ${
                       isActive
                         ? 'border-[#ED8522]/40 text-white shadow-[0_10px_24px_rgba(237,133,34,0.2)]'
                         : 'border-[var(--border-color)] bg-[var(--surface-primary)] text-[#A26335] dark:text-[#F1BE90]'
@@ -671,6 +800,9 @@ function StickyProductStory() {
                       />
                     )}
                     <Icon className="relative z-10 h-4 w-4" aria-hidden="true" />
+                    <span className="relative z-10 max-w-full truncate text-[9px] font-bold uppercase leading-none tracking-[0.08em]">
+                      {step.navLabel}
+                    </span>
                   </button>
                 );
               })}
@@ -727,6 +859,146 @@ function StickyProductStory() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function ConnectedLifeSection() {
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.28 });
+  const lineDelay = 0.2;
+  const lineDuration = 2.2;
+  const stepDelay = 0.18;
+
+  return (
+    <section ref={sectionRef} className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
+      <div className="pointer-events-none absolute inset-x-0 top-12 h-px bg-[linear-gradient(90deg,transparent,rgba(237,133,34,0.35),rgba(135,182,106,0.28),transparent)]" />
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-14">
+        <motion.div
+          className="lg:sticky lg:top-28"
+          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+          animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+          transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/25 bg-[#FFF1E8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_10px_28px_rgba(237,133,34,0.1)] dark:bg-[#4A3325] dark:text-[#F1BE90]">
+            <Waypoints className="h-3.5 w-3.5" aria-hidden="true" />
+            Connected life system
+          </p>
+          <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl lg:text-5xl">
+            Why use five apps when one system can connect everything?
+          </h2>
+          <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            <p>
+              Most apps help you manage tasks. Ginja helps you connect your life.
+            </p>
+            <p>
+              Capture what&apos;s on your mind. Turn it into a plan. Bring people into it. Discover new experiences.
+              Fit everything around your schedule.
+            </p>
+            <p className="font-semibold text-[var(--text-strong)]">All in one place.</p>
+          </div>
+
+          <div className="mt-8 rounded-[1.5rem] border border-[var(--border-color)] bg-[linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] p-5 shadow-[0_16px_40px_rgba(44,36,28,0.07)] dark:shadow-[0_18px_44px_rgba(10,8,6,0.26)]">
+            <p className="text-sm font-semibold leading-relaxed text-[var(--text-strong)]">Most apps solve one part of the problem.</p>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+              One captures ideas. Another manages tasks. Another tracks goals. Another plans with friends. Another discovers
+              things to do. Another manages your calendar.
+            </p>
+            <p className="mt-3 text-sm font-semibold leading-relaxed text-[#A26335] dark:text-[#F1BE90]">
+              Ginja was built differently.
+            </p>
+          </div>
+        </motion.div>
+
+        <div className="relative">
+          <div className="absolute bottom-8 left-5 top-8 w-px overflow-hidden rounded-full bg-[#E7D2BD] dark:bg-white/12 sm:left-6">
+            <motion.div
+              className="h-full w-full origin-top bg-[linear-gradient(180deg,#ED8522,#87B66A)]"
+              initial={reduceMotion ? false : { scaleY: 0 }}
+              animate={isInView || reduceMotion ? { scaleY: 1 } : { scaleY: 0 }}
+              transition={{ duration: reduceMotion ? 0 : lineDuration, delay: lineDelay, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </div>
+
+          <div className="space-y-4 sm:space-y-5">
+            {connectedLifeSteps.map((step, index) => {
+              const Icon = step.icon;
+              const revealDelay = lineDelay + index * stepDelay;
+
+              return (
+                <motion.article
+                  key={step.label}
+                  className="group relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 rounded-[1.5rem] border border-[var(--border-color)] bg-[var(--surface-primary)] p-4 shadow-[0_14px_34px_rgba(44,36,28,0.07)] transition-colors duration-300 hover:border-[#ED8522]/45 dark:shadow-[0_16px_38px_rgba(10,8,6,0.26)] sm:grid-cols-[3.25rem_minmax(0,1fr)] sm:p-5"
+                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                  animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.52, delay: reduceMotion ? 0 : revealDelay, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={reduceMotion ? undefined : { y: -4, boxShadow: '0 22px 46px rgba(80, 54, 30, 0.12)' }}
+                >
+                  <motion.span
+                    className="relative z-10 flex h-10 w-10 items-center justify-center rounded-2xl border border-[#ED8522]/28 bg-[#FFF1E8] text-[#ED8522] shadow-[0_10px_24px_rgba(237,133,34,0.12)] dark:bg-[#4A3325] sm:h-12 sm:w-12"
+                    animate={
+                      isInView && !reduceMotion
+                        ? {
+                            scale: [1, 1.08, 1],
+                            boxShadow: [
+                              '0 10px 24px rgba(237, 133, 34, 0.12)',
+                              '0 14px 32px rgba(237, 133, 34, 0.24)',
+                              '0 10px 24px rgba(237, 133, 34, 0.12)',
+                            ],
+                          }
+                        : undefined
+                    }
+                    transition={{ duration: 0.7, delay: revealDelay + 0.08, ease: [0.22, 1, 0.36, 1] }}
+                    whileHover={reduceMotion ? undefined : { scale: 1.08 }}
+                  >
+                    <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5" aria-hidden="true" />
+                  </motion.span>
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <h3 className="text-xl font-semibold leading-tight text-[var(--text-strong)] sm:text-2xl">{step.label}</h3>
+                      <span className="rounded-full border border-[#87B66A]/24 bg-[#EEF5E8] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#567B34] dark:bg-[#33412B] dark:text-[#BBD89F]">
+                        {step.signal}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">{step.body}</p>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+
+        <motion.div
+          className="lg:col-span-2"
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.58, delay: reduceMotion ? 0 : 1.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="grid gap-6 border-t border-[var(--border-color)] pt-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10 lg:pt-10">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Everything works together</p>
+              <h3 className="mt-3 max-w-xl text-balance text-2xl font-semibold leading-tight text-[var(--text-strong)] sm:text-3xl">
+                The goal is not to give you more tools.
+              </h3>
+            </div>
+            <div className="grid gap-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:grid-cols-2">
+              {[
+                'Find an event in Explore? Send it to your Circle.',
+                'Planning a trip with friends? Create actions so everyone knows what they are responsible for.',
+                'Working toward a goal? Let Arc build the path.',
+                'Need time for it? Ginja syncs it to your calendar.',
+                'Feeling overwhelmed? Start with Brain Dump.',
+                'Your thoughts, goals, people, experiences, and plans finally connect.',
+              ].map((item) => (
+                <p key={item} className="rounded-[1.25rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-3 font-medium">
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -1266,6 +1538,7 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
       <div ref={storyRef}>
         <StickyProductStory />
       </div>
+      <ConnectedLifeSection />
       <ArcShowcase />
       <AudienceSection />
       <IntelligenceSection />
