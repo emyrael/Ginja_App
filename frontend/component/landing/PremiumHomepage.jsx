@@ -16,6 +16,7 @@ import {
   PlayCircle,
   Repeat2,
   Sparkles,
+  StickyNote,
   Target,
   Users2,
   Waypoints,
@@ -70,6 +71,26 @@ const storySteps = [
     icon: ArcIcon,
   },
   {
+    eyebrow: 'Circle',
+    title: 'Bring shared plans out of the group chat.',
+    body: 'Circle gives friends, classmates, family, or teammates one place for shared plans, actions, notes, and accountability.',
+    bullets: ['Plan together with clear ownership', 'Assign actions inside the conversation', 'Keep notes and context beside the plan'],
+    screen: 'circle',
+    tab: 'circle',
+    navLabel: 'Circle',
+    icon: Users2,
+  },
+  {
+    eyebrow: 'Explore',
+    title: 'Discover something, then plan it together.',
+    body: 'Explore helps you find events, places, and activities that match your interests, then connect them to the people and plans that make them happen.',
+    bullets: ['Find experiences matched to your interests', 'Send ideas into Circle', 'Turn discovery into shared action'],
+    screen: 'explore',
+    tab: 'arc',
+    navLabel: 'Explore',
+    icon: Compass,
+  },
+  {
     eyebrow: 'Calendar Sync',
     title: 'Calendar Sync',
     body: 'Keep your plans, events, and to-dos connected in one place.',
@@ -90,19 +111,9 @@ const storySteps = [
     icon: ListChecks,
   },
   {
-    eyebrow: 'Circle',
-    title: 'Make shared plans accountable.',
-    body: 'Circle turns group conversations into shared actions with owners, notes, due dates, and context.',
-    bullets: ['Create actions in chat', 'Assign ownership clearly', 'Keep shared notes beside the plan'],
-    screen: 'circle',
-    tab: 'circle',
-    navLabel: 'Circle',
-    icon: Users2,
-  },
-  {
     eyebrow: 'You',
-    title: 'You',
-    body: 'Personalize how Ginja supports your day.',
+    title: 'Personalization that learns your rhythm.',
+    body: 'You tunes how Ginja supports your day, from reminder tone to quiet hours, interests, and daily rhythm.',
     bullets: ['Set your tone and interests', 'Choose quiet hours', 'Tune reminders around your rhythm'],
     screen: 'you',
     tab: 'you',
@@ -160,41 +171,50 @@ const intelligenceCards = [
 
 const connectedLifeSteps = [
   {
-    label: 'Brain Dump',
-    signal: 'Thought',
-    body: 'Capture everything on your mind and turn thoughts into action.',
+    outcome: 'Thought',
+    feature: 'Brain Dump',
+    body: 'Too many thoughts in your head? Brain Dump them into clear action.',
     icon: Brain,
   },
   {
-    label: 'Arc',
-    signal: 'Build Habits and Set Goals',
-    body: 'Transform goals and habits into personalized plans that adapt to your life.',
+    outcome: 'Goal',
+    feature: 'Arc',
+    body: 'Working toward a goal? Let Arc build the path and adapt it as life changes.',
     icon: ArcIcon,
   },
   {
-    label: 'Circle',
-    signal: 'Accountability',
-    body: 'Bring friends, classmates, family, or teammates together around shared plans, accountability, notes, and actions.',
+    outcome: 'People',
+    feature: 'Circle',
+    body: 'Bring friends, classmates, family, or teammates into shared plans with notes, actions, and accountability.',
     icon: Users2,
   },
   {
-    label: 'Explore',
-    signal: 'Experience',
-    body: 'Discover experiences, events, activities, and opportunities that match your interests.',
+    outcome: 'Experience',
+    feature: 'Explore',
+    body: 'Discover events, places, and activities that match your interests.',
     icon: Compass,
   },
   {
-    label: 'Calendar Sync',
-    signal: 'Schedule',
-    body: 'Keep your plans connected to your real schedule through two-way calendar integration.',
+    outcome: 'Schedule',
+    feature: 'Calendar Sync',
+    body: 'Fit plans into your real schedule with two-way calendar sync.',
     icon: CalendarCheck2,
   },
   {
-    label: 'Personalization',
-    signal: 'Adaptation',
-    body: 'The more you use Ginja, the more it adapts to how you actually live.',
+    outcome: 'Adaptation',
+    feature: 'Personalization',
+    body: 'Let Ginja learn your rhythm, preferences, and routines over time.',
     icon: CircleUserRound,
   },
+];
+
+const scatteredAppCards = [
+  { label: 'Notes', icon: StickyNote, className: 'lg:left-6 lg:top-12' },
+  { label: 'Tasks', icon: ListChecks, className: 'lg:left-32 lg:bottom-10' },
+  { label: 'Goals', icon: Target, className: 'lg:left-[39%] lg:top-2' },
+  { label: 'Group Chat', icon: MessageCircle, className: 'lg:right-32 lg:bottom-10' },
+  { label: 'Events', icon: Compass, className: 'lg:right-8 lg:top-14' },
+  { label: 'Calendar', icon: CalendarCheck2, className: 'lg:right-[34%] lg:top-28' },
 ];
 
 const testimonials = [
@@ -279,6 +299,7 @@ function PhoneMockup({ screen = 'home', activeTab = 'home', className = '' }) {
     todo: <TodoViewScreen />,
     circle: <TodoSharedScreen />,
     arc: <ArcOverviewScreen />,
+    explore: <ArcExploreLightMockup />,
     you: <YouScreen />,
   };
 
@@ -490,62 +511,84 @@ function HeroSection({ onSeeHowItWorks }) {
   );
 }
 
-function TransformationSection() {
-  const before = [
-    { text: 'I need to work out again', left: '8%', top: '68px', rotate: -5, drift: [0, -10, 8, 0] },
-    { text: 'Finish report', left: '50%', top: '96px', rotate: 4, drift: [0, 8, -8, 0] },
-    { text: 'Plan trip', left: '18%', top: '164px', rotate: 5, drift: [0, -8, 9, 0] },
-    { text: 'Text the group', left: '48%', top: '214px', rotate: -4, drift: [0, 10, -6, 0] },
-    { text: 'Study this week', left: '14%', top: '274px', rotate: -2, drift: [0, -6, 8, 0] },
-  ];
-  const after = [
-    { time: '09:00', title: 'Morning strength session', meta: 'From: I need to work out again' },
-    { time: '11:30', title: 'Finish report draft', meta: 'From: Finish report' },
-    { time: '15:00', title: 'Compare trip options', meta: 'From: Plan trip' },
-    { time: '18:15', title: 'Text the group with the plan', meta: 'From: Text the group' },
-    { time: '20:00', title: 'Study block for this week', meta: 'From: Study this week' },
-  ];
+function FiveAppsProblemSection() {
   const reduceMotion = useReducedMotion();
 
   return (
     <AnimatedSection id="why-ginja" className="px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Why Ginja exists</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Five apps problem</p>
           <h2 className="mt-4 max-w-3xl text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl">
-            Most productivity apps ask for clarity before you have it.
+            Why use five apps when one system can connect everything?
           </h2>
-          <p className="mt-5 max-w-3xl text-pretty text-lg leading-relaxed text-[var(--text-secondary)]">
-            Ginja starts where real life starts: with scattered thoughts, changing moods, missed plans, shared responsibilities, and goals that need flexible structure.
-          </p>
+          <div className="mt-5 max-w-3xl space-y-4 text-pretty text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            <p>Most of us organize life across too many places.</p>
+            <p>
+              One app for notes. One for tasks. One for goals. One for group chats. One for events. One for calendar.
+            </p>
+            <p>
+              The result? Your thoughts, plans, people, and schedule live in separate places.
+            </p>
+            <p className="font-semibold text-[var(--text-strong)]">Ginja brings them together.</p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-6">
-          <div className="min-w-0 rounded-[1.75rem] border border-[var(--border-color)] bg-[var(--surface-soft)] p-3 sm:p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--text-muted)]">Before</p>
-            <div className="mt-4 flex justify-center sm:hidden">
-              <CompactCustomPhonePreview activeTab="home">
-                <BrainDumpScatteredScreen before={before} reduceMotion={reduceMotion} />
-              </CompactCustomPhonePreview>
-            </div>
-            <div className="mt-6 hidden justify-center sm:flex">
-              <PhoneFrame className="w-[282px] sm:w-[300px]" activeTab="home">
-                <BrainDumpScatteredScreen before={before} reduceMotion={reduceMotion} />
-              </PhoneFrame>
-            </div>
+        <div className="relative overflow-hidden rounded-[2rem] border border-[#E4CDB8] bg-[radial-gradient(circle_at_50%_42%,rgba(237,133,34,0.14),transparent_32%),linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] p-5 shadow-[0_24px_70px_rgba(70,48,30,0.12)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_50%_42%,rgba(237,133,34,0.18),transparent_32%),linear-gradient(135deg,#3A2A21,#211812)] sm:p-7 lg:min-h-[430px]">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:absolute lg:inset-7 lg:block">
+            {scatteredAppCards.map((item, index) => {
+              const Icon = item.icon;
+
+              return (
+                <motion.div
+                  key={item.label}
+                  className={`relative rounded-[1.25rem] border border-[var(--border-color)] bg-white/72 px-4 py-3 shadow-[0_14px_34px_rgba(70,48,30,0.08)] backdrop-blur dark:border-white/10 dark:bg-white/[0.06] lg:absolute lg:w-36 ${item.className}`}
+                  initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.96 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  animate={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          x: [0, index % 2 === 0 ? 6 : -6, 0],
+                          y: [0, index % 3 === 0 ? -5 : 5, 0],
+                        }
+                  }
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{
+                    opacity: { duration: 0.45, delay: index * 0.06 },
+                    y: { duration: 4.5 + index * 0.25, repeat: Infinity, ease: 'easeInOut' },
+                    x: { duration: 4.8 + index * 0.2, repeat: Infinity, ease: 'easeInOut' },
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325] dark:text-[#F1BE90]">
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <p className="text-sm font-semibold text-[var(--text-strong)]">{item.label}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="min-w-0 rounded-[1.75rem] border border-[#E6CBB3] bg-[linear-gradient(180deg,#FFF9F2,#F6EADF)] p-3 shadow-[0_18px_44px_rgba(70,48,30,0.1)] dark:border-[#6B4A31] dark:bg-[linear-gradient(180deg,#3A2A21,#2A1F19)] sm:p-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">After</p>
-            <div className="mt-4 flex justify-center sm:hidden">
-              <CompactCustomPhonePreview activeTab="todo">
-                <StructuredTodosScreen after={after} reduceMotion={reduceMotion} />
-              </CompactCustomPhonePreview>
-            </div>
-            <div className="mt-6 hidden justify-center sm:flex">
-              <PhoneFrame className="w-[282px] sm:w-[300px]" activeTab="todo">
-                <StructuredTodosScreen after={after} reduceMotion={reduceMotion} />
-              </PhoneFrame>
+          <div className="relative z-10 mx-auto mt-5 max-w-sm rounded-[1.75rem] border border-[#ED8522]/28 bg-[#FFF8EF]/92 p-5 text-center shadow-[0_24px_64px_rgba(80,54,30,0.15)] backdrop-blur dark:bg-[#2E2018]/92 sm:mt-7 lg:absolute lg:left-1/2 lg:top-1/2 lg:mt-0 lg:-translate-x-1/2 lg:-translate-y-1/2">
+            <motion.div
+              className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#ED8522] text-white shadow-[0_18px_34px_rgba(237,133,34,0.25)]"
+              animate={reduceMotion ? undefined : { scale: [1, 1.04, 1] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Waypoints className="h-6 w-6" aria-hidden="true" />
+            </motion.div>
+            <h3 className="mt-4 text-2xl font-semibold leading-tight text-[var(--text-strong)]">One connected Ginja system</h3>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
+              Notes, tasks, goals, people, events, and calendar context finally speak to each other.
+            </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">
+              <span>Thought</span>
+              <span>→</span>
+              <span>Plan</span>
+              <span>→</span>
+              <span>Life</span>
             </div>
           </div>
         </div>
@@ -626,7 +669,7 @@ function StickyProductStory() {
         </div>
 
         <div className="mt-12 hidden overflow-hidden rounded-[2rem] border border-[#E4CDB8] bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.14),transparent_30%),linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] shadow-[0_28px_80px_rgba(70,48,30,0.13)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.2),transparent_30%),linear-gradient(135deg,#3A2A21,#211812)] dark:shadow-[0_30px_90px_rgba(10,8,6,0.38)] lg:block">
-          <div className="grid grid-cols-6 border-b border-[#E4CDB8]/80 bg-white/28 p-2 dark:border-white/10 dark:bg-black/10">
+          <div className="grid grid-cols-7 border-b border-[#E4CDB8]/80 bg-white/28 p-2 dark:border-white/10 dark:bg-black/10">
             {storySteps.map((step, index) => {
               const Icon = step.icon;
               const isActive = index === mobileStepIndex;
@@ -737,7 +780,7 @@ function StickyProductStory() {
                 animate={{ width: `${(mobileStepIndex / (storySteps.length - 1)) * 100}%` }}
                 transition={{ duration: reduceMotion ? 0 : 0.42, ease: [0.22, 1, 0.36, 1] }}
               />
-              <div className="relative grid grid-cols-6">
+              <div className="relative grid grid-cols-7">
                 {storySteps.map((step, index) => {
                   const isActive = index === mobileStepIndex;
                   const isPast = index < mobileStepIndex;
@@ -868,101 +911,144 @@ function ConnectedLifeSection() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.28 });
-  const lineDelay = 0.2;
-  const lineDuration = 2.2;
-  const stepDelay = 0.18;
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion || !isInView) return undefined;
+
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % connectedLifeSteps.length);
+    }, 1800);
+
+    return () => window.clearInterval(interval);
+  }, [isInView, reduceMotion]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
-      <div className="pointer-events-none absolute inset-x-0 top-12 h-px bg-[linear-gradient(90deg,transparent,rgba(237,133,34,0.35),rgba(135,182,106,0.28),transparent)]" />
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:gap-14">
+    <section ref={sectionRef} className="relative overflow-hidden px-4 py-16 sm:px-6 sm:py-24" aria-labelledby="connected-system-heading">
+      <div className="pointer-events-none absolute inset-x-0 top-8 h-px bg-[linear-gradient(90deg,transparent,rgba(237,133,34,0.35),rgba(135,182,106,0.28),transparent)]" />
+      <div className="mx-auto max-w-7xl">
         <motion.div
-          className="lg:sticky lg:top-28"
+          className="mx-auto max-w-3xl text-center"
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/25 bg-[#FFF1E8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_10px_28px_rgba(237,133,34,0.1)] dark:bg-[#4A3325] dark:text-[#F1BE90]">
+          <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-[#ED8522]/25 bg-[#FFF1E8] px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_10px_28px_rgba(237,133,34,0.1)] dark:bg-[#4A3325] dark:text-[#F1BE90]">
             <Waypoints className="h-3.5 w-3.5" aria-hidden="true" />
-            Connected life system
+            Connected system
           </p>
-          <h2 className="mt-5 max-w-3xl text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl lg:text-5xl">
-            Why use five apps when one system can connect everything?
+          <h2 id="connected-system-heading" className="mt-5 text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl lg:text-5xl">
+            A system designed to connect everything.
           </h2>
-          <div className="mt-6 max-w-2xl space-y-4 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
-            <p>
-              Most apps help you manage tasks. Ginja helps you connect your life.
-            </p>
-            <p>
-              Capture what&apos;s on your mind. Turn it into a plan. Bring people into it. Discover new experiences.
-              Fit everything around your schedule.
-            </p>
-            <p className="font-semibold text-[var(--text-strong)]">All in one place.</p>
-          </div>
-
-          <div className="mt-8 rounded-[1.5rem] border border-[var(--border-color)] bg-[linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] p-5 shadow-[0_16px_40px_rgba(44,36,28,0.07)] dark:shadow-[0_18px_44px_rgba(10,8,6,0.26)]">
-            <p className="text-sm font-semibold leading-relaxed text-[var(--text-strong)]">Most apps solve one part of the problem.</p>
-            <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">
-              One captures ideas. Another manages tasks. Another tracks goals. Another plans with friends. Another discovers
-              things to do. Another manages your calendar.
-            </p>
-            <p className="mt-3 text-sm font-semibold leading-relaxed text-[#A26335] dark:text-[#F1BE90]">
-              Ginja was built differently.
-            </p>
-          </div>
+          <p className="mt-5 text-pretty text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            Ginja does not just manage tasks. It connects the way real life actually moves.
+          </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="absolute bottom-8 left-5 top-8 w-px overflow-hidden rounded-full bg-[#E7D2BD] dark:bg-white/12 sm:left-6">
+        <div className="relative mt-12 hidden overflow-hidden rounded-[2rem] border border-[#E4CDB8] bg-[linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] p-8 shadow-[0_26px_76px_rgba(70,48,30,0.12)] dark:border-[#6B4A31] dark:bg-[linear-gradient(135deg,#3A2A21,#211812)] lg:block">
+          <svg className="pointer-events-none absolute inset-x-8 top-[8.4rem] h-24 w-[calc(100%-4rem)] overflow-visible" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M30 62 C130 8 210 112 310 62 S490 8 590 62 S770 112 870 62 S945 26 970 62" fill="none" stroke="rgba(226,200,175,0.8)" strokeWidth="3" strokeLinecap="round" />
+            <motion.path
+              d="M30 62 C130 8 210 112 310 62 S490 8 590 62 S770 112 870 62 S945 26 970 62"
+              fill="none"
+              stroke="url(#connected-flow-gradient)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              initial={reduceMotion ? false : { pathLength: 0 }}
+              animate={isInView || reduceMotion ? { pathLength: 1 } : { pathLength: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 2.2, ease: [0.22, 1, 0.36, 1] }}
+            />
+            <defs>
+              <linearGradient id="connected-flow-gradient" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0%" stopColor="#ED8522" />
+                <stop offset="100%" stopColor="#87B66A" />
+              </linearGradient>
+            </defs>
+            {!reduceMotion && isInView ? (
+              <>
+                <motion.circle
+                  r="7"
+                  fill="#ED8522"
+                  filter="drop-shadow(0 0 10px rgba(237,133,34,0.45))"
+                  animate={{ cx: [30, 190, 350, 510, 670, 830, 970], cy: [62, 38, 78, 42, 78, 42, 62] }}
+                  transition={{ duration: 5.4, repeat: Infinity, ease: 'easeInOut' }}
+                />
+                <motion.circle
+                  r="4"
+                  fill="#87B66A"
+                  animate={{ cx: [30, 190, 350, 510, 670, 830, 970], cy: [62, 38, 78, 42, 78, 42, 62] }}
+                  transition={{ duration: 5.4, repeat: Infinity, delay: 1.2, ease: 'easeInOut' }}
+                />
+              </>
+            ) : null}
+          </svg>
+
+          <div className="relative z-10 grid grid-cols-6 gap-4">
+            {connectedLifeSteps.map((step, index) => {
+              const Icon = step.icon;
+              const isActive = index === activeIndex;
+
+              return (
+                <motion.article
+                  key={step.feature}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  className={`group relative flex min-h-[275px] flex-col rounded-[1.5rem] border p-4 transition-colors duration-300 ${
+                    isActive
+                      ? 'border-[#ED8522]/45 bg-[#FFF8EF] shadow-[0_20px_46px_rgba(80,54,30,0.13)] dark:bg-[#3B2A20]'
+                      : 'border-[var(--border-color)] bg-white/58 shadow-[0_14px_34px_rgba(44,36,28,0.07)] dark:bg-white/[0.05]'
+                  }`}
+                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                  animate={isInView || reduceMotion ? { opacity: 1, y: isActive ? -4 : 0, scale: isActive ? 1.02 : 1 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.46, delay: reduceMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ED8522]/24 bg-[#FFF1E8] text-[#ED8522] shadow-[0_10px_24px_rgba(237,133,34,0.12)] dark:bg-[#4A3325]">
+                    <Icon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" aria-hidden="true" />
+                  </div>
+                  <p className="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-[#A26335] dark:text-[#F1BE90]">{step.outcome}</p>
+                  <h3 className="mt-2 text-xl font-semibold leading-tight text-[var(--text-strong)]">{step.feature}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{step.body}</p>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="relative mt-10 lg:hidden">
+          <div className="absolute bottom-12 left-6 top-6 w-px overflow-hidden rounded-full bg-[#E7D2BD] dark:bg-white/12">
             <motion.div
               className="h-full w-full origin-top bg-[linear-gradient(180deg,#ED8522,#87B66A)]"
               initial={reduceMotion ? false : { scaleY: 0 }}
               animate={isInView || reduceMotion ? { scaleY: 1 } : { scaleY: 0 }}
-              transition={{ duration: reduceMotion ? 0 : lineDuration, delay: lineDelay, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 1.6, ease: [0.22, 1, 0.36, 1] }}
             />
+            {!reduceMotion && isInView ? (
+              <motion.span
+                className="absolute left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-[#ED8522] shadow-[0_0_14px_rgba(237,133,34,0.55)]"
+                animate={{ top: ['2%', '95%'] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            ) : null}
           </div>
-
-          <div className="space-y-4 sm:space-y-5">
+          <div className="space-y-4">
             {connectedLifeSteps.map((step, index) => {
               const Icon = step.icon;
-              const revealDelay = lineDelay + index * stepDelay;
 
               return (
                 <motion.article
-                  key={step.label}
-                  className="group relative grid grid-cols-[2.75rem_minmax(0,1fr)] gap-4 rounded-[1.5rem] border border-[var(--border-color)] bg-[var(--surface-primary)] p-4 shadow-[0_14px_34px_rgba(44,36,28,0.07)] transition-colors duration-300 hover:border-[#ED8522]/45 dark:shadow-[0_16px_38px_rgba(10,8,6,0.26)] sm:grid-cols-[3.25rem_minmax(0,1fr)] sm:p-5"
-                  initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                  animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.52, delay: reduceMotion ? 0 : revealDelay, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={reduceMotion ? undefined : { y: -4, boxShadow: '0 22px 46px rgba(80, 54, 30, 0.12)' }}
+                  key={step.feature}
+                  className="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-4 rounded-[1.5rem] border border-[var(--border-color)] bg-[var(--surface-primary)] p-4 shadow-[0_14px_34px_rgba(44,36,28,0.07)] dark:bg-white/[0.05]"
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.45 }}
+                  transition={{ duration: 0.45, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <motion.span
-                    className="relative z-10 flex h-10 w-10 items-center justify-center rounded-2xl border border-[#ED8522]/28 bg-[#FFF1E8] text-[#ED8522] shadow-[0_10px_24px_rgba(237,133,34,0.12)] dark:bg-[#4A3325] sm:h-12 sm:w-12"
-                    animate={
-                      isInView && !reduceMotion
-                        ? {
-                            scale: [1, 1.08, 1],
-                            boxShadow: [
-                              '0 10px 24px rgba(237, 133, 34, 0.12)',
-                              '0 14px 32px rgba(237, 133, 34, 0.24)',
-                              '0 10px 24px rgba(237, 133, 34, 0.12)',
-                            ],
-                          }
-                        : undefined
-                    }
-                    transition={{ duration: 0.7, delay: revealDelay + 0.08, ease: [0.22, 1, 0.36, 1] }}
-                    whileHover={reduceMotion ? undefined : { scale: 1.08 }}
-                  >
-                    <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110 sm:h-5 sm:w-5" aria-hidden="true" />
-                  </motion.span>
+                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#ED8522]/24 bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <h3 className="text-xl font-semibold leading-tight text-[var(--text-strong)] sm:text-2xl">{step.label}</h3>
-                      <span className="rounded-full border border-[#87B66A]/24 bg-[#EEF5E8] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.14em] text-[#567B34] dark:bg-[#33412B] dark:text-[#BBD89F]">
-                        {step.signal}
-                      </span>
-                    </div>
-                    <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">{step.body}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">{step.outcome}</p>
+                    <h3 className="mt-1 text-xl font-semibold leading-tight text-[var(--text-strong)]">{step.feature}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[var(--text-secondary)]">{step.body}</p>
                   </div>
                 </motion.article>
               );
@@ -971,16 +1057,17 @@ function ConnectedLifeSection() {
         </div>
 
         <motion.div
-          className="lg:col-span-2"
+          className="mt-12 border-t border-[var(--border-color)] pt-8"
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.58, delay: reduceMotion ? 0 : 1.25, ease: [0.22, 1, 0.36, 1] }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="grid gap-6 border-t border-[var(--border-color)] pt-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10 lg:pt-10">
+          <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Everything works together</p>
               <h3 className="mt-3 max-w-xl text-balance text-2xl font-semibold leading-tight text-[var(--text-strong)] sm:text-3xl">
-                The goal is not to give you more tools.
+                Your thoughts, goals, people, experiences, and plans finally connect.
               </h3>
             </div>
             <div className="grid gap-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:grid-cols-2">
@@ -990,7 +1077,7 @@ function ConnectedLifeSection() {
                 'Working toward a goal? Let Arc build the path.',
                 'Need time for it? Ginja syncs it to your calendar.',
                 'Feeling overwhelmed? Start with Brain Dump.',
-                'Your thoughts, goals, people, experiences, and plans finally connect.',
+                'Everything works together.',
               ].map((item) => (
                 <p key={item} className="rounded-[1.25rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-3 font-medium">
                   {item}
@@ -1050,7 +1137,7 @@ function ArcExploreLightMockup({ compact = false }) {
   const cardMetaClass = compact ? 'text-[4.3px] xs:text-[5px] sm:text-[6px]' : 'text-[9px]';
 
   return (
-    <div className="block h-full w-full bg-[#F8F1E8] px-[4%] pb-[4%] pt-[4%] text-[#241B15] dark:hidden">
+    <div className="block h-full w-full bg-[#F8F1E8] px-[4%] pb-[4%] pt-[4%] text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
       <div className="mb-[4%] flex items-center justify-end gap-[3%] text-[#8A7D70]">
         <span className={compact ? 'text-[7px] xs:text-[8px] sm:text-[10px]' : 'text-[16px]'}>◦</span>
         <span className={compact ? 'text-[7px] xs:text-[8px] sm:text-[10px]' : 'text-[16px]'}>⚙</span>
@@ -1143,13 +1230,15 @@ function ArcFlowVisual({ reduceMotion, compact = false }) {
                   className={`block h-full w-full object-cover dark:hidden ${screenRadiusClass}`}
                 />
               )}
-              <img
-                src={screen.darkSrc}
-                alt={`${screen.alt} in dark mode`}
-                loading="eager"
-                decoding="async"
-                className={`hidden h-full w-full object-cover dark:block ${screenRadiusClass}`}
-              />
+              {!screen.cityOverlay ? (
+                <img
+                  src={screen.darkSrc}
+                  alt={`${screen.alt} in dark mode`}
+                  loading="eager"
+                  decoding="async"
+                  className={`hidden h-full w-full object-cover dark:block ${screenRadiusClass}`}
+                />
+              ) : null}
               {screen.cityOverlay ? (
                 <div className="pointer-events-none absolute inset-0">
                   <div className="absolute left-[3.5%] top-[17.75%] hidden h-[3.4%] w-[68%] bg-[#111111] dark:block" />
@@ -1534,11 +1623,11 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
   return (
     <>
       <HeroSection onSeeHowItWorks={scrollToStory} />
-      <TransformationSection />
+      <FiveAppsProblemSection />
+      <ConnectedLifeSection />
       <div ref={storyRef}>
         <StickyProductStory />
       </div>
-      <ConnectedLifeSection />
       <ArcShowcase />
       <AudienceSection />
       <IntelligenceSection />
