@@ -9,10 +9,10 @@ export default function PrivacyPolicy() {
       <Head>
         <title>Privacy Policy | Ginja</title>
         <meta name="description" content="How Ginja collects, uses, and protects your information." />
-        <link rel="canonical" href="https://ginja.io/privacy-policy" />
+        <link rel="canonical" href="https://ginja.io/privacy" />
         <meta property="og:title" content="Privacy Policy | Ginja" />
         <meta property="og:description" content="How Ginja collects, uses, and protects your information." />
-        <meta property="og:url" content="https://ginja.io/privacy-policy" />
+        <meta property="og:url" content="https://ginja.io/privacy" />
       </Head>
 
       <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)]">
@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
         <section className="px-4 pb-16 pt-10 sm:px-6 sm:pt-14">
           <div className="mx-auto max-w-4xl rounded-[2rem] border border-[var(--border-color)] bg-[var(--surface-primary)] px-6 py-10 shadow-[0_16px_44px_rgba(34,30,24,0.08)] sm:px-10">
             <h1 className="text-3xl font-semibold sm:text-4xl">Privacy Policy</h1>
-            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: May 2026</p>
+            <p className="mt-2 text-sm text-[var(--text-muted)]">Last updated: June 2026</p>
 
             <div className="mt-8 space-y-6 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">
               <section>
@@ -94,7 +94,33 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">5. Data Security</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">5. Subscriptions and Payments</h2>
+                <p className="mt-2">
+                  Ginja may offer optional auto-renewing subscriptions that provide access to premium features.
+                </p>
+                <p className="mt-2">
+                  Payments are processed through the Apple App Store, Google Play, or other authorized payment
+                  providers. Ginja does not collect, process, or store your payment card details.
+                </p>
+                <p className="mt-2">
+                  When you purchase a subscription, we may receive limited subscription-related information, such as
+                  your subscription status, product identifier, renewal status, expiration date, and purchase platform.
+                  We use this information only to provide access to premium features, manage entitlements, prevent
+                  fraud, and support customer service.
+                </p>
+                <p className="mt-2">
+                  Subscriptions automatically renew unless canceled at least 24 hours before the end of the current
+                  billing period. You can manage or cancel your subscription through your Apple App Store or Google
+                  Play account settings.
+                </p>
+                <p className="mt-2">
+                  Refunds, billing issues, and cancellation rules are handled by the app store or payment provider
+                  through which the subscription was purchased.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Data Security</h2>
                 <p className="mt-2">We use standard security protections to keep your data safe:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
                   <li>Encrypted traffic (HTTPS/TLS) between app and backend.</li>
@@ -104,7 +130,7 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">6. Permissions &amp; Data Usage</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">7. Permissions &amp; Data Usage</h2>
                 <p className="mt-2">Here is how we use each permission when you choose to allow it:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
                   <li>Contacts — Used to help you find and connect with people you already know on Ginja. This is optional and only used for friend discovery.</li>
@@ -124,7 +150,7 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">7. Data Retention</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">8. Data Retention</h2>
                 <p className="mt-2">You stay in control of your account data:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
                   <li>You can edit or delete many data types directly in the app.</li>
@@ -134,7 +160,7 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">8. Your Rights</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">9. Your Rights</h2>
                 <p className="mt-2">As a Ginja user, you have the right to:</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
                   <li>Access — view all data associated with your account.</li>
@@ -145,7 +171,7 @@ export default function PrivacyPolicy() {
               </section>
 
               <section>
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">9. Contact Us</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">10. Contact Us</h2>
                 <p className="mt-2">
                   If you have questions about this Privacy Policy or your data, please contact us at{' '}
                   <a href="mailto:info@ginja.io" className="text-[#ED8522] hover:underline">info@ginja.io</a>

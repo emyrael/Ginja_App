@@ -59,8 +59,8 @@ export default function Footer() {
         <div className="flex flex-col gap-4 border-t border-[var(--border-color)] pt-6 text-xs text-[var(--text-muted)] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Ginja App. All rights reserved.</p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/privacy-policy" className="hover:text-[#ED8522]">Privacy</Link>
-            <Link href="/terms-of-service" className="hover:text-[#ED8522]">Terms</Link>
+            <Link href="/privacy" className="hover:text-[#ED8522]">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#ED8522]">Terms of Service</Link>
             <Link href="/support" className="hover:text-[#ED8522]">Support</Link>
             <Link href="/about" className="hover:text-[#ED8522]">About</Link>
             <Link href="/blog" className="hover:text-[#ED8522]">Blog</Link>

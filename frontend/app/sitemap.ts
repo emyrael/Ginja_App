@@ -5,7 +5,7 @@ import { canonicalUrl } from '../lib/seo';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 type StaticPageConfig = {
-  path: '/' | '/about' | '/blog' | '/download' | '/privacy-policy' | '/terms-of-service';
+  path: '/' | '/about' | '/blog' | '/download' | '/privacy' | '/terms';
   changeFrequency: NonNullable<SitemapEntry['changeFrequency']>;
   priority: number;
 };
@@ -32,12 +32,12 @@ const STATIC_PAGES: StaticPageConfig[] = [
     priority: 0.8,
   },
   {
-    path: '/privacy-policy',
+    path: '/privacy',
     changeFrequency: 'monthly',
     priority: 0.5,
   },
   {
-    path: '/terms-of-service',
+    path: '/terms',
     changeFrequency: 'monthly',
     priority: 0.5,
   },
