@@ -661,16 +661,17 @@ function HeroSection({ onSeeHowItWorks }) {
           <motion.h1
             variants={fadeUp}
             transition={{ duration: 0.55 }}
-            className="mt-5 max-w-3xl text-balance text-3xl font-semibold leading-[1.04] text-[var(--text-strong)] xs:text-4xl sm:text-5xl lg:mt-6 lg:text-6xl"
+            className="mt-5 max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] text-[var(--text-strong)] xs:text-[2.65rem] sm:text-[3.35rem] lg:mt-6 lg:text-[4.15rem]"
           >
-            Productivity that adapts to real life.
+            <span className="block">Your brain isn&apos;t a to-do list.</span>
+            <span className="block">Stop treating it like one.</span>
           </motion.h1>
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.55 }}
             className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-[var(--text-secondary)] xs:text-base sm:text-lg lg:mt-6 lg:text-xl"
           >
-            Unload your thoughts, turn them into clear next steps, build adaptive goals, and stay consistent with planning that changes when life changes.
+            Dump what&apos;s on your mind. Ginja turns it into clear next steps, adaptive plans, shared experiences, and a schedule that keeps up with real life.
           </motion.p>
           <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="mt-6 flex flex-wrap items-center gap-2 lg:mt-9 lg:gap-3">
             <Link
@@ -689,9 +690,6 @@ function HeroSection({ onSeeHowItWorks }) {
               See how it works
             </button>
           </motion.div>
-          <motion.p variants={fadeUp} transition={{ duration: 0.55 }} className="mt-4 hidden max-w-xl text-sm leading-relaxed text-[var(--text-muted)] sm:block sm:text-base lg:mt-6">
-            Built for people with busy minds, changing schedules, and goals that need more than a task list.
-          </motion.p>
         </motion.div>
 
         <div className="relative flex justify-end lg:justify-end">

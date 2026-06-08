@@ -22,16 +22,13 @@ export default function HeroSection({ onSeeHowItWorks, onExploreArc }) {
             <p className="mt-2 text-xs font-medium text-[var(--text-muted)] sm:text-sm">Free to start</p>
           </div>
 
-          <h1 className="mt-6 max-w-2xl text-balance text-4xl font-semibold leading-tight text-[var(--text-strong)] sm:text-5xl lg:text-6xl">
-            Productivity that adapts to real life.
+          <h1 className="mt-6 max-w-4xl text-balance text-[2.15rem] font-semibold leading-[1.02] text-[var(--text-strong)] xs:text-[2.65rem] sm:text-[3.35rem] lg:text-[4.15rem]">
+            <span className="block">Your brain isn&apos;t a to-do list.</span>
+            <span className="block">Stop treating it like one.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
-            Ginja helps you organize your life, build momentum, and stay consistent with AI-powered planning that adjusts to how
-            you actually live.
-          </p>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg">
-            Start with mental clutter, daily to-dos, or a long-term Arc. Ginja keeps the structure calm, human, and realistic.
+          <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
+            Dump what&apos;s on your mind. Ginja turns it into clear next steps, adaptive plans, shared experiences, and a schedule that keeps up with real life.
           </p>
           <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] sm:text-base">
             <span className="h-2 w-2 rounded-full bg-[#87B66A]" />
