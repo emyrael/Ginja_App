@@ -7,6 +7,7 @@ import { trackDownloadPageClick } from '../../lib/analytics';
 const navItems = [
   { href: '#features', label: 'Features' },
   { href: '#arc', label: 'Arc' },
+  { href: '#circle', label: 'Circle' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
 ];

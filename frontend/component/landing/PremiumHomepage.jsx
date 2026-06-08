@@ -2,22 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
 import {
+  ArrowRight,
+  BookOpen,
   Brain,
   CalendarCheck2,
+  Check,
   CheckCircle2,
   CircleUserRound,
   CloudRain,
   Compass,
   Crown,
+  Dumbbell,
+  Gift,
   Leaf,
   ListChecks,
+  MapPin,
   MessageCircle,
   Moon,
   PlayCircle,
   Repeat2,
+  Send,
   Sparkles,
   StickyNote,
   Target,
+  UserCheck,
   Users2,
   Waypoints,
 } from 'lucide-react';
@@ -274,13 +282,14 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-function AnimatedSection({ children, className = '', id }) {
+function AnimatedSection({ children, className = '', id, ...props }) {
   const reduceMotion = useReducedMotion();
 
   return (
     <motion.section
       id={id}
       className={className}
+      {...props}
       initial={reduceMotion ? false : 'hidden'}
       whileInView="visible"
       viewport={{ once: true, margin: '-80px' }}
@@ -1137,7 +1146,7 @@ function ConnectedLifeSection() {
       <div className="pointer-events-none absolute inset-x-0 top-8 h-px bg-[linear-gradient(90deg,transparent,rgba(237,133,34,0.35),rgba(135,182,106,0.28),transparent)]" />
       <div className="mx-auto max-w-7xl">
         <motion.div
-          className="mx-auto max-w-3xl text-center"
+          className="max-w-3xl"
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.58, ease: [0.22, 1, 0.36, 1] }}
@@ -1332,7 +1341,7 @@ function ConnectedLifeSection() {
                 Your thoughts, goals, people, experiences, and plans finally connect.
               </h3>
             </div>
-            <div className="grid gap-3 text-sm leading-relaxed text-[var(--text-secondary)] sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-2 text-[11px] leading-snug text-[var(--text-secondary)] sm:gap-3 sm:text-sm sm:leading-relaxed">
               {[
                 'Feeling overwhelmed? Start with Brain Dump.',
                 'Working toward a goal? Let Arc build the path.',
@@ -1341,7 +1350,7 @@ function ConnectedLifeSection() {
                 'Need time for it? Ginja syncs it to your calendar.',
                 'Everything works together.',
               ].map((item) => (
-                <p key={item} className="rounded-[1.25rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-3 font-medium">
+                <p key={item} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--surface-soft)] px-3 py-2.5 font-medium sm:rounded-[1.25rem] sm:px-4 sm:py-3">
                   {item}
                 </p>
               ))}
@@ -1389,6 +1398,98 @@ const arcExplanationGroups = [
   {
     title: 'Live with it',
     steps: ['Progress evolves weekly', 'Reflect and adapt', 'Explore places or events that match your interests'],
+  },
+];
+
+const circleActions = [
+  { owner: 'Sarah', task: 'Book train tickets', status: 'Done', done: true },
+  { owner: 'James', task: 'Reserve restaurant', status: 'Done', done: true },
+  { owner: 'Emma', task: 'Pick activities', status: 'Done', done: true },
+  { owner: 'You', task: 'Confirm meeting point', status: 'Pending', done: false },
+];
+
+const circleNotes = [
+  'Meeting point: Amsterdam Centraal',
+  'Budget: €120 each',
+  'Dinner: 7:30 PM',
+];
+
+const circleMessages = [
+  { sender: 'Sarah', text: 'Train tickets booked.' },
+  { sender: 'Emma', text: 'Added the canal walk.' },
+  { sender: 'James', text: 'Restaurant is reserved.' },
+  { sender: 'You', text: "I'll confirm the meeting point.", mine: true },
+];
+
+const circlePhoneSteps = [
+  { id: 'chat', label: 'Chat' },
+  { id: 'actions', label: 'Actions' },
+  { id: 'notes', label: 'Notes' },
+  { id: 'ready', label: 'Ready' },
+];
+
+const circlePhoneChatMessages = [
+  { sender: 'Sarah', text: 'I can book the train tickets.' },
+  { sender: 'James', text: "I'll reserve dinner for 7:30." },
+  { sender: 'Emma', text: "I'll pick two activities." },
+  { sender: 'You', text: "I'll confirm the meeting point.", mine: true },
+];
+
+const circleCopyBlocks = [
+  {
+    title: 'From "we should do that"',
+    body: "to \"it's already happening.\"",
+    icon: Sparkles,
+  },
+  {
+    title: 'Clear responsibility',
+    body: 'Assign actions so everyone knows what they are responsible for.',
+    icon: UserCheck,
+  },
+  {
+    title: 'Context in one place',
+    body: 'Keep notes, chat, and progress together instead of scattered across messages.',
+    icon: StickyNote,
+  },
+  {
+    title: 'Explore becomes action',
+    body: 'Find something in Explore, share it to your Circle, and turn it into a plan in seconds.',
+    icon: Compass,
+  },
+];
+
+const circleUseCases = [
+  {
+    title: 'Study Group',
+    subtitle: 'Exam Prep',
+    icon: BookOpen,
+    stats: ['Chapter notes', 'Practice questions', 'Flashcards'],
+    caption: 'Keep classmates aligned without chasing everyone in group chats.',
+    accent: 'bg-[#FFF1E8] text-[#B65C1D] dark:bg-[#4A3325] dark:text-[#F1BE90]',
+  },
+  {
+    title: 'Fitness Challenge',
+    subtitle: '30 Day Running Challenge',
+    icon: Dumbbell,
+    stats: ['8 members', '112 actions completed', '5 active this week'],
+    caption: 'Build accountability with people who keep you moving.',
+    accent: 'bg-[#EEF5E8] text-[#4E8C06] dark:bg-[#33412B] dark:text-[#BBD89F]',
+  },
+  {
+    title: 'Birthday Planning',
+    subtitle: "James's Birthday Dinner",
+    icon: Gift,
+    stats: ['Venue booked', 'Cake pending', 'Guest list done', 'Playlist pending'],
+    caption: 'Give every plan clear owners, notes, and next steps.',
+    accent: 'bg-[#FFF6E5] text-[#A26335] dark:bg-[#4A3325] dark:text-[#F1BE90]',
+  },
+  {
+    title: 'Startup Team',
+    subtitle: 'Product Review Sprint',
+    icon: Users2,
+    stats: ['Pitch deck reviewed', 'Landing page feedback', 'Investor notes', 'Next demo assigned'],
+    caption: 'Keep a small team aligned while feedback turns into clear next steps.',
+    accent: 'bg-[#FFF6E5] text-[#A26335] dark:bg-[#4A3325] dark:text-[#F1BE90]',
   },
 ];
 
@@ -1623,6 +1724,616 @@ function ArcShowcase() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
+function CircleExploreCard({ reduceMotion, active }) {
+  return (
+    <motion.article
+      className="relative overflow-hidden rounded-[1.5rem] border border-[#E3CBB5] bg-white/76 p-3 shadow-[0_22px_58px_rgba(80,54,30,0.13)] backdrop-blur dark:border-white/10 dark:bg-white/[0.06] sm:rounded-[1.75rem] sm:p-6"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      animate={active ? { opacity: 1, y: 0 } : undefined}
+      transition={{ duration: reduceMotion ? 0 : 0.52, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(237,133,34,0.16),transparent_34%)]" />
+      <div className="relative">
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/24 bg-[#FFF1E8] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:bg-[#4A3325] dark:text-[#F1BE90]">
+            <Compass className="h-3.5 w-3.5" aria-hidden="true" />
+            Explore
+          </span>
+          <span className="rounded-full border border-[#E7D2BD] bg-white/72 px-2.5 py-1 text-[10px] font-semibold text-[#7A6655] dark:border-white/10 dark:bg-white/[0.05] dark:text-[#D9C3AE] sm:px-3 sm:text-[11px]">
+            Matched to your interests
+          </span>
+        </div>
+
+        <div className="mt-4 overflow-hidden rounded-[1.2rem] border border-[#E9D5C0] bg-[#FFFDF8] shadow-[0_16px_34px_rgba(70,48,30,0.08)] dark:border-white/10 dark:bg-[#2B211B] sm:mt-6 sm:rounded-[1.35rem]">
+          <div
+            className="relative h-28 overflow-hidden border-b border-[#E9D5C0] bg-[linear-gradient(180deg,#F7D7A8_0%,#F4E2C8_48%,#9BB18F_49%,#5C7A72_100%)] dark:border-white/10 dark:bg-[linear-gradient(180deg,#1B2630_0%,#392A24_48%,#233932_49%,#14241F_100%)] sm:h-40"
+            role="img"
+            aria-label="Amsterdam canal place preview"
+          >
+            <div className="absolute inset-x-0 top-0 h-16 bg-[radial-gradient(circle_at_82%_24%,rgba(237,133,34,0.42),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.42),transparent)] dark:bg-[radial-gradient(circle_at_82%_24%,rgba(241,190,144,0.18),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.08),transparent)] sm:h-24" />
+            <div className="absolute bottom-[38%] left-4 flex items-end gap-1.5 sm:left-7 sm:gap-2">
+              {[
+                ['h-12 w-8 bg-[#B97143] dark:bg-[#5A3424]', 'bg-[#7E4A2E] dark:bg-[#2E211C]'],
+                ['h-16 w-9 bg-[#E1A66B] dark:bg-[#70412D]', 'bg-[#8F5B36] dark:bg-[#33231B]'],
+                ['h-11 w-7 bg-[#C88551] dark:bg-[#5B3728]', 'bg-[#6F432C] dark:bg-[#2D211B]'],
+                ['h-14 w-8 bg-[#F0C48C] dark:bg-[#7A4A31]', 'bg-[#9C6037] dark:bg-[#37261D]'],
+              ].map(([buildingClass, roofClass], index) => (
+                <span key={index} className="relative block">
+                  <span className={`block rounded-t-[0.3rem] ${buildingClass}`} />
+                  <span className={`absolute -top-2 left-1 right-1 h-3 rounded-t-full ${roofClass}`} />
+                  <span className="absolute left-2 top-4 h-2 w-2 rounded-sm bg-white/58 dark:bg-[#F1BE90]/28" />
+                  <span className="absolute bottom-3 right-2 h-2 w-2 rounded-sm bg-white/46 dark:bg-[#F1BE90]/22" />
+                </span>
+              ))}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-[46%] bg-[linear-gradient(165deg,#4B7770,#2F5F68_52%,#1F4854)] dark:bg-[linear-gradient(165deg,#1A413C,#15333A_52%,#0D242B)]">
+              <div className="absolute inset-x-5 top-5 h-px bg-white/42 dark:bg-white/18" />
+              <div className="absolute inset-x-10 top-10 h-px bg-white/26 dark:bg-white/12" />
+              <div className="absolute bottom-3 right-6 h-5 w-16 rounded-full bg-white/24 blur-sm dark:bg-[#F1BE90]/12" />
+            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_44%,rgba(17,16,15,0.28))]" />
+            <span className="absolute bottom-3 left-3 rounded-full bg-white/88 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#A26335] shadow-[0_8px_18px_rgba(20,16,12,0.18)] dark:bg-[#241B15]/88 dark:text-[#F1BE90]">
+              Shareable discovery
+            </span>
+          </div>
+          <div className="p-3 sm:p-4">
+            <div className="flex items-start justify-between gap-3 sm:gap-4">
+              <div>
+                <h3 className="text-lg font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] sm:text-xl">Amsterdam Weekend</h3>
+                <p className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-[#7A6655] dark:text-[#D9C3AE] sm:text-sm">
+                  <MapPin className="h-3.5 w-3.5 text-[#ED8522]" aria-hidden="true" />
+                  30.05.2026 · 2:00 PM
+                </p>
+              </div>
+              <span className="rounded-full bg-[#EEF5E8] px-3 py-1 text-xs font-bold text-[#4E8C06] dark:bg-[#33412B] dark:text-[#BBD89F]">
+                94% fit
+              </span>
+            </div>
+            <p className="mt-3 text-xs font-medium leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] sm:mt-4 sm:text-sm">
+              Food market · Canal walk · Live music
+            </p>
+            <motion.div
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(237,133,34,0.25)] sm:mt-5"
+              animate={reduceMotion ? undefined : { boxShadow: ['0 14px 30px rgba(237,133,34,0.2)', '0 18px 42px rgba(237,133,34,0.34)', '0 14px 30px rgba(237,133,34,0.2)'] }}
+              transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Send className="h-4 w-4" aria-hidden="true" />
+              Share to Circle
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function CircleConnector({ reduceMotion, active }) {
+  return (
+    <div className="relative flex min-h-12 items-center justify-center sm:min-h-16 lg:min-h-[420px]">
+      <div className="hidden h-px w-full bg-[linear-gradient(90deg,rgba(237,133,34,0.12),rgba(237,133,34,0.62),rgba(135,182,106,0.42))] lg:block" />
+      <div className="h-12 w-px bg-[linear-gradient(180deg,rgba(237,133,34,0.12),rgba(237,133,34,0.62),rgba(135,182,106,0.42))] sm:h-16 lg:hidden" />
+      <motion.span
+        className="absolute hidden h-11 w-11 items-center justify-center rounded-2xl border border-[#ED8522]/30 bg-[#FFF1E8] text-[#ED8522] shadow-[0_0_34px_rgba(237,133,34,0.34)] dark:bg-[#4A3325] dark:text-[#F1BE90] lg:flex"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.82, x: -36 }}
+        animate={
+          active
+            ? reduceMotion
+              ? { opacity: 1 }
+              : {
+                  opacity: [0, 1, 1, 0.96],
+                  scale: [0.82, 1, 1, 0.94],
+                  x: [-36, 0, 36, 36],
+                }
+            : undefined
+        }
+        transition={{ duration: reduceMotion ? 0 : 1.5, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <ArrowRight className="h-5 w-5" aria-hidden="true" />
+      </motion.span>
+      <motion.span
+        className="absolute flex h-11 w-11 items-center justify-center rounded-2xl border border-[#ED8522]/30 bg-[#FFF1E8] text-[#ED8522] shadow-[0_0_34px_rgba(237,133,34,0.34)] dark:bg-[#4A3325] dark:text-[#F1BE90] lg:hidden"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.82, y: -22 }}
+        animate={
+          active
+            ? reduceMotion
+              ? { opacity: 1 }
+              : {
+                  opacity: [0, 1, 1, 0.96],
+                  scale: [0.82, 1, 1, 0.94],
+                  y: [-22, 8, 22, 22],
+                }
+            : undefined
+        }
+        transition={{ duration: reduceMotion ? 0 : 1.5, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <ArrowRight className="h-5 w-5 rotate-90" aria-hidden="true" />
+      </motion.span>
+      {!reduceMotion && (
+        <motion.span
+          className="absolute hidden h-3 w-3 rounded-full bg-[#ED8522] shadow-[0_0_22px_rgba(237,133,34,0.52)] lg:block"
+          initial={{ opacity: 0, x: -64 }}
+          animate={active ? { opacity: [0, 1, 1, 0], x: [-64, 0, 64, 76] } : undefined}
+          transition={{ duration: 1.8, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
+        />
+      )}
+    </div>
+  );
+}
+
+function CirclePhoneScreen({ active, reduceMotion }) {
+  const [stepIndex, setStepIndex] = useState(0);
+  const activeStep = circlePhoneSteps[stepIndex] || circlePhoneSteps[0];
+
+  useEffect(() => {
+    if (!active) return undefined;
+
+    setStepIndex(reduceMotion ? circlePhoneSteps.length - 1 : 0);
+    if (reduceMotion) return undefined;
+
+    const interval = window.setInterval(() => {
+      setStepIndex((currentIndex) => (currentIndex + 1) % circlePhoneSteps.length);
+    }, 2600);
+
+    return () => window.clearInterval(interval);
+  }, [active, reduceMotion]);
+
+  return (
+    <div className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-4 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+      <div className="mb-3 flex items-center gap-2">
+        <span className="text-[15px] text-[#5F5A51] dark:text-[#ADB0B6]">←</span>
+        <div className="min-w-0">
+          <h3 className="truncate text-[17px] font-bold leading-tight">Amsterdam Weekend</h3>
+          <p className="mt-0.5 text-[9px] font-semibold text-[#7A6655] dark:text-[#A9A29D]">30.05.2026 · You, Sarah, James, Emma</p>
+        </div>
+      </div>
+
+      <div className="mb-3 grid grid-cols-4 overflow-hidden rounded-[14px] border border-[#E2DCD1] bg-[#F6F3ED] p-1 text-center text-[9px] font-bold dark:border-white/10 dark:bg-[#332D36]">
+        {circlePhoneSteps.map((step) => {
+          const isActive = step.id === activeStep.id;
+
+          return (
+            <span key={step.id} className={`relative rounded-[10px] py-2 transition-colors duration-300 ${isActive ? 'text-[#D37B32]' : 'text-[#7E776E] dark:text-[#A9ACB2]'}`}>
+              {isActive && (
+                <motion.span
+                  layoutId="circle-premium-phone-tab"
+                  className="absolute inset-0 rounded-[10px] bg-white shadow-[0_6px_16px_rgba(80,54,30,0.08)] dark:bg-[#3A333C]"
+                  transition={{ duration: reduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+                />
+              )}
+              <span className="relative z-10">{step.label}</span>
+            </span>
+          );
+        })}
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeStep.id}
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: reduceMotion ? 0 : 0.34, ease: [0.22, 1, 0.36, 1] }}
+          className="min-h-[360px]"
+        >
+          {activeStep.id === 'chat' && (
+            <div>
+              <div className="space-y-2">
+                {circlePhoneChatMessages.map((message, index) => (
+                  <motion.div
+                    key={`${message.sender}-${message.text}`}
+                    className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.34, delay: index * 0.11, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <div className={`max-w-[84%] rounded-2xl border px-3 py-2 ${message.mine ? 'border-[#E7E1D7] bg-white dark:border-white/10 dark:bg-[#3A333C]' : 'border-[#F0D8C0] bg-[#FFF7EE] dark:border-[#5A3A23] dark:bg-[#2A221B]'}`}>
+                      {!message.mine && <p className="mb-0.5 text-[8px] font-bold text-[#7A736A] dark:text-[#ADB0B5]">{message.sender}</p>}
+                      <p className="text-[10.5px] font-medium leading-snug">{message.text}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              <motion.div
+                className="mt-4 flex items-center gap-2 rounded-2xl border border-[#ED8522]/22 bg-[#FFF1E8] px-3 py-2.5 text-[10px] font-bold text-[#A26335] dark:border-[#F1BE90]/18 dark:bg-[#4A3325] dark:text-[#F1BE90]"
+                initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.34, delay: 0.58, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+                Ginja is creating actions...
+              </motion.div>
+            </div>
+          )}
+
+          {activeStep.id === 'actions' && (
+            <div>
+              <div className="rounded-2xl border border-[#EAD9C7] bg-white/76 p-3 dark:border-white/10 dark:bg-white/[0.05]">
+                <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.12em] text-[#7A6655] dark:text-[#D9C3AE]">
+                  <span>Actions assigned</span>
+                  <span>3/4 complete</span>
+                </div>
+                <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#EAD9C7] dark:bg-white/10">
+                  <motion.span
+                    className="block h-full rounded-full bg-[linear-gradient(90deg,#ED8522,#87B66A)]"
+                    initial={{ width: '0%' }}
+                    animate={{ width: '75%' }}
+                    transition={{ duration: reduceMotion ? 0 : 0.86, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </div>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                {circleActions.map((action, index) => (
+                  <motion.div
+                    key={`${action.owner}-${action.task}`}
+                    className="grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-2 rounded-2xl border border-[#EAD9C7] bg-white/82 px-3 py-2.5 dark:border-white/[0.08] dark:bg-white/[0.05]"
+                    initial={reduceMotion ? false : { opacity: 0, x: 14 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.34, delay: 0.2 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <motion.span
+                      className={`flex h-7 w-7 items-center justify-center rounded-full border ${action.done ? 'border-[#87B66A] bg-[#87B66A] text-white' : 'border-[#ED8522]/35 bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]'}`}
+                      initial={reduceMotion ? false : { scale: 0.82 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.28, delay: 0.34 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {action.done ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <span className="h-2 w-2 rounded-full bg-current" />}
+                    </motion.span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-[10.5px] font-bold text-[#2E241D] dark:text-[#FFF7EF]">{action.owner} — {action.task}</span>
+                      <span className="mt-0.5 block text-[9px] font-semibold text-[#7A6655] dark:text-[#CBB8A6]">{action.status}</span>
+                    </span>
+                    <span className={`rounded-full px-2 py-1 text-[8px] font-bold uppercase tracking-[0.1em] ${action.done ? 'bg-[#EEF5E8] text-[#4E8C06] dark:bg-[#33412B] dark:text-[#BBD89F]' : 'bg-[#FFF1E8] text-[#A26335] dark:bg-[#4A3325] dark:text-[#F1BE90]'}`}>
+                      {action.done ? 'Done' : 'Next'}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {activeStep.id === 'notes' && (
+            <div>
+              <div className="rounded-2xl border border-[#EAD9C7] bg-[#FFF8EF] p-3 dark:border-white/[0.08] dark:bg-[#2B211B]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">Notes saved</p>
+                <div className="mt-3 space-y-2">
+                  {[...circleNotes, 'Activities: Canal walk + food market'].map((note, index) => (
+                    <motion.p
+                      key={note}
+                      className="rounded-xl bg-white/72 px-3 py-2 text-[10.5px] font-semibold leading-snug text-[#5F5146] dark:bg-white/[0.06] dark:text-[#E8D8C9]"
+                      initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: reduceMotion ? 0 : 0.32, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {note}
+                    </motion.p>
+                  ))}
+                </div>
+              </div>
+              <p className="mt-3 rounded-2xl border border-[#EAD9C7] bg-white/72 px-3 py-2 text-[10px] font-semibold leading-snug text-[#7A6655] dark:border-white/10 dark:bg-white/[0.05] dark:text-[#D9C3AE]">
+                Chat, actions, and notes now live beside the plan.
+              </p>
+            </div>
+          )}
+
+          {activeStep.id === 'ready' && (
+            <div className="space-y-3">
+              <motion.div
+                className="rounded-[1.35rem] border border-[#87B66A]/28 bg-[#F5FAF0] p-4 text-center shadow-[0_14px_30px_rgba(72,98,50,0.1)] dark:border-[#87B66A]/22 dark:bg-[#24301F]/70"
+                initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.38, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl bg-[#87B66A] text-white shadow-[0_14px_30px_rgba(135,182,106,0.22)]">
+                  <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+                </span>
+                <h4 className="mt-3 text-[19px] font-bold leading-tight text-[#24311E] dark:text-[#F4FFE9]">Amsterdam Weekend</h4>
+                <motion.p
+                  className="mx-auto mt-2 inline-flex rounded-full bg-white/82 px-3 py-1 text-[10px] font-bold text-[#4E8C06] dark:bg-white/[0.08] dark:text-[#BBD89F]"
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.34, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  Plan is almost ready
+                </motion.p>
+              </motion.div>
+              {['3/4 actions complete', 'Notes saved', 'Everyone knows what they are responsible for'].map((item, index) => (
+                <motion.p
+                  key={item}
+                  className="rounded-2xl border border-[#EAD9C7] bg-white/78 px-3 py-2.5 text-[10.5px] font-bold leading-snug text-[#5F5146] dark:border-white/10 dark:bg-white/[0.05] dark:text-[#E8D8C9]"
+                  initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.32, delay: 0.28 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {item}
+                </motion.p>
+              ))}
+            </div>
+          )}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function AnimatedCirclePlanMockup({ reduceMotion, active }) {
+  return (
+    <motion.article
+      className="relative flex flex-col items-center"
+      initial={reduceMotion ? false : { opacity: 0, y: 22, scale: 0.97 }}
+      animate={active ? { opacity: 1, y: 0, scale: 1 } : undefined}
+      transition={{ duration: reduceMotion ? 0 : 0.58, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="relative">
+        <div className="absolute inset-y-10 right-0 w-40 rounded-full bg-[#ED8522]/18 blur-3xl" />
+        <PhoneFrame activeTab="circle" className="relative z-10 w-[268px] xs:w-[286px] sm:w-[318px]">
+          <CirclePhoneScreen active={active} reduceMotion={reduceMotion} />
+        </PhoneFrame>
+      </div>
+
+      <div className="mt-4 w-full rounded-[1.35rem] border border-[#E3CBB5] bg-white/58 p-4 text-center shadow-[0_14px_34px_rgba(70,48,30,0.08)] dark:border-white/10 dark:bg-white/[0.05]">
+        <p className="text-sm font-semibold leading-snug text-[#241B15] dark:text-[#FFF7EF]">
+          From &ldquo;we should do that&rdquo; to &ldquo;everyone knows what to do next.&rdquo;
+        </p>
+        <div className="mt-3 grid grid-cols-3 gap-2 text-[10px] font-bold uppercase tracking-[0.1em] text-[#A26335] dark:text-[#F1BE90]">
+          {['Find in Explore', 'Share to Circle', 'Turn into a plan'].map((item) => (
+            <span key={item} className="rounded-2xl border border-[#E3CBB5] bg-white/52 px-2 py-2 dark:border-white/10 dark:bg-white/[0.05]">{item}</span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function CirclePlanMockup({ reduceMotion, active }) {
+  return (
+    <motion.article
+      className="relative overflow-hidden rounded-[1.5rem] border border-[#D8C3AF] bg-[#F8F1E8] p-1.5 shadow-[0_28px_78px_rgba(80,54,30,0.18)] dark:border-white/10 dark:bg-[#17120F] sm:rounded-[2rem] sm:p-2"
+      initial={reduceMotion ? false : { opacity: 0, y: 22, scale: 0.97 }}
+      animate={active ? { opacity: 1, y: 0, scale: 1 } : undefined}
+      transition={{ duration: reduceMotion ? 0 : 0.58, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="overflow-hidden rounded-[1.25rem] border border-[#E7D2BD] bg-[#FFFDF8] dark:border-white/[0.08] dark:bg-[#211812] sm:rounded-[1.65rem]">
+        <div className="border-b border-[#EAD9C7] bg-[#F8F1E8] px-3 py-3 dark:border-white/[0.08] dark:bg-[#15110F] sm:px-5 sm:py-4">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#A26335] dark:text-[#F1BE90]">Circle plan created</p>
+              <h3 className="mt-2 text-xl font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] sm:text-2xl">Amsterdam Weekend</h3>
+              <p className="mt-1 text-xs font-medium text-[#7A6655] dark:text-[#D9C3AE] sm:text-sm">30.05.2026 · You, Sarah, James, Emma</p>
+            </div>
+            <span className="rounded-full bg-[#EEF5E8] px-2.5 py-1 text-[10px] font-bold text-[#4E8C06] dark:bg-[#33412B] dark:text-[#BBD89F] sm:px-3 sm:py-1.5 sm:text-xs">
+              Plan is almost ready
+            </span>
+          </div>
+
+          <div className="mt-3 sm:mt-5">
+            <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.12em] text-[#7A6655] dark:text-[#D9C3AE] sm:text-xs">
+              <span>Progress</span>
+              <span>3/4 actions complete</span>
+            </div>
+            <div className="mt-2 h-2 overflow-hidden rounded-full bg-[#EAD9C7] dark:bg-white/10">
+              <motion.span
+                className="block h-full rounded-full bg-[linear-gradient(90deg,#ED8522,#87B66A)]"
+                initial={{ width: '0%' }}
+                animate={active ? { width: '75%' } : undefined}
+                transition={{ duration: reduceMotion ? 0 : 0.9, delay: 1.22, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="grid gap-3 p-3 sm:p-4 lg:grid-cols-[1fr_0.88fr] lg:gap-4">
+          <div className="grid grid-cols-2 gap-2 lg:grid-cols-1 lg:gap-2.5">
+            {circleActions.map((action, index) => (
+              <motion.div
+                key={`${action.owner}-${action.task}`}
+                className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-2 rounded-2xl border border-[#EAD9C7] bg-white/82 px-2.5 py-2 shadow-[0_8px_20px_rgba(70,48,30,0.06)] dark:border-white/[0.08] dark:bg-white/[0.05] sm:grid-cols-[32px_minmax(0,1fr)_auto] sm:gap-3 sm:px-3 sm:py-3"
+                initial={reduceMotion ? false : { opacity: 0, x: 18 }}
+                animate={active ? { opacity: 1, x: 0 } : undefined}
+                transition={{ duration: reduceMotion ? 0 : 0.42, delay: 1.34 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <motion.span
+                  className={`flex h-6 w-6 items-center justify-center rounded-full border sm:h-8 sm:w-8 ${action.done ? 'border-[#87B66A] bg-[#87B66A] text-white' : 'border-[#ED8522]/35 bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325]'}`}
+                  initial={reduceMotion ? false : { scale: 0.82 }}
+                  animate={active ? { scale: 1 } : undefined}
+                  transition={{ duration: reduceMotion ? 0 : 0.3, delay: 1.54 + index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {action.done ? <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4" aria-hidden="true" /> : <span className="h-2 w-2 rounded-full bg-current sm:h-2.5 sm:w-2.5" />}
+                </motion.span>
+                <span className="min-w-0">
+                  <span className="block truncate text-[11px] font-bold text-[#2E241D] dark:text-[#FFF7EF] sm:text-sm">{action.owner} — {action.task}</span>
+                  <span className="mt-0.5 block text-[10px] font-medium text-[#7A6655] dark:text-[#CBB8A6] sm:text-xs">{action.status}</span>
+                </span>
+                <span className={`hidden rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] sm:inline-flex ${action.done ? 'bg-[#EEF5E8] text-[#4E8C06] dark:bg-[#33412B] dark:text-[#BBD89F]' : 'bg-[#FFF1E8] text-[#A26335] dark:bg-[#4A3325] dark:text-[#F1BE90]'}`}>
+                  {action.done ? 'Done' : 'Next'}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 lg:block lg:space-y-3">
+            <motion.div
+              className="rounded-2xl border border-[#EAD9C7] bg-[#FFF8EF] p-2.5 dark:border-white/[0.08] dark:bg-[#2B211B] sm:p-3"
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              animate={active ? { opacity: 1, y: 0 } : undefined}
+              transition={{ duration: reduceMotion ? 0 : 0.42, delay: 1.86, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">Notes</p>
+              <div className="mt-2 space-y-1.5">
+                {circleNotes.map((note) => (
+                  <p key={note} className="rounded-xl bg-white/72 px-2 py-1.5 text-[10px] font-semibold text-[#5F5146] dark:bg-white/[0.06] dark:text-[#E8D8C9] sm:px-3 sm:py-2 sm:text-xs">{note}</p>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="rounded-2xl border border-[#EAD9C7] bg-white/78 p-2.5 dark:border-white/[0.08] dark:bg-white/[0.04] sm:p-3"
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              animate={active ? { opacity: 1, y: 0 } : undefined}
+              transition={{ duration: reduceMotion ? 0 : 0.42, delay: 2.02, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">Chat</p>
+              <div className="mt-2 space-y-1.5">
+                {circleMessages.map((message, index) => (
+                  <motion.div
+                    key={`${message.sender}-${message.text}`}
+                    className={`flex ${message.mine ? 'justify-end' : 'justify-start'}`}
+                    initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+                    animate={active ? { opacity: 1, y: 0 } : undefined}
+                    transition={{ duration: reduceMotion ? 0 : 0.34, delay: 2.12 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <p className={`max-w-[96%] rounded-2xl border px-2 py-1.5 text-[10px] font-medium leading-snug sm:max-w-[90%] sm:px-3 sm:py-2 sm:text-xs ${message.mine ? 'border-[#E7D2BD] bg-[#F8F1E8] text-[#4E4035] dark:border-white/10 dark:bg-[#352820] dark:text-[#F4E8DD]' : 'border-[#F0D8C0] bg-[#FFF7EE] text-[#4E4035] dark:border-[#5A3A23] dark:bg-[#2A221B] dark:text-[#F4E8DD]'}`}>
+                      <span className="mr-1 font-bold">{message.sender}:</span>{message.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function CircleCompletionCard({ reduceMotion, active }) {
+  return (
+    <motion.article
+      className="rounded-[1.5rem] border border-[#87B66A]/28 bg-[#F5FAF0]/86 p-4 shadow-[0_18px_44px_rgba(72,98,50,0.12)] dark:border-[#87B66A]/22 dark:bg-[#24301F]/70 sm:p-5"
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      animate={active ? { opacity: 1, y: 0 } : undefined}
+      transition={{ duration: reduceMotion ? 0 : 0.5, delay: 2.36, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#4E8C06] dark:text-[#BBD89F]">Follow-through</p>
+          <h3 className="mt-2 text-lg font-semibold leading-tight text-[#24311E] dark:text-[#F4FFE9] sm:text-xl">Amsterdam Weekend</h3>
+          <p className="mt-1 text-sm font-bold text-[#4E8C06] dark:text-[#BBD89F]">Ready to go</p>
+        </div>
+        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#87B66A] text-white shadow-[0_14px_30px_rgba(135,182,106,0.22)]">
+          <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+        </span>
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[10px] font-bold text-[#4E5A43] dark:text-[#DCEED0] sm:text-[11px]">
+        {['3 friends aligned', '4 actions assigned', 'Notes saved'].map((item) => (
+          <span key={item} className="rounded-2xl border border-[#C9DDBA] bg-white/62 px-2 py-2 dark:border-white/10 dark:bg-white/[0.05]">{item}</span>
+        ))}
+      </div>
+    </motion.article>
+  );
+}
+
+function CircleUseCaseCard({ item, index, reduceMotion }) {
+  const Icon = item.icon;
+
+  return (
+    <motion.article
+      className="group rounded-[1.35rem] border border-[var(--border-color)] bg-[linear-gradient(180deg,var(--surface-primary),var(--surface-soft))] p-3 shadow-[0_14px_34px_rgba(44,36,28,0.07)] transition-all duration-300 hover:-translate-y-1 hover:border-[#ED8522]/35 hover:shadow-[0_22px_52px_rgba(80,54,30,0.12)] dark:shadow-[0_18px_42px_rgba(12,8,5,0.28)] sm:rounded-[1.5rem] sm:p-5"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: reduceMotion ? 0 : 0.48, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <span className={`flex h-9 w-9 items-center justify-center rounded-2xl sm:h-11 sm:w-11 ${item.accent}`}>
+          <Icon className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+        </span>
+        <span className="h-2 w-2 rounded-full bg-[#ED8522]/34 transition-transform duration-300 group-hover:scale-[1.8]" />
+      </div>
+      <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90] sm:mt-5 sm:text-[11px]">{item.title}</p>
+      <h3 className="mt-2 text-base font-semibold leading-tight text-[var(--text-strong)] sm:text-lg">{item.subtitle}</h3>
+      <div className="mt-3 grid gap-1.5 sm:mt-4 sm:gap-2">
+        {item.stats.map((stat) => (
+          <p key={stat} className="rounded-xl border border-[var(--border-color)] bg-white/48 px-2 py-1.5 text-[10px] font-semibold text-[var(--text-secondary)] dark:bg-white/[0.04] sm:px-3 sm:py-2 sm:text-xs">{stat}</p>
+        ))}
+      </div>
+      <p className="mt-3 text-xs font-medium leading-relaxed text-[var(--text-secondary)] sm:mt-4 sm:text-sm">{item.caption}</p>
+    </motion.article>
+  );
+}
+
+function CircleShowcase() {
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.22 });
+
+  return (
+    <AnimatedSection id="circle" className="scroll-mt-24 px-4 py-12 sm:px-6 sm:py-24" aria-label="Ginja Circle shared planning section">
+      <div ref={sectionRef} className="mx-auto max-w-7xl">
+        <div className="overflow-hidden rounded-[2rem] border border-[#E3CBB5] bg-[radial-gradient(circle_at_20%_18%,rgba(237,133,34,0.16),transparent_30%),radial-gradient(circle_at_82%_24%,rgba(135,182,106,0.13),transparent_26%),linear-gradient(135deg,#FFF9F2,#F5E8DA_54%,#FBF6EF)] shadow-[0_26px_76px_rgba(80,54,30,0.14)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_20%_18%,rgba(237,133,34,0.22),transparent_30%),radial-gradient(circle_at_82%_24%,rgba(135,182,106,0.12),transparent_26%),linear-gradient(135deg,#11100F,#2B1D15_54%,#090807)]">
+          <div className="grid gap-6 p-4 sm:gap-10 sm:p-8 lg:grid-cols-[0.82fr_1.18fr] lg:p-12">
+            <div>
+              <p className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/35 bg-[#ED8522]/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">
+                <Users2 className="h-3.5 w-3.5" aria-hidden="true" />
+                Shared momentum
+              </p>
+              <h2 className="mt-4 max-w-2xl text-balance text-3xl font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] sm:mt-5 sm:text-5xl">
+                Life happens with other people. Your plans should too.
+              </h2>
+              <p className="mt-4 max-w-2xl text-pretty text-sm leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] sm:mt-5 sm:text-lg">
+                Most plans do not fail because people do not care.
+              </p>
+              <div className="mt-5 space-y-2 text-sm leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] sm:mt-6 sm:text-base">
+                <p>They fail because nobody knows who is doing what.</p>
+                <p className="font-semibold text-[#241B15] dark:text-[#FFF7EF]">Circle gives every shared goal a home.</p>
+                <p className="font-semibold text-[#A26335] dark:text-[#F1BE90]">Assign actions. Share notes. Follow through together.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              {circleCopyBlocks.map((block, index) => {
+                const Icon = block.icon;
+
+                return (
+                  <motion.article
+                    key={block.title}
+                    className="rounded-[1.15rem] border border-[#E3CBB5] bg-white/52 p-3 shadow-[0_12px_28px_rgba(70,48,30,0.07)] backdrop-blur dark:border-white/10 dark:bg-white/[0.05] sm:rounded-[1.35rem] sm:p-4"
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.45 }}
+                    transition={{ duration: reduceMotion ? 0 : 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-[#FFF1E8] text-[#ED8522] dark:bg-[#4A3325] dark:text-[#F1BE90] sm:h-10 sm:w-10">
+                      <Icon className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                    <h3 className="mt-3 text-sm font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] sm:mt-4 sm:text-lg">{block.title}</h3>
+                    <p className="mt-2 text-xs font-medium leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] sm:text-sm">{block.body}</p>
+                  </motion.article>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="border-t border-[#E3CBB5] bg-white/24 p-4 dark:border-white/10 dark:bg-black/10 sm:p-8 lg:p-10">
+            <div className="mb-5 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.13em] text-[#A26335] dark:text-[#F1BE90] sm:mb-7 sm:text-[11px]">
+              {['Discover', 'Shared Plan', 'Responsibility', 'Follow-through', 'Experience'].map((step, index) => (
+                <React.Fragment key={step}>
+                  {index > 0 && <ArrowRight className="h-3.5 w-3.5 text-[#C59B76]" aria-hidden="true" />}
+                  <span className="rounded-full border border-[#E3CBB5] bg-white/48 px-3 py-1.5 dark:border-white/10 dark:bg-white/[0.05]">{step}</span>
+                </React.Fragment>
+              ))}
+            </div>
+
+            <div className="grid gap-3 lg:grid-cols-[minmax(0,0.78fr)_96px_minmax(0,1.22fr)] lg:items-center lg:gap-6">
+              <CircleExploreCard reduceMotion={reduceMotion} active={isInView} />
+              <CircleConnector reduceMotion={reduceMotion} active={isInView} />
+              <div>
+                <AnimatedCirclePlanMockup reduceMotion={reduceMotion} active={isInView} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4 lg:grid-cols-4">
+          {circleUseCases.map((item, index) => (
+            <CircleUseCaseCard key={item.title} item={item} index={index} reduceMotion={reduceMotion} />
+          ))}
         </div>
       </div>
     </AnimatedSection>
@@ -1892,6 +2603,7 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
         <StickyProductStory />
       </div>
       <ArcShowcase />
+      <CircleShowcase />
       <AudienceSection />
       <IntelligenceSection />
       <FounderNoteSection />
