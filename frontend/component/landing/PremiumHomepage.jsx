@@ -247,6 +247,28 @@ const testimonials = [
 
 const proofItems = ['Brain Dump', 'Smart Reminders', 'Arc', 'Circle', 'Strides'];
 
+const chaosThoughts = [
+  { text: 'Need to buy groceries', left: '8%', top: '118px', rotate: -4, drift: [0, -7, 4, 0] },
+  { text: 'Finish assignment draft', left: '43%', top: '88px', rotate: 3, drift: [0, 6, -5, 0] },
+  { text: 'Call mom back', left: '12%', top: '196px', rotate: 4, drift: [0, -5, 7, 0] },
+  { text: 'Book dentist appointment', left: '42%', top: '182px', rotate: -3, drift: [0, 7, -4, 0] },
+  { text: 'Gym today', left: '10%', top: '296px', rotate: -2, drift: [0, -6, 5, 0] },
+  { text: 'Plan birthday dinner', left: '46%', top: '282px', rotate: 4, drift: [0, 5, -7, 0] },
+  { text: 'Study Spanish verbs', left: '8%', top: '390px', rotate: 3, drift: [0, -5, 4, 0] },
+  { text: 'Pay rent', left: '55%', top: '394px', rotate: -4, drift: [0, 5, -4, 0] },
+];
+
+const chaosTodos = [
+  { day: 'Today', time: '9:00 AM', title: 'Finish assignment draft', priority: true },
+  { day: 'Today', time: '11:30 AM', title: 'Study Spanish verbs', priority: false },
+  { day: 'Today', time: '1:00 PM', title: 'Book dentist appointment', priority: false },
+  { day: 'Today', time: '4:00 PM', title: 'Gym today', priority: true, tag: 'Shared plan' },
+  { day: 'Today', time: '6:00 PM', title: 'Buy groceries', priority: false },
+  { day: 'Today', time: '7:30 PM', title: 'Call mom back', priority: false },
+  { day: 'Tomorrow', time: '10:00 AM', title: 'Pay rent', priority: true },
+  { day: 'Friday', time: '6:30 PM', title: 'Plan birthday dinner', priority: false },
+];
+
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
   visible: { opacity: 1, y: 0 },
@@ -411,6 +433,193 @@ function StructuredTodosScreen({ after, reduceMotion }) {
         ))}
       </div>
     </div>
+  );
+}
+
+function PriorityAlertToggle({ on, reduceMotion, delay = 0 }) {
+  return (
+    <span className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full ${on ? 'bg-[#ED8522]/75' : 'bg-[#D8D0C5] dark:bg-white/18'}`}>
+      <motion.span
+        className="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-[0_2px_6px_rgba(80,54,30,0.18)]"
+        initial={reduceMotion ? false : { x: on ? 2 : 2 }}
+        whileInView={{ x: on ? 18 : 2 }}
+        viewport={{ once: true }}
+        transition={{ duration: reduceMotion ? 0 : 0.38, delay, ease: [0.22, 1, 0.36, 1] }}
+      />
+    </span>
+  );
+}
+
+function ChaosThoughtsScreen({ reduceMotion }) {
+  return (
+    <div className="relative min-h-[500px] overflow-hidden bg-[#EEEDE9] px-4 pb-4 pt-6 text-[#1F1D19] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_24%_18%,rgba(237,133,34,0.14),transparent_30%),radial-gradient(circle_at_78%_72%,rgba(135,182,106,0.12),transparent_30%)]" />
+      <p className="relative text-[10px] font-bold uppercase tracking-[0.22em] text-[#A26335] dark:text-[#F1BE90]">Brain Dump</p>
+      <h3 className="relative mt-2 text-[22px] font-bold leading-tight">Everything on your mind</h3>
+      <p className="relative mt-2 max-w-[225px] text-[11px] leading-relaxed text-[#716A61] dark:text-[#A9A29D]">
+        Start with the mess. No categories, no perfect plan, just what is already in your head.
+      </p>
+
+      {chaosThoughts.map((thought, index) => (
+        <motion.div
+          key={thought.text}
+          className="absolute max-w-[132px] rounded-2xl border border-[#E8D3BF] bg-white/92 px-3 py-2 text-[10.5px] font-semibold leading-snug text-[#4D4035] shadow-[0_12px_26px_rgba(70,48,30,0.08)] backdrop-blur dark:border-white/10 dark:bg-[#3B2E26]/92 dark:text-[#F4E8DD]"
+          style={{ left: thought.left, top: thought.top, rotate: `${thought.rotate}deg` }}
+          initial={reduceMotion ? false : { opacity: 0, y: 10, scale: 0.94 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  x: thought.drift,
+                  y: thought.drift.slice().reverse(),
+                }
+          }
+          viewport={{ once: true }}
+          transition={{
+            opacity: { delay: index * 0.07, duration: 0.42 },
+            scale: { delay: index * 0.07, duration: 0.42 },
+            x: { duration: 4.8 + index * 0.18, repeat: Infinity, ease: 'easeInOut' },
+            y: { duration: 5.1 + index * 0.2, repeat: Infinity, ease: 'easeInOut' },
+          }}
+        >
+          {thought.text}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function ChaosPlanScreen({ reduceMotion }) {
+  let previousDay = '';
+
+  return (
+    <div className="min-h-[500px] bg-[#F8F1E8] px-4 pb-4 pt-6 text-[#241B15] dark:bg-[#10100F] dark:text-[#F6F4F1]">
+      <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#A26335] dark:text-[#F1BE90]">To-Do Plan</p>
+      <div className="mt-3 flex items-start justify-between gap-3">
+        <div>
+          <h3 className="text-[22px] font-bold leading-tight">Turned into a plan</h3>
+          <p className="mt-1 max-w-[205px] text-[10px] leading-relaxed text-[#77675A] dark:text-[#A9A29D]">
+            Tasks, timing, and priority alerts shaped into a day you can follow.
+          </p>
+        </div>
+        <span className="rounded-full bg-[#EEF5E8] px-2.5 py-1 text-[9px] font-bold text-[#567B34] dark:bg-[#33412B] dark:text-[#BBD89F]">
+          8 tasks
+        </span>
+      </div>
+
+      <div className="mt-4 space-y-1.5">
+        {chaosTodos.map((todo, index) => {
+          const showDay = todo.day !== previousDay;
+          previousDay = todo.day;
+
+          return (
+            <React.Fragment key={`${todo.day}-${todo.time}-${todo.title}`}>
+              {showDay ? (
+                <p className="pt-1 text-[9px] font-bold uppercase tracking-[0.18em] text-[#A26335] dark:text-[#F1BE90]">{todo.day}</p>
+              ) : null}
+              <motion.div
+                className="grid grid-cols-[58px_minmax(0,1fr)_40px] items-center gap-2 rounded-[15px] border border-[#EAD9C7] bg-[#FFFDF9] px-2.5 py-2 text-[#3C3128] shadow-[0_1px_0_rgba(0,0,0,0.03)] dark:border-white/10 dark:bg-[#211B17] dark:text-[#F4E8DD]"
+                initial={reduceMotion ? false : { opacity: 0, x: 14 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.16 + index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="rounded-full bg-[#FFF1E8] px-1.5 py-1 text-center text-[8.5px] font-bold tabular-nums text-[#B65C1D] dark:bg-[#4A3325] dark:text-[#F1BE90]">
+                  {todo.time}
+                </span>
+                <span className="min-w-0">
+                  <span className="block truncate text-[10.5px] font-bold leading-tight">{todo.title}</span>
+                  <span className="mt-0.5 block text-[8.5px] font-semibold leading-tight text-[#81766B] dark:text-[#CBB8A6]">
+                    {todo.tag || (todo.priority ? 'Priority alert ON' : 'Scheduled')}
+                  </span>
+                </span>
+                <PriorityAlertToggle on={todo.priority} reduceMotion={reduceMotion} delay={0.5 + index * 0.07} />
+              </motion.div>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ChaosToClaritySection() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <AnimatedSection id="chaos-to-clarity" className="px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Chaos to clarity</p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl">
+            From scattered thoughts to a day you can actually follow.
+          </h2>
+          <p className="mt-5 text-pretty text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            Brain Dump everything on your mind. Ginja turns the noise into clear tasks, priorities, and time blocks that fit your day.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-[minmax(0,1fr)_28px_minmax(0,1fr)] items-center gap-2 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_120px_minmax(0,1fr)] lg:gap-10">
+          <div className="flex justify-center">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative h-[354px] w-[136px] max-[374px]:h-[320px] max-[374px]:w-[123px] sm:h-[442px] sm:w-[170px] lg:h-auto lg:w-auto">
+                <div className="absolute left-0 top-0 origin-top-left scale-[0.47] max-[374px]:scale-[0.425] sm:scale-[0.59] lg:static lg:scale-100">
+                  <PhoneFrame className="w-[286px] sm:w-[286px] lg:w-[318px]" activeTab="home">
+                    <ChaosThoughtsScreen reduceMotion={reduceMotion} />
+                  </PhoneFrame>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="relative flex h-[354px] items-center justify-center max-[374px]:h-[320px] sm:h-[442px] lg:h-[420px]">
+            <div className="absolute h-px w-full bg-[#E7D2BD] dark:bg-white/12" />
+            {!reduceMotion ? (
+              <motion.span
+                className="relative z-10 h-3 w-3 rounded-full bg-[#ED8522] shadow-[0_0_18px_rgba(237,133,34,0.45)] lg:h-4 lg:w-4"
+                animate={{ x: [-8, 8, -8] }}
+                transition={{ duration: 2.6, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            ) : (
+              <span className="relative z-10 h-3 w-3 rounded-full bg-[#ED8522] lg:h-4 lg:w-4" />
+            )}
+          </div>
+
+          <div className="flex justify-center">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.32, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative h-[354px] w-[136px] max-[374px]:h-[320px] max-[374px]:w-[123px] sm:h-[442px] sm:w-[170px] lg:h-auto lg:w-auto">
+                <div className="absolute left-0 top-0 origin-top-left scale-[0.47] max-[374px]:scale-[0.425] sm:scale-[0.59] lg:static lg:scale-100">
+                  <PhoneFrame className="w-[286px] sm:w-[286px] lg:w-[318px]" activeTab="todo">
+                    <ChaosPlanScreen reduceMotion={reduceMotion} />
+                  </PhoneFrame>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 max-w-4xl rounded-[1.75rem] border border-[var(--border-color)] bg-[linear-gradient(135deg,var(--surface-soft),var(--surface-primary))] p-6 text-center shadow-[0_18px_48px_rgba(44,36,28,0.08)] dark:shadow-[0_18px_48px_rgba(10,8,6,0.28)] sm:p-8">
+          <p className="text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            Most apps ask you to organize yourself before you even know where to start.
+          </p>
+          <p className="mt-3 text-xl font-semibold text-[var(--text-strong)]">Ginja starts with the mess.</p>
+          <p className="mt-3 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            It helps you capture what is on your mind, turn it into action, and build a day that actually fits real life.
+          </p>
+        </div>
+      </div>
+    </AnimatedSection>
   );
 }
 
@@ -1676,6 +1885,7 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
   return (
     <>
       <HeroSection onSeeHowItWorks={scrollToStory} />
+      <ChaosToClaritySection />
       <FiveAppsProblemSection />
       <ConnectedLifeSection />
       <div ref={storyRef}>
