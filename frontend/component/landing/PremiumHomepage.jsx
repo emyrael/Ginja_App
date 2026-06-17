@@ -453,6 +453,59 @@ function HeroSocialProofStrip() {
   );
 }
 
+function MobileHeroTrustCard({ reduceMotion }) {
+  return (
+    <motion.div
+      className="absolute bottom-4 right-0 z-20 w-[214px] rounded-[1.25rem] border border-white/55 bg-white/76 p-2.5 shadow-[0_18px_42px_rgba(44,36,28,0.16)] backdrop-blur-xl dark:border-white/12 dark:bg-[#211812]/76"
+      initial={reduceMotion ? false : { opacity: 0, y: 12, scale: 0.97 }}
+      animate={
+        reduceMotion
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 1, y: [0, -3, 0], scale: 1 }
+      }
+      transition={
+        reduceMotion
+          ? { duration: 0 }
+          : {
+              opacity: { duration: 0.45, delay: 0.32 },
+              scale: { duration: 0.45, delay: 0.32 },
+              y: { duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.7 },
+            }
+      }
+    >
+      <div className="grid grid-cols-[1fr_auto] items-center gap-3">
+        <div>
+          <p className="text-[10px] font-bold tracking-[0.04em] text-[#ED8522] xs:text-[11px]">★★★★★ {APP_RATING} Rating</p>
+          <p className="mt-1 text-[11px] font-semibold text-[var(--text-strong)] xs:text-xs">{DOWNLOAD_COUNT} Downloads</p>
+        </div>
+        <span className="flex h-8 w-8 items-center justify-center rounded-2xl border border-[#E3CBB5] bg-[#FFF8EF] text-[#ED8522] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.55)] dark:border-white/10 dark:bg-white/[0.08]">
+          <Sparkles className="h-4 w-4" aria-hidden="true" />
+        </span>
+      </div>
+      <div className="mt-2.5 grid grid-cols-2 gap-1.5">
+        {storeCtas.map((cta) => {
+          const Icon = cta.icon;
+
+          return (
+            <a
+              key={cta.platform}
+              href={cta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackDownload(cta.platform)}
+              className="inline-flex min-h-8 items-center justify-center gap-1.5 rounded-full border border-[#E3CBB5] bg-white/76 px-2 text-[9.5px] font-bold text-[#241B15] shadow-[0_8px_18px_rgba(80,54,30,0.08)] transition-all duration-200 active:scale-[0.98] dark:border-white/10 dark:bg-white/[0.08] dark:text-[#FFF7EF] xs:text-[10px]"
+              aria-label={`${cta.label} from mobile hero trust card`}
+            >
+              <Icon className="h-3.5 w-3.5" />
+              <span>{cta.shortLabel}</span>
+            </a>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+}
+
 function PhoneMockup({ screen = 'home', activeTab = 'home', className = '' }) {
   const screens = {
     home: <HomeScreen />,
@@ -772,9 +825,75 @@ function HeroSection({ onSeeHowItWorks }) {
   ];
 
   return (
-    <section id="home" className="relative overflow-hidden px-4 pb-12 pt-8 sm:px-6 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+    <section id="home" className="relative overflow-hidden px-4 pb-10 pt-6 sm:px-6 md:pb-20 md:pt-14 lg:pb-24 lg:pt-16">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(237,133,34,0.16),transparent_30%),radial-gradient(circle_at_84%_26%,rgba(135,182,106,0.16),transparent_26%),linear-gradient(180deg,#FBF7EF_0%,var(--bg-primary)_76%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(237,133,34,0.2),transparent_30%),radial-gradient(circle_at_84%_26%,rgba(135,182,106,0.13),transparent_26%),linear-gradient(180deg,#35251C_0%,var(--bg-primary)_82%)]" />
-      <div className="relative mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_164px] items-center gap-3 py-6 max-[374px]:grid-cols-[minmax(0,1fr)_140px] xs:grid-cols-[minmax(0,1fr)_194px] xs:gap-4 sm:grid-cols-[minmax(0,1fr)_194px] sm:gap-6 lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:py-8">
+      <motion.div
+        className="relative mx-auto max-w-md md:hidden"
+        initial={reduceMotion ? false : 'hidden'}
+        animate="visible"
+        variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+      >
+        <motion.span
+          variants={fadeUp}
+          transition={{ duration: 0.48 }}
+          className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/25 bg-[#FFF1E8] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[#A26335] shadow-[0_10px_24px_rgba(237,133,34,0.12)] dark:bg-[#4A3325] dark:text-[#F1BE90]"
+        >
+          <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+          Free to start
+        </motion.span>
+        <motion.h1
+          variants={fadeUp}
+          transition={{ duration: 0.48 }}
+          className="mt-4 text-balance text-[2.28rem] font-semibold leading-[1.01] text-[var(--text-strong)] max-[374px]:text-[2rem] xs:text-[2.48rem]"
+        >
+          <span className="block">Your brain isn&apos;t a to-do list.</span>
+          <span className="block">Stop treating it like one.</span>
+        </motion.h1>
+        <motion.p
+          variants={fadeUp}
+          transition={{ duration: 0.48 }}
+          className="mt-3 max-w-[19rem] text-sm font-medium leading-snug text-[var(--text-secondary)] xs:text-base"
+        >
+          Brain Dump. Adaptive Planning. Shared Accountability.
+        </motion.p>
+
+        <motion.div
+          className="relative mx-auto mt-4 flex max-w-[344px] justify-center pb-14"
+          initial={reduceMotion ? false : { opacity: 0, y: 16, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: reduceMotion ? 0 : 0.52, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="absolute inset-y-10 left-1/2 w-32 -translate-x-1/2 rounded-full bg-[#ED8522]/16 blur-3xl" />
+          <div className="relative rounded-[1.8rem] border border-white/55 bg-white/36 p-2 shadow-[0_22px_58px_rgba(68,48,30,0.15)] backdrop-blur dark:border-white/10 dark:bg-white/[0.05]">
+            <CompactPhonePreview screen="home" activeTab="home" />
+          </div>
+          <MobileHeroTrustCard reduceMotion={reduceMotion} />
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          transition={{ duration: 0.48 }}
+          className="-mt-2 grid gap-2"
+        >
+          <Link
+            href="/download"
+            onClick={() => trackDownloadPageClick('premium_mobile_hero_start_free')}
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#ED8522] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.25)] transition-all duration-200 active:scale-[0.99]"
+            aria-label="Start free by downloading Ginja"
+          >
+            Start Free
+          </Link>
+          <button
+            type="button"
+            onClick={onSeeHowItWorks}
+            className="inline-flex min-h-11 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-5 py-2.5 text-sm font-semibold text-[var(--text-secondary)] shadow-[0_10px_24px_rgba(44,36,28,0.05)] transition-all duration-200 active:scale-[0.99]"
+          >
+            See how it works
+          </button>
+        </motion.div>
+      </motion.div>
+
+      <div className="relative mx-auto hidden max-w-7xl grid-cols-[minmax(0,1fr)_164px] items-center gap-3 py-6 max-[374px]:grid-cols-[minmax(0,1fr)_140px] xs:grid-cols-[minmax(0,1fr)_194px] xs:gap-4 sm:grid-cols-[minmax(0,1fr)_194px] sm:gap-6 md:grid lg:min-h-[calc(100vh-6rem)] lg:grid-cols-[1.02fr_0.98fr] lg:gap-16 lg:py-8">
         <motion.div
           className="min-w-0"
           initial={reduceMotion ? false : 'hidden'}
