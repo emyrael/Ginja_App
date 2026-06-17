@@ -804,7 +804,7 @@ function HeroSection({ onSeeHowItWorks }) {
           >
             Dump what&apos;s on your mind. Ginja turns it into clear next steps, adaptive plans, shared experiences, and a schedule that keeps up with real life.
           </motion.p>
-          <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="mt-6 space-y-3 lg:mt-9">
+          <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="mt-6 lg:mt-9">
             <div className="flex flex-wrap items-center gap-2 lg:gap-3">
               <Link
                 href="/download"
@@ -822,7 +822,6 @@ function HeroSection({ onSeeHowItWorks }) {
                 See how it works
               </button>
             </div>
-            <StoreDownloadButtons source="hero" compact className="max-w-xs xs:max-w-sm sm:max-w-md" />
           </motion.div>
           <HeroSocialProofStrip />
         </motion.div>
