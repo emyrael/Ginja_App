@@ -23,11 +23,13 @@ import {
   Repeat2,
   Send,
   Sparkles,
+  Star,
   StickyNote,
   Target,
   UserCheck,
   Users2,
   Waypoints,
+  X,
 } from 'lucide-react';
 import PhoneFrame from './ui/PhoneFrame';
 import {
@@ -39,7 +41,14 @@ import {
   TodoViewScreen,
   YouScreen,
 } from './ui/ScreenMockups';
-import { trackDownloadPageClick } from '../../lib/analytics';
+import {
+  APP_PLATFORMS,
+  APP_RATING,
+  APP_STORE_URL,
+  DOWNLOAD_COUNT,
+  GOOGLE_PLAY_URL,
+} from '../../lib/appConstants';
+import { trackDownload, trackDownloadPageClick } from '../../lib/analytics';
 
 function ArcIcon({ className = '' }) {
   return (
@@ -54,6 +63,109 @@ function ArcIcon({ className = '' }) {
       <path d="M12 2l1.7 5.1L19 9l-5.3 1.9L12 16l-1.7-5.1L5 9l5.3-1.9L12 2z" />
       <path d="M19 15l.8 2.4L22 18l-2.2.6L19 21l-.8-2.4L16 18l2.2-.6L19 15z" />
     </svg>
+  );
+}
+
+function AppleIcon({ className = '' }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        fill="currentColor"
+        d="M16.72 12.67c.01 2.6 2.28 3.47 2.3 3.48-.02.06-.36 1.25-1.18 2.48-.71 1.06-1.45 2.12-2.61 2.14-1.14.02-1.5-.68-2.8-.68-1.3 0-1.7.66-2.78.7-1.12.04-1.98-1.12-2.7-2.17-1.47-2.13-2.6-6.01-1.08-8.67.76-1.32 2.11-2.16 3.58-2.18 1.11-.02 2.16.75 2.8.75.64 0 1.84-.92 3.1-.78.53.02 2.03.21 2.99 1.61-.08.05-1.78 1.04-1.76 3.12ZM14.67 4.64c.6-.73 1.01-1.75.9-2.76-.87.04-1.93.58-2.55 1.31-.56.65-1.05 1.7-.92 2.7.97.08 1.97-.49 2.57-1.25Z"
+      />
+    </svg>
+  );
+}
+
+function PlayStoreIcon({ className = '' }) {
+  return (
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={className}>
+      <path d="M6 5.5L37.5 32 6 58.5V5.5Z" fill="#34A853" />
+      <path d="M37.5 32L48.5 22.7 58 27.9c2.8 1.5 2.8 5.6 0 7.1l-9.5 5.3L37.5 32Z" fill="#FBBC05" />
+      <path d="M6 5.5L48.5 22.7 37.5 32 6 5.5Z" fill="#4285F4" />
+      <path d="M6 58.5L37.5 32 48.5 41.3 6 58.5Z" fill="#EA4335" />
+    </svg>
+  );
+}
+
+const storeCtas = [
+  {
+    label: 'Download on the App Store',
+    shortLabel: 'App Store',
+    href: APP_STORE_URL,
+    platform: 'ios',
+    icon: AppleIcon,
+  },
+  {
+    label: 'Get it on Google Play',
+    shortLabel: 'Google Play',
+    href: GOOGLE_PLAY_URL,
+    platform: 'android',
+    icon: PlayStoreIcon,
+  },
+];
+
+function StoreDownloadButtons({ source, compact = false, className = '' }) {
+  return (
+    <div className={`${compact ? 'flex flex-wrap' : 'flex flex-col sm:flex-row sm:flex-wrap'} gap-2 ${className}`}>
+      {storeCtas.map((cta) => {
+        const Icon = cta.icon;
+
+        return (
+          <a
+            key={cta.platform}
+            href={cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackDownload(cta.platform)}
+            className={`inline-flex items-center justify-center gap-2 rounded-full border border-[#E3CBB5] bg-[var(--surface-primary)] font-semibold text-[var(--text-strong)] shadow-[0_12px_28px_rgba(44,36,28,0.08)] transition-all duration-200 hover:-translate-y-0.5 hover:border-[#ED8522]/45 hover:text-[#A26335] hover:shadow-[0_16px_34px_rgba(80,54,30,0.12)] dark:border-white/12 dark:bg-white/[0.06] dark:hover:text-[#F1BE90] ${
+              compact ? 'px-3 py-1.5 text-[11px] xs:text-xs' : 'w-full px-5 py-2.5 text-sm sm:w-auto sm:px-6 sm:py-3 sm:text-base'
+            }`}
+            aria-label={`${cta.label} from ${source}`}
+          >
+            <Icon className={compact ? 'h-4 w-4' : 'h-5 w-5'} />
+            <span>{compact ? cta.shortLabel : cta.label}</span>
+          </a>
+        );
+      })}
+    </div>
+  );
+}
+
+function FinalStoreDownloadButtons() {
+  return (
+    <div className="grid w-full gap-2 sm:grid-cols-2">
+      {storeCtas.map((cta) => {
+        const Icon = cta.icon;
+
+        return (
+          <a
+            key={cta.platform}
+            href={cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackDownload(cta.platform)}
+            className="group relative overflow-hidden rounded-[1.15rem] border border-[#E3CBB5] bg-white/72 px-4 py-3 text-[#241B15] shadow-[0_16px_34px_rgba(80,54,30,0.12)] backdrop-blur transition-all duration-200 hover:-translate-y-0.5 hover:border-[#ED8522]/45 hover:bg-white/86 hover:shadow-[0_20px_44px_rgba(80,54,30,0.16)] dark:border-white/12 dark:bg-white/[0.07] dark:text-[#FFF7EF] dark:hover:bg-white/[0.1]"
+            aria-label={`${cta.label} from final CTA`}
+          >
+            <span className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-[radial-gradient(circle_at_center,rgba(237,133,34,0.16),transparent_68%)] opacity-80 transition-opacity duration-200 group-hover:opacity-100" />
+            <span className="relative flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-[#E3CBB5] bg-[#FFF8EF] text-[#1F1711] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.4)] dark:border-white/10 dark:bg-white/[0.08] dark:text-white">
+                <Icon className="h-5 w-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs font-bold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">
+                  {cta.platform === 'ios' ? 'App Store' : 'Google Play'}
+                </span>
+                <span className="mt-0.5 block text-sm font-semibold leading-tight">
+                  {cta.label}
+                </span>
+              </span>
+            </span>
+          </a>
+        );
+      })}
+    </div>
   );
 }
 
@@ -225,35 +337,25 @@ const scatteredAppCards = [
   { label: 'Calendar', icon: CalendarCheck2, className: 'lg:right-[34%] lg:top-28' },
 ];
 
-const testimonials = [
+const reviewCards = [
   {
-    name: 'Jessica Miller',
-    country: 'United States',
-    text: 'Brain Dump helps me get everything out of my head without overthinking, and it turns it into clear steps instantly.',
+    rating: 5,
+    quote: 'This is one stop shop for productivity and collaboration. The Circle part of the app is a life saver for me that plan a lot with my friends.',
+    source: 'App Store review',
   },
   {
-    name: 'Lukas Schneider',
-    country: 'Germany',
-    text: 'I can write freely in Brain Dump, then see my week clearly. Strides keeps me consistent even on quieter days.',
+    rating: 4.5,
+    quote: 'Brain Dump helps me get everything out of my head and turn it into clear next steps without feeling overwhelmed.',
+    source: 'Ginja user',
   },
   {
-    name: 'Sophie Tremblay',
-    country: 'Canada',
-    text: 'Circle makes it easy to plan things with friends and actually follow through. The reminders feel tailored to me.',
-  },
-  {
-    name: 'Chinedu Okafor',
-    country: 'Nigeria',
-    text: 'Ginja turns my scattered thoughts into a clear plan for the day. Even small progress counts with Strides.',
-  },
-  {
-    name: 'Emily Carter',
-    country: 'United Kingdom',
-    text: 'The to-do calendar view helps me see what is coming up, what I missed, and stay in sync without feeling pressured.',
+    rating: 5,
+    quote: 'Arc makes goal planning feel realistic. I like that the plan can adjust instead of making me feel like I failed, and it helps me discover experiences I can try too.',
+    source: 'Ginja user',
   },
 ];
 
-const proofItems = ['Brain Dump', 'Smart Reminders', 'Arc', 'Circle', 'Strides'];
+const finalTrustItems = [`${APP_RATING}★ rating`, `${DOWNLOAD_COUNT} downloads`, APP_PLATFORMS, 'Free to start'];
 
 const chaosThoughts = [
   { text: 'Need to buy groceries', left: '8%', top: '118px', rotate: -4, drift: [0, -7, 4, 0] },
@@ -319,6 +421,35 @@ function FeatureCard({ icon: Icon, emoji, title, body, children, delay = 0 }) {
       <p className="mt-3 text-sm leading-relaxed text-[var(--text-secondary)]">{body}</p>
       {children}
     </motion.article>
+  );
+}
+
+function HeroSocialProofStrip() {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <motion.div
+      className="mt-5 rounded-[1.35rem] border border-[#E5D6C6] bg-white/70 p-2.5 shadow-[0_18px_44px_rgba(70,48,30,0.1)] backdrop-blur dark:border-white/10 dark:bg-white/[0.06] sm:mt-6 sm:p-4 lg:mt-8"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.58, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <div className="grid gap-1.5 sm:grid-cols-3 sm:gap-2">
+        <div className="rounded-[1rem] border border-[#E9D8C7] bg-[#FFFDF9]/86 px-3 py-2 shadow-[0_10px_24px_rgba(80,54,30,0.06)] dark:border-white/10 dark:bg-black/10 sm:rounded-[1.15rem] sm:px-4 sm:py-3">
+          <p className="text-[11px] font-bold tracking-[0.04em] text-[#ED8522] xs:text-xs sm:text-sm">★★★★★ {APP_RATING}/5 rating</p>
+          <p className="mt-1 hidden text-sm font-medium text-[var(--text-secondary)] sm:block">Trusted for calmer momentum.</p>
+        </div>
+        <div className="rounded-[1rem] border border-[#E9D8C7] bg-[#FFFDF9]/86 px-3 py-2 shadow-[0_10px_24px_rgba(80,54,30,0.06)] dark:border-white/10 dark:bg-black/10 sm:rounded-[1.15rem] sm:px-4 sm:py-3">
+          <p className="text-xs font-semibold leading-none text-[var(--text-strong)] xs:text-sm sm:text-lg">{DOWNLOAD_COUNT} downloads</p>
+          <p className="mt-1 hidden text-sm font-medium text-[var(--text-secondary)] sm:block">Live on both app platforms.</p>
+        </div>
+        <div className="rounded-[1rem] border border-[#E9D8C7] bg-[#FFFDF9]/86 px-3 py-2 shadow-[0_10px_24px_rgba(80,54,30,0.06)] dark:border-white/10 dark:bg-black/10 sm:rounded-[1.15rem] sm:px-4 sm:py-3">
+          <p className="text-[11px] font-semibold text-[var(--text-strong)] xs:text-xs sm:text-sm">Available on {APP_PLATFORMS}</p>
+          <p className="mt-1 hidden text-sm font-medium text-[var(--text-secondary)] sm:block">Built for busy minds, shared plans, and real-life follow-through</p>
+        </div>
+      </div>
+      <StoreDownloadButtons source="hero social proof" compact className="mt-3 sm:justify-start" />
+    </motion.div>
   );
 }
 
@@ -673,23 +804,27 @@ function HeroSection({ onSeeHowItWorks }) {
           >
             Dump what&apos;s on your mind. Ginja turns it into clear next steps, adaptive plans, shared experiences, and a schedule that keeps up with real life.
           </motion.p>
-          <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="mt-6 flex flex-wrap items-center gap-2 lg:mt-9 lg:gap-3">
-            <Link
-              href="/download"
-              onClick={() => trackDownloadPageClick('premium_hero_start_free')}
-              className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.25)] transition-all duration-200 hover:bg-[#C94B16] sm:px-6 sm:py-3 sm:text-base"
-              aria-label="Start free by downloading Ginja"
-            >
-              Start Free
-            </Link>
-            <button
-              type="button"
-              onClick={onSeeHowItWorks}
-              className="inline-flex min-h-10 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[0_10px_24px_rgba(44,36,28,0.05)] transition-all duration-200 hover:brightness-105 sm:px-6 sm:py-3 sm:text-base"
-            >
-              See how it works
-            </button>
+          <motion.div variants={fadeUp} transition={{ duration: 0.55 }} className="mt-6 space-y-3 lg:mt-9">
+            <div className="flex flex-wrap items-center gap-2 lg:gap-3">
+              <Link
+                href="/download"
+                onClick={() => trackDownloadPageClick('premium_hero_start_free')}
+                className="inline-flex min-h-10 items-center justify-center rounded-full bg-[#ED8522] px-4 py-2 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.25)] transition-all duration-200 hover:bg-[#C94B16] sm:px-6 sm:py-3 sm:text-base"
+                aria-label="Start free by downloading Ginja"
+              >
+                Start Free
+              </Link>
+              <button
+                type="button"
+                onClick={onSeeHowItWorks}
+                className="inline-flex min-h-10 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[0_10px_24px_rgba(44,36,28,0.05)] transition-all duration-200 hover:brightness-105 sm:px-6 sm:py-3 sm:text-base"
+              >
+                See how it works
+              </button>
+            </div>
+            <StoreDownloadButtons source="hero" compact className="max-w-xs xs:max-w-sm sm:max-w-md" />
           </motion.div>
+          <HeroSocialProofStrip />
         </motion.div>
 
         <div className="relative flex justify-end lg:justify-end">
@@ -1399,6 +1534,8 @@ const arcExplanationGroups = [
   },
 ];
 
+const arcFeaturePills = ['Goal Arc', 'Habit Arc', 'Weekly reflection', 'Adaptive planning', 'Calendar-aware scheduling'];
+
 const circleActions = [
   { owner: 'Sarah', task: 'Book train tickets', status: 'Done', done: true },
   { owner: 'James', task: 'Reserve restaurant', status: 'Done', done: true },
@@ -1511,11 +1648,15 @@ function ArcExploreLightMockup({ compact = false }) {
       <p className={`${sectionClass} mt-[5%] font-bold uppercase tracking-[0.18em] text-[#8A6B52]`}>Curated for you</p>
       <div className="mt-[4%] grid grid-cols-2 gap-[4%]">
         {[
-          { title: 'Quiet Study Cafe', meta: 'Deep Ellum · 0.8 mi', image: 'bg-[linear-gradient(135deg,#F4C68E,#7A4B2B)]' },
-          { title: 'Student Meetup', meta: 'Tonight · 18:30', image: 'bg-[linear-gradient(135deg,#C8DAA9,#355F43)]' },
+          { title: 'Quiet Study Cafe', meta: 'Deep Ellum · 0.8 mi', rating: '4.8', image: 'bg-[linear-gradient(135deg,#F4C68E,#7A4B2B)]' },
+          { title: 'Student Meetup', meta: 'Tonight · 18:30', rating: '4.6', image: 'bg-[linear-gradient(135deg,#C8DAA9,#355F43)]' },
         ].map((item) => (
           <div key={item.title} className="overflow-hidden rounded-[7%] border border-[#E3CBB5] bg-white shadow-[0_10px_24px_rgba(80,54,30,0.09)]">
-            <div className={`${item.image} aspect-[1.18]`} />
+            <div className={`${item.image} relative aspect-[1.18]`}>
+              <span className={`absolute right-[6%] top-[6%] rounded-full bg-white/90 px-[6%] py-[2.2%] font-bold leading-none text-[#A26335] shadow-[0_4px_12px_rgba(80,54,30,0.14)] ${compact ? 'text-[4.6px] xs:text-[5.4px] sm:text-[6.4px]' : 'text-[8px]'}`}>
+                ★ {item.rating}
+              </span>
+            </div>
             <div className="p-[6%]">
               <p className={`${cardTitleClass} font-bold leading-tight`}>{item.title}</p>
               <p className={`${cardMetaClass} mt-[4%] leading-tight text-[#77675A]`}>{item.meta}</p>
@@ -1635,7 +1776,7 @@ function ArcShowcase() {
 
   return (
     <AnimatedSection id="arc" className="px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-[#E3CBB5] bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.17),transparent_30%),linear-gradient(135deg,#FFF9F2,#F5E8DA_54%,#FBF6EF)] shadow-[0_26px_76px_rgba(80,54,30,0.14)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.24),transparent_30%),linear-gradient(135deg,#11100F,#2B1D15_54%,#090807)]">
+      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-[#E3CBB5] bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.17),transparent_30%),linear-gradient(135deg,#FFF9F2,#F5E8DA_54%,#FBF6EF)] shadow-[0_18px_48px_rgba(70,48,30,0.08)] dark:border-[#6B4A31] dark:bg-[radial-gradient(circle_at_82%_18%,rgba(237,133,34,0.24),transparent_30%),linear-gradient(135deg,#11100F,#2B1D15_54%,#090807)]">
         <div className="grid grid-cols-[minmax(0,1fr)_150px] items-center gap-3 p-4 xs:grid-cols-[minmax(0,1fr)_174px] sm:grid-cols-[minmax(0,1fr)_216px] sm:p-6 lg:hidden">
           <div className="min-w-0">
             <p className="inline-flex items-center gap-1.5 rounded-full border border-[#ED8522]/35 bg-[#ED8522]/12 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">
@@ -1648,15 +1789,15 @@ function ArcShowcase() {
             <p className="mt-3 text-sm leading-relaxed text-[#6A5544] dark:text-[#D9C3AE]">
               Adaptive weekly journeys for goals and habits that change with real life.
             </p>
-            <div className="mt-4 grid gap-2">
-              <div className="rounded-2xl border border-[#ED8522]/25 bg-white/55 p-3 dark:bg-white/[0.06]">
-                <p className="text-sm font-semibold text-[#241B15] dark:text-white">Goal Arc</p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#A26335] dark:text-[#F1BE90]">Outcome-focused</p>
-              </div>
-              <div className="rounded-2xl border border-[#87B66A]/30 bg-white/55 p-3 dark:bg-white/[0.06]">
-                <p className="text-sm font-semibold text-[#241B15] dark:text-white">Habit Arc</p>
-                <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#4E8C06] dark:text-[#BBD89F]">Sustainable</p>
-              </div>
+            <p className="mt-3 text-xs leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] xs:text-sm">
+              Choose a goal or habit, set your rhythm, and let Ginja build a realistic weekly plan. Reflect, adjust, and keep moving even when life changes.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {arcFeaturePills.map((pill) => (
+                <span key={pill} className="rounded-full border border-[#E3CBB5] bg-white/55 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.11em] text-[#A26335] dark:border-white/10 dark:bg-white/[0.06] dark:text-[#F1BE90]">
+                  {pill}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -1669,14 +1810,24 @@ function ArcShowcase() {
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-[#ED8522]/35 bg-[#ED8522]/12 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-[#A26335] dark:text-[#F1BE90]">
               <Crown className="h-3.5 w-3.5" aria-hidden="true" />
-              Premium Feature
+              Premium
             </p>
             <h2 className="mt-5 text-balance text-4xl font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] sm:text-5xl">
               Meet Ginja Arc.
             </h2>
             <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-[#6A5544] dark:text-[#D9C3AE]">
-              Arc turns a goal or habit into an adaptive weekly journey. Choose your focus, set your rhythm, and let Ginja build a realistic plan that evolves as your life changes.
+              Adaptive weekly journeys for goals and habits that change with real life.
             </p>
+            <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-[#6A5544] dark:text-[#D9C3AE]">
+              Choose a goal or habit, set your rhythm, and let Ginja build a realistic weekly plan. Reflect, adjust, and keep moving even when life changes.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {arcFeaturePills.map((pill) => (
+                <span key={pill} className="rounded-full border border-[#E3CBB5] bg-white/55 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#A26335] dark:border-white/10 dark:bg-white/[0.06] dark:text-[#F1BE90]">
+                  {pill}
+                </span>
+              ))}
+            </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <FeatureCard icon={Target} title="Goal Arc" body="Reach something meaningful with milestones, timelines, and weekly adaptation.">
@@ -2282,6 +2433,9 @@ function CircleShowcase() {
                 <p className="font-semibold text-[#241B15] dark:text-[#FFF7EF]">Circle gives every shared goal a home.</p>
                 <p className="font-semibold text-[#A26335] dark:text-[#F1BE90]">Assign actions. Share notes. Follow through together.</p>
               </div>
+              <p className="mt-5 rounded-[1.25rem] border border-[#E3CBB5] bg-white/48 px-4 py-3 text-sm font-semibold leading-relaxed text-[#6A5544] shadow-[0_12px_28px_rgba(70,48,30,0.07)] dark:border-white/10 dark:bg-white/[0.05] dark:text-[#D9C3AE] sm:text-base">
+                Used for study groups, fitness challenges, birthday plans, trips, and small team accountability.
+              </p>
             </div>
 
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
@@ -2323,6 +2477,14 @@ function CircleShowcase() {
               <CircleConnector reduceMotion={reduceMotion} active={isInView} />
               <div>
                 <AnimatedCirclePlanMockup reduceMotion={reduceMotion} active={isInView} />
+                <motion.blockquote
+                  className="mt-4 rounded-[1.35rem] border border-[#E3CBB5] bg-white/62 p-4 text-sm font-semibold leading-relaxed text-[#5F4634] shadow-[0_16px_36px_rgba(80,54,30,0.09)] backdrop-blur dark:border-white/10 dark:bg-white/[0.06] dark:text-[#F4E6D8] sm:text-base"
+                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                  animate={isInView || reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.45, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  &ldquo;Circle turns &lsquo;we should do this&rsquo; into clear owners, notes, and next steps.&rdquo;
+                </motion.blockquote>
               </div>
             </div>
           </div>
@@ -2445,41 +2607,144 @@ function IntelligenceSection() {
   );
 }
 
-function TestimonialCard({ testimonial }) {
+function ReviewStars({ rating = 5, className = '' }) {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
   return (
-    <article className="h-full rounded-[1.5rem] border border-[var(--border-color)] bg-[var(--surface-primary)] p-6 shadow-[0_12px_30px_rgba(32,28,22,0.06)] dark:shadow-[0_12px_34px_rgba(10,8,6,0.3)]">
-      <p className="text-sm font-medium leading-relaxed text-[var(--text-secondary)] sm:text-base">&ldquo;{testimonial.text}&rdquo;</p>
-      <div className="mt-5">
-        <p className="text-sm font-semibold text-[var(--text-strong)] sm:text-base">{testimonial.name}</p>
-        <p className="text-xs text-[var(--text-muted)] sm:text-sm">{testimonial.country}</p>
-      </div>
-    </article>
+    <div className={`flex items-center gap-1 text-[#ED8522] ${className}`} aria-label={`${rating} star review`}>
+      {Array.from({ length: fullStars }).map((_, item) => (
+        <Star key={item} className="h-4 w-4 fill-current" aria-hidden="true" />
+      ))}
+      {hasHalfStar ? (
+        <span className="relative inline-flex h-4 w-4 text-[#ED8522]" aria-hidden="true">
+          <Star className="absolute inset-0 h-4 w-4 text-[#ED8522]/30" />
+          <span className="absolute inset-y-0 left-0 w-1/2 overflow-hidden">
+            <Star className="h-4 w-4 fill-current" />
+          </span>
+        </span>
+      ) : null}
+      {Array.from({ length: emptyStars }).map((_, item) => (
+        <Star key={`empty-${item}`} className="h-4 w-4 text-[#ED8522]/30" aria-hidden="true" />
+      ))}
+      <span className="ml-2 text-xs font-bold text-[#A26335] dark:text-[#F1BE90]">{rating.toFixed(1)}</span>
+    </div>
   );
 }
 
-function SocialProofSection() {
+function ReviewCard({ review, index, onSelect, reduceMotion }) {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => onSelect(review)}
+      className="group h-full min-h-[248px] w-[82vw] shrink-0 snap-start rounded-[1.5rem] border border-[#E4D2BF] bg-[linear-gradient(180deg,var(--surface-primary),var(--surface-soft))] p-5 text-left shadow-[0_16px_40px_rgba(44,36,28,0.08)] transition-colors duration-200 hover:border-[#ED8522]/40 focus:outline-none focus:ring-2 focus:ring-[#ED8522]/45 dark:border-white/10 dark:bg-white/[0.05] sm:min-h-[270px] sm:w-auto sm:shrink sm:p-6"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={reduceMotion ? undefined : { y: -6, scale: 1.015 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.99 }}
+      viewport={{ once: true, amount: 0.36 }}
+      transition={{ duration: reduceMotion ? 0 : 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      aria-label={`Read full review from ${review.source}`}
+    >
+      <ReviewStars rating={review.rating} />
+      <p className="mt-5 text-base font-medium leading-relaxed text-[var(--text-strong)] sm:text-lg">
+        &ldquo;{review.quote}&rdquo;
+      </p>
+      <div className="mt-6 flex items-center justify-between gap-4">
+        <p className="text-sm font-semibold text-[#A26335] dark:text-[#F1BE90]">— {review.source}</p>
+        <span className="h-2 w-2 rounded-full bg-[#87B66A] transition-transform duration-300 group-hover:scale-[1.8]" />
+      </div>
+    </motion.button>
+  );
+}
+
+function ReviewModal({ review, onClose }) {
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!review) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, review]);
+
+  return (
+    <AnimatePresence>
+      {review ? (
+        <motion.div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-[#1F1711]/46 px-4 backdrop-blur-sm"
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={reduceMotion ? undefined : { opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Full Ginja review"
+          onClick={onClose}
+        >
+          <motion.div
+            className="relative w-full max-w-xl rounded-[1.75rem] border border-[#E4D2BF] bg-[var(--surface-primary)] p-6 shadow-[0_30px_90px_rgba(20,15,10,0.28)] dark:border-white/10 sm:p-8"
+            initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: 12, scale: 0.98 }}
+            transition={{ duration: reduceMotion ? 0 : 0.26, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={onClose}
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--surface-soft)] text-[var(--text-secondary)] transition-colors duration-200 hover:text-[var(--text-strong)]"
+              aria-label="Close review"
+            >
+              <X className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <ReviewStars rating={review.rating} />
+            <p className="mt-6 text-pretty text-xl font-semibold leading-relaxed text-[var(--text-strong)] sm:text-2xl">
+              &ldquo;{review.quote}&rdquo;
+            </p>
+            <p className="mt-6 text-sm font-semibold text-[#A26335] dark:text-[#F1BE90]">— {review.source}</p>
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
+  );
+}
+
+function PremiumReviewsSection() {
+  const reduceMotion = useReducedMotion();
+  const [selectedReview, setSelectedReview] = useState(null);
+
   return (
     <AnimatedSection id="testimonials" className="px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl">
-            Loved by people building clarity in their lives.
+        <div className="max-w-3xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#A26A3F]">Real users. Real momentum.</p>
+          <h2 className="mt-4 text-balance text-3xl font-semibold leading-tight text-[var(--text-strong)] sm:text-4xl">
+            Loved by people who plan, collaborate, and follow through.
           </h2>
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {proofItems.map((item) => (
-              <span key={item} className="rounded-full border border-[var(--border-color)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)]">
-                {item}
-              </span>
-            ))}
-          </div>
+          <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">
+            Ginja helps people clear their head, build adaptive plans, and stay accountable with others.
+          </p>
         </div>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {testimonials.map((testimonial) => (
-            <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+        <div className="-mx-4 mt-10 flex snap-x gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+          {reviewCards.map((review, index) => (
+            <ReviewCard
+              key={review.quote}
+              review={review}
+              index={index}
+              onSelect={setSelectedReview}
+              reduceMotion={reduceMotion}
+            />
           ))}
         </div>
       </div>
+      <ReviewModal review={selectedReview} onClose={() => setSelectedReview(null)} />
     </AnimatedSection>
   );
 }
@@ -2513,26 +2778,26 @@ function FinalCTASection() {
     <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-24">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_34%,rgba(237,133,34,0.16),transparent_34%)]" />
       <div className="relative mx-auto max-w-7xl">
-        <div className="grid grid-cols-[minmax(0,1fr)_164px] items-center gap-3 rounded-[2rem] border border-[#E3CBB5] bg-[linear-gradient(135deg,#FFF9F2,#F4E8DA)] p-4 shadow-[0_26px_76px_rgba(80,54,30,0.14)] dark:border-[#6B4A31] dark:bg-[linear-gradient(135deg,#37251C,#211812)] max-[374px]:grid-cols-[minmax(0,1fr)_140px] xs:grid-cols-[minmax(0,1fr)_194px] xs:gap-4 sm:grid-cols-[minmax(0,1fr)_194px] sm:p-6 lg:grid-cols-[1fr_0.8fr] lg:gap-10 lg:p-10">
+        <div className="grid grid-cols-1 items-center gap-6 rounded-[2rem] border border-[#E3CBB5] bg-[linear-gradient(135deg,#FFF9F2,#F4E8DA)] p-4 shadow-[0_26px_76px_rgba(80,54,30,0.14)] dark:border-[#6B4A31] dark:bg-[linear-gradient(135deg,#37251C,#211812)] sm:grid-cols-[minmax(0,1fr)_194px] sm:gap-6 sm:p-6 lg:grid-cols-[1fr_0.8fr] lg:gap-10 lg:p-10">
           <div className="min-w-0">
             <h2 className="max-w-2xl text-balance text-2xl font-semibold leading-tight text-[#241B15] dark:text-[#FFF7EF] xs:text-3xl sm:text-4xl lg:text-5xl">
-              Start with one thought. Leave with a clear next step.
+              Join {DOWNLOAD_COUNT} people building calmer momentum with Ginja.
             </h2>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-[#6A5544] dark:text-[#D9C3AE] sm:text-base lg:mt-5 lg:text-lg">
               Ginja helps you unload, organize, adapt, and follow through without making productivity feel heavy.
             </p>
-            <div className="mt-6 flex flex-col items-start gap-3 sm:flex-row sm:items-center lg:mt-8">
-              <Link
-                href="/download"
-                onClick={() => trackDownloadPageClick('premium_final_cta')}
-                className="inline-flex rounded-full bg-[#ED8522] px-4 py-2.5 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(237,133,34,0.25)] transition-all duration-200 hover:bg-[#C94B16] sm:px-6 sm:py-3 sm:text-base"
-                aria-label="Download Ginja and start free"
-              >
-                Download Ginja
-              </Link>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {finalTrustItems.map((item) => (
+                <span key={item} className="rounded-full border border-[#E3CBB5] bg-white/55 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.11em] text-[#7A4D2A] dark:border-white/12 dark:bg-white/[0.06] dark:text-[#F1BE90] sm:px-4 sm:py-2">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div className="mt-6 rounded-[1.5rem] border border-[#E3CBB5]/80 bg-white/34 p-2.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] backdrop-blur dark:border-white/10 dark:bg-white/[0.04] sm:p-3 lg:mt-8">
+              <FinalStoreDownloadButtons />
               <a
                 href="#product-video"
-                className="inline-flex items-center gap-2 rounded-full border border-[#E3CBB5] bg-white/55 px-4 py-2.5 text-sm font-semibold text-[#7A4D2A] transition-all duration-200 hover:border-[#ED8522]/55 hover:text-[#B65C1D] dark:border-white/12 dark:bg-white/[0.06] dark:text-[#F1BE90] sm:px-5 sm:py-3 sm:text-base"
+                className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#E3CBB5] bg-white/55 px-4 py-2.5 text-sm font-semibold text-[#7A4D2A] transition-all duration-200 hover:border-[#ED8522]/55 hover:bg-white/75 hover:text-[#B65C1D] dark:border-white/12 dark:bg-white/[0.06] dark:text-[#F1BE90] dark:hover:bg-white/[0.1] sm:px-5 sm:py-3 sm:text-base"
               >
                 <PlayCircle className="h-4 w-4" aria-hidden="true" />
                 Watch product video
@@ -2596,6 +2861,7 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
       <HeroSection onSeeHowItWorks={scrollToStory} />
       <ChaosToClaritySection />
       <FiveAppsProblemSection />
+      <PremiumReviewsSection />
       <ConnectedLifeSection />
       <div ref={storyRef}>
         <StickyProductStory />

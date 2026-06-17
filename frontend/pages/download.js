@@ -2,10 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../component/landing/GinjaLogo';
 import GinjaText from '../component/landing/GinjaText';
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from '../lib/appConstants';
 import { trackDownload, trackFeedbackClick } from '../lib/analytics';
 
-const APP_STORE_URL = 'https://apps.apple.com/us/app/ginja-app/id6752789324';
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ginjaapp.ginja&pcampaignid=web_share';
 const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/1jTV1wg9RGzJ08H9UE0e_fSkbmdwC573FHgjST0WHiR4/edit';
 
 function AppleIcon() {
@@ -123,7 +122,7 @@ export default function DownloadPage() {
             <PlatformCard
               title="Android"
               description="Get the full Ginja experience on Android with quick capture, smart reminders, and a polished flow for daily follow-through."
-              href={PLAY_STORE_URL}
+              href={GOOGLE_PLAY_URL}
               cta="Download on Google Play"
               icon={<PlayStoreIcon />}
               glow="bg-[#87B66A]/20"

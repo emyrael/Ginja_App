@@ -115,12 +115,12 @@ export function HomeScreen() {
         <div className={`${card} mt-1.5 border-[#E9D3BC] dark:border-white/10`}>
           <div className="mb-2 flex items-center justify-between">
             <p className="text-[13px] font-semibold">✦ My Fitness Journey</p>
-            <span className="rounded-full bg-[#ED8522]/15 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-[#ED8522]">Coming soon</span>
+            <span className="rounded-full bg-[#ED8522]/15 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-[#ED8522]">Live</span>
           </div>
           <div className="h-1.5 rounded-full bg-[#E9E3DA] dark:bg-[#2B2A29]">
             <div className="h-full w-1/2 rounded-full bg-[#ED8522]" />
           </div>
-          <p className="mt-2 text-[10px] text-[#7D766D] dark:text-[#A9A29D]">Arc premium journeys are almost here</p>
+          <p className="mt-2 text-[10px] text-[#7D766D] dark:text-[#A9A29D]">Adaptive weekly journey in progress</p>
         </div>
       </div>
 
