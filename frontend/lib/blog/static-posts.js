@@ -6,6 +6,7 @@ export const STATIC_BLOG_POSTS = [
       'A clear Notion vs Ginja comparison: one is built for system building, the other is built to reduce overwhelm and help you follow through.',
     keyword: 'notion vs ginja',
     readTime: '7 min read',
+    publishedAt: '2026-04-24T00:00:00.000Z',
     source: 'static',
   },
   {
@@ -15,6 +16,7 @@ export const STATIC_BLOG_POSTS = [
       'A practical ADHD and productivity guide focused on less overwhelm, clearer to-dos, and steady follow-through without pressure.',
     keyword: 'adhd and productivity',
     readTime: '6 min read',
+    publishedAt: '2026-04-24T00:00:00.000Z',
     source: 'static',
   },
   {
@@ -24,6 +26,7 @@ export const STATIC_BLOG_POSTS = [
       'Feeling mentally overloaded? Learn a simple brain dump routine that creates mental clarity and turns scattered thoughts into clear action.',
     keyword: 'brain dump technique',
     readTime: '6 min read',
+    publishedAt: '2026-04-23T00:00:00.000Z',
     source: 'static',
   },
   {
@@ -33,6 +36,7 @@ export const STATIC_BLOG_POSTS = [
       'Discover how accountability circles, shared goals, and focused check-ins can improve consistency without relying on constant motivation.',
     keyword: 'accountability circle productivity',
     readTime: '6 min read',
+    publishedAt: '2026-04-23T00:00:00.000Z',
     source: 'static',
   },
   {
@@ -42,6 +46,7 @@ export const STATIC_BLOG_POSTS = [
       'Learn how priority alerts and a calm productivity system help you protect attention, reduce noise, and act on what matters.',
     keyword: 'priority alerts',
     readTime: '6 min read',
+    publishedAt: '2026-04-23T00:00:00.000Z',
     source: 'static',
   },
 ];

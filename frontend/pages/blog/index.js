@@ -29,6 +29,7 @@ export default function BlogIndexPage({ posts }) {
           name="description"
           content="Read practical guides on Notion vs Ginja, ADHD productivity, brain dumps, and calm systems that reduce overwhelm and improve follow-through."
         />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta
           name="keywords"
           content="ginja blog, notion vs ginja, adhd and productivity, brain dump technique, accountability circle productivity, priority alerts, calm productivity system, mental clarity"
@@ -42,7 +43,14 @@ export default function BlogIndexPage({ posts }) {
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ginja.io/blog" />
-        <meta property="og:image" content="/logo/flame-icon.png" />
+        <meta property="og:image" content="https://ginja.io/logo/flame-icon.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ginja Blog | Mental Clarity and Productivity Systems" />
+        <meta
+          name="twitter:description"
+          content="Read practical guides on Notion vs Ginja, ADHD productivity, brain dumps, and calm systems that reduce overwhelm and improve follow-through."
+        />
+        <meta name="twitter:image" content="https://ginja.io/logo/flame-icon.png" />
       </Head>
 
       <script

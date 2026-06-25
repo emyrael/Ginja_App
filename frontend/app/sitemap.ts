@@ -7,7 +7,7 @@ export const dynamic = 'force-dynamic';
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 type StaticPageConfig = {
-  path: '/' | '/about' | '/blog' | '/download' | '/privacy' | '/terms';
+  path: '/' | '/about' | '/blog' | '/download' | '/privacy' | '/terms' | '/rss.xml';
   changeFrequency: NonNullable<SitemapEntry['changeFrequency']>;
   priority: number;
 };
@@ -42,6 +42,11 @@ const STATIC_PAGES: StaticPageConfig[] = [
     path: '/terms',
     changeFrequency: 'monthly',
     priority: 0.5,
+  },
+  {
+    path: '/rss.xml',
+    changeFrequency: 'daily',
+    priority: 0.4,
   },
 ];
 

@@ -6,7 +6,10 @@ import { hasBlogSupabaseConfig, upsertBlogArticle } from '../../lib/server/blog-
 type WebhookResponse =
   | {
       ok: true;
+      success?: true;
       message?: string;
+      slug?: string;
+      url?: string;
       article?: {
         id?: string;
         slug: string;
@@ -197,7 +200,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   if (eventType === 'test_connection') {
     console.info('Blog webhook SEOForge connection check succeeded.');
-    return res.status(200).json({ ok: true, message: 'Webhook authenticated and ready.' });
+    return res.status(200).json({ ok: true, success: true, message: 'Webhook authenticated and ready.' });
   }
 
   const title = getFirstStringField(payload, [
@@ -372,13 +375,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       status: article.status,
     });
 
+    const articleUrl = `https://ginja.io/blog/${article.slug}`;
+
     return res.status(200).json({
       ok: true,
+      success: true,
+      slug: article.slug,
+      url: articleUrl,
       article: {
         id: article.id,
         slug: article.slug,
         status: article.status,
-        url: `https://ginja.io/blog/${article.slug}`,
+        url: articleUrl,
       },
     });
   } catch (error) {

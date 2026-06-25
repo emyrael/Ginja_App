@@ -41,12 +41,21 @@ export default function BlogLayout({
 }) {
   const pageCanonicalUrl = canonicalUrl(canonicalPath);
   const pageImage = ogImage || DEFAULT_OG_IMAGE;
+  const blogPostingJsonLd = articleJsonLd
+    ? {
+        ...articleJsonLd,
+        '@type': 'BlogPosting',
+        url: pageCanonicalUrl,
+        mainEntityOfPage: articleJsonLd.mainEntityOfPage || pageCanonicalUrl,
+      }
+    : null;
 
   return (
     <>
       <Head>
         <title>{title} | Ginja Blog</title>
         <meta name="description" content={metaDescription} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <meta name="keywords" content={keywords} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href={pageCanonicalUrl} />
@@ -66,10 +75,10 @@ export default function BlogLayout({
         <meta property="article:modified_time" content={modifiedTime || publishedTime} />
       </Head>
 
-      {articleJsonLd ? (
+      {blogPostingJsonLd ? (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
         />
       ) : null}
 
@@ -97,10 +106,10 @@ export default function BlogLayout({
         <div className="px-4 pt-6 sm:px-6">
           <div className="mx-auto max-w-3xl">
             <Link
-              href="/"
+              href="/blog"
               className="inline-flex items-center rounded-full border border-[var(--border-color)] bg-[var(--surface-primary)] px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] shadow-[0_8px_20px_rgba(36,31,24,0.05)] transition-colors hover:border-[#ED8522] hover:text-[#C94B16]"
             >
-              ← Back to home
+              ← Back to blog
             </Link>
           </div>
         </div>
