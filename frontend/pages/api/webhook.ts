@@ -79,16 +79,9 @@ function getFirstStringField(payload: Record<string, unknown>, fields: string[])
 }
 
 function isConnectionCheck(payload: Record<string, unknown>, title: string | null, content: string | null): boolean {
-  if (title || content) {
-    return false;
-  }
-
-  if (Object.keys(payload).length === 0) {
-    return true;
-  }
-
-  const event = getFirstStringField(payload, ['event', 'type', 'action'])?.toLowerCase();
-  return Boolean(event && ['test', 'ping', 'connection_test', 'webhook_test'].includes(event));
+  // Many CMS tools validate a webhook by sending config/test metadata instead
+  // of an article payload. Auth has already succeeded, so acknowledge it.
+  return !title && !content;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<WebhookResponse>) {
