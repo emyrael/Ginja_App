@@ -54,7 +54,11 @@ function parseRequestBody(req: NextApiRequest): Record<string, unknown> | null {
   return req.body as Record<string, unknown>;
 }
 
-function getStringField(payload: Record<string, unknown>, field: string): string | null {
+function normalizeFieldName(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+function getNestedStringField(payload: Record<string, unknown>, field: string): string | null {
   const value = field.split('.').reduce<unknown>((current, key) => {
     if (!current || typeof current !== 'object' || Array.isArray(current)) {
       return undefined;
@@ -66,22 +70,84 @@ function getStringField(payload: Record<string, unknown>, field: string): string
   return typeof value === 'string' && value.trim() ? value.trim() : null;
 }
 
-function getFirstStringField(payload: Record<string, unknown>, fields: string[]): string | null {
-  for (const field of fields) {
-    const value = getStringField(payload, field);
+function findStringByAliases(value: unknown, aliases: string[], depth = 0): string | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || depth > 6) {
+    return null;
+  }
 
-    if (value) {
-      return value;
+  const normalizedAliases = new Set(aliases.map(normalizeFieldName));
+  const entries = Object.entries(value as Record<string, unknown>);
+
+  for (const [key, entryValue] of entries) {
+    if (typeof entryValue === 'string' && entryValue.trim() && normalizedAliases.has(normalizeFieldName(key))) {
+      return entryValue.trim();
+    }
+  }
+
+  for (const [, entryValue] of entries) {
+    const nestedValue = findStringByAliases(entryValue, aliases, depth + 1);
+
+    if (nestedValue) {
+      return nestedValue;
     }
   }
 
   return null;
 }
 
+function getFirstStringField(payload: Record<string, unknown>, fields: string[]): string | null {
+  for (const field of fields) {
+    const value = getNestedStringField(payload, field);
+
+    if (value) {
+      return value;
+    }
+  }
+
+  return findStringByAliases(payload, fields);
+}
+
+function collectPayloadKeys(value: unknown, prefix = '', depth = 0, keys: string[] = []): string[] {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || depth > 3) {
+    return keys;
+  }
+
+  Object.entries(value as Record<string, unknown>).forEach(([key, entryValue]) => {
+    const path = prefix ? `${prefix}.${key}` : key;
+    keys.push(path);
+
+    if (entryValue && typeof entryValue === 'object' && !Array.isArray(entryValue)) {
+      collectPayloadKeys(entryValue, path, depth + 1, keys);
+    }
+  });
+
+  return keys.slice(0, 80);
+}
+
 function isConnectionCheck(payload: Record<string, unknown>, title: string | null, content: string | null): boolean {
-  // Many CMS tools validate a webhook by sending config/test metadata instead
-  // of an article payload. Auth has already succeeded, so acknowledge it.
-  return !title && !content;
+  if (title || content) {
+    return false;
+  }
+
+  const event = getFirstStringField(payload, ['event', 'type', 'action', 'mode'])?.toLowerCase();
+  const payloadKeys = collectPayloadKeys(payload).map(normalizeFieldName);
+  const setupKeys = ['webhookurl', 'siteurl', 'blogpath', 'integrationname', 'authtoken'];
+
+  return (
+    Object.keys(payload).length === 0 ||
+    Boolean(event && ['test', 'ping', 'connectiontest', 'webhooktest', 'verify', 'verification'].includes(event)) ||
+    setupKeys.some((key) => payloadKeys.includes(key))
+  );
+}
+
+function normalizeStatus(value: string | null): 'published' | 'draft' {
+  const status = value?.toLowerCase().trim();
+
+  if (status === 'draft') {
+    return 'draft';
+  }
+
+  return 'published';
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<WebhookResponse>) {
@@ -113,40 +179,78 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'title',
     'headline',
     'name',
+    'articleTitle',
+    'postTitle',
+    'seoTitle',
+    'metaTitle',
     'article.title',
     'post.title',
     'data.title',
   ]);
-  const rawSlug = getFirstStringField(payload, ['slug', 'article.slug', 'post.slug', 'data.slug']) || title;
+  const rawSlug =
+    getFirstStringField(payload, [
+      'slug',
+      'url_slug',
+      'urlSlug',
+      'articleSlug',
+      'postSlug',
+      'article.slug',
+      'post.slug',
+      'data.slug',
+    ]) || title;
   const content = getFirstStringField(payload, [
     'content',
     'body',
     'markdown',
     'markdown_content',
+    'markdownContent',
     'article_content',
+    'articleContent',
     'html',
+    'html_content',
+    'htmlContent',
+    'content_html',
+    'contentHtml',
     'text',
+    'full_text',
+    'fullText',
+    'full_content',
+    'fullContent',
+    'body_html',
+    'bodyHtml',
+    'body_markdown',
+    'bodyMarkdown',
+    'rendered_html',
+    'renderedHtml',
     'article.content',
     'article.body',
     'article.markdown',
+    'article.html',
     'post.content',
     'post.body',
     'post.markdown',
+    'post.html',
     'data.content',
     'data.body',
     'data.markdown',
+    'data.html',
   ]);
   const excerpt = getFirstStringField(payload, [
     'excerpt',
     'description',
     'summary',
     'meta_description',
+    'metaDescription',
+    'seoDescription',
     'article.excerpt',
     'article.description',
+    'article.summary',
     'post.excerpt',
     'post.description',
+    'post.summary',
     'data.excerpt',
     'data.description',
+    'data.summary',
   ]);
   const coverImageUrl = getFirstStringField(payload, [
     'cover_image_url',
@@ -156,32 +260,43 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'featured_image',
     'featuredImage',
     'og_image',
+    'ogImage',
+    'cover',
+    'thumbnail',
+    'thumbnail_url',
+    'thumbnailUrl',
     'article.cover_image_url',
     'article.coverImageUrl',
+    'article.image',
     'post.cover_image_url',
     'post.coverImageUrl',
+    'post.image',
     'data.cover_image_url',
     'data.coverImageUrl',
+    'data.image',
   ]);
-  const status = (getFirstStringField(payload, ['status', 'article.status', 'post.status', 'data.status']) || 'published')
-    .toLowerCase()
-    .trim();
+  const status = normalizeStatus(getFirstStringField(payload, ['status', 'state', 'article.status', 'post.status', 'data.status']));
   const slug = normalizeBlogSlug(rawSlug);
 
   if (isConnectionCheck(payload, title, content)) {
-    console.info('Blog webhook connection check succeeded.');
+    console.info('Blog webhook connection check succeeded', {
+      payloadKeys: collectPayloadKeys(payload),
+    });
     return res.status(200).json({ ok: true, message: 'Webhook authenticated and ready.' });
   }
 
   if (!title || !slug || !content) {
+    console.warn('Blog webhook received an article-like payload with missing publish fields', {
+      hasTitle: Boolean(title),
+      hasSlug: Boolean(slug),
+      hasContent: Boolean(content),
+      payloadKeys: collectPayloadKeys(payload),
+    });
+
     return res.status(400).json({
       ok: false,
       error: 'Missing required fields. Provide title and content/body/markdown. Slug is optional and can be derived from title.',
     });
-  }
-
-  if (status !== 'published' && status !== 'draft') {
-    return res.status(400).json({ ok: false, error: 'Invalid status. Use published or draft.' });
   }
 
   try {
