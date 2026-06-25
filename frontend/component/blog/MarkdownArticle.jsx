@@ -58,6 +58,19 @@ function isImageUrl(value) {
   );
 }
 
+function isMarkdownTableSeparator(value) {
+  return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(value.trim());
+}
+
+function isMarkdownTableRow(value) {
+  return value.trim().includes('|');
+}
+
+function parseMarkdownTableRow(value) {
+  const trimmed = value.trim().replace(/^\|/, '').replace(/\|$/, '');
+  return trimmed.split('|').map((cell) => cell.trim());
+}
+
 function hasHtmlMarkup(content) {
   return /<\/?(h1|h2|h3|p|ul|ol|li|blockquote|table|thead|tbody|tr|th|td|img|strong|em|a)\b/i.test(String(content || ''));
 }
@@ -117,7 +130,8 @@ export default function MarkdownArticle({ content }) {
     }
   };
 
-  lines.forEach((line) => {
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex];
     const trimmed = line.trim();
 
     if (trimmed.startsWith('```')) {
@@ -132,18 +146,36 @@ export default function MarkdownArticle({ content }) {
         inCodeBlock = true;
       }
 
-      return;
+      continue;
     }
 
     if (inCodeBlock) {
       codeBlock.push(line);
-      return;
+      continue;
     }
 
     if (!trimmed) {
       flushParagraph();
       flushLists();
-      return;
+      continue;
+    }
+
+    if (isMarkdownTableRow(trimmed) && isMarkdownTableSeparator(lines[lineIndex + 1] || '')) {
+      const header = parseMarkdownTableRow(trimmed);
+      const rows = [];
+
+      lineIndex += 2;
+
+      while (lineIndex < lines.length && isMarkdownTableRow(lines[lineIndex]) && lines[lineIndex].trim()) {
+        rows.push(parseMarkdownTableRow(lines[lineIndex]));
+        lineIndex += 1;
+      }
+
+      lineIndex -= 1;
+      flushParagraph();
+      flushLists();
+      blocks.push({ type: 'table', header, rows });
+      continue;
     }
 
     const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/);
@@ -151,7 +183,7 @@ export default function MarkdownArticle({ content }) {
       flushParagraph();
       flushLists();
       blocks.push({ type: `h${headingMatch[1].length}`, text: headingMatch[2] });
-      return;
+      continue;
     }
 
     const imageMatch = trimmed.match(/^!\[([^\]]*)]\((https?:\/\/[^)]+)\)$/i);
@@ -159,14 +191,14 @@ export default function MarkdownArticle({ content }) {
       flushParagraph();
       flushLists();
       blocks.push({ type: 'image', alt: imageMatch[1] || '', src: imageMatch[2] });
-      return;
+      continue;
     }
 
     if (isImageUrl(trimmed)) {
       flushParagraph();
       flushLists();
       blocks.push({ type: 'image', alt: '', src: trimmed });
-      return;
+      continue;
     }
 
     const unorderedMatch = trimmed.match(/^[-*]\s+(.+)$/);
@@ -174,7 +206,7 @@ export default function MarkdownArticle({ content }) {
       flushParagraph();
       orderedListItems = [];
       listItems.push(unorderedMatch[1]);
-      return;
+      continue;
     }
 
     const orderedMatch = trimmed.match(/^\d+\.\s+(.+)$/);
@@ -182,18 +214,18 @@ export default function MarkdownArticle({ content }) {
       flushParagraph();
       listItems = [];
       orderedListItems.push(orderedMatch[1]);
-      return;
+      continue;
     }
 
     if (trimmed.startsWith('> ')) {
       flushParagraph();
       flushLists();
       blocks.push({ type: 'quote', text: trimmed.slice(2) });
-      return;
+      continue;
     }
 
     paragraph.push(trimmed);
-  });
+  }
 
   flushParagraph();
   flushLists();
@@ -260,6 +292,41 @@ export default function MarkdownArticle({ content }) {
               className="my-7 block max-h-[30rem] w-full rounded-2xl border border-[var(--border-color)] object-cover"
               loading="lazy"
             />
+          );
+        }
+
+        if (block.type === 'table') {
+          return (
+            <div key={key} className="mt-6 overflow-x-auto rounded-2xl border border-[var(--border-color)] bg-[var(--surface-primary)]">
+              <table className="w-full min-w-[42rem] border-collapse text-left text-sm sm:text-base">
+                <thead className="bg-[var(--surface-muted)] text-[var(--text-primary)]">
+                  <tr>
+                    {block.header.map((cell, cellIndex) => (
+                      <th
+                        key={`${key}-head-${cellIndex}`}
+                        className="border-b border-[var(--border-color)] px-4 py-3 align-top font-bold"
+                      >
+                        {inlineText(cell, `${key}-head-${cellIndex}`)}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="text-[var(--text-secondary)]">
+                  {block.rows.map((row, rowIndex) => (
+                    <tr key={`${key}-row-${rowIndex}`}>
+                      {block.header.map((_, cellIndex) => (
+                        <td
+                          key={`${key}-cell-${rowIndex}-${cellIndex}`}
+                          className="border-b border-[var(--border-color)] px-4 py-3 align-top last:border-b-0"
+                        >
+                          {inlineText(row[cellIndex] || '', `${key}-cell-${rowIndex}-${cellIndex}`)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           );
         }
 
