@@ -39,7 +39,38 @@ function inlineText(text, keyPrefix) {
   });
 }
 
+function hasHtmlMarkup(content) {
+  return /<\/?(h1|h2|h3|p|ul|ol|li|blockquote|table|thead|tbody|tr|th|td|img|strong|em|a)\b/i.test(String(content || ''));
+}
+
+function sanitizeHtml(content) {
+  return String(content || '')
+    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?>[\s\S]*?<\/style>/gi, '')
+    .replace(/<iframe[\s\S]*?>[\s\S]*?<\/iframe>/gi, '')
+    .replace(/<object[\s\S]*?>[\s\S]*?<\/object>/gi, '')
+    .replace(/<embed[\s\S]*?>[\s\S]*?<\/embed>/gi, '')
+    .replace(/<form[\s\S]*?>[\s\S]*?<\/form>/gi, '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\s+on[a-z]+\s*=\s*(['"])[\s\S]*?\1/gi, '')
+    .replace(/\s+on[a-z]+\s*=\s*[^\s>]+/gi, '')
+    .replace(/\s+style\s*=\s*(['"])[\s\S]*?\1/gi, '')
+    .replace(/\s+style\s*=\s*[^\s>]+/gi, '')
+    .replace(/\s+(href|src)\s*=\s*(['"])\s*(javascript:|data:|vbscript:)[\s\S]*?\2/gi, '')
+    .replace(/\s+(href|src)\s*=\s*(javascript:|data:|vbscript:)[^\s>]+/gi, '')
+    .replace(/<\/?(?:html|head|body|meta|link|base|input|button|select|textarea|svg|canvas)[^>]*>/gi, '');
+}
+
 export default function MarkdownArticle({ content }) {
+  if (hasHtmlMarkup(content)) {
+    return (
+      <div
+        className="article-content mt-8"
+        dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
+      />
+    );
+  }
+
   const lines = String(content || '').replace(/\r\n/g, '\n').split('\n');
   const blocks = [];
   let listItems = [];

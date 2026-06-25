@@ -68,6 +68,115 @@ a {
   text-decoration: none;
 }
 
+.article-content {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.article-content > * + * {
+  margin-top: 1rem;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+  color: var(--text-primary);
+  font-weight: 650;
+  line-height: 1.18;
+}
+
+.article-content h1,
+.article-content h2 {
+  margin-top: 2rem;
+  font-size: clamp(1.55rem, 2.4vw, 2rem);
+}
+
+.article-content h3 {
+  margin-top: 1.65rem;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+}
+
+.article-content p,
+.article-content li {
+  color: var(--text-secondary);
+}
+
+.article-content strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.article-content a {
+  color: #C94B16;
+  font-weight: 650;
+}
+
+.article-content ul,
+.article-content ol {
+  padding-left: 1.5rem;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content li + li {
+  margin-top: 0.55rem;
+}
+
+.article-content blockquote {
+  border-left: 4px solid #ED8522;
+  border-radius: 0 1rem 1rem 0;
+  background: var(--surface-soft);
+  padding: 1rem 1.25rem;
+}
+
+.article-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 30rem;
+  object-fit: cover;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  margin: 1.75rem 0;
+}
+
+.article-content table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  background: var(--surface-primary);
+}
+
+.article-content th,
+.article-content td {
+  min-width: 9rem;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-content th {
+  color: var(--text-primary);
+  background: var(--surface-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.article-content tr:last-child td {
+  border-bottom: 0;
+}
+
 button,
 input,
 textarea,

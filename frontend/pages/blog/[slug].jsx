@@ -17,7 +17,19 @@ function formatPublishedDate(value) {
 }
 
 function articleBodyWithoutDuplicateTitle(content, title) {
-  const lines = String(content || '').replace(/\r\n/g, '\n').split('\n');
+  let body = String(content || '').trim();
+  const escapedTitle = String(title || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  if (/<[a-z][\s\S]*>/i.test(body)) {
+    body = body
+      .replace(/^\s*<p>\s*<img\b[^>]*>\s*<\/p>\s*/i, '')
+      .replace(/^\s*<img\b[^>]*>\s*/i, '')
+      .replace(new RegExp(`^\\s*<h1[^>]*>\\s*${escapedTitle}\\s*<\\/h1>\\s*`, 'i'), '');
+
+    return body.trim();
+  }
+
+  const lines = body.replace(/\r\n/g, '\n').split('\n');
   const firstContentIndex = lines.findIndex((line) => line.trim());
 
   if (firstContentIndex === -1) {

@@ -150,6 +150,24 @@ function normalizeStatus(value: string | null): 'published' | 'draft' {
   return 'published';
 }
 
+function cleanArticleContent(content: string, title: string): string {
+  const escapedTitle = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  let cleanedContent = content.trim();
+
+  if (/<[a-z][\s\S]*>/i.test(cleanedContent)) {
+    return cleanedContent
+      .replace(/^\s*<p>\s*<img\b[^>]*>\s*<\/p>\s*/i, '')
+      .replace(/^\s*<img\b[^>]*>\s*/i, '')
+      .replace(new RegExp(`^\\s*<h1[^>]*>\\s*${escapedTitle}\\s*<\\/h1>\\s*`, 'i'), '')
+      .trim();
+  }
+
+  cleanedContent = cleanedContent.replace(/^\s*!\[.*?\]\(.*?\)\s*/m, '');
+  cleanedContent = cleanedContent.replace(new RegExp(`^\\s*#\\s+${escapedTitle}\\s*`, 'im'), '');
+
+  return cleanedContent.trim();
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse<WebhookResponse>) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -175,6 +193,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res.status(400).json({ ok: false, error: 'Invalid JSON payload.' });
   }
 
+  const eventType = getFirstStringField(payload, ['event_type', 'eventType', 'event', 'type', 'action'])?.toLowerCase();
+
+  if (eventType === 'test_connection') {
+    console.info('Blog webhook SEOForge connection check succeeded.');
+    return res.status(200).json({ ok: true, message: 'Webhook authenticated and ready.' });
+  }
+
   const title = getFirstStringField(payload, [
     'title',
     'headline',
@@ -184,6 +209,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'seoTitle',
     'metaTitle',
     'article.title',
+    'data.article.title',
     'post.title',
     'data.title',
   ]);
@@ -195,10 +221,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       'articleSlug',
       'postSlug',
       'article.slug',
+      'data.article.slug',
       'post.slug',
       'data.slug',
     ]) || title;
   const content = getFirstStringField(payload, [
+    'content_markdown',
+    'contentMarkdown',
+    'content_html',
+    'contentHtml',
     'content',
     'body',
     'markdown',
@@ -223,9 +254,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'rendered_html',
     'renderedHtml',
     'article.content',
+    'article.content_markdown',
+    'article.contentMarkdown',
+    'article.content_html',
+    'article.contentHtml',
     'article.body',
     'article.markdown',
     'article.html',
+    'data.article.content',
+    'data.article.content_markdown',
+    'data.article.contentMarkdown',
+    'data.article.content_html',
+    'data.article.contentHtml',
+    'data.article.body',
+    'data.article.markdown',
+    'data.article.html',
     'post.content',
     'post.body',
     'post.markdown',
@@ -236,15 +279,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'data.html',
   ]);
   const excerpt = getFirstStringField(payload, [
-    'excerpt',
-    'description',
-    'summary',
     'meta_description',
     'metaDescription',
     'seoDescription',
+    'excerpt',
+    'description',
+    'summary',
+    'article.meta_description',
+    'article.metaDescription',
     'article.excerpt',
     'article.description',
     'article.summary',
+    'data.article.meta_description',
+    'data.article.metaDescription',
+    'data.article.excerpt',
+    'data.article.description',
+    'data.article.summary',
     'post.excerpt',
     'post.description',
     'post.summary',
@@ -256,6 +306,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'cover_image_url',
     'coverImageUrl',
     'image_url',
+    'imageUrl',
     'image',
     'featured_image',
     'featuredImage',
@@ -267,7 +318,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     'thumbnailUrl',
     'article.cover_image_url',
     'article.coverImageUrl',
+    'article.image_url',
+    'article.imageUrl',
     'article.image',
+    'data.article.cover_image_url',
+    'data.article.coverImageUrl',
+    'data.article.image_url',
+    'data.article.imageUrl',
+    'data.article.image',
     'post.cover_image_url',
     'post.coverImageUrl',
     'post.image',
@@ -303,7 +361,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     const article = await upsertBlogArticle({
       title,
       slug,
-      content,
+      content: cleanArticleContent(content, title),
       excerpt,
       cover_image_url: coverImageUrl,
       status,
