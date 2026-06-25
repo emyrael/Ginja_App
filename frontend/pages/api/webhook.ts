@@ -6,7 +6,8 @@ import { hasBlogSupabaseConfig, upsertBlogArticle } from '../../lib/server/blog-
 type WebhookResponse =
   | {
       ok: true;
-      article: {
+      message?: string;
+      article?: {
         id?: string;
         slug: string;
         status: string;
@@ -54,13 +55,40 @@ function parseRequestBody(req: NextApiRequest): Record<string, unknown> | null {
 }
 
 function getStringField(payload: Record<string, unknown>, field: string): string | null {
-  const value = payload[field];
+  const value = field.split('.').reduce<unknown>((current, key) => {
+    if (!current || typeof current !== 'object' || Array.isArray(current)) {
+      return undefined;
+    }
+
+    return (current as Record<string, unknown>)[key];
+  }, payload);
+
   return typeof value === 'string' && value.trim() ? value.trim() : null;
 }
 
-function getOptionalStringField(payload: Record<string, unknown>, field: string): string | null {
-  const value = payload[field];
-  return typeof value === 'string' && value.trim() ? value.trim() : null;
+function getFirstStringField(payload: Record<string, unknown>, fields: string[]): string | null {
+  for (const field of fields) {
+    const value = getStringField(payload, field);
+
+    if (value) {
+      return value;
+    }
+  }
+
+  return null;
+}
+
+function isConnectionCheck(payload: Record<string, unknown>, title: string | null, content: string | null): boolean {
+  if (title || content) {
+    return false;
+  }
+
+  if (Object.keys(payload).length === 0) {
+    return true;
+  }
+
+  const event = getFirstStringField(payload, ['event', 'type', 'action'])?.toLowerCase();
+  return Boolean(event && ['test', 'ping', 'connection_test', 'webhook_test'].includes(event));
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<WebhookResponse>) {
@@ -88,18 +116,74 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     return res.status(400).json({ ok: false, error: 'Invalid JSON payload.' });
   }
 
-  const title = getStringField(payload, 'title');
-  const rawSlug = getStringField(payload, 'slug');
-  const content = getStringField(payload, 'content') || getStringField(payload, 'body');
-  const excerpt = getOptionalStringField(payload, 'excerpt') || getOptionalStringField(payload, 'description');
-  const coverImageUrl = getOptionalStringField(payload, 'cover_image_url') || getOptionalStringField(payload, 'coverImageUrl');
-  const status = getOptionalStringField(payload, 'status') || 'published';
+  const title = getFirstStringField(payload, [
+    'title',
+    'headline',
+    'name',
+    'article.title',
+    'post.title',
+    'data.title',
+  ]);
+  const rawSlug = getFirstStringField(payload, ['slug', 'article.slug', 'post.slug', 'data.slug']) || title;
+  const content = getFirstStringField(payload, [
+    'content',
+    'body',
+    'markdown',
+    'markdown_content',
+    'article_content',
+    'html',
+    'text',
+    'article.content',
+    'article.body',
+    'article.markdown',
+    'post.content',
+    'post.body',
+    'post.markdown',
+    'data.content',
+    'data.body',
+    'data.markdown',
+  ]);
+  const excerpt = getFirstStringField(payload, [
+    'excerpt',
+    'description',
+    'summary',
+    'meta_description',
+    'article.excerpt',
+    'article.description',
+    'post.excerpt',
+    'post.description',
+    'data.excerpt',
+    'data.description',
+  ]);
+  const coverImageUrl = getFirstStringField(payload, [
+    'cover_image_url',
+    'coverImageUrl',
+    'image_url',
+    'image',
+    'featured_image',
+    'featuredImage',
+    'og_image',
+    'article.cover_image_url',
+    'article.coverImageUrl',
+    'post.cover_image_url',
+    'post.coverImageUrl',
+    'data.cover_image_url',
+    'data.coverImageUrl',
+  ]);
+  const status = (getFirstStringField(payload, ['status', 'article.status', 'post.status', 'data.status']) || 'published')
+    .toLowerCase()
+    .trim();
   const slug = normalizeBlogSlug(rawSlug);
 
-  if (!title || !rawSlug || !slug || !content) {
+  if (isConnectionCheck(payload, title, content)) {
+    console.info('Blog webhook connection check succeeded.');
+    return res.status(200).json({ ok: true, message: 'Webhook authenticated and ready.' });
+  }
+
+  if (!title || !slug || !content) {
     return res.status(400).json({
       ok: false,
-      error: 'Missing required fields. Provide title, slug, and content or body.',
+      error: 'Missing required fields. Provide title and content/body/markdown. Slug is optional and can be derived from title.',
     });
   }
 
