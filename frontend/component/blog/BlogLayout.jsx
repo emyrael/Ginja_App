@@ -32,6 +32,7 @@ export default function BlogLayout({
   metaDescription,
   canonicalPath,
   keywords,
+  ogImage,
   publishedTime,
   modifiedTime,
   currentSlug,
@@ -39,6 +40,7 @@ export default function BlogLayout({
   children,
 }) {
   const pageCanonicalUrl = canonicalUrl(canonicalPath);
+  const pageImage = ogImage || DEFAULT_OG_IMAGE;
 
   return (
     <>
@@ -53,12 +55,12 @@ export default function BlogLayout({
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={pageCanonicalUrl} />
-        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:image" content={pageImage} />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${title} | Ginja Blog`} />
         <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:image" content={pageImage} />
 
         <meta property="article:published_time" content={publishedTime} />
         <meta property="article:modified_time" content={modifiedTime || publishedTime} />

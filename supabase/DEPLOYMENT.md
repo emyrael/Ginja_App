@@ -1,6 +1,6 @@
 # Ginja App – Vercel Deployment
 
-This project is deployed on **Vercel**. The app is a static Next.js export (no server-side rendering or API routes in this repo).
+This project is deployed on **Vercel**. The app is a Next.js site with mostly static pages plus server-rendered blog routes and a serverless API route for blog publishing.
 
 ## Quick deploy
 
@@ -13,6 +13,9 @@ This project is deployed on **Vercel**. The app is a static Next.js export (no s
    In the Vercel project → **Settings → Environment Variables**, add:
    - `NEXT_PUBLIC_SUPABASE_URL` – your Supabase project URL  
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` – your Supabase anon/public key  
+   - `BLOG_WEBHOOK_SECRET` – bearer token for `/api/webhook` blog publishing
+   - `SUPABASE_URL` – your Supabase project URL for server-side blog publishing
+   - `SUPABASE_SERVICE_ROLE_KEY` or `NEXT_SUPABASE_SERVICE_ROLE_KEY` – server-only Supabase key for blog publishing
 
 3. **Deploy**  
    Push to the connected branch (e.g. `main`). Vercel will run `npm run build` in `frontend` and deploy the `out` directory.
@@ -32,8 +35,8 @@ app/
 │   ├── .env.local      # Local only; use Vercel env vars in production
 │   ├── .env.example    # Template for required env vars
 │   ├── vercel.json     # Vercel config (framework: nextjs)
-│   ├── next.config.js # Static export, trailingSlash
-│   ├── out/            # Build output (generated)
+│   ├── next.config.js # Next.js config
+│   ├── .next/          # Build output (generated)
 │   ├── pages/
 │   ├── component/
 │   └── public/         # Static assets (e.g. logo at public/logo/Ginja.png)
@@ -43,8 +46,8 @@ app/
 
 ## Build and env
 
-- **Build**: `npm run build` (run from `frontend/`). Next.js is configured with `output: 'export'`, so the result is in `frontend/out/`.
-- **Env**: Only `NEXT_PUBLIC_*` variables are needed; set them in the Vercel dashboard for Production/Preview as needed.
+- **Build**: `npm run build` (run from `frontend/`).
+- **Env**: Public waitlist variables use `NEXT_PUBLIC_*`. Blog publishing also needs server-only variables; see `docs/blog-webhook.md`.
 
 ## Static assets (logo)
 

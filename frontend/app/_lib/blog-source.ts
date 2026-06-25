@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fetchPublishedBlogArticles } from '../../lib/server/blog-articles';
 
 export type BlogPostRecord = {
   slug: string;
@@ -19,7 +20,7 @@ function isBlogContentFile(fileName: string): boolean {
   }
 
   const slug = fileToSlug(fileName);
-  return slug !== 'index';
+  return slug !== 'index' && !slug.includes('[') && !slug.includes(']');
 }
 
 export async function getBlogPosts(): Promise<BlogPostRecord[]> {
@@ -40,7 +41,15 @@ export async function getBlogPosts(): Promise<BlogPostRecord[]> {
         }),
     );
 
-    return posts.sort((a, b) => b.lastModified.getTime() - a.lastModified.getTime());
+    const staticSlugs = new Set(posts.map((post) => post.slug));
+    const dynamicPosts = (await fetchPublishedBlogArticles())
+      .filter((post) => !staticSlugs.has(post.slug))
+      .map((post) => ({
+        slug: post.slug,
+        lastModified: new Date(post.updated_at || post.published_at || post.created_at || Date.now()),
+      }));
+
+    return [...dynamicPosts, ...posts].sort((a, b) => b.lastModified.getTime() - a.lastModified.getTime());
   } catch (error: unknown) {
     if ((error as NodeJS.ErrnoException)?.code === 'ENOENT') {
       return [];

@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { getBlogPosts } from './_lib/blog-source';
 import { canonicalUrl } from '../lib/seo';
 
+export const dynamic = 'force-dynamic';
+
 type SitemapEntry = MetadataRoute.Sitemap[number];
 
 type StaticPageConfig = {

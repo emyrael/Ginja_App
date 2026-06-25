@@ -2,51 +2,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import GinjaLogo from '../../component/landing/GinjaLogo';
 import GinjaText from '../../component/landing/GinjaText';
+import { mergeBlogPosts } from '../../lib/blog/static-posts';
 
-const posts = [
-  {
-    slug: 'notion-vs-ginja',
-    title: 'Notion vs Ginja: Structure vs Clarity - Which One Do You Actually Need?',
-    excerpt:
-      'A clear Notion vs Ginja comparison: one is built for system building, the other is built to reduce overwhelm and help you follow through.',
-    keyword: 'notion vs ginja',
-    readTime: '7 min read',
-  },
-  {
-    slug: 'adhd-productivity-brain-dump',
-    title: 'ADHD and Productivity: A System That Actually Works With Your Brain',
-    excerpt:
-      'A practical ADHD and productivity guide focused on less overwhelm, clearer to-dos, and steady follow-through without pressure.',
-    keyword: 'adhd and productivity',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'brain-dump-technique',
-    title: 'Brain Dump Technique: The Simple Reset That Clears Your Mind and Gets You Back in Control',
-    excerpt:
-      'Feeling mentally overloaded? Learn a simple brain dump routine that creates mental clarity and turns scattered thoughts into clear action.',
-    keyword: 'brain dump technique',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'accountability-circle-productivity',
-    title: 'Accountability Circle Productivity: Why You Are More Consistent With the Right People',
-    excerpt:
-      'Discover how accountability circles, shared goals, and focused check-ins can improve consistency without relying on constant motivation.',
-    keyword: 'accountability circle productivity',
-    readTime: '6 min read',
-  },
-  {
-    slug: 'priority-alerts-calm-system',
-    title: 'Why Most Productivity Apps Overwhelm You (And What to Use Instead)',
-    excerpt:
-      'Learn how priority alerts and a calm productivity system help you protect attention, reduce noise, and act on what matters.',
-    keyword: 'priority alerts',
-    readTime: '6 min read',
-  },
-];
-
-export default function BlogIndexPage() {
+export default function BlogIndexPage({ posts }) {
   const blogJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -147,9 +105,25 @@ export default function BlogIndexPage() {
                 className="rounded-3xl border border-[var(--border-color)] bg-[var(--surface-primary)] p-6 shadow-[0_10px_24px_rgba(36,31,24,0.06)] sm:p-7"
               >
                 <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-[var(--text-muted)] sm:text-sm">
-                  <span>{post.keyword}</span>
-                  <span aria-hidden="true">•</span>
-                  <span>{post.readTime}</span>
+                  <span>{post.keyword || 'Ginja guide'}</span>
+                  {post.readTime ? (
+                    <>
+                      <span aria-hidden="true">•</span>
+                      <span>{post.readTime}</span>
+                    </>
+                  ) : null}
+                  {post.publishedAt ? (
+                    <>
+                      <span aria-hidden="true">•</span>
+                      <time dateTime={post.publishedAt}>
+                        {new Intl.DateTimeFormat('en', {
+                          month: 'short',
+                          day: 'numeric',
+                          year: 'numeric',
+                        }).format(new Date(post.publishedAt))}
+                      </time>
+                    </>
+                  ) : null}
                 </div>
                 <h2 className="mt-3 text-2xl font-semibold leading-tight sm:text-[1.8rem]">
                   <Link href={`/blog/${post.slug}`} className="hover:text-[#C94B16]">
@@ -172,4 +146,25 @@ export default function BlogIndexPage() {
       </main>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { fetchPublishedBlogArticles } = await import('../../lib/server/blog-articles');
+  const dynamicPosts = await fetchPublishedBlogArticles();
+  const posts = mergeBlogPosts(
+    dynamicPosts.map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      keyword: 'Ginja guide',
+      publishedAt: post.published_at,
+      source: 'supabase',
+    })),
+  );
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }
