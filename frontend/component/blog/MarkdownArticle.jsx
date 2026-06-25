@@ -1,8 +1,21 @@
 function inlineText(text, keyPrefix) {
-  const parts = String(text).split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
+  const parts = String(text).split(/(!\[[^\]]*]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
 
   return parts.map((part, index) => {
     const key = `${keyPrefix}-${index}`;
+
+    const imageMatch = part.match(/^!\[([^\]]*)]\((https?:\/\/[^)]+)\)$/i);
+    if (imageMatch) {
+      return (
+        <img
+          key={key}
+          src={imageMatch[2]}
+          alt={imageMatch[1] || ''}
+          className="my-7 block max-h-[30rem] w-full rounded-2xl border border-[var(--border-color)] object-cover"
+          loading="lazy"
+        />
+      );
+    }
 
     if (/^\*\*[^*]+\*\*$/.test(part)) {
       return <strong key={key}>{part.slice(2, -2)}</strong>;
@@ -37,6 +50,12 @@ function inlineText(text, keyPrefix) {
 
     return part;
   });
+}
+
+function isImageUrl(value) {
+  return /^https?:\/\/\S+?(?:\.(?:png|jpe?g|webp|gif|avif)(?:[?#]\S*)?|images\.unsplash\.com\/|\/storage\/v1\/object\/public\/)/i.test(
+    value,
+  );
 }
 
 function hasHtmlMarkup(content) {
@@ -135,6 +154,21 @@ export default function MarkdownArticle({ content }) {
       return;
     }
 
+    const imageMatch = trimmed.match(/^!\[([^\]]*)]\((https?:\/\/[^)]+)\)$/i);
+    if (imageMatch) {
+      flushParagraph();
+      flushLists();
+      blocks.push({ type: 'image', alt: imageMatch[1] || '', src: imageMatch[2] });
+      return;
+    }
+
+    if (isImageUrl(trimmed)) {
+      flushParagraph();
+      flushLists();
+      blocks.push({ type: 'image', alt: '', src: trimmed });
+      return;
+    }
+
     const unorderedMatch = trimmed.match(/^[-*]\s+(.+)$/);
     if (unorderedMatch) {
       flushParagraph();
@@ -214,6 +248,18 @@ export default function MarkdownArticle({ content }) {
                 <li key={`${key}-${itemIndex}`}>{inlineText(item, `${key}-${itemIndex}`)}</li>
               ))}
             </ol>
+          );
+        }
+
+        if (block.type === 'image') {
+          return (
+            <img
+              key={key}
+              src={block.src}
+              alt={block.alt}
+              className="my-7 block max-h-[30rem] w-full rounded-2xl border border-[var(--border-color)] object-cover"
+              loading="lazy"
+            />
           );
         }
 
