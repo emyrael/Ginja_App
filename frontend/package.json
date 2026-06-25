@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "seo:audit": "node scripts/seo-audit.mjs"
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:regression": "node scripts/blog-feed-regression.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.38.0",

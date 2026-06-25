@@ -66,7 +66,7 @@ export async function getServerSideProps({ res }) {
   });
 
   res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
-  res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+  res.setHeader('Cache-Control', 'private, no-cache, no-store, max-age=0, must-revalidate');
   res.write(buildRss(posts));
   res.end();
 

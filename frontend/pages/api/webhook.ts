@@ -10,6 +10,7 @@ type WebhookResponse =
       message?: string;
       slug?: string;
       url?: string;
+      revalidated?: string[];
       article?: {
         id?: string;
         slug: string;
@@ -169,6 +170,25 @@ function cleanArticleContent(content: string, title: string): string {
   cleanedContent = cleanedContent.replace(new RegExp(`^\\s*#\\s+${escapedTitle}\\s*`, 'im'), '');
 
   return cleanedContent.trim();
+}
+
+async function revalidateBlogPublishPaths(res: NextApiResponse<WebhookResponse>, slug: string): Promise<string[]> {
+  const paths = ['/blog', `/blog/${slug}`, '/sitemap.xml', '/rss.xml'];
+  const results = await Promise.allSettled(paths.map((path) => res.revalidate(path)));
+  const failedPaths = results
+    .map((result, index) => ({ result, path: paths[index] }))
+    .filter(({ result }) => result.status === 'rejected');
+
+  if (failedPaths.length) {
+    console.warn('Blog webhook revalidation completed with warnings', {
+      failedPaths: failedPaths.map(({ path, result }) => ({
+        path,
+        message: result.status === 'rejected' && result.reason instanceof Error ? result.reason.message : 'Unknown error',
+      })),
+    });
+  }
+
+  return paths;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<WebhookResponse>) {
@@ -376,12 +396,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     });
 
     const articleUrl = `https://ginja.io/blog/${article.slug}`;
+    const revalidated = await revalidateBlogPublishPaths(res, article.slug);
 
     return res.status(200).json({
       ok: true,
       success: true,
       slug: article.slug,
       url: articleUrl,
+      revalidated,
       article: {
         id: article.id,
         slug: article.slug,

@@ -30,6 +30,31 @@ Authorization: Bearer BLOG_WEBHOOK_SECRET
 
 Published articles are upserted into Supabase by `slug`. Existing slugs update the current article.
 
+After a successful publish, the webhook triggers cache revalidation for:
+
+```text
+/blog
+/blog/[slug]
+/sitemap.xml
+/rss.xml
+```
+
+The JSON response includes the published URL and the revalidated paths:
+
+```json
+{
+  "success": true,
+  "slug": "article-slug",
+  "url": "https://ginja.io/blog/article-slug",
+  "revalidated": [
+    "/blog",
+    "/blog/article-slug",
+    "/sitemap.xml",
+    "/rss.xml"
+  ]
+}
+```
+
 ## Sitemap
 
 The sitemap is generated dynamically at:
@@ -48,6 +73,14 @@ It includes:
 - Every Supabase article where `status = published`
 
 Drafts, deleted rows, empty slugs, and test rows are excluded as long as they are not present as published rows in Supabase.
+
+To verify a newly published article is included:
+
+```bash
+curl -s https://ginja.io/sitemap.xml | grep "https://ginja.io/blog/article-slug"
+```
+
+The sitemap route is configured as dynamic and no-store so it queries the current published article set instead of relying on a stale deployment artifact.
 
 ## Robots
 
@@ -87,6 +120,12 @@ https://ginja.io/rss.xml
 
 It includes static posts and newest published Supabase posts.
 
+To verify RSS includes a newly published article:
+
+```bash
+curl -s https://ginja.io/rss.xml | grep "https://ginja.io/blog/article-slug"
+```
+
 ## Audit Findings From June 25, 2026
 
 The live audit found that article pages were returning HTTP 200 and had canonical tags, descriptions, headings, and Article JSON-LD. The indexed article and non-indexed static articles were structurally similar.
@@ -105,6 +144,7 @@ Run the local audit:
 
 ```bash
 cd frontend
+npm run seo:regression
 npm run seo:audit
 ```
 
