@@ -160,13 +160,10 @@ function cleanArticleContent(content: string, title: string): string {
 
   if (/<[a-z][\s\S]*>/i.test(cleanedContent)) {
     return cleanedContent
-      .replace(/^\s*<p>\s*<img\b[^>]*>\s*<\/p>\s*/i, '')
-      .replace(/^\s*<img\b[^>]*>\s*/i, '')
       .replace(new RegExp(`^\\s*<h1[^>]*>\\s*${escapedTitle}\\s*<\\/h1>\\s*`, 'i'), '')
       .trim();
   }
 
-  cleanedContent = cleanedContent.replace(/^\s*!\[.*?\]\(.*?\)\s*/m, '');
   cleanedContent = cleanedContent.replace(new RegExp(`^\\s*#\\s+${escapedTitle}\\s*`, 'im'), '');
 
   return cleanedContent.trim();

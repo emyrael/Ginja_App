@@ -1,5 +1,33 @@
+function normalizeMarkdownEscapes(text) {
+  return String(text || '').replace(/\\([.()[\]#*_`>+-])/g, '$1');
+}
+
+function linkText(text, keyPrefix) {
+  const parts = String(text).split(/(https?:\/\/[^\s<>()]+[^\s<>().,;:!?])/g);
+
+  return parts.map((part, index) => {
+    if (!/^https?:\/\//i.test(part)) {
+      return part;
+    }
+
+    return (
+      <a
+        key={`${keyPrefix}-url-${index}`}
+        href={part}
+        className="font-semibold text-[#C94B16] hover:text-[#A63D13]"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {part}
+      </a>
+    );
+  });
+}
+
 function inlineText(text, keyPrefix) {
-  const parts = String(text).split(/(!\[[^\]]*]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
+  const parts = normalizeMarkdownEscapes(text).split(
+    /(!\[[^\]]*]\([^)]+\)|\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g,
+  );
 
   return parts.map((part, index) => {
     const key = `${keyPrefix}-${index}`;
@@ -18,11 +46,11 @@ function inlineText(text, keyPrefix) {
     }
 
     if (/^\*\*[^*]+\*\*$/.test(part)) {
-      return <strong key={key}>{part.slice(2, -2)}</strong>;
+      return <strong key={key}>{linkText(part.slice(2, -2), key)}</strong>;
     }
 
     if (/^\*[^*]+\*$/.test(part)) {
-      return <em key={key}>{part.slice(1, -1)}</em>;
+      return <em key={key}>{linkText(part.slice(1, -1), key)}</em>;
     }
 
     if (/^`[^`]+`$/.test(part)) {
@@ -48,7 +76,7 @@ function inlineText(text, keyPrefix) {
       );
     }
 
-    return part;
+    return linkText(part, key);
   });
 }
 
@@ -133,6 +161,7 @@ export default function MarkdownArticle({ content }) {
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
     const line = lines[lineIndex];
     const trimmed = line.trim();
+    const normalizedTrimmed = normalizeMarkdownEscapes(trimmed);
 
     if (trimmed.startsWith('```')) {
       flushParagraph();
@@ -178,7 +207,7 @@ export default function MarkdownArticle({ content }) {
       continue;
     }
 
-    const headingMatch = trimmed.match(/^(#{1,3})\s+(.+)$/);
+    const headingMatch = normalizedTrimmed.match(/^(#{1,3})\s+(.+)$/);
     if (headingMatch) {
       flushParagraph();
       flushLists();
@@ -209,7 +238,7 @@ export default function MarkdownArticle({ content }) {
       continue;
     }
 
-    const orderedMatch = trimmed.match(/^\d+\.\s+(.+)$/);
+    const orderedMatch = normalizedTrimmed.match(/^\d+\.\s+(.+)$/);
     if (orderedMatch) {
       flushParagraph();
       listItems = [];

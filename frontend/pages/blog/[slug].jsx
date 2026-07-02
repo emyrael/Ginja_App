@@ -21,10 +21,7 @@ function articleBodyWithoutDuplicateTitle(content, title) {
   const escapedTitle = String(title || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
   if (/<[a-z][\s\S]*>/i.test(body)) {
-    body = body
-      .replace(/^\s*<p>\s*<img\b[^>]*>\s*<\/p>\s*/i, '')
-      .replace(/^\s*<img\b[^>]*>\s*/i, '')
-      .replace(new RegExp(`^\\s*<h1[^>]*>\\s*${escapedTitle}\\s*<\\/h1>\\s*`, 'i'), '');
+    body = body.replace(new RegExp(`^\\s*<h1[^>]*>\\s*${escapedTitle}\\s*<\\/h1>\\s*`, 'i'), '');
 
     return body.trim();
   }
@@ -46,16 +43,29 @@ function articleBodyWithoutDuplicateTitle(content, title) {
   return lines.join('\n').trim();
 }
 
+function getFirstArticleImageUrl(content) {
+  const body = String(content || '');
+  const markdownImageMatch = body.match(/!\[[^\]]*]\((https?:\/\/[^)]+)\)/i);
+
+  if (markdownImageMatch) {
+    return markdownImageMatch[1];
+  }
+
+  const htmlImageMatch = body.match(/<img\b[^>]*\bsrc=(['"])(https?:\/\/[\s\S]*?)\1/i);
+
+  return htmlImageMatch?.[2] || null;
+}
+
 export default function DynamicBlogArticlePage({ article }) {
   const title = article.title;
   const metaDescription = article.excerpt || 'Read the latest Ginja guide on mental clarity, productivity, and follow-through.';
   const canonicalPath = `/blog/${article.slug}`;
   const publishedTime = article.published_at || article.created_at;
   const modifiedTime = article.updated_at || publishedTime;
-  const image = article.cover_image_url || DEFAULT_OG_IMAGE;
   const formattedDate = formatPublishedDate(publishedTime);
   const articleUrl = canonicalUrl(canonicalPath);
   const articleContent = articleBodyWithoutDuplicateTitle(article.content, title);
+  const image = getFirstArticleImageUrl(articleContent || article.content) || article.cover_image_url || DEFAULT_OG_IMAGE;
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -100,13 +110,6 @@ export default function DynamicBlogArticlePage({ article }) {
       ) : null}
       {article.excerpt ? (
         <p className="mt-5 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">{article.excerpt}</p>
-      ) : null}
-      {article.cover_image_url ? (
-        <img
-          src={article.cover_image_url}
-          alt=""
-          className="mt-7 aspect-[16/9] w-full rounded-2xl border border-[var(--border-color)] object-cover"
-        />
       ) : null}
       <MarkdownArticle content={articleContent || article.content} />
       <div className="mt-9 rounded-2xl border border-[#DCE8D5] bg-[#F1F8EC] px-5 py-5 dark:border-[#4C6040] dark:bg-[#2E3E25]">
