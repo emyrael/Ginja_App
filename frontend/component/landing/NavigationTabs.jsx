@@ -25,7 +25,7 @@ export default function NavigationTabs() {
           </span>
         </Link>
 
-        <nav className="flex min-w-0 items-center justify-center gap-2 text-[11px] font-bold text-[var(--text-secondary)] sm:flex-1 sm:gap-4 sm:text-sm sm:font-semibold md:gap-5 lg:gap-6">
+        <nav className="flex min-w-0 items-center justify-center gap-2 text-[12px] font-bold text-[var(--text-secondary)] sm:flex-1 sm:gap-4 sm:text-sm sm:font-semibold md:gap-5 lg:gap-6">
           {navItems.map((item) => (
             <a
               key={item.href}
