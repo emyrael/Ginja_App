@@ -18,6 +18,7 @@
   --border-color: #E5DED3;
 }
 
+/* Dark theme variables preserved, but disabled while the web page is light-only.
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-primary: #281D17;
@@ -33,6 +34,7 @@
     --border-color: #5B473B;
   }
 }
+*/
 
 * {
   box-sizing: border-box;
@@ -45,7 +47,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 body {
@@ -207,6 +209,7 @@ a {
   background: #BCA690;
 }
 
+/* Dark scrollbar styling preserved, but disabled while the web page is light-only.
 @media (prefers-color-scheme: dark) {
   ::-webkit-scrollbar-track {
     background: #372A22;
@@ -220,3 +223,4 @@ a {
     background: #896A56;
   }
 }
+*/

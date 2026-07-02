@@ -34,7 +34,8 @@ export default function Home() {
         <link rel="icon" href="/logo/flame-icon.png" />
         <link rel="apple-touch-icon" href="/logo/flame-icon.png" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4EE" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" />
+        {/* Dark browser chrome color preserved, but disabled while the web page is light-only. */}
+        {/* <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" /> */}
       </Head>
       <LandingPage />
     </>

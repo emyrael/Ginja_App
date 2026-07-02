@@ -121,7 +121,7 @@ function sanitizeHtml(content) {
     .replace(/<\/?(?:html|head|body|meta|link|base|input|button|select|textarea|svg|canvas)[^>]*>/gi, '');
 }
 
-export default function MarkdownArticle({ content }) {
+export default function MarkdownArticle({ content, skipFirstImageSrc }) {
   if (hasHtmlMarkup(content)) {
     return (
       <div
@@ -138,6 +138,7 @@ export default function MarkdownArticle({ content }) {
   let paragraph = [];
   let codeBlock = [];
   let inCodeBlock = false;
+  let skippedFirstImage = false;
 
   const flushParagraph = () => {
     if (paragraph.length) {
@@ -219,6 +220,12 @@ export default function MarkdownArticle({ content }) {
     if (imageMatch) {
       flushParagraph();
       flushLists();
+
+      if (!skippedFirstImage && skipFirstImageSrc && imageMatch[2] === skipFirstImageSrc) {
+        skippedFirstImage = true;
+        continue;
+      }
+
       blocks.push({ type: 'image', alt: imageMatch[1] || '', src: imageMatch[2] });
       continue;
     }
@@ -226,6 +233,12 @@ export default function MarkdownArticle({ content }) {
     if (isImageUrl(trimmed)) {
       flushParagraph();
       flushLists();
+
+      if (!skippedFirstImage && skipFirstImageSrc && trimmed === skipFirstImageSrc) {
+        skippedFirstImage = true;
+        continue;
+      }
+
       blocks.push({ type: 'image', alt: '', src: trimmed });
       continue;
     }

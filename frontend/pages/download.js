@@ -70,7 +70,8 @@ export default function DownloadPage() {
         />
         <meta property="og:url" content="https://ginja.io/download" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F4EE" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" />
+        {/* Dark browser chrome color preserved, but disabled while the web page is light-only. */}
+        {/* <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#281D17" /> */}
       </Head>
 
       <div className="download-page">
@@ -185,6 +186,7 @@ export default function DownloadPage() {
           --download-tag-bg: #ffffff;
         }
 
+        /* Dark download-page variables preserved, but disabled while the web page is light-only.
         @media (prefers-color-scheme: dark) {
           .download-page {
             --download-bg: #281d17;
@@ -198,6 +200,7 @@ export default function DownloadPage() {
             --download-tag-bg: #3a2c24;
           }
         }
+        */
       `}</style>
     </>
   );

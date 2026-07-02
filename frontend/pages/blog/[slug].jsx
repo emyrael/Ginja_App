@@ -65,7 +65,8 @@ export default function DynamicBlogArticlePage({ article }) {
   const formattedDate = formatPublishedDate(publishedTime);
   const articleUrl = canonicalUrl(canonicalPath);
   const articleContent = articleBodyWithoutDuplicateTitle(article.content, title);
-  const image = getFirstArticleImageUrl(articleContent || article.content) || article.cover_image_url || DEFAULT_OG_IMAGE;
+  const leadImage = getFirstArticleImageUrl(articleContent || article.content);
+  const image = leadImage || article.cover_image_url || DEFAULT_OG_IMAGE;
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -111,7 +112,14 @@ export default function DynamicBlogArticlePage({ article }) {
       {article.excerpt ? (
         <p className="mt-5 text-base leading-relaxed text-[var(--text-secondary)] sm:text-lg">{article.excerpt}</p>
       ) : null}
-      <MarkdownArticle content={articleContent || article.content} />
+      {leadImage ? (
+        <img
+          src={leadImage}
+          alt=""
+          className="mt-7 aspect-[16/9] w-full rounded-2xl border border-[var(--border-color)] object-cover"
+        />
+      ) : null}
+      <MarkdownArticle content={articleContent || article.content} skipFirstImageSrc={leadImage} />
       <div className="mt-9 rounded-2xl border border-[#DCE8D5] bg-[#F1F8EC] px-5 py-5 dark:border-[#4C6040] dark:bg-[#2E3E25]">
         <p className="text-base leading-relaxed text-[#486047] dark:text-[#D0E3C1] sm:text-lg">
           Turn the next clear step into motion with Ginja.
