@@ -32,6 +32,7 @@ import {
   X,
 } from 'lucide-react';
 import PhoneFrame from './ui/PhoneFrame';
+import GinjaAssistanceSection from './GinjaAssistanceSection';
 import {
   ArcOverviewScreen,
   BrainDumpScreen,
@@ -2978,6 +2979,7 @@ export default function PremiumHomepage({ onSeeHowItWorks }) {
     <>
       <HeroSection onSeeHowItWorks={scrollToStory} />
       <ChaosToClaritySection />
+      <GinjaAssistanceSection />
       <FiveAppsProblemSection />
       <PremiumReviewsSection />
       <ConnectedLifeSection />
